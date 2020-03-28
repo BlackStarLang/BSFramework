@@ -1,0 +1,16 @@
+PODS:
+  - BSFrameworks (0.1.0)
+
+DEPENDENCIES:
+  - BSFrameworks (from `../`)
+
+EXTERNAL SOURCES:
+  BSFrameworks:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  BSFrameworks: 8f29fbef734bcdcc8c11b07e49b87d4b15643d72
+
+PODFILE CHECKSUM: 97d2fd7932fed13cda0069268eb27271a11e3c97
+
+COCOAPODS: 1.8.4

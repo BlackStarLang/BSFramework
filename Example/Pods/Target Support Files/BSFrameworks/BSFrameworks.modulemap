@@ -1,0 +1,6 @@
+framework module BSFrameworks {
+  umbrella header "BSFrameworks-umbrella.h"
+
+  export *
+  module * { export * }
+}
