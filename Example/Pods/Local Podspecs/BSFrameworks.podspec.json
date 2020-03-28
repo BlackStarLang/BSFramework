@@ -1,0 +1,22 @@
+{
+  "name": "BSFrameworks",
+  "version": "0.1.0",
+  "summary": "A short description of BSFrameworks.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/blackstar_lang@163.com/BSFrameworks",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "blackstar_lang@163.com": "langzq@sqbj.com"
+  },
+  "source": {
+    "git": "https://github.com/blackstar_lang@163.com/BSFrameworks.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "BSFrameworks/Classes/**/*"
+}
