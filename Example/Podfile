@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'BSFrameworks_Example' do
+  pod 'BSFrameworks', :path => '../'
+
+  target 'BSFrameworks_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
