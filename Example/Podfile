@@ -1,6 +1,6 @@
-use_frameworks!
+#use_frameworks!
 
-platform :ios, '8.0'
+platform :ios, '9.0'
 
 target 'BSFrameworks_Example' do
   pod 'BSFrameworks', :path => '../'

@@ -1,16 +1,26 @@
 PODS:
-  - BSFrameworks (0.1.0)
+  - BSFrameworks (0.1.0):
+    - BSFrameworks/BSPhotoFramework (= 0.1.0)
+    - Masonry
+  - BSFrameworks/BSPhotoFramework (0.1.0):
+    - Masonry
+  - Masonry (1.1.0)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - Masonry
 
 EXTERNAL SOURCES:
   BSFrameworks:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 8f29fbef734bcdcc8c11b07e49b87d4b15643d72
+  BSFrameworks: 594db4b7735656596d5ccdd387613ba41e5adfe5
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
 
-PODFILE CHECKSUM: 97d2fd7932fed13cda0069268eb27271a11e3c97
+PODFILE CHECKSUM: abe504d2f866ab3a2dfd0a60a60cb1376c6c9020
 
 COCOAPODS: 1.8.4

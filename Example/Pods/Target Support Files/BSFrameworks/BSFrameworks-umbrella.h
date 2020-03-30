@@ -10,6 +10,14 @@
 #endif
 #endif
 
+#import "BSPhotoDataManager.h"
+#import "BSPhotoGroupModel.h"
+#import "BSPhotoModel.h"
+#import "PhotoGroupListCell.h"
+#import "PhotoListCollectionCell.h"
+#import "BSPhotoGroupController.h"
+#import "BSPhotoListController.h"
+#import "BSPhotoViewModel.h"
 
 FOUNDATION_EXPORT double BSFrameworksVersionNumber;
 FOUNDATION_EXPORT const unsigned char BSFrameworksVersionString[];

@@ -2,7 +2,7 @@
   "name": "BSFrameworks",
   "version": "0.1.0",
   "summary": "A short description of BSFrameworks.",
-  "description": "TODO: Add long description of the pod here.",
+  "description": "自己封装的所有的常用工具类\n1、图片选择器，支持选择图片、视频 (以后可能追加 视频+图片 混合添加的功能)\n2、图片预览控件+视频预览控件",
   "homepage": "https://github.com/blackstar_lang@163.com/BSFrameworks",
   "license": {
     "type": "MIT",
@@ -13,10 +13,23 @@
   },
   "source": {
     "git": "https://github.com/blackstar_lang@163.com/BSFrameworks.git",
-    "tag": "0.1.0"
+    "tag": "0.1.0",
+    "submodules": true
   },
   "platforms": {
-    "ios": "8.0"
+    "ios": "9.0"
   },
-  "source_files": "BSFrameworks/Classes/**/*"
+  "dependencies": {
+    "Masonry": [
+
+    ]
+  },
+  "subspecs": [
+    {
+      "name": "BSPhotoFramework",
+      "source_files": "BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}",
+      "frameworks": "Photos",
+      "resources": "BSFrameworks/Assets/PhotoFramework/*"
+    }
+  ]
 }

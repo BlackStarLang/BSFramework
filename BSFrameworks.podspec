@@ -17,26 +17,31 @@ Pod::Spec.new do |s|
 #   * Write the description between the DESC delimiters below.
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
+  s.description      =
+ 
+ <<-DESC
 
+  自己封装的所有的常用工具类
+  1、图片选择器，支持选择图片、视频 (以后可能追加 视频+图片 混合添加的功能)
+  2、图片预览控件+视频预览控件
+  
+  DESC
+  
   s.homepage         = 'https://github.com/blackstar_lang@163.com/BSFrameworks'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'blackstar_lang@163.com' => 'langzq@sqbj.com' }
-  s.source           = { :git => 'https://github.com/blackstar_lang@163.com/BSFrameworks.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.source           = { :git => 'https://github.com/blackstar_lang@163.com/BSFrameworks.git', :tag => s.version.to_s, :submodules => true}
+ 
+  s.platform         = :ios, "9.0"
+  s.ios.deployment_target = '9.0'
+  s.dependency 'Masonry'
 
-  s.ios.deployment_target = '8.0'
-
-  s.source_files = 'BSFrameworks/Classes/**/*'
   
-  # s.resource_bundles = {
-  #   'BSFrameworks' => ['BSFrameworks/Assets/*.png']
-  # }
+  s.subspec 'BSPhotoFramework' do |ss|
+    ss.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
+    ss.framework    = 'Photos'
+    ss.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
+  end
+  
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end

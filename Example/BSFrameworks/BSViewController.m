@@ -7,8 +7,15 @@
 //
 
 #import "BSViewController.h"
+#import "BSTestViewController.h"
+
+#import <BSPhotoGroupController.h>
 
 @interface BSViewController ()
+
+@property (weak, nonatomic) IBOutlet UIButton *mybutton;
+
+
 
 @end
 
@@ -19,6 +26,24 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
 }
+
+
+- (IBAction)gotoPhotoLibrary:(UIButton *)sender {
+    
+    BSPhotoGroupController *groupVC = [[BSPhotoGroupController alloc]init];
+    
+    [self.navigationController pushViewController:groupVC animated:YES];
+    
+}
+
+- (IBAction)button2push:(UIButton *)sender {
+ 
+    BSTestViewController * vc = [[BSTestViewController alloc]init];
+    
+    [self.navigationController pushViewController:vc animated:YES];
+    
+}
+
 
 - (void)didReceiveMemoryWarning
 {
