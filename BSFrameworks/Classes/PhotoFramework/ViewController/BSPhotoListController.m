@@ -12,6 +12,7 @@
 #import "BSPhotoDataManager.h"
 #import "BSPhotoModel.h"
 #import "BSPhotoGroupModel.h"
+#import "BSPhotoPreviewController.h"
 
 
 @interface BSPhotoListController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
@@ -20,6 +21,7 @@
 
 @property (nonatomic ,copy) NSMutableArray *dataSource;
 
+@property (nonatomic ,strong) NSMutableArray *currentSelectArr;
 
 @end
 
@@ -53,7 +55,7 @@
 
 -(void)configData{
     
-    [BSPhotoDataManager getCurrentImageListFromBSPhotoGroupModel:self.groupModel imageList:^(NSArray *imageList) {
+    [BSPhotoDataManager getCurrentImageListFromBSPhotoGroupModel:self.groupModel libraryType:Library_Photo imageList:^(NSArray *imageList) {
        
         if (imageList.count) {
             [self.dataSource removeAllObjects];
@@ -96,7 +98,10 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
+    previewVC.previewPhotos = self.dataSource;
+    previewVC.currentIndex = indexPath.row;
+    [self.navigationController pushViewController:previewVC animated:YES];
 }
 
 
@@ -121,6 +126,10 @@
 
 -(NSMutableArray *)dataSource{
     return _dataSource=_dataSource?:[NSMutableArray array];
+}
+
+-(NSMutableArray *)currentSelectArr{
+    return _currentSelectArr=_currentSelectArr?:[NSMutableArray array];
 }
 
 /*

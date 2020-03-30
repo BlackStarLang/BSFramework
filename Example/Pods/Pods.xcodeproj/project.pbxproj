@@ -14,6 +14,8 @@
 		2514DAE18B8808449630AFB13E016A19 /* BSPhotoGroupModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D7F6A2781928C4F0588CED3E9A91842 /* BSPhotoGroupModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		25E211163519966AAAD10BB95EF85AA6 /* Pods-BSFrameworks_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8438AE778429F7BF509E19D0AC5D59 /* Pods-BSFrameworks_Tests-dummy.m */; };
 		2DE82BA3A834177ACC6CEBE28D99763C /* BSPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D81D9CE558F19130675B72233A16F /* BSPhotoListController.m */; };
+		300AE2572431EF1D00E8CD7C /* PhotoPreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */; };
+		300AE2582431EF1D00E8CD7C /* PhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */; };
 		30D5EBE02549B267AABA952C534EF625 /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 41A1F412864BD5CAE0593ED757457E90 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		30F0BCE524318F2B00E70C3C /* BSPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F0BCE324318F2B00E70C3C /* BSPhotoPreviewController.h */; };
 		30F0BCE624318F2B00E70C3C /* BSPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F0BCE424318F2B00E70C3C /* BSPhotoPreviewController.m */; };
@@ -100,6 +102,8 @@
 		2908E4735BA0B1A9400806F20C78BE2E /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
 		298B114B7EB3F9D6A44F1C72AC8AEDC0 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
 		2E7C4F30696DCA6B58563BE7B8DC54FF /* Pods-BSFrameworks_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BSFrameworks_Example-acknowledgements.plist"; sourceTree = "<group>"; };
+		300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewCell.h; sourceTree = "<group>"; };
+		300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewCell.m; sourceTree = "<group>"; };
 		30F0BCE324318F2B00E70C3C /* BSPhotoPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoPreviewController.h; sourceTree = "<group>"; };
 		30F0BCE424318F2B00E70C3C /* BSPhotoPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoPreviewController.m; sourceTree = "<group>"; };
 		31BB07A74B2AE7BCBC3B4C566DB267ED /* BSFrameworks-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BSFrameworks-dummy.m"; sourceTree = "<group>"; };
@@ -366,6 +370,8 @@
 				74E42F9DB9EFBFAB7FEA1D543F25FBCE /* PhotoGroupListCell.m */,
 				739E30403A1925903FAB822904F16CD2 /* PhotoListCollectionCell.h */,
 				0ECFFA7FB831F9F8C5770FF54F3239AE /* PhotoListCollectionCell.m */,
+				300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */,
+				300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */,
 			);
 			name = View;
 			path = BSFrameworks/Classes/PhotoFramework/View;
@@ -470,6 +476,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				300AE2572431EF1D00E8CD7C /* PhotoPreviewCell.h in Headers */,
 				FE57EAB86EA4C399C10332C1FD411ACD /* BSPhotoDataManager.h in Headers */,
 				FAFA0BCCBFCAC246DB62ACC1AEC7B9A6 /* BSPhotoGroupController.h in Headers */,
 				2514DAE18B8808449630AFB13E016A19 /* BSPhotoGroupModel.h in Headers */,
@@ -606,6 +613,7 @@
 				2DE82BA3A834177ACC6CEBE28D99763C /* BSPhotoListController.m in Sources */,
 				566271533915F8333EABBACB72C1912D /* BSPhotoModel.m in Sources */,
 				A9BC2EF29D777661DCDE7E29A22BD8CB /* BSPhotoViewModel.m in Sources */,
+				300AE2582431EF1D00E8CD7C /* PhotoPreviewCell.m in Sources */,
 				77557AC4C965BE7A5CC03E238486C7E0 /* PhotoGroupListCell.m in Sources */,
 				30F0BCE624318F2B00E70C3C /* BSPhotoPreviewController.m in Sources */,
 				7595B2AC02B6E8BB5567FECA00FD925F /* PhotoListCollectionCell.m in Sources */,

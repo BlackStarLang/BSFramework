@@ -33,7 +33,7 @@
             PHAssetCollection * assetCollection = obj;
             //构造自定义对象，进行赋值
             BSPhotoGroupModel *groupModel = [[BSPhotoGroupModel alloc]init];
-            [self getModelPropertyValue:groupModel assetCollection:assetCollection isCache:YES dataArr:groupListData];
+            [self getModelPropertyValue:groupModel assetCollection:assetCollection dataArr:groupListData];
         }];
         
         //按数量排序
@@ -55,9 +55,9 @@
 
 
 
-#pragma mark - 根据 PHAssetCollection 对 BSPhotoGroupModel对象进行赋值
+#pragma mark - 根据 PHAssetCollection 对 BSPhotoGroupModel 对象进行赋值
 
-+(void)getModelPropertyValue:(BSPhotoGroupModel *)model assetCollection:(PHAssetCollection*)assetCollection isCache:(BOOL)isCache dataArr:(NSMutableArray *)dataArr {
++(void)getModelPropertyValue:(BSPhotoGroupModel *)model assetCollection:(PHAssetCollection*)assetCollection dataArr:(NSMutableArray *)dataArr {
     
     PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
 
@@ -71,61 +71,82 @@
         
         PHImageRequestOptions *options = [[PHImageRequestOptions alloc]init];
         options.resizeMode = PHImageRequestOptionsResizeModeFast;
-        options.synchronous = isCache;
+        options.synchronous = YES;
         
         __block UIImage *img = [[UIImage alloc]init];
         
-        [manager requestImageForAsset:assetResult.lastObject targetSize:CGSizeMake(200, 200) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+        [manager requestImageForAsset:assetResult.lastObject targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
             
             img = result;
         }];
         
         model.coverImage = img;
         [dataArr addObject: model];
-        
     }
 }
 
 
-#pragma mark - 获取当前相册所有图片
-+(void)getCurrentImageListFromBSPhotoGroupModel:(BSPhotoGroupModel*)groupModel imageList:(void(^)(NSArray *imageList))imageList{
+#pragma mark - 获取当前相册所有图片（缩略图）
++(void)getCurrentImageListFromBSPhotoGroupModel:(BSPhotoGroupModel*)groupModel libraryType:(LibraryType)libraryType imageList:(void(^)(NSArray *imageList))imageList{
     
     PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:groupModel.assetCollection options:nil];
     
     NSMutableArray *photosArr = [NSMutableArray array];
     
     
-    __block NSInteger preCount = 10;
+    __block NSInteger preCount = 40;
     
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         @autoreleasepool {
             
+            int allCount = 0;
             
             for (PHAsset *asset in assetResult) {
+                allCount ++ ;
                 
-                
-                BSPhotoModel *photoModel = [[BSPhotoModel alloc]init];
-                photoModel.asset = asset;
-                
-                
-                PHImageManager *manager = [PHImageManager defaultManager];
-                
-                PHImageRequestOptions *options = [[PHImageRequestOptions alloc]init];
-                options.resizeMode = PHImageRequestOptionsResizeModeFast;
-                options.synchronous = YES;
-                
-                [manager requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                if (libraryType == Library_Photo) {
                     
-                    photoModel.thumbImage = result;
-                }];
-                
-                [photosArr addObject:photoModel];
-                
-                if (preCount - photosArr.count == 0 || photosArr.count == assetResult.count) {
-                    dispatch_async(dispatch_get_main_queue(), ^{
-                        imageList(photosArr);
-                        preCount = preCount + 10;
-                    });
+                    if (asset.mediaType==PHAssetMediaTypeImage) {
+                        
+                        BSPhotoModel *photoModel = [[BSPhotoModel alloc]init];
+                        photoModel.asset = asset;
+                        photoModel.identifier = asset.localIdentifier;
+                        
+                        PHImageManager *manager = [PHImageManager defaultManager];
+                        
+                        PHImageRequestOptions *options = [[PHImageRequestOptions alloc]init];
+                        options.resizeMode = PHImageRequestOptionsResizeModeFast;
+                        options.synchronous = YES;
+                        
+                        [manager requestImageForAsset:asset targetSize:CGSizeMake(300, 300) contentMode:PHImageContentModeAspectFill options:options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+                            
+                            photoModel.thumbImage = result;
+                        }];
+                        
+                        [photosArr addObject:photoModel];
+                        
+                        if (preCount - photosArr.count == 0 || photosArr.count == allCount) {
+                            dispatch_async(dispatch_get_main_queue(), ^{
+                                imageList(photosArr);
+                                preCount = preCount + 40;
+                            });
+                        }
+                    }
+                    
+                }else if (libraryType == Library_Video){
+                    
+                    if (asset.mediaType==PHAssetMediaTypeVideo) {
+                        
+                        
+                    }
+                    
+                    
+                }else{
+                    
+                    if (asset.mediaType==PHAssetMediaTypeVideo||asset.mediaType==PHAssetMediaTypeImage) {
+                        
+                        
+                    }
                 }
             }
             
@@ -134,6 +155,8 @@
     });
 }
 
+
+#pragma mark - 获取当前相册所有图片（原始图片）
 +(void)getPhotoModelOriginImageWithPhotoModelArr:(NSArray *)modelArr imageList:(void(^)(NSArray *imageList))imageList{
             
     for (int i = 0 ; i< modelArr.count ; i++) {

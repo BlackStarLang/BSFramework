@@ -31,8 +31,8 @@
 - (IBAction)gotoPhotoLibrary:(UIButton *)sender {
     
     BSPhotoGroupController *groupVC = [[BSPhotoGroupController alloc]init];
-    
-    [self.navigationController pushViewController:groupVC animated:YES];
+    groupVC.title = @"我的相册";
+    [self.navigationController pushViewController:groupVC animated:NO];
     
 }
 

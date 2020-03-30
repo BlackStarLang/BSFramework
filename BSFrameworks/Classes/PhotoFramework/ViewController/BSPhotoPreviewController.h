@@ -11,7 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSPhotoPreviewController : UIViewController
 
-@property (nonatomic ,strong) NSMutableArray *previewImages;//要预览的图片数组
+@property (nonatomic ,strong) NSMutableArray *previewPhotos;//要预览的图片数组
+@property (nonatomic ,assign) NSInteger currentIndex;       //当前预览的图片
 
 
 @end

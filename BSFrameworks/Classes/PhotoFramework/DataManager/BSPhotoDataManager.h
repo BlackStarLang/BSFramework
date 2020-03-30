@@ -26,7 +26,7 @@ typedef enum : NSUInteger {
 
 
 #pragma mark - 获取当前相册所有图片
-+(void)getCurrentImageListFromBSPhotoGroupModel:(BSPhotoGroupModel*)groupModel imageList:(void(^)(NSArray *imageList))imageList;
++(void)getCurrentImageListFromBSPhotoGroupModel:(BSPhotoGroupModel*)groupModel libraryType:(LibraryType)libraryType imageList:(void(^)(NSArray *imageList))imageList;
 
 
 @end

@@ -25,7 +25,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController.navigationBar.topItem setTitle:@"我的相册"];
 }
 
 - (void)viewDidLoad {
@@ -58,7 +57,7 @@
 }
 
 -(void)configData{
-    
+    self.autoPush = YES;
     [self.tableView registerClass:[PhotoGroupListCell class] forCellReuseIdentifier:@"PhotoGroupListCell"];
 }
 
@@ -72,8 +71,14 @@
         [self.dataSource addObjectsFromArray:[groupList copy]];
 
         [self.tableView reloadData];
+        
+        if (self.dataSource.count && self.autoPush) {
+            
+            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
+            photoListVC.groupModel = self.dataSource[0];
+            [self.navigationController pushViewController:photoListVC animated:YES];
+        }
     }];
-
 }
 
 

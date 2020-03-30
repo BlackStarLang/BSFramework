@@ -12,6 +12,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BSPhotoGroupController : UIViewController
 
 
+@property (nonatomic ,assign) BOOL autoPush;//自动跳转到第一个相册图片列表 default is YES
 
 @end
 
