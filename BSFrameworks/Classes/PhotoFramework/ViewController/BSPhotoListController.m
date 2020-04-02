@@ -13,7 +13,7 @@
 #import "BSPhotoModel.h"
 #import "BSPhotoGroupModel.h"
 #import "BSPhotoPreviewController.h"
-
+#import "BSCameraController.h"
 
 @interface BSPhotoListController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -98,10 +98,16 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
-    previewVC.previewPhotos = self.dataSource;
-    previewVC.currentIndex = indexPath.row;
-    [self.navigationController pushViewController:previewVC animated:YES];
+    if (indexPath.row == 0) {
+        BSCameraController *cameraVC = [[BSCameraController alloc]init];
+        
+        [self.navigationController pushViewController:cameraVC animated:YES];
+    }else{
+        BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
+        previewVC.previewPhotos = self.dataSource;
+        previewVC.currentIndex = indexPath.row;
+        [self.navigationController pushViewController:previewVC animated:YES];
+    }
 }
 
 
