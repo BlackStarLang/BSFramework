@@ -67,6 +67,7 @@
     
     if (!_selectBtn) {
         _selectBtn = [[UIButton alloc]init];
+        [_selectBtn setAdjustsImageWhenHighlighted:NO];
         [_selectBtn setImage:[UIImage imageNamed:@"img_unselect"] forState:UIControlStateNormal];
         [_selectBtn setImage:[UIImage imageNamed:@"img_select"] forState:UIControlStateSelected];
         [_selectBtn addTarget:self action:@selector(selectBtnClick:) forControlEvents:UIControlEventTouchUpInside];

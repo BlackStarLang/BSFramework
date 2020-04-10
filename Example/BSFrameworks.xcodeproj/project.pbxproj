@@ -341,6 +341,13 @@
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_preview_unselect.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_select.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_unselect.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@2x.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@3x.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_auto.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_off.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_on.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_selfie.png",
+				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_take.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -348,6 +355,13 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/img_preview_unselect.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/img_select.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/img_unselect.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_icon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_icon@3x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_light_auto.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_light_off.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_light_on.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_selfie.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/photo_camera_take.png",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;

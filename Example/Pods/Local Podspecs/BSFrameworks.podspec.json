@@ -28,7 +28,10 @@
     {
       "name": "BSPhotoFramework",
       "source_files": "BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}",
-      "frameworks": "Photos",
+      "frameworks": [
+        "Photos",
+        "AVFoundation"
+      ],
       "resources": "BSFrameworks/Assets/PhotoFramework/*"
     }
   ]

@@ -101,12 +101,26 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_preview_unselect.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_select.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_unselect.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@2x.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@3x.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_auto.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_off.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_on.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_selfie.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_take.png"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_preview_select.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_preview_unselect.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_select.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_unselect.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@2x.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_icon@3x.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_auto.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_off.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_light_on.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_selfie.png"
+  install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/photo_camera_take.png"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

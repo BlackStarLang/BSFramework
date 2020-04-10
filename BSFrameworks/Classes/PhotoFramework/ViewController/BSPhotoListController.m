@@ -27,6 +27,12 @@
 
 @implementation BSPhotoListController
 
+
+-(void)dealloc{
+    NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
 
@@ -75,7 +81,7 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.dataSource.count;
+    return self.dataSource.count + 1;
 }
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -90,7 +96,18 @@
     
     PhotoListCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoListCollectionCell" forIndexPath:indexPath];
     
-    [BSPhotoViewModel displayPhotoListCollectionCell:cell photoModel:self.dataSource[indexPath.row]];
+    if (indexPath.row == 0) {
+        
+//        UIImage *image = [[UIImage imageNamed:@"photo_camera_icon"] imageWithRenderingMode:UIImageRenderingModeAlwaysTemplate];
+//        cell.imageView.image = image;
+//        cell.imageView.tintColor = [UIColor whiteColor];
+//        cell.imageView.backgroundColor = [UIColor blackColor];
+        cell.imageView.image = [UIImage imageNamed:@"photo_camera_icon"];
+        cell.selectBtn.hidden = YES;
+        
+    }else{
+        [BSPhotoViewModel displayPhotoListCollectionCell:cell photoModel:self.dataSource[indexPath.row - 1]];
+    }
     
     return cell;
 }
@@ -100,12 +117,13 @@
     
     if (indexPath.row == 0) {
         BSCameraController *cameraVC = [[BSCameraController alloc]init];
-        
+        cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:cameraVC animated:YES];
     }else{
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
         previewVC.previewPhotos = self.dataSource;
         previewVC.currentIndex = indexPath.row;
+        previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }
 }

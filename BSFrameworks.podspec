@@ -39,7 +39,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'BSPhotoFramework' do |ss|
     ss.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
-    ss.framework    = 'Photos'
+    ss.frameworks    = 'Photos','AVFoundation'
     ss.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
   end
   

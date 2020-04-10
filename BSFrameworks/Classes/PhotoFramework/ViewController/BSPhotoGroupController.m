@@ -23,8 +23,16 @@
 
 @implementation BSPhotoGroupController
 
+
+-(void)dealloc{
+    NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
+}
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
+    
 }
 
 - (void)viewDidLoad {
@@ -39,13 +47,8 @@
 }
 
 -(void)initSubViews{
-    
     self.title = @"我的相册";
-
-    self.navigationController.navigationBar.topItem.title = @"";
-    
     [self.view addSubview:self.tableView];
-    
 }
 
 -(void)masonryLayout{
@@ -74,9 +77,10 @@
         
         if (self.dataSource.count && self.autoPush) {
             
-            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
-            photoListVC.groupModel = self.dataSource[0];
-            [self.navigationController pushViewController:photoListVC animated:YES];
+//            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
+//            photoListVC.groupModel = self.dataSource[0];
+//            photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//            [self.navigationController pushViewController:photoListVC animated:YES];
         }
     }];
 }
@@ -103,6 +107,7 @@
     
     BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
     photoListVC.groupModel = self.dataSource[indexPath.row];
+    photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];
 }
 

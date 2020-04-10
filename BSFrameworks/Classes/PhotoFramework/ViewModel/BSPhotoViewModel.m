@@ -26,7 +26,7 @@
 +(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell photoModel:(BSPhotoModel *)photoModel{
         
     cell.imageView.image = photoModel.thumbImage;
-    
+    cell.selectBtn.hidden = NO;
 }
 
 

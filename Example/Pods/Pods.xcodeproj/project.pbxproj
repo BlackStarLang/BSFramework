@@ -7,67 +7,61 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0D45203422F07D3B61811045534985BE /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 432F18DFE077C5EFC0501BA30FA26ABC /* MASConstraintMaker.m */; };
-		12CA8A9DF8333D11D6096E0B63ECAF4C /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 286B17CD4870DF3FD3C46BB8A2499A7A /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1637FC7A4B1451904D3078504C5FEB2A /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2908E4735BA0B1A9400806F20C78BE2E /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		1F762FDE6EC18BAD7FB19F019399D8DB /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = EBD039AC2FD738DC6B7E1D233A27D2A8 /* MASConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		2514DAE18B8808449630AFB13E016A19 /* BSPhotoGroupModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 1D7F6A2781928C4F0588CED3E9A91842 /* BSPhotoGroupModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		02BA5B12A6C3335F51A2B8DA14192A56 /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F3F6D12B163631424C83D43FB2C71 /* MASConstraint.m */; };
+		0534D7A3B511695097A0C0F175E1A93A /* BSPhotoProtocal.h in Headers */ = {isa = PBXBuildFile; fileRef = 1C7D3FCBAD1A74AFB276E7D394F384BD /* BSPhotoProtocal.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0588AA675676F13F74C12CC6389BEF98 /* PhotoListCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 9362C3BC9C611120BAABEEC06936F52A /* PhotoListCollectionCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		08023858D296E52A95C27F39E9577F78 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 40671FF5AAEBABBB84CFC1491F84928F /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		0A0CA77170263A2F5847D28A463828F2 /* BSPhotoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 0CCE3639B5EFBA9A51D858554DEBE2A4 /* BSPhotoDataManager.m */; };
+		0B78C0CA128782A433486994CAE029F1 /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BC569782F4BD1F3ACED01A9CA8EC9 /* Masonry-dummy.m */; };
+		0E476B0B10304CB1928E4C1673C4D985 /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F72DBB73011C979E0760EFE7BA0A768 /* ViewController+MASAdditions.m */; };
+		107E90AA9FCEE4512158254FEF626355 /* BSCameraController.h in Headers */ = {isa = PBXBuildFile; fileRef = 12156C51E1C599DB455EEB1B76030CD7 /* BSCameraController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		167546308442AB75E152FEC112F4D795 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E28BE40A980ECFA0C5E71CDF7403F7BC /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		25E211163519966AAAD10BB95EF85AA6 /* Pods-BSFrameworks_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DE8438AE778429F7BF509E19D0AC5D59 /* Pods-BSFrameworks_Tests-dummy.m */; };
-		2DE82BA3A834177ACC6CEBE28D99763C /* BSPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 950D81D9CE558F19130675B72233A16F /* BSPhotoListController.m */; };
-		300AE2572431EF1D00E8CD7C /* PhotoPreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */; };
-		300AE2582431EF1D00E8CD7C /* PhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */; };
-		3037E3B02435D971000CAA31 /* BSCameraController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3037E3AE2435D971000CAA31 /* BSCameraController.h */; };
-		3037E3B12435D971000CAA31 /* BSCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3037E3AF2435D971000CAA31 /* BSCameraController.m */; };
-		30D5EBE02549B267AABA952C534EF625 /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 41A1F412864BD5CAE0593ED757457E90 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		30F0BCE524318F2B00E70C3C /* BSPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 30F0BCE324318F2B00E70C3C /* BSPhotoPreviewController.h */; };
-		30F0BCE624318F2B00E70C3C /* BSPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30F0BCE424318F2B00E70C3C /* BSPhotoPreviewController.m */; };
-		371366CEB2E759E4FC7C63E91073E3DA /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F843975670B4F8AE5B714AB02EF1B0 /* MASViewAttribute.m */; };
-		518CDE331C410A08C3063A0A0EE8B4A3 /* BSPhotoGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = D314DE5B2A51C1FA65AB01C9CB7E0F5A /* BSPhotoGroupModel.m */; };
-		566271533915F8333EABBACB72C1912D /* BSPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = F9417C39913449988A4A0877D295A556 /* BSPhotoModel.m */; };
-		576A99B22051F42FDB33856174D30B0F /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = C1FD50FCC28DB800D6EF0C41A1390D86 /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		5968039CAFB464B8FAE67D5FE6D0069C /* PhotoListCollectionCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 739E30403A1925903FAB822904F16CD2 /* PhotoListCollectionCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		65CEC1B7914AA674718ABB2013CA9D92 /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 191B7E1B4F214FE9F3134387162EA957 /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		67668C3BF5C8B11637E3219789C5E156 /* NSArray+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 40671FF5AAEBABBB84CFC1491F84928F /* NSArray+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		6DE0123798344A024660D0BEB6478170 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = FA19C525E9623030ABC992A174F511EA /* MASLayoutConstraint.m */; };
-		6EB2C490ED983A169D6A838290635ECF /* MASConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 460F3F6D12B163631424C83D43FB2C71 /* MASConstraint.m */; };
-		73B2D214598EBE57093D43A523D7C5FC /* PhotoGroupListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 35DFE45E870088647B4507D2D88C1389 /* PhotoGroupListCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		7595B2AC02B6E8BB5567FECA00FD925F /* PhotoListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0ECFFA7FB831F9F8C5770FF54F3239AE /* PhotoListCollectionCell.m */; };
-		75A73BB75152372041F47FF38D3D978C /* BSPhotoDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 79DC775F873B6729139E0B0AEC7808D1 /* BSPhotoDataManager.m */; };
-		77557AC4C965BE7A5CC03E238486C7E0 /* PhotoGroupListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 74E42F9DB9EFBFAB7FEA1D543F25FBCE /* PhotoGroupListCell.m */; };
-		85C9D16FE640D6A523E7EF93353A066B /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = C7867A74BA9B3C8E4D7EC302A7C69E06 /* MASUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		86339A90475C02F3ADECBE7F1F7290DA /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CF6E3AB1AF0EBE3CF73CB4361B28E0 /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		86DB6241BF34358508B3574CDC4B2669 /* BSPhotoViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 36B1250FE1C358512B93E4528FC230CF /* BSPhotoViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		947532955EBC4C94F7693DCCB578A2FA /* BSPhotoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = F470C961A1E3E08775E25696F777084F /* BSPhotoModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		26EE98835AE4804C883731B64A64281E /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E749F55680892BBF11110631172966 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		38CB338633B9E0435AFC862453FBA2D9 /* BSPhotoModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 4AB4541E24F4F84FD9D4457572E36D91 /* BSPhotoModel.m */; };
+		3C5ED810E4EAB1EED3208DB01328BCA7 /* BSPhotoGroupModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0516F97ECBD602E218A8AC1AB7223410 /* BSPhotoGroupModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		3DFCF6395ED0095ADC5B2ED076A35C60 /* MASViewAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 89F843975670B4F8AE5B714AB02EF1B0 /* MASViewAttribute.m */; };
+		3EEAB582D1E533523A405B7EB93FF3AC /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = A719A01F16EE8808A3AC31BB852811F1 /* MASViewConstraint.m */; };
+		3FBBEABA67DBC284C1D20CD839AC6E00 /* BSCameraController.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F501C6189632D7922A7A80F77744C4 /* BSCameraController.m */; };
+		4475E03D8E31E791C43AC2E3265BD698 /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEE89CA7ABA16A169A6E2596E17A997 /* MASCompositeConstraint.m */; };
+		538A9E652BC2146BC9841665505F6A43 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4539F7B7FF5C690B07B03365006FBC12 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		5B1982002D2A280E49CCFE9AC849CC94 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 298B114B7EB3F9D6A44F1C72AC8AEDC0 /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6664611C5EE45743E3D2EDDB94075785 /* MASLayoutConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = FA19C525E9623030ABC992A174F511EA /* MASLayoutConstraint.m */; };
+		66BBA5CA614D7E99933EDD712D4944BD /* BSPhotoDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = CA1D687DE3EDA7502CA65EAA7F2B5105 /* BSPhotoDataManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		6E8FF5BFBE1D5557A6CE65ADC3175519 /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBBF54A61AF0E5E4D594222853BEC03 /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		72461C7409DF244F896CD2E1F3B7E380 /* BSPhotoViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = EE0DD7FD7D06EB05722486B05C51CDEC /* BSPhotoViewModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7C92CC5D032E0B8C3C9D9C019EB255C9 /* NSArray+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 286B17CD4870DF3FD3C46BB8A2499A7A /* NSArray+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7DF041177A39F3CD17A09705A4BC5320 /* MASLayoutConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = C1FD50FCC28DB800D6EF0C41A1390D86 /* MASLayoutConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		7F4105BBC7FF1428F5A3F4DCC0E09807 /* PhotoListCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = AAE38F7DD92F1F61CE4B179A901E6BFF /* PhotoListCollectionCell.m */; };
+		8518D90E07B053E18A415ECAAB13B414 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E5B73DEEC44515CD5BB084B50644 /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		96B3A0E47828FC7E1FAEC9B0C2C82F56 /* Pods-BSFrameworks_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 355AEE73A11AA80C9987B8ADF30E06E8 /* Pods-BSFrameworks_Example-dummy.m */; };
-		9D0695C26F1EDCC041919D95E34A42A0 /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46999533CD42BAE664E95B9935B416D0 /* NSArray+MASAdditions.m */; };
-		9F7E00D8BA5676CEA117DDD8CB7383F9 /* MASViewAttribute.h in Headers */ = {isa = PBXBuildFile; fileRef = 298B114B7EB3F9D6A44F1C72AC8AEDC0 /* MASViewAttribute.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A8A7573530C4D39576756FEF12FF0D38 /* MASConstraintMaker.h in Headers */ = {isa = PBXBuildFile; fileRef = E1E749F55680892BBF11110631172966 /* MASConstraintMaker.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		A9BC2EF29D777661DCDE7E29A22BD8CB /* BSPhotoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = DC6E1DE33452F9E9F82345154125527B /* BSPhotoViewModel.m */; };
-		AD299589BEBC88C18FC00EAE9B3B65A3 /* MASViewConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = A719A01F16EE8808A3AC31BB852811F1 /* MASViewConstraint.m */; };
-		B7D34A24EF900AF5B079B4EEE70AE25E /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = B6722EDE7B90102FA7687FF83CB0FA29 /* Masonry.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		B8134DB13982B9C4429D078D55F116ED /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = ECEE89CA7ABA16A169A6E2596E17A997 /* MASCompositeConstraint.m */; };
-		BC56BF653916578DBDF11E824E8371AD /* MASConstraint+Private.h in Headers */ = {isa = PBXBuildFile; fileRef = 6EBBF54A61AF0E5E4D594222853BEC03 /* MASConstraint+Private.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		BE1B68A947253E10DE73D12597C99C8A /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8F72DBB73011C979E0760EFE7BA0A768 /* ViewController+MASAdditions.m */; };
-		C0031077C4CEF631E4650592165AFBE5 /* BSPhotoGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = A7C4F2CC0A8E52A2A734F436522AB1D0 /* BSPhotoGroupController.m */; };
-		C3E95758CAABB0286AF30A8ED0756689 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E688AC4A19E399EB2F7BEE821BA97A4B /* View+MASAdditions.m */; };
-		D44849606560A058D951A29BA69EAAFC /* BSFrameworks-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 31BB07A74B2AE7BCBC3B4C566DB267ED /* BSFrameworks-dummy.m */; };
-		D4C1CBE32529FA606E623887EEEF9098 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = E28BE40A980ECFA0C5E71CDF7403F7BC /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		DA121294EA4CECD8D18FEAEB6718410F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8776E5B73DEEC44515CD5BB084B50644 /* NSLayoutConstraint+MASDebugAdditions.m */; };
-		DA14B19C3746520C5F14499B5FEA56FD /* Masonry-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 119BC569782F4BD1F3ACED01A9CA8EC9 /* Masonry-dummy.m */; };
-		DA5265E22835D050829D809FA22915EC /* BSPhotoListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 5D6645F625080CEA959ABF945FADAAA7 /* BSPhotoListController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		E1C82593919A75E891EB924A475BE700 /* View+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 4539F7B7FF5C690B07B03365006FBC12 /* View+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FAFA0BCCBFCAC246DB62ACC1AEC7B9A6 /* BSPhotoGroupController.h in Headers */ = {isa = PBXBuildFile; fileRef = D0CC0D411CEA16BE0578F3386D021718 /* BSPhotoGroupController.h */; settings = {ATTRIBUTES = (Project, ); }; };
-		FE57EAB86EA4C399C10332C1FD411ACD /* BSPhotoDataManager.h in Headers */ = {isa = PBXBuildFile; fileRef = D41990E7CF0283762C65BC309BD47C48 /* BSPhotoDataManager.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		984BC706D806E67D953705DA7103D459 /* BSPhotoModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 7ED78E039FCB6E8A6157E495644D2A88 /* BSPhotoModel.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		9C98B47582CDC81636053DB6F477C790 /* BSPhotoGroupController.m in Sources */ = {isa = PBXBuildFile; fileRef = 63E873B9AA60BE20008FF003508CDC6F /* BSPhotoGroupController.m */; };
+		A374632F20EEE5EA0A4BD3E6C16B7FD6 /* MASUtilities.h in Headers */ = {isa = PBXBuildFile; fileRef = C7867A74BA9B3C8E4D7EC302A7C69E06 /* MASUtilities.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A52C29A129FC224C3789186D3427DD14 /* MASCompositeConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 41A1F412864BD5CAE0593ED757457E90 /* MASCompositeConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		A7FE65F6716FF99E9BBF85673A33DFF4 /* View+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = E688AC4A19E399EB2F7BEE821BA97A4B /* View+MASAdditions.m */; };
+		A82295F6EDB3D6A8DF1312038292391F /* BSPhotoListController.h in Headers */ = {isa = PBXBuildFile; fileRef = 60C26BE60C409047F996127BE842E25C /* BSPhotoListController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B20CC0FB97BD99308028F1DF872C9593 /* BSPhotoGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = B7B82D285C9E1BB78C9B119CC338A0F6 /* BSPhotoGroupModel.m */; };
+		B5C1560591FE76D3C2B186C29175D2F6 /* PhotoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 493DD32DD3CC11E299A42B28576F34C2 /* PhotoPreviewCell.m */; };
+		B876F6C81CBC2110658A76053918CEA6 /* Masonry.h in Headers */ = {isa = PBXBuildFile; fileRef = B6722EDE7B90102FA7687FF83CB0FA29 /* Masonry.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		B9A98F702C37733CAC327F5D98175307 /* MASViewConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = 2908E4735BA0B1A9400806F20C78BE2E /* MASViewConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		BB2BBA75EEEAB4F01C67F9AB624B85BA /* BSPhotoViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = CB52F1898D83C2719B5424D65165F0C3 /* BSPhotoViewModel.m */; };
+		BF87C6BB6F9664C14274F8D3EA26FE6C /* PhotoGroupListCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 563715788C01493B5A43B401D8CC2D9E /* PhotoGroupListCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C50295D00ECCEED213D203FBFDABDC1F /* BSPhotoPreviewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 9C9DBF77B30697AB3DE7074A37A2F9C3 /* BSPhotoPreviewController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		C556E3C6492548EE91B9508C2B63016B /* BSFrameworks-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 799AD09E3DDD1AAF9743152D92DBC4CB /* BSFrameworks-dummy.m */; };
+		C56FC4BD6CA96DC6C3F640615A7F7846 /* MASConstraintMaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 432F18DFE077C5EFC0501BA30FA26ABC /* MASConstraintMaker.m */; };
+		DA6FA56402B58217169A9AF62FEE562F /* MASConstraint.h in Headers */ = {isa = PBXBuildFile; fileRef = EBD039AC2FD738DC6B7E1D233A27D2A8 /* MASConstraint.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		DD6EF7D784A0A7FC22A955DBBCB4F792 /* BSPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D31A1CF7C6AD7515AAE901C5FCF0DABD /* BSPhotoPreviewController.m */; };
+		E20C7A3D5CC5CEABB71E2AA2886DB202 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 98CF6E3AB1AF0EBE3CF73CB4361B28E0 /* NSLayoutConstraint+MASDebugAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		E5E0DB6B9311BB0B88BEBB50D257B595 /* BSPhotoListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 432547D4E7E0E54842DCC10B8291048A /* BSPhotoListController.m */; };
+		E86F4D4AEA29A7CE3955047A5D71BB8D /* PhotoPreviewCell.h in Headers */ = {isa = PBXBuildFile; fileRef = 6E4EFF65EA2827A82636DD52018D9949 /* PhotoPreviewCell.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F055B34A0B5C409E11289DB379DB4398 /* BSPhotoGroupController.h in Headers */ = {isa = PBXBuildFile; fileRef = 3D63D1AEBC8C1E1F4CF43435DD512A8B /* BSPhotoGroupController.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		F44DBA1B837A4ACE8E1C9DB2B9E8BD4C /* View+MASShorthandAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 191B7E1B4F214FE9F3134387162EA957 /* View+MASShorthandAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
+		FC41157299A83DC09DCE412B703F121E /* PhotoGroupListCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4B5813F25A4F3708E27B70E81D69E7E5 /* PhotoGroupListCell.m */; };
+		FEBF64E3EF12E1239529A4758F5BC51E /* NSArray+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 46999533CD42BAE664E95B9935B416D0 /* NSArray+MASAdditions.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		48F289B8D667397FE29AC6F7B72FFE59 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
-			remoteInfo = Masonry;
-		};
 		7934BECE0253174A72D09E1FC7DB69B4 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -82,6 +76,13 @@
 			remoteGlobalIDString = 7CA3EEE19384C68F775921CEB918CA9D;
 			remoteInfo = BSFrameworks;
 		};
+		BAAD60F6F5A1131A4DF0A84FEE77B823 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 55AF53E6C77A10ED4985E04D74A8878E;
+			remoteInfo = Masonry;
+		};
 		E9570E4776EC10AA824CEE78C5CBE5D6 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
@@ -92,93 +93,94 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0ECFFA7FB831F9F8C5770FF54F3239AE /* PhotoListCollectionCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PhotoListCollectionCell.m; sourceTree = "<group>"; };
+		0516F97ECBD602E218A8AC1AB7223410 /* BSPhotoGroupModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoGroupModel.h; sourceTree = "<group>"; };
+		067E083B8A3F392EAC83115F9AFE67D8 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		0CCE3639B5EFBA9A51D858554DEBE2A4 /* BSPhotoDataManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoDataManager.m; sourceTree = "<group>"; };
 		119BC569782F4BD1F3ACED01A9CA8EC9 /* Masonry-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Masonry-dummy.m"; sourceTree = "<group>"; };
+		12156C51E1C599DB455EEB1B76030CD7 /* BSCameraController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSCameraController.h; sourceTree = "<group>"; };
+		142AB3FCCDB3A5556C5B7EDDE60887C1 /* img_select.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_select.png; path = BSFrameworks/Assets/PhotoFramework/img_select.png; sourceTree = "<group>"; };
 		191B7E1B4F214FE9F3134387162EA957 /* View+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASShorthandAdditions.h"; path = "Masonry/View+MASShorthandAdditions.h"; sourceTree = "<group>"; };
-		1D7F6A2781928C4F0588CED3E9A91842 /* BSPhotoGroupModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoGroupModel.h; sourceTree = "<group>"; };
-		1FFED36A657123030ABB700256D73F15 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		253D8CD097BAA2BE35844FE0C266506E /* img_select.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_select.png; path = BSFrameworks/Assets/PhotoFramework/img_select.png; sourceTree = "<group>"; };
+		19F5223B57648B18EF629A604F0E68E4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		1AC01FABA5AB8BA31139648B29758A80 /* photo_camera_light_on.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_light_on.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_light_on.png; sourceTree = "<group>"; };
+		1C7D3FCBAD1A74AFB276E7D394F384BD /* BSPhotoProtocal.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoProtocal.h; sourceTree = "<group>"; };
+		1FFED36A657123030ABB700256D73F15 /* libMasonry.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libMasonry.a; path = libMasonry.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		26580610B537A46F05580499E1436F5D /* Pods-BSFrameworks_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BSFrameworks_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		2710A93F904E302D0FE4A18DCDA229B0 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		286B17CD4870DF3FD3C46BB8A2499A7A /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
 		2908E4735BA0B1A9400806F20C78BE2E /* MASViewConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewConstraint.h; path = Masonry/MASViewConstraint.h; sourceTree = "<group>"; };
 		298B114B7EB3F9D6A44F1C72AC8AEDC0 /* MASViewAttribute.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASViewAttribute.h; path = Masonry/MASViewAttribute.h; sourceTree = "<group>"; };
+		29C1B6A48E06A0F74F5DD77938F87BC4 /* photo_camera_selfie.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_selfie.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_selfie.png; sourceTree = "<group>"; };
 		2E7C4F30696DCA6B58563BE7B8DC54FF /* Pods-BSFrameworks_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BSFrameworks_Example-acknowledgements.plist"; sourceTree = "<group>"; };
-		300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewCell.h; sourceTree = "<group>"; };
-		300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewCell.m; sourceTree = "<group>"; };
-		3037E3AE2435D971000CAA31 /* BSCameraController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCameraController.h; sourceTree = "<group>"; };
-		3037E3AF2435D971000CAA31 /* BSCameraController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCameraController.m; sourceTree = "<group>"; };
-		30F0BCE324318F2B00E70C3C /* BSPhotoPreviewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoPreviewController.h; sourceTree = "<group>"; };
-		30F0BCE424318F2B00E70C3C /* BSPhotoPreviewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoPreviewController.m; sourceTree = "<group>"; };
-		31BB07A74B2AE7BCBC3B4C566DB267ED /* BSFrameworks-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BSFrameworks-dummy.m"; sourceTree = "<group>"; };
 		355AEE73A11AA80C9987B8ADF30E06E8 /* Pods-BSFrameworks_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BSFrameworks_Example-dummy.m"; sourceTree = "<group>"; };
-		35DFE45E870088647B4507D2D88C1389 /* PhotoGroupListCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhotoGroupListCell.h; sourceTree = "<group>"; };
-		36B1250FE1C358512B93E4528FC230CF /* BSPhotoViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoViewModel.h; sourceTree = "<group>"; };
-		3C11ED095903A7593057FBA06D74E04F /* libPods-BSFrameworks_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3A32F0E18F7FC6978EDFD32922791E8D /* photo_camera_light_off.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_light_off.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_light_off.png; sourceTree = "<group>"; };
+		3C11ED095903A7593057FBA06D74E04F /* libPods-BSFrameworks_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-BSFrameworks_Tests.a"; path = "libPods-BSFrameworks_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3D63D1AEBC8C1E1F4CF43435DD512A8B /* BSPhotoGroupController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoGroupController.h; sourceTree = "<group>"; };
 		3EB601CE6C6948AE7FE6C1668B334EB9 /* Pods-BSFrameworks_Example-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-BSFrameworks_Example-resources.sh"; sourceTree = "<group>"; };
 		40671FF5AAEBABBB84CFC1491F84928F /* NSArray+MASShorthandAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASShorthandAdditions.h"; path = "Masonry/NSArray+MASShorthandAdditions.h"; sourceTree = "<group>"; };
 		41A1F412864BD5CAE0593ED757457E90 /* MASCompositeConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASCompositeConstraint.h; path = Masonry/MASCompositeConstraint.h; sourceTree = "<group>"; };
+		432547D4E7E0E54842DCC10B8291048A /* BSPhotoListController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoListController.m; sourceTree = "<group>"; };
 		432F18DFE077C5EFC0501BA30FA26ABC /* MASConstraintMaker.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraintMaker.m; path = Masonry/MASConstraintMaker.m; sourceTree = "<group>"; };
 		4539F7B7FF5C690B07B03365006FBC12 /* View+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "View+MASAdditions.h"; path = "Masonry/View+MASAdditions.h"; sourceTree = "<group>"; };
 		460F3F6D12B163631424C83D43FB2C71 /* MASConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASConstraint.m; path = Masonry/MASConstraint.m; sourceTree = "<group>"; };
 		46999533CD42BAE664E95B9935B416D0 /* NSArray+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MASAdditions.m"; path = "Masonry/NSArray+MASAdditions.m"; sourceTree = "<group>"; };
+		493DD32DD3CC11E299A42B28576F34C2 /* PhotoPreviewCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PhotoPreviewCell.m; sourceTree = "<group>"; };
+		4AB4541E24F4F84FD9D4457572E36D91 /* BSPhotoModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoModel.m; sourceTree = "<group>"; };
+		4B5813F25A4F3708E27B70E81D69E7E5 /* PhotoGroupListCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PhotoGroupListCell.m; sourceTree = "<group>"; };
 		4D0AACDD1E87D798705AD6BBAA9D40FB /* Pods-BSFrameworks_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BSFrameworks_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		4F06BBA09A9C890FEE2323C21764B08B /* Pods-BSFrameworks_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BSFrameworks_Example.release.xcconfig"; sourceTree = "<group>"; };
 		5574D81AEA6460C64E8E642F19BDF2B1 /* Pods-BSFrameworks_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BSFrameworks_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		5D6645F625080CEA959ABF945FADAAA7 /* BSPhotoListController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoListController.h; sourceTree = "<group>"; };
+		563715788C01493B5A43B401D8CC2D9E /* PhotoGroupListCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhotoGroupListCell.h; sourceTree = "<group>"; };
+		60C26BE60C409047F996127BE842E25C /* BSPhotoListController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoListController.h; sourceTree = "<group>"; };
+		63E873B9AA60BE20008FF003508CDC6F /* BSPhotoGroupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoGroupController.m; sourceTree = "<group>"; };
+		6E4EFF65EA2827A82636DD52018D9949 /* PhotoPreviewCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhotoPreviewCell.h; sourceTree = "<group>"; };
 		6EBBF54A61AF0E5E4D594222853BEC03 /* MASConstraint+Private.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "MASConstraint+Private.h"; path = "Masonry/MASConstraint+Private.h"; sourceTree = "<group>"; };
-		739E30403A1925903FAB822904F16CD2 /* PhotoListCollectionCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhotoListCollectionCell.h; sourceTree = "<group>"; };
-		74E42F9DB9EFBFAB7FEA1D543F25FBCE /* PhotoGroupListCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PhotoGroupListCell.m; sourceTree = "<group>"; };
-		79DC775F873B6729139E0B0AEC7808D1 /* BSPhotoDataManager.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoDataManager.m; sourceTree = "<group>"; };
-		85FA496125EC97695C94A79FDFBC9FD8 /* img_unselect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_unselect.png; path = BSFrameworks/Assets/PhotoFramework/img_unselect.png; sourceTree = "<group>"; };
+		6FB0F32838E52346D621FC1344976348 /* img_preview_select.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_preview_select.png; path = BSFrameworks/Assets/PhotoFramework/img_preview_select.png; sourceTree = "<group>"; };
+		707982AEAB0EBDAF29ABE92086AAC54C /* photo_camera_icon@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "photo_camera_icon@3x.png"; path = "BSFrameworks/Assets/PhotoFramework/photo_camera_icon@3x.png"; sourceTree = "<group>"; };
+		799AD09E3DDD1AAF9743152D92DBC4CB /* BSFrameworks-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "BSFrameworks-dummy.m"; sourceTree = "<group>"; };
+		7ED78E039FCB6E8A6157E495644D2A88 /* BSPhotoModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoModel.h; sourceTree = "<group>"; };
+		8526CBB1FED9535B12CC8976B02AAD4C /* img_unselect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_unselect.png; path = BSFrameworks/Assets/PhotoFramework/img_unselect.png; sourceTree = "<group>"; };
+		8664A132868DB29C08AD926DD5291E70 /* photo_camera_take.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_take.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_take.png; sourceTree = "<group>"; };
 		8776E5B73DEEC44515CD5BB084B50644 /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "NSLayoutConstraint+MASDebugAdditions.m"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		89F843975670B4F8AE5B714AB02EF1B0 /* MASViewAttribute.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewAttribute.m; path = Masonry/MASViewAttribute.m; sourceTree = "<group>"; };
 		8F72DBB73011C979E0760EFE7BA0A768 /* ViewController+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "ViewController+MASAdditions.m"; path = "Masonry/ViewController+MASAdditions.m"; sourceTree = "<group>"; };
-		950D81D9CE558F19130675B72233A16F /* BSPhotoListController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoListController.m; sourceTree = "<group>"; };
+		9362C3BC9C611120BAABEEC06936F52A /* PhotoListCollectionCell.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PhotoListCollectionCell.h; sourceTree = "<group>"; };
 		98BA5B3B22D0D135B371795A883CA1F5 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		98CF6E3AB1AF0EBE3CF73CB4361B28E0 /* NSLayoutConstraint+MASDebugAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSLayoutConstraint+MASDebugAdditions.h"; path = "Masonry/NSLayoutConstraint+MASDebugAdditions.h"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		A08532D880DD5D6DB8EB3B9D8505BEE4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
-		A6DC819F3AD266E5C2C85FB3858A1F89 /* BSFrameworks-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BSFrameworks-prefix.pch"; sourceTree = "<group>"; };
+		9C9DBF77B30697AB3DE7074A37A2F9C3 /* BSPhotoPreviewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoPreviewController.h; sourceTree = "<group>"; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		A5F501C6189632D7922A7A80F77744C4 /* BSCameraController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSCameraController.m; sourceTree = "<group>"; };
 		A719A01F16EE8808A3AC31BB852811F1 /* MASViewConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASViewConstraint.m; path = Masonry/MASViewConstraint.m; sourceTree = "<group>"; };
-		A7C4F2CC0A8E52A2A734F436522AB1D0 /* BSPhotoGroupController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoGroupController.m; sourceTree = "<group>"; };
-		ADA3AE0B398613A2BFC55F216CA75A85 /* img_preview_unselect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_preview_unselect.png; path = BSFrameworks/Assets/PhotoFramework/img_preview_unselect.png; sourceTree = "<group>"; };
+		AAE38F7DD92F1F61CE4B179A901E6BFF /* PhotoListCollectionCell.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PhotoListCollectionCell.m; sourceTree = "<group>"; };
+		B62CA4ABA850C979E2D223BD922225A2 /* BSFrameworks.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = BSFrameworks.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		B6722EDE7B90102FA7687FF83CB0FA29 /* Masonry.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = Masonry.h; path = Masonry/Masonry.h; sourceTree = "<group>"; };
-		C08AC81866D00B6524C9647C5F0F1F7E /* img_preview_select.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_preview_select.png; path = BSFrameworks/Assets/PhotoFramework/img_preview_select.png; sourceTree = "<group>"; };
+		B7B82D285C9E1BB78C9B119CC338A0F6 /* BSPhotoGroupModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoGroupModel.m; sourceTree = "<group>"; };
 		C1FD50FCC28DB800D6EF0C41A1390D86 /* MASLayoutConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASLayoutConstraint.h; path = Masonry/MASLayoutConstraint.h; sourceTree = "<group>"; };
 		C5502872C70ECD80BE427BC9D7679EA4 /* Pods-BSFrameworks_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-BSFrameworks_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		C7867A74BA9B3C8E4D7EC302A7C69E06 /* MASUtilities.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASUtilities.h; path = Masonry/MASUtilities.h; sourceTree = "<group>"; };
+		CA1D687DE3EDA7502CA65EAA7F2B5105 /* BSPhotoDataManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoDataManager.h; sourceTree = "<group>"; };
+		CB52F1898D83C2719B5424D65165F0C3 /* BSPhotoViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoViewModel.m; sourceTree = "<group>"; };
 		CEC58C662DF564AED5C45A3F2B0E0E97 /* Masonry.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = Masonry.xcconfig; sourceTree = "<group>"; };
-		D0CC0D411CEA16BE0578F3386D021718 /* BSPhotoGroupController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoGroupController.h; sourceTree = "<group>"; };
-		D314DE5B2A51C1FA65AB01C9CB7E0F5A /* BSPhotoGroupModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoGroupModel.m; sourceTree = "<group>"; };
-		D41990E7CF0283762C65BC309BD47C48 /* BSPhotoDataManager.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoDataManager.h; sourceTree = "<group>"; };
-		D890D61A47A855B11F9698A6D3476AE1 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		DC6E1DE33452F9E9F82345154125527B /* BSPhotoViewModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoViewModel.m; sourceTree = "<group>"; };
-		DC7BD8A6509F223503AF40B22A67700E /* libBSFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libBSFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		D31A1CF7C6AD7515AAE901C5FCF0DABD /* BSPhotoPreviewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoPreviewController.m; sourceTree = "<group>"; };
+		D890D61A47A855B11F9698A6D3476AE1 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-BSFrameworks_Example.a"; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		DC7BD8A6509F223503AF40B22A67700E /* libBSFrameworks.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libBSFrameworks.a; path = libBSFrameworks.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		DCFE2252293DC521756AD82D66798DEB /* Pods-BSFrameworks_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-BSFrameworks_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		DE8438AE778429F7BF509E19D0AC5D59 /* Pods-BSFrameworks_Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-BSFrameworks_Tests-dummy.m"; sourceTree = "<group>"; };
+		E0B50A52DB98417968B9DB919456607D /* BSFrameworks-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "BSFrameworks-prefix.pch"; sourceTree = "<group>"; };
 		E1E749F55680892BBF11110631172966 /* MASConstraintMaker.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraintMaker.h; path = Masonry/MASConstraintMaker.h; sourceTree = "<group>"; };
 		E28BE40A980ECFA0C5E71CDF7403F7BC /* ViewController+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "ViewController+MASAdditions.h"; path = "Masonry/ViewController+MASAdditions.h"; sourceTree = "<group>"; };
 		E688AC4A19E399EB2F7BEE821BA97A4B /* View+MASAdditions.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "View+MASAdditions.m"; path = "Masonry/View+MASAdditions.m"; sourceTree = "<group>"; };
 		E977F704FEF539BB423BEA3EE69EE03C /* Masonry-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Masonry-prefix.pch"; sourceTree = "<group>"; };
 		EBD039AC2FD738DC6B7E1D233A27D2A8 /* MASConstraint.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = MASConstraint.h; path = Masonry/MASConstraint.h; sourceTree = "<group>"; };
 		ECEE89CA7ABA16A169A6E2596E17A997 /* MASCompositeConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASCompositeConstraint.m; path = Masonry/MASCompositeConstraint.m; sourceTree = "<group>"; };
-		F470C961A1E3E08775E25696F777084F /* BSPhotoModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoModel.h; sourceTree = "<group>"; };
-		F891B26192D7502F5F0C8316FE8CDCD1 /* BSFrameworks.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BSFrameworks.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		F9417C39913449988A4A0877D295A556 /* BSPhotoModel.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = BSPhotoModel.m; sourceTree = "<group>"; };
+		EE0DD7FD7D06EB05722486B05C51CDEC /* BSPhotoViewModel.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = BSPhotoViewModel.h; sourceTree = "<group>"; };
+		F068F73B9AB695B8C5E503851352E65C /* img_preview_unselect.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = img_preview_unselect.png; path = BSFrameworks/Assets/PhotoFramework/img_preview_unselect.png; sourceTree = "<group>"; };
+		F55060BB2242AE938495812B8BE29C4F /* photo_camera_icon@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "photo_camera_icon@2x.png"; path = "BSFrameworks/Assets/PhotoFramework/photo_camera_icon@2x.png"; sourceTree = "<group>"; };
+		F70B0FB3C9A7822870F1F8FF3CEE3045 /* BSFrameworks.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BSFrameworks.xcconfig; sourceTree = "<group>"; };
+		FA128440B27AA6E1BF9E926F2CC04FE4 /* photo_camera_light_auto.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_light_auto.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_light_auto.png; sourceTree = "<group>"; };
 		FA19C525E9623030ABC992A174F511EA /* MASLayoutConstraint.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = MASLayoutConstraint.m; path = Masonry/MASLayoutConstraint.m; sourceTree = "<group>"; };
-		FB485527C51E2101CC51ADFE237AFC50 /* BSFrameworks.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = BSFrameworks.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		1FCC0D3A2FC9C32D4B201DF3CD2ED8B4 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		458A26FA8BBB6CDEAC465BDB95417C36 /* Frameworks */ = {
+		8CE51250A2C7D515875969F7BA23581E /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -186,6 +188,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		C70FE06265BBF7E6FE9CCDFEC77E6257 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CF46748C2EAC0D7A73F5E886E2796C73 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -213,14 +222,18 @@
 			path = "../Target Support Files/Masonry";
 			sourceTree = "<group>";
 		};
-		12953D4F4E6A936FD4A1E8BB910C2227 /* Pod */ = {
+		241083940CF89F692F9D8DD19E613F3A /* BSPhotoFramework */ = {
 			isa = PBXGroup;
 			children = (
-				F891B26192D7502F5F0C8316FE8CDCD1 /* BSFrameworks.podspec */,
-				A08532D880DD5D6DB8EB3B9D8505BEE4 /* LICENSE */,
-				2710A93F904E302D0FE4A18DCDA229B0 /* README.md */,
+				421088A5935F8308EE7652099C9DACD7 /* DataManager */,
+				8EF065CD1672D5ABF554C982A518F928 /* Model */,
+				412FDC139A127A50EDE3376087CB7D57 /* PhotoProtocal */,
+				E5E96C885F4BA065C5D686490666A045 /* Resources */,
+				8E1497AE436EAD607C77323A203467C6 /* View */,
+				BEE932EB0E5BE9A1FD17FDBE30486CB5 /* ViewController */,
+				8F82DC5E38481E36825CD7416BCC868D /* ViewModel */,
 			);
-			name = Pod;
+			name = BSPhotoFramework;
 			sourceTree = "<group>";
 		};
 		3485D126D56725DE32A94427209EBC09 /* Targets Support Files */ = {
@@ -232,51 +245,23 @@
 			name = "Targets Support Files";
 			sourceTree = "<group>";
 		};
-		3B21728DC0008FF42A8BBF688A3410A3 /* DataManager */ = {
+		412FDC139A127A50EDE3376087CB7D57 /* PhotoProtocal */ = {
 			isa = PBXGroup;
 			children = (
-				D41990E7CF0283762C65BC309BD47C48 /* BSPhotoDataManager.h */,
-				79DC775F873B6729139E0B0AEC7808D1 /* BSPhotoDataManager.m */,
+				1C7D3FCBAD1A74AFB276E7D394F384BD /* BSPhotoProtocal.h */,
+			);
+			name = PhotoProtocal;
+			path = BSFrameworks/Classes/PhotoFramework/PhotoProtocal;
+			sourceTree = "<group>";
+		};
+		421088A5935F8308EE7652099C9DACD7 /* DataManager */ = {
+			isa = PBXGroup;
+			children = (
+				CA1D687DE3EDA7502CA65EAA7F2B5105 /* BSPhotoDataManager.h */,
+				0CCE3639B5EFBA9A51D858554DEBE2A4 /* BSPhotoDataManager.m */,
 			);
 			name = DataManager;
 			path = BSFrameworks/Classes/PhotoFramework/DataManager;
-			sourceTree = "<group>";
-		};
-		451805B124322A2B5535E673540B8047 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				36B1250FE1C358512B93E4528FC230CF /* BSPhotoViewModel.h */,
-				DC6E1DE33452F9E9F82345154125527B /* BSPhotoViewModel.m */,
-			);
-			name = ViewModel;
-			path = BSFrameworks/Classes/PhotoFramework/ViewModel;
-			sourceTree = "<group>";
-		};
-		5590B32F476C1FDCC3F33D485EC2787C /* ViewController */ = {
-			isa = PBXGroup;
-			children = (
-				D0CC0D411CEA16BE0578F3386D021718 /* BSPhotoGroupController.h */,
-				A7C4F2CC0A8E52A2A734F436522AB1D0 /* BSPhotoGroupController.m */,
-				5D6645F625080CEA959ABF945FADAAA7 /* BSPhotoListController.h */,
-				950D81D9CE558F19130675B72233A16F /* BSPhotoListController.m */,
-				30F0BCE324318F2B00E70C3C /* BSPhotoPreviewController.h */,
-				30F0BCE424318F2B00E70C3C /* BSPhotoPreviewController.m */,
-				3037E3AE2435D971000CAA31 /* BSCameraController.h */,
-				3037E3AF2435D971000CAA31 /* BSCameraController.m */,
-			);
-			name = ViewController;
-			path = BSFrameworks/Classes/PhotoFramework/ViewController;
-			sourceTree = "<group>";
-		};
-		5632B27EFBB31EDAA5994F90E5CF6410 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-				C08AC81866D00B6524C9647C5F0F1F7E /* img_preview_select.png */,
-				ADA3AE0B398613A2BFC55F216CA75A85 /* img_preview_unselect.png */,
-				253D8CD097BAA2BE35844FE0C266506E /* img_select.png */,
-				85FA496125EC97695C94A79FDFBC9FD8 /* img_unselect.png */,
-			);
-			name = Resources;
 			sourceTree = "<group>";
 		};
 		674F7631E4B305BC866389353892D9F4 /* Masonry */ = {
@@ -309,6 +294,7 @@
 				8F72DBB73011C979E0760EFE7BA0A768 /* ViewController+MASAdditions.m */,
 				07B98A90E6388B2701C5E5A1757E2767 /* Support Files */,
 			);
+			name = Masonry;
 			path = Masonry;
 			sourceTree = "<group>";
 		};
@@ -320,28 +306,72 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		8DBD7531BBC7F6FF98B65B94BD8DE7A2 /* Support Files */ = {
+		837FAF7FF4BD65FE44984D7E6746B093 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				FB485527C51E2101CC51ADFE237AFC50 /* BSFrameworks.xcconfig */,
-				31BB07A74B2AE7BCBC3B4C566DB267ED /* BSFrameworks-dummy.m */,
-				A6DC819F3AD266E5C2C85FB3858A1F89 /* BSFrameworks-prefix.pch */,
+				B62CA4ABA850C979E2D223BD922225A2 /* BSFrameworks.podspec */,
+				19F5223B57648B18EF629A604F0E68E4 /* LICENSE */,
+				067E083B8A3F392EAC83115F9AFE67D8 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		89C9AE29262B713286DE54AABF1D1AAE /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				F70B0FB3C9A7822870F1F8FF3CEE3045 /* BSFrameworks.xcconfig */,
+				799AD09E3DDD1AAF9743152D92DBC4CB /* BSFrameworks-dummy.m */,
+				E0B50A52DB98417968B9DB919456607D /* BSFrameworks-prefix.pch */,
 			);
 			name = "Support Files";
 			path = "Example/Pods/Target Support Files/BSFrameworks";
 			sourceTree = "<group>";
 		};
-		9173BF8AAE176D900F0752924B80356F /* BSPhotoFramework */ = {
+		8E1497AE436EAD607C77323A203467C6 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				3B21728DC0008FF42A8BBF688A3410A3 /* DataManager */,
-				FBC475C22B3BA77BE6B7A395DA3DA66C /* Model */,
-				5632B27EFBB31EDAA5994F90E5CF6410 /* Resources */,
-				A98F121E859A755982E7D37D04BBA80E /* View */,
-				5590B32F476C1FDCC3F33D485EC2787C /* ViewController */,
-				451805B124322A2B5535E673540B8047 /* ViewModel */,
+				563715788C01493B5A43B401D8CC2D9E /* PhotoGroupListCell.h */,
+				4B5813F25A4F3708E27B70E81D69E7E5 /* PhotoGroupListCell.m */,
+				9362C3BC9C611120BAABEEC06936F52A /* PhotoListCollectionCell.h */,
+				AAE38F7DD92F1F61CE4B179A901E6BFF /* PhotoListCollectionCell.m */,
+				6E4EFF65EA2827A82636DD52018D9949 /* PhotoPreviewCell.h */,
+				493DD32DD3CC11E299A42B28576F34C2 /* PhotoPreviewCell.m */,
 			);
-			name = BSPhotoFramework;
+			name = View;
+			path = BSFrameworks/Classes/PhotoFramework/View;
+			sourceTree = "<group>";
+		};
+		8EF065CD1672D5ABF554C982A518F928 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0516F97ECBD602E218A8AC1AB7223410 /* BSPhotoGroupModel.h */,
+				B7B82D285C9E1BB78C9B119CC338A0F6 /* BSPhotoGroupModel.m */,
+				7ED78E039FCB6E8A6157E495644D2A88 /* BSPhotoModel.h */,
+				4AB4541E24F4F84FD9D4457572E36D91 /* BSPhotoModel.m */,
+			);
+			name = Model;
+			path = BSFrameworks/Classes/PhotoFramework/Model;
+			sourceTree = "<group>";
+		};
+		8F82DC5E38481E36825CD7416BCC868D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				EE0DD7FD7D06EB05722486B05C51CDEC /* BSPhotoViewModel.h */,
+				CB52F1898D83C2719B5424D65165F0C3 /* BSPhotoViewModel.m */,
+			);
+			name = ViewModel;
+			path = BSFrameworks/Classes/PhotoFramework/ViewModel;
+			sourceTree = "<group>";
+		};
+		98AB080FCCE6A6902E6AB142EC6DD246 /* BSFrameworks */ = {
+			isa = PBXGroup;
+			children = (
+				241083940CF89F692F9D8DD19E613F3A /* BSPhotoFramework */,
+				837FAF7FF4BD65FE44984D7E6746B093 /* Pod */,
+				89C9AE29262B713286DE54AABF1D1AAE /* Support Files */,
+			);
+			name = BSFrameworks;
+			path = ../..;
 			sourceTree = "<group>";
 		};
 		A378D346F17D4D715F50315330285BFF /* Products */ = {
@@ -369,26 +399,28 @@
 			path = "Target Support Files/Pods-BSFrameworks_Example";
 			sourceTree = "<group>";
 		};
-		A98F121E859A755982E7D37D04BBA80E /* View */ = {
-			isa = PBXGroup;
-			children = (
-				35DFE45E870088647B4507D2D88C1389 /* PhotoGroupListCell.h */,
-				74E42F9DB9EFBFAB7FEA1D543F25FBCE /* PhotoGroupListCell.m */,
-				739E30403A1925903FAB822904F16CD2 /* PhotoListCollectionCell.h */,
-				0ECFFA7FB831F9F8C5770FF54F3239AE /* PhotoListCollectionCell.m */,
-				300AE2552431EF1D00E8CD7C /* PhotoPreviewCell.h */,
-				300AE2562431EF1D00E8CD7C /* PhotoPreviewCell.m */,
-			);
-			name = View;
-			path = BSFrameworks/Classes/PhotoFramework/View;
-			sourceTree = "<group>";
-		};
 		ADF195896A3A65E8E150711682E09976 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				E740F1168735C02D2AE8D5F68D57D17D /* BSFrameworks */,
+				98AB080FCCE6A6902E6AB142EC6DD246 /* BSFrameworks */,
 			);
 			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		BEE932EB0E5BE9A1FD17FDBE30486CB5 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				12156C51E1C599DB455EEB1B76030CD7 /* BSCameraController.h */,
+				A5F501C6189632D7922A7A80F77744C4 /* BSCameraController.m */,
+				3D63D1AEBC8C1E1F4CF43435DD512A8B /* BSPhotoGroupController.h */,
+				63E873B9AA60BE20008FF003508CDC6F /* BSPhotoGroupController.m */,
+				60C26BE60C409047F996127BE842E25C /* BSPhotoListController.h */,
+				432547D4E7E0E54842DCC10B8291048A /* BSPhotoListController.m */,
+				9C9DBF77B30697AB3DE7074A37A2F9C3 /* BSPhotoPreviewController.h */,
+				D31A1CF7C6AD7515AAE901C5FCF0DABD /* BSPhotoPreviewController.m */,
+			);
+			name = ViewController;
+			path = BSFrameworks/Classes/PhotoFramework/ViewController;
 			sourceTree = "<group>";
 		};
 		CF1408CF629C7361332E53B88F7BD30C = {
@@ -410,15 +442,22 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E740F1168735C02D2AE8D5F68D57D17D /* BSFrameworks */ = {
+		E5E96C885F4BA065C5D686490666A045 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				9173BF8AAE176D900F0752924B80356F /* BSPhotoFramework */,
-				12953D4F4E6A936FD4A1E8BB910C2227 /* Pod */,
-				8DBD7531BBC7F6FF98B65B94BD8DE7A2 /* Support Files */,
+				6FB0F32838E52346D621FC1344976348 /* img_preview_select.png */,
+				F068F73B9AB695B8C5E503851352E65C /* img_preview_unselect.png */,
+				142AB3FCCDB3A5556C5B7EDDE60887C1 /* img_select.png */,
+				8526CBB1FED9535B12CC8976B02AAD4C /* img_unselect.png */,
+				F55060BB2242AE938495812B8BE29C4F /* photo_camera_icon@2x.png */,
+				707982AEAB0EBDAF29ABE92086AAC54C /* photo_camera_icon@3x.png */,
+				FA128440B27AA6E1BF9E926F2CC04FE4 /* photo_camera_light_auto.png */,
+				3A32F0E18F7FC6978EDFD32922791E8D /* photo_camera_light_off.png */,
+				1AC01FABA5AB8BA31139648B29758A80 /* photo_camera_light_on.png */,
+				29C1B6A48E06A0F74F5DD77938F87BC4 /* photo_camera_selfie.png */,
+				8664A132868DB29C08AD926DD5291E70 /* photo_camera_take.png */,
 			);
-			name = BSFrameworks;
-			path = ../..;
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		F706A85B74690FA97CEAC0738A441971 /* Pods-BSFrameworks_Tests */ = {
@@ -434,18 +473,6 @@
 			path = "Target Support Files/Pods-BSFrameworks_Tests";
 			sourceTree = "<group>";
 		};
-		FBC475C22B3BA77BE6B7A395DA3DA66C /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				1D7F6A2781928C4F0588CED3E9A91842 /* BSPhotoGroupModel.h */,
-				D314DE5B2A51C1FA65AB01C9CB7E0F5A /* BSPhotoGroupModel.m */,
-				F470C961A1E3E08775E25696F777084F /* BSPhotoModel.h */,
-				F9417C39913449988A4A0877D295A556 /* BSPhotoModel.m */,
-			);
-			name = Model;
-			path = BSFrameworks/Classes/PhotoFramework/Model;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -456,43 +483,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		35A207642A3F2CF5CFF280C7C616E5C1 /* Headers */ = {
+		75263EE6DE19E83E1727130AF00547C1 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30D5EBE02549B267AABA952C534EF625 /* MASCompositeConstraint.h in Headers */,
-				BC56BF653916578DBDF11E824E8371AD /* MASConstraint+Private.h in Headers */,
-				1F762FDE6EC18BAD7FB19F019399D8DB /* MASConstraint.h in Headers */,
-				A8A7573530C4D39576756FEF12FF0D38 /* MASConstraintMaker.h in Headers */,
-				576A99B22051F42FDB33856174D30B0F /* MASLayoutConstraint.h in Headers */,
-				B7D34A24EF900AF5B079B4EEE70AE25E /* Masonry.h in Headers */,
-				85C9D16FE640D6A523E7EF93353A066B /* MASUtilities.h in Headers */,
-				9F7E00D8BA5676CEA117DDD8CB7383F9 /* MASViewAttribute.h in Headers */,
-				1637FC7A4B1451904D3078504C5FEB2A /* MASViewConstraint.h in Headers */,
-				12CA8A9DF8333D11D6096E0B63ECAF4C /* NSArray+MASAdditions.h in Headers */,
-				67668C3BF5C8B11637E3219789C5E156 /* NSArray+MASShorthandAdditions.h in Headers */,
-				86339A90475C02F3ADECBE7F1F7290DA /* NSLayoutConstraint+MASDebugAdditions.h in Headers */,
-				E1C82593919A75E891EB924A475BE700 /* View+MASAdditions.h in Headers */,
-				65CEC1B7914AA674718ABB2013CA9D92 /* View+MASShorthandAdditions.h in Headers */,
-				D4C1CBE32529FA606E623887EEEF9098 /* ViewController+MASAdditions.h in Headers */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		72BC8023C3DC96359F04171AE06F2C9D /* Headers */ = {
-			isa = PBXHeadersBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				300AE2572431EF1D00E8CD7C /* PhotoPreviewCell.h in Headers */,
-				FE57EAB86EA4C399C10332C1FD411ACD /* BSPhotoDataManager.h in Headers */,
-				FAFA0BCCBFCAC246DB62ACC1AEC7B9A6 /* BSPhotoGroupController.h in Headers */,
-				2514DAE18B8808449630AFB13E016A19 /* BSPhotoGroupModel.h in Headers */,
-				DA5265E22835D050829D809FA22915EC /* BSPhotoListController.h in Headers */,
-				947532955EBC4C94F7693DCCB578A2FA /* BSPhotoModel.h in Headers */,
-				30F0BCE524318F2B00E70C3C /* BSPhotoPreviewController.h in Headers */,
-				86DB6241BF34358508B3574CDC4B2669 /* BSPhotoViewModel.h in Headers */,
-				73B2D214598EBE57093D43A523D7C5FC /* PhotoGroupListCell.h in Headers */,
-				5968039CAFB464B8FAE67D5FE6D0069C /* PhotoListCollectionCell.h in Headers */,
-				3037E3B02435D971000CAA31 /* BSCameraController.h in Headers */,
+				A52C29A129FC224C3789186D3427DD14 /* MASCompositeConstraint.h in Headers */,
+				6E8FF5BFBE1D5557A6CE65ADC3175519 /* MASConstraint+Private.h in Headers */,
+				DA6FA56402B58217169A9AF62FEE562F /* MASConstraint.h in Headers */,
+				26EE98835AE4804C883731B64A64281E /* MASConstraintMaker.h in Headers */,
+				7DF041177A39F3CD17A09705A4BC5320 /* MASLayoutConstraint.h in Headers */,
+				B876F6C81CBC2110658A76053918CEA6 /* Masonry.h in Headers */,
+				A374632F20EEE5EA0A4BD3E6C16B7FD6 /* MASUtilities.h in Headers */,
+				5B1982002D2A280E49CCFE9AC849CC94 /* MASViewAttribute.h in Headers */,
+				B9A98F702C37733CAC327F5D98175307 /* MASViewConstraint.h in Headers */,
+				7C92CC5D032E0B8C3C9D9C019EB255C9 /* NSArray+MASAdditions.h in Headers */,
+				08023858D296E52A95C27F39E9577F78 /* NSArray+MASShorthandAdditions.h in Headers */,
+				E20C7A3D5CC5CEABB71E2AA2886DB202 /* NSLayoutConstraint+MASDebugAdditions.h in Headers */,
+				538A9E652BC2146BC9841665505F6A43 /* View+MASAdditions.h in Headers */,
+				F44DBA1B837A4ACE8E1C9DB2B9E8BD4C /* View+MASShorthandAdditions.h in Headers */,
+				167546308442AB75E152FEC112F4D795 /* ViewController+MASAdditions.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -500,6 +509,25 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FADDDB3BC37ECE5B07C9354FFAA8B007 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				107E90AA9FCEE4512158254FEF626355 /* BSCameraController.h in Headers */,
+				66BBA5CA614D7E99933EDD712D4944BD /* BSPhotoDataManager.h in Headers */,
+				F055B34A0B5C409E11289DB379DB4398 /* BSPhotoGroupController.h in Headers */,
+				3C5ED810E4EAB1EED3208DB01328BCA7 /* BSPhotoGroupModel.h in Headers */,
+				A82295F6EDB3D6A8DF1312038292391F /* BSPhotoListController.h in Headers */,
+				984BC706D806E67D953705DA7103D459 /* BSPhotoModel.h in Headers */,
+				C50295D00ECCEED213D203FBFDABDC1F /* BSPhotoPreviewController.h in Headers */,
+				0534D7A3B511695097A0C0F175E1A93A /* BSPhotoProtocal.h in Headers */,
+				72461C7409DF244F896CD2E1F3B7E380 /* BSPhotoViewModel.h in Headers */,
+				BF87C6BB6F9664C14274F8D3EA26FE6C /* PhotoGroupListCell.h in Headers */,
+				0588AA675676F13F74C12CC6389BEF98 /* PhotoListCollectionCell.h in Headers */,
+				E86F4D4AEA29A7CE3955047A5D71BB8D /* PhotoPreviewCell.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -545,11 +573,11 @@
 		};
 		55AF53E6C77A10ED4985E04D74A8878E /* Masonry */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B8F4A299061F879B0EE0ECF9C5C0F1FC /* Build configuration list for PBXNativeTarget "Masonry" */;
+			buildConfigurationList = B4559FC5A927BC8E5262C614CC0D3B54 /* Build configuration list for PBXNativeTarget "Masonry" */;
 			buildPhases = (
-				35A207642A3F2CF5CFF280C7C616E5C1 /* Headers */,
-				2E85BA6D3D1668166F7D31BA6D7E187F /* Sources */,
-				458A26FA8BBB6CDEAC465BDB95417C36 /* Frameworks */,
+				75263EE6DE19E83E1727130AF00547C1 /* Headers */,
+				C70BBA1D813C55AED9FEE342002E9F36 /* Sources */,
+				CF46748C2EAC0D7A73F5E886E2796C73 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -562,16 +590,16 @@
 		};
 		7CA3EEE19384C68F775921CEB918CA9D /* BSFrameworks */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 42BB3F21E1E80F02445D3D07149ECC66 /* Build configuration list for PBXNativeTarget "BSFrameworks" */;
+			buildConfigurationList = BA7A7A154B9388A4B4D7E80FCF9164E1 /* Build configuration list for PBXNativeTarget "BSFrameworks" */;
 			buildPhases = (
-				72BC8023C3DC96359F04171AE06F2C9D /* Headers */,
-				277F3617601100ABBFCAFADEE706312F /* Sources */,
-				1FCC0D3A2FC9C32D4B201DF3CD2ED8B4 /* Frameworks */,
+				FADDDB3BC37ECE5B07C9354FFAA8B007 /* Headers */,
+				3C96F7C2AC3A84BFD2D46BB384C6730A /* Sources */,
+				8CE51250A2C7D515875969F7BA23581E /* Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				92D4D8557EE2C781106F0BE3047D8E05 /* PBXTargetDependency */,
+				6DFB5ADB6A7E7880A1CBFE4FFDD1D183 /* PBXTargetDependency */,
 			);
 			name = BSFrameworks;
 			productName = BSFrameworks;
@@ -609,40 +637,22 @@
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		277F3617601100ABBFCAFADEE706312F /* Sources */ = {
+		3C96F7C2AC3A84BFD2D46BB384C6730A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D44849606560A058D951A29BA69EAAFC /* BSFrameworks-dummy.m in Sources */,
-				75A73BB75152372041F47FF38D3D978C /* BSPhotoDataManager.m in Sources */,
-				C0031077C4CEF631E4650592165AFBE5 /* BSPhotoGroupController.m in Sources */,
-				518CDE331C410A08C3063A0A0EE8B4A3 /* BSPhotoGroupModel.m in Sources */,
-				2DE82BA3A834177ACC6CEBE28D99763C /* BSPhotoListController.m in Sources */,
-				566271533915F8333EABBACB72C1912D /* BSPhotoModel.m in Sources */,
-				A9BC2EF29D777661DCDE7E29A22BD8CB /* BSPhotoViewModel.m in Sources */,
-				300AE2582431EF1D00E8CD7C /* PhotoPreviewCell.m in Sources */,
-				77557AC4C965BE7A5CC03E238486C7E0 /* PhotoGroupListCell.m in Sources */,
-				3037E3B12435D971000CAA31 /* BSCameraController.m in Sources */,
-				30F0BCE624318F2B00E70C3C /* BSPhotoPreviewController.m in Sources */,
-				7595B2AC02B6E8BB5567FECA00FD925F /* PhotoListCollectionCell.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		2E85BA6D3D1668166F7D31BA6D7E187F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B8134DB13982B9C4429D078D55F116ED /* MASCompositeConstraint.m in Sources */,
-				6EB2C490ED983A169D6A838290635ECF /* MASConstraint.m in Sources */,
-				0D45203422F07D3B61811045534985BE /* MASConstraintMaker.m in Sources */,
-				6DE0123798344A024660D0BEB6478170 /* MASLayoutConstraint.m in Sources */,
-				DA14B19C3746520C5F14499B5FEA56FD /* Masonry-dummy.m in Sources */,
-				371366CEB2E759E4FC7C63E91073E3DA /* MASViewAttribute.m in Sources */,
-				AD299589BEBC88C18FC00EAE9B3B65A3 /* MASViewConstraint.m in Sources */,
-				9D0695C26F1EDCC041919D95E34A42A0 /* NSArray+MASAdditions.m in Sources */,
-				DA121294EA4CECD8D18FEAEB6718410F /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
-				C3E95758CAABB0286AF30A8ED0756689 /* View+MASAdditions.m in Sources */,
-				BE1B68A947253E10DE73D12597C99C8A /* ViewController+MASAdditions.m in Sources */,
+				3FBBEABA67DBC284C1D20CD839AC6E00 /* BSCameraController.m in Sources */,
+				C556E3C6492548EE91B9508C2B63016B /* BSFrameworks-dummy.m in Sources */,
+				0A0CA77170263A2F5847D28A463828F2 /* BSPhotoDataManager.m in Sources */,
+				9C98B47582CDC81636053DB6F477C790 /* BSPhotoGroupController.m in Sources */,
+				B20CC0FB97BD99308028F1DF872C9593 /* BSPhotoGroupModel.m in Sources */,
+				E5E0DB6B9311BB0B88BEBB50D257B595 /* BSPhotoListController.m in Sources */,
+				38CB338633B9E0435AFC862453FBA2D9 /* BSPhotoModel.m in Sources */,
+				DD6EF7D784A0A7FC22A955DBBCB4F792 /* BSPhotoPreviewController.m in Sources */,
+				BB2BBA75EEEAB4F01C67F9AB624B85BA /* BSPhotoViewModel.m in Sources */,
+				FC41157299A83DC09DCE412B703F121E /* PhotoGroupListCell.m in Sources */,
+				7F4105BBC7FF1428F5A3F4DCC0E09807 /* PhotoListCollectionCell.m in Sources */,
+				B5C1560591FE76D3C2B186C29175D2F6 /* PhotoPreviewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -662,14 +672,32 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		C70BBA1D813C55AED9FEE342002E9F36 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4475E03D8E31E791C43AC2E3265BD698 /* MASCompositeConstraint.m in Sources */,
+				02BA5B12A6C3335F51A2B8DA14192A56 /* MASConstraint.m in Sources */,
+				C56FC4BD6CA96DC6C3F640615A7F7846 /* MASConstraintMaker.m in Sources */,
+				6664611C5EE45743E3D2EDDB94075785 /* MASLayoutConstraint.m in Sources */,
+				0B78C0CA128782A433486994CAE029F1 /* Masonry-dummy.m in Sources */,
+				3DFCF6395ED0095ADC5B2ED076A35C60 /* MASViewAttribute.m in Sources */,
+				3EEAB582D1E533523A405B7EB93FF3AC /* MASViewConstraint.m in Sources */,
+				FEBF64E3EF12E1239529A4758F5BC51E /* NSArray+MASAdditions.m in Sources */,
+				8518D90E07B053E18A415ECAAB13B414 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				A7FE65F6716FF99E9BBF85673A33DFF4 /* View+MASAdditions.m in Sources */,
+				0E476B0B10304CB1928E4C1673C4D985 /* ViewController+MASAdditions.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		92D4D8557EE2C781106F0BE3047D8E05 /* PBXTargetDependency */ = {
+		6DFB5ADB6A7E7880A1CBFE4FFDD1D183 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = Masonry;
 			target = 55AF53E6C77A10ED4985E04D74A8878E /* Masonry */;
-			targetProxy = 48F289B8D667397FE29AC6F7B72FFE59 /* PBXContainerItemProxy */;
+			targetProxy = BAAD60F6F5A1131A4DF0A84FEE77B823 /* PBXContainerItemProxy */;
 		};
 		A3E4C112A9B260FA16CB272F9976F8B7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -692,9 +720,34 @@
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		40EC56D22E662E8A484E2D843077412F /* Debug */ = {
+		1C489794233A7C015F8965CFF9F63E41 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB485527C51E2101CC51ADFE237AFC50 /* BSFrameworks.xcconfig */;
+			baseConfigurationReference = F70B0FB3C9A7822870F1F8FF3CEE3045 /* BSFrameworks.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/BSFrameworks/BSFrameworks-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = BSFrameworks;
+				PRODUCT_NAME = BSFrameworks;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		34545580A47DA58F8573367FB6F81D78 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F70B0FB3C9A7822870F1F8FF3CEE3045 /* BSFrameworks.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
@@ -759,31 +812,6 @@
 			};
 			name = Release;
 		};
-		60DDB974051B6521DFE1C234BD58CC8B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FB485527C51E2101CC51ADFE237AFC50 /* BSFrameworks.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/BSFrameworks/BSFrameworks-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = BSFrameworks;
-				PRODUCT_NAME = BSFrameworks;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 		6FFE8531CB33D8720DAA4C4D292784CD /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4F06BBA09A9C890FEE2323C21764B08B /* Pods-BSFrameworks_Example.release.xcconfig */;
@@ -806,7 +834,7 @@
 			};
 			name = Release;
 		};
-		72656A02FFE79AC1C6821A05E13F8874 /* Debug */ = {
+		73041260E9AE7C165329C75DB27AF247 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = CEC58C662DF564AED5C45A3F2B0E0E97 /* Masonry.xcconfig */;
 			buildSettings = {
@@ -827,8 +855,9 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
 			};
-			name = Debug;
+			name = Release;
 		};
 		8F17DC3A99F99FBAD606CE6963886315 /* Release */ = {
 			isa = XCBuildConfiguration;
@@ -883,7 +912,8 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
@@ -953,6 +983,30 @@
 			};
 			name = Debug;
 		};
+		B2B191B55DE01F1717C07CE57BA3DA3D /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CEC58C662DF564AED5C45A3F2B0E0E97 /* Masonry.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PRIVATE_HEADERS_FOLDER_PATH = "";
+				PRODUCT_MODULE_NAME = Masonry;
+				PRODUCT_NAME = Masonry;
+				PUBLIC_HEADERS_FOLDER_PATH = "";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
 		D027AF265FF55ABA5D107A2C53B65A06 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 5574D81AEA6460C64E8E642F19BDF2B1 /* Pods-BSFrameworks_Example.debug.xcconfig */;
@@ -974,31 +1028,6 @@
 			};
 			name = Debug;
 		};
-		F11953BE05EA42187EEAEE68416ACFF7 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = CEC58C662DF564AED5C45A3F2B0E0E97 /* Masonry.xcconfig */;
-			buildSettings = {
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
-				GCC_PREFIX_HEADER = "Target Support Files/Masonry/Masonry-prefix.pch";
-				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PRIVATE_HEADERS_FOLDER_PATH = "";
-				PRODUCT_MODULE_NAME = Masonry;
-				PRODUCT_NAME = Masonry;
-				PUBLIC_HEADERS_FOLDER_PATH = "";
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
-				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1007,15 +1036,6 @@
 			buildConfigurations = (
 				49D1668A4DD1DAB174DB779D56467736 /* Debug */,
 				591EE3912965CD7DD32738954A50B863 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		42BB3F21E1E80F02445D3D07149ECC66 /* Build configuration list for PBXNativeTarget "BSFrameworks" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				40EC56D22E662E8A484E2D843077412F /* Debug */,
-				60DDB974051B6521DFE1C234BD58CC8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -1038,11 +1058,20 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B8F4A299061F879B0EE0ECF9C5C0F1FC /* Build configuration list for PBXNativeTarget "Masonry" */ = {
+		B4559FC5A927BC8E5262C614CC0D3B54 /* Build configuration list for PBXNativeTarget "Masonry" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				72656A02FFE79AC1C6821A05E13F8874 /* Debug */,
-				F11953BE05EA42187EEAEE68416ACFF7 /* Release */,
+				B2B191B55DE01F1717C07CE57BA3DA3D /* Debug */,
+				73041260E9AE7C165329C75DB27AF247 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		BA7A7A154B9388A4B4D7E80FCF9164E1 /* Build configuration list for PBXNativeTarget "BSFrameworks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				34545580A47DA58F8573367FB6F81D78 /* Debug */,
+				1C489794233A7C015F8965CFF9F63E41 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

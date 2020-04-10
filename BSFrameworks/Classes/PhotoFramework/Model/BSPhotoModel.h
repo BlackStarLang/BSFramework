@@ -24,7 +24,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) BOOL isSelect ;   //图片是否被选中
 
 
-
 @end
 
 NS_ASSUME_NONNULL_END

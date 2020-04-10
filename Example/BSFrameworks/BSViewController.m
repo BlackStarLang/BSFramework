@@ -8,13 +8,16 @@
 
 #import "BSViewController.h"
 #import "BSTestViewController.h"
+#import "BSCameraController.h"
+#import "BSPhotoProtocal.h"
 
 #import <BSPhotoGroupController.h>
 
-@interface BSViewController ()
+@interface BSViewController ()<BSPhotoProtocal>
 
 @property (weak, nonatomic) IBOutlet UIButton *mybutton;
 
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 
 @end
@@ -31,17 +34,24 @@
 - (IBAction)gotoPhotoLibrary:(UIButton *)sender {
     
     BSPhotoGroupController *groupVC = [[BSPhotoGroupController alloc]init];
-    groupVC.title = @"我的相册";
-    [self.navigationController pushViewController:groupVC animated:NO];
+//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:groupVC];
+//    navi.modalPresentationStyle = UIModalPresentationFullScreen;
+//    [self presentViewController:navi animated:YES completion:nil];
     
+    groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController pushViewController:groupVC animated:YES];
 }
 
 - (IBAction)button2push:(UIButton *)sender {
  
     BSTestViewController * vc = [[BSTestViewController alloc]init];
-    
     [self.navigationController pushViewController:vc animated:YES];
     
+}
+
+-(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
+    
+    self.imageView.image = image;
 }
 
 
