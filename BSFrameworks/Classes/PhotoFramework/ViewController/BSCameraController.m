@@ -239,6 +239,10 @@
             [self refreshBtnsHiddenStatus:NO];
         }];
     }
+    
+    if ([self.delegate respondsToSelector:@selector(photoCameraTakeBtnClicked)]) {
+        [self.delegate photoCameraTakeBtnClicked];
+    }
 }
 
 
