@@ -2,14 +2,21 @@ PODS:
   - BSFrameworks (0.1.0):
     - BSFrameworks/BSPhotoFramework (= 0.1.0)
     - Masonry
+    - SDWebImage
   - BSFrameworks/BSPhotoFramework (0.1.0):
     - Masonry
+    - SDWebImage
   - Masonry (1.1.0)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
 
 SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - SDWebImage
   trunk:
     - Masonry
 
@@ -18,8 +25,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 4c4830681386cccbc445ac2885fd7628cf6853d8
+  BSFrameworks: b0c2665b59677447a9df37e8e02f3e39faeb1a9d
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
 
 PODFILE CHECKSUM: 9cfaf45ab82114f99de4f2817fcc07fb56e51063
 

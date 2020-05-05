@@ -22,6 +22,9 @@
   "dependencies": {
     "Masonry": [
 
+    ],
+    "SDWebImage": [
+
     ]
   },
   "subspecs": [

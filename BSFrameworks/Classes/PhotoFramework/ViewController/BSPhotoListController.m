@@ -121,8 +121,7 @@
         [self.navigationController pushViewController:cameraVC animated:YES];
     }else{
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
-        previewVC.previewPhotos = self.dataSource;
-        previewVC.currentIndex = indexPath.row;
+        [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row-1];
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }

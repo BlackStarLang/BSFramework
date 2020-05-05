@@ -34,12 +34,14 @@ Pod::Spec.new do |s|
  
   s.platform         = :ios, "9.0"
   s.ios.deployment_target = '9.0'
+  
   s.dependency 'Masonry'
+  s.dependency 'SDWebImage'
 
   
   s.subspec 'BSPhotoFramework' do |ss|
     ss.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
-    ss.frameworks    = 'Photos','AVFoundation'
+    ss.frameworks   = 'Photos','AVFoundation'
     ss.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
   end
   

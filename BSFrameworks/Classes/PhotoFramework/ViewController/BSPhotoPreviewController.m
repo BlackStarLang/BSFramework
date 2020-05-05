@@ -10,6 +10,7 @@
 #import "BSPhotoModel.h"
 #import "BSPhotoViewModel.h"
 #import "Masonry.h"
+#import "UIImageView+WebCache.h"
 
 @interface BSPhotoPreviewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -25,7 +26,6 @@
     NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
 }
 
-
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSubViews];
@@ -36,14 +36,35 @@
 -(void)initSubViews{
     self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
+    
+    self.automaticallyAdjustsScrollViewInsets = NO;
 }
+
 
 -(void)masonryLayout{
     
-    self.collectionView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
-
     
+//    self.collectionView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
+
+    [self.collectionView setNeedsLayout];
+    
+    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+
+    self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 }
+
+
+#pragma mark - set method
+
+-(void)setPreviewPhotos:(NSArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex{
+    
+    _previewPhotos = [NSMutableArray arrayWithArray:previewPhotos];
+    _previewType = previewType;
+    _currentIndex = defaultIndex;
+
+}
+
+
 
 
 #pragma mark - UICollectionView delegate
@@ -66,8 +87,28 @@
     
     PhotoPreviewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPreviewCell" forIndexPath:indexPath];
     
-    BSPhotoModel *model = self.previewPhotos[indexPath.row];
-    cell.imageView.image = model.thumbImage;
+    if (self.previewType == PREVIEWTYPE_URL) {
+        
+        NSString *url = self.previewPhotos[indexPath.row];
+        NSURL *URL = [NSURL URLWithString:url];
+        [cell.imageView sd_setImageWithURL:URL placeholderImage:nil];
+        
+    }else if (self.previewType == PREVIEWTYPE_PATH){
+        
+        NSString *path = self.previewPhotos[indexPath.row];
+        UIImage *image = [UIImage imageWithContentsOfFile:path];
+        cell.imageView.image = image;
+        
+    }else if (self.previewType == PREVIEWTYPE_IMAGE){
+        
+        UIImage *image = self.previewPhotos[indexPath.row];
+        cell.imageView.image = image;
+        
+    }else if (self.previewType == PREVIEWTYPE_PHOTO){
+        BSPhotoModel *model = self.previewPhotos[indexPath.row];
+        cell.imageView.image = model.thumbImage;
+    }
+    
     
     return cell;
 }
@@ -78,9 +119,12 @@
     if (self.navigationController.navigationBar.hidden) {
         [self.navigationController setNavigationBarHidden:NO animated:YES];
         self.view.backgroundColor = [UIColor whiteColor];
+        self.collectionView.backgroundColor = [UIColor whiteColor];
+        
     }else{
         [self.navigationController setNavigationBarHidden:YES animated:YES];
         self.view.backgroundColor = [UIColor blackColor];
+        self.collectionView.backgroundColor = [UIColor blackColor];
     }
 }
 
@@ -104,7 +148,7 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(25, 0, 25, 0);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64) collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
