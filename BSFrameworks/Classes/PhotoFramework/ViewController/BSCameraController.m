@@ -71,7 +71,6 @@
     self.view.backgroundColor = [UIColor blackColor];
 
     [self authorization];
-    [self masonryLayout];
 }
 
 -(void)authorization{
@@ -81,25 +80,47 @@
     if (status == AVAuthorizationStatusNotDetermined) {
         
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
-            if (granted) {
-                [self authorization];
-            }else{
-                NSLog(@"无权限");
-                return;
-            }
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (granted) {
+                    [self authorization];
+                }else{
+                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }];
+                    
+                    [controller addAction:action];
+                    [self presentViewController:controller animated:YES completion:nil];
+                    return;
+                }
+            });
         }];
         
     }else if (status == AVAuthorizationStatusDenied) {
-        NSLog(@"无权限");
+        
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [controller addAction:action];
+        [self presentViewController:controller animated:YES completion:nil];
+        
         return;
     }else if (status == AVAuthorizationStatusAuthorized){
-        NSLog(@"相机权限已开启");
+        
         [self initSubViews];
+        [self masonryLayout];
     }
 }
 
 -(void)initSubViews{
-            
+    
     self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
     self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
     [self.view.layer insertSublayer:self.previewLayer atIndex:0];
@@ -117,7 +138,7 @@
 -(void)masonryLayout{
     
     self.previewLayer.frame = CGRectMake(0, 30, self.view.frame.size.width, self.view.frame.size.height - 25 - 150);
-   
+    
     [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(30);
         make.height.mas_equalTo(self.view.frame.size.height - 25 - 150);
