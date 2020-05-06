@@ -34,9 +34,13 @@
 }
 
 -(void)initSubViews{
-    self.view.backgroundColor = [UIColor whiteColor];
-    [self.view addSubview:self.collectionView];
+    if (self.isPresent) {
+        self.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
+    }
+    self.view.backgroundColor = [UIColor blackColor];
+    self.collectionView.backgroundColor = [UIColor blackColor];
     
+    [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
 }
 
@@ -49,7 +53,6 @@
     [self.collectionView setNeedsLayout];
     
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-
     self.collectionView.autoresizingMask = UIViewAutoresizingFlexibleBottomMargin;
 }
 
@@ -116,15 +119,19 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.navigationController.navigationBar.hidden) {
-        [self.navigationController setNavigationBarHidden:NO animated:YES];
-        self.view.backgroundColor = [UIColor whiteColor];
-        self.collectionView.backgroundColor = [UIColor whiteColor];
-        
+    if (self.isPresent) {
+        [self dismissViewControllerAnimated:YES completion:nil];
     }else{
-        [self.navigationController setNavigationBarHidden:YES animated:YES];
-        self.view.backgroundColor = [UIColor blackColor];
-        self.collectionView.backgroundColor = [UIColor blackColor];
+        if (self.navigationController.navigationBar.hidden) {
+            [self.navigationController setNavigationBarHidden:NO animated:YES];
+            self.view.backgroundColor = [UIColor whiteColor];
+            self.collectionView.backgroundColor = [UIColor whiteColor];
+            
+        }else{
+            [self.navigationController setNavigationBarHidden:YES animated:YES];
+            self.view.backgroundColor = [UIColor blackColor];
+            self.collectionView.backgroundColor = [UIColor blackColor];
+        }
     }
 }
 
@@ -152,7 +159,6 @@
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
-        _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[PhotoPreviewCell class] forCellWithReuseIdentifier:@"PhotoPreviewCell"];
     }
     return _collectionView;

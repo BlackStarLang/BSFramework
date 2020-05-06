@@ -30,6 +30,7 @@ typedef enum : NSUInteger {
 @property (nonatomic ,assign ,readonly) NSInteger currentIndex;       //当前预览的图片
 @property (nonatomic ,assign ,readonly) PREVIEWTYPE previewType;      //当前预览的图片类型
 
+@property (nonatomic ,assign ) BOOL isPresent;  //是push还是 present
 
 -(void)setPreviewPhotos:(NSArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex;
 
