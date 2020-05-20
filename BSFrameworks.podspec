@@ -27,10 +27,10 @@ Pod::Spec.new do |s|
   
   DESC
   
-  s.homepage         = 'https://github.com/blackstar_lang@163.com/BSFrameworks'
+  s.homepage         = 'https://github.com/BlackStarLang/BSFramework.git'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'blackstar_lang@163.com' => 'langzq@sqbj.com' }
-  s.source           = { :git => 'https://github.com/blackstar_lang@163.com/BSFrameworks.git', :tag => s.version.to_s, :submodules => true}
+  s.source           = { :git => 'https://github.com/BlackStarLang/BSFramework.git', :tag => s.version.to_s, :submodules => true}
  
   s.platform         = :ios, "9.0"
   s.ios.deployment_target = '9.0'
