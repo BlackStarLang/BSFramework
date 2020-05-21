@@ -106,7 +106,7 @@
                 
                 if (libraryType == Library_Photo) {
                     
-                    if (asset.mediaType==PHAssetMediaTypeImage) {
+                    if (asset.mediaType==PHAssetMediaTypeImage || asset.mediaType==PHAssetMediaTypeVideo) {
                         
                         BSPhotoModel *photoModel = [[BSPhotoModel alloc]init];
                         photoModel.asset = asset;
@@ -171,7 +171,7 @@
         
         [manager requestImageDataForAsset:photoModel.asset options:options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
             
-            photoModel.originImageSize = imageData.length/1024.0;
+            photoModel.originImageSize = imageData.length/1024.0/1024;
             photoModel.originImage = [UIImage imageWithData:imageData];
             
         }];

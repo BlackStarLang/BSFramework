@@ -77,10 +77,10 @@
         
         if (self.dataSource.count && self.autoPush) {
             
-//            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
-//            photoListVC.groupModel = self.dataSource[0];
-//            photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
-//            [self.navigationController pushViewController:photoListVC animated:YES];
+            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
+            photoListVC.groupModel = self.dataSource[0];
+            photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self.navigationController pushViewController:photoListVC animated:YES];
         }
     }];
 }

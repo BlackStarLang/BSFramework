@@ -109,7 +109,7 @@
         
     }else if (self.previewType == PREVIEWTYPE_PHOTO){
         BSPhotoModel *model = self.previewPhotos[indexPath.row];
-        cell.imageView.image = model.thumbImage;
+        cell.imageView.image = model.originImage;
     }
     
     

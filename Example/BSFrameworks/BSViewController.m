@@ -37,9 +37,9 @@
 //    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:groupVC];
 //    navi.modalPresentationStyle = UIModalPresentationFullScreen;
 //    [self presentViewController:navi animated:YES completion:nil];
-    
+    groupVC.autoPush = YES;
     groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self.navigationController pushViewController:groupVC animated:YES];
+    [self.navigationController pushViewController:groupVC animated:NO];
 }
 
 - (IBAction)button2push:(UIButton *)sender {

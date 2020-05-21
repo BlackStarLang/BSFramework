@@ -10,6 +10,7 @@
 
 @protocol BSPhotoProtocal <NSObject>
 
+@optional
 #pragma mark - 点击拍照按钮
 -(void)photoCameraTakeBtnClicked;
 
