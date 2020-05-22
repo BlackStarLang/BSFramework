@@ -8,9 +8,11 @@
 
 #import "BSTestViewController.h"
 
-@interface BSTestViewController ()
+@interface BSTestViewController ()<UIScrollViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *myButton;
 @property (weak, nonatomic) IBOutlet UILabel *label;
+
+@property (nonatomic ,strong) UIScrollView *scrollView;
 
 @end
 
@@ -18,17 +20,60 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
+    [self initSubViews];
+    [self masonryLayout];
+
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)initSubViews{
+    
+    [self.view addSubview:self.scrollView];
+    
 }
-*/
+
+-(void)masonryLayout{
+    
+    self.scrollView.frame = CGRectMake(0, 100, self.view.frame.size.width, 400);
+    
+    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width * 3, 400);
+    
+    for (int i = 0; i<3; i++) {
+        UIView *view = [[UIView alloc]initWithFrame:CGRectMake(self.view.frame.size.width * i, 0, self.view.frame.size.width, 400)];
+        view.backgroundColor = [UIColor grayColor];
+        [self.scrollView addSubview:view];
+    }
+}
+
+
+#pragma mark - systemDelegate
+
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+    
+}
+
+
+-(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+    
+    
+    
+}
+
+#pragma mark - init 属性初始化
+
+
+-(UIScrollView *)scrollView{
+    if (!_scrollView) {
+        _scrollView = [[UIScrollView alloc]init];
+        _scrollView.delegate = self;
+        _scrollView.pagingEnabled = YES;
+    }
+    return _scrollView;
+}
+
+
 
 @end

@@ -31,8 +31,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-//    [[UIBarButtonItem appearance] setBackButtonTitlePositionAdjustment:UIOffsetMake(0, -60) forBarMetrics:UIBarMetricsDefault];
-    
 }
 
 - (void)viewDidLoad {
@@ -43,11 +41,18 @@
     [self masonryLayout];
     [self configData];
     [self getAllGroupList];
-
 }
 
 -(void)initSubViews{
-    self.title = @"我的相册";
+    
+    self.navigationController.navigationBar.topItem.title = @"";
+
+    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
+    titleLabel.text = @"我的相册";
+    titleLabel.font = [UIFont boldSystemFontOfSize:17];
+    titleLabel.textAlignment = 1;
+    self.navigationItem.titleView = titleLabel;
+
     [self.view addSubview:self.tableView];
 }
 
@@ -60,7 +65,7 @@
 }
 
 -(void)configData{
-    self.autoPush = YES;
+
     [self.tableView registerClass:[PhotoGroupListCell class] forCellReuseIdentifier:@"PhotoGroupListCell"];
 }
 

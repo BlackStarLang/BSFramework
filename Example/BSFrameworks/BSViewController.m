@@ -8,12 +8,12 @@
 
 #import "BSViewController.h"
 #import "BSTestViewController.h"
-#import "BSCameraController.h"
+
 #import "BSPhotoProtocal.h"
+#import "TZImagePickerController.h"
+#import "BSPhotoManagerController.h"
 
-#import <BSPhotoGroupController.h>
-
-@interface BSViewController ()<BSPhotoProtocal>
+@interface BSViewController ()<BSPhotoProtocal,TZImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIButton *mybutton;
 
@@ -33,13 +33,21 @@
 
 - (IBAction)gotoPhotoLibrary:(UIButton *)sender {
     
-    BSPhotoGroupController *groupVC = [[BSPhotoGroupController alloc]init];
-//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:groupVC];
-//    navi.modalPresentationStyle = UIModalPresentationFullScreen;
-//    [self presentViewController:navi animated:YES completion:nil];
+    BSPhotoManagerController *groupVC = [[BSPhotoManagerController alloc]init];
+
     groupVC.autoPush = YES;
     groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
-    [self.navigationController pushViewController:groupVC animated:NO];
+
+    
+//    TZImagePickerController *groupVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
+//
+//    // You can get the photos by block, the same as by delegate.
+//    // 你可以通过block或者代理，来得到用户选择的照片.
+//    [groupVC setDidFinishPickingPhotosWithInfosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto, NSArray<NSDictionary *> *infos) {
+//
+//    }];
+//    groupVC.modalPresentationStyle = 0;
+    [self presentViewController:groupVC animated:YES completion:nil];
 }
 
 - (IBAction)button2push:(UIButton *)sender {

@@ -30,7 +30,9 @@
 -(void)masonryLayout{
     
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.offset(0);
+        make.top.bottom.offset(0);
+        make.left.offset(10);
+        make.right.offset(-10);
     }];
 }
 

@@ -6,12 +6,37 @@
 //
 
 #import "BSPhotoDataManager.h"
-#import <Photos/Photos.h>
+
 #import "BSPhotoGroupModel.h"
 #import "BSPhotoModel.h"
 
 
 @implementation BSPhotoDataManager
+
+
+
+#pragma mark - 获取相机胶卷的照片
++(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel{
+
+
+    PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+
+    for (PHAssetCollection *collection in result) {
+        
+        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary || collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumRecentlyAdded) {
+            
+            BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            [model getTitleNameWithCollectionLocalizedTitle:collection.localizedTitle];
+            model.assetCollection = collection;
+            groupModel(model);
+            break;
+        }
+    }
+}
+
+
+
+
 
 #pragma mark - 获取所有相册：封面为缓存图片（质量低）
 
@@ -28,13 +53,11 @@
 
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         
-        [result enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            
-            PHAssetCollection * assetCollection = obj;
+        for (PHAssetCollection *assetCollection in result) {
             //构造自定义对象，进行赋值
             BSPhotoGroupModel *groupModel = [[BSPhotoGroupModel alloc]init];
             [self getModelPropertyValue:groupModel assetCollection:assetCollection dataArr:groupListData];
-        }];
+        }
         
         //按数量排序
         [groupListData sortUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
@@ -60,7 +83,7 @@
 +(void)getModelPropertyValue:(BSPhotoGroupModel *)model assetCollection:(PHAssetCollection*)assetCollection dataArr:(NSMutableArray *)dataArr {
     
     PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
-
+    
     if (assetResult.count>0) {
                 
         model.assetCollection = assetCollection;

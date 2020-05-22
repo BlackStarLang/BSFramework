@@ -71,7 +71,6 @@
             [self.collectionView reloadData];
         });
     }];
-
 }
 
 

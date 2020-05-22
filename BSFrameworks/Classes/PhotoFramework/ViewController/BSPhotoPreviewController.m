@@ -11,11 +11,13 @@
 #import "BSPhotoViewModel.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
+#import "UINavigationBar+BSBar.h"
 
 @interface BSPhotoPreviewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
+@property (nonatomic ,assign) BOOL statusBarHiddenStatus;
 
 @end
 
@@ -26,19 +28,36 @@
     NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
 }
 
+
+-(BOOL)prefersStatusBarHidden{
+ 
+    return self.statusBarHiddenStatus;
+}
+
+#pragma mark - 生命周期
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    [self.navigationController.navigationBar setNavigationBarBackgroundImage:nil shadowImage:nil];
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor] alpha:1 animate:YES];
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSubViews];
     [self masonryLayout];
-    // Do any additional setup after loading the view.
 }
 
+
 -(void)initSubViews{
-    if (self.isPresent) {
-        self.collectionView.frame = CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height);
-    }
+
     self.view.backgroundColor = [UIColor blackColor];
     self.collectionView.backgroundColor = [UIColor blackColor];
+    
+    [self.navigationController.navigationBar setNavigationBarBackgroundImage:[UIImage new] shadowImage:[UIImage new]];
+
+    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor] alpha:0 animate:YES];
     
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
@@ -47,9 +66,6 @@
 
 -(void)masonryLayout{
     
-    
-//    self.collectionView.frame = CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64);
-
     [self.collectionView setNeedsLayout];
     
     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
@@ -79,7 +95,7 @@
 
 -(CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    CGFloat width = self.view.frame.size.width;
+    CGFloat width = self.view.frame.size.width + 20;
     CGFloat height = self.view.frame.size.height;
 
     return CGSizeMake(width, height);
@@ -122,16 +138,10 @@
     if (self.isPresent) {
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
-        if (self.navigationController.navigationBar.hidden) {
-            [self.navigationController setNavigationBarHidden:NO animated:YES];
-            self.view.backgroundColor = [UIColor whiteColor];
-            self.collectionView.backgroundColor = [UIColor whiteColor];
-            
-        }else{
-            [self.navigationController setNavigationBarHidden:YES animated:YES];
-            self.view.backgroundColor = [UIColor blackColor];
-            self.collectionView.backgroundColor = [UIColor blackColor];
-        }
+        
+        [self.navigationController.navigationBar setBackgroundColor:[UIColor darkGrayColor] alpha:!self.statusBarHiddenStatus animate:YES];
+        self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
+        [self setNeedsStatusBarAppearanceUpdate];
     }
 }
 
@@ -155,7 +165,9 @@
         flowLayout.sectionInset = UIEdgeInsetsMake(25, 0, 25, 0);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 64, self.view.frame.size.width, self.view.frame.size.height - 64) collectionViewLayout:flowLayout];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-10, 0, self.view.frame.size.width+20, self.view.frame.size.height) collectionViewLayout:flowLayout];
+        
+        self.collectionView.contentSize = CGSizeMake(self.previewPhotos.count * (self.view.frame.size.width+20), self.view.frame.size.height - 64);
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;

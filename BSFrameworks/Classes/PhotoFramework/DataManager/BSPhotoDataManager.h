@@ -6,6 +6,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <Photos/Photos.h>
+
 
 typedef enum : NSUInteger {
     Library_Photo = 0,
@@ -18,6 +20,9 @@ typedef enum : NSUInteger {
 @class BSPhotoGroupModel;
 
 @interface BSPhotoDataManager : NSObject
+
+#pragma mark - 获取相机胶卷的照片
++(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel;
 
 
 #pragma mark - 获取所有相册：封面为缓存图片（质量低）
