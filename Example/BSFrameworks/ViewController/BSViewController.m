@@ -7,15 +7,16 @@
 //
 
 #import "BSViewController.h"
-#import "BSTestViewController.h"
 
 #import "BSPhotoProtocal.h"
 #import "TZImagePickerController.h"
 #import "BSPhotoManagerController.h"
+#import "BSLooperView.h"
+#import <UIImageView+WebCache.h>
+#import <UIView+BSView.h>
 
-@interface BSViewController ()<BSPhotoProtocal,TZImagePickerControllerDelegate>
 
-@property (weak, nonatomic) IBOutlet UIButton *mybutton;
+@interface BSViewController ()<BSPhotoProtocal,TZImagePickerControllerDelegate,BSLooperViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -24,10 +25,15 @@
 
 @implementation BSViewController
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad{
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+
+    BSLooperView *looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
+    looperView.collectionCell = [[UICollectionViewCell alloc]init];
+    looperView.delegate = self;
+    
+    [self.view addSubview:looperView];
 }
 
 
@@ -38,24 +44,24 @@
     groupVC.autoPush = YES;
     groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
 
-    
-//    TZImagePickerController *groupVC = [[TZImagePickerController alloc] initWithMaxImagesCount:9 delegate:self];
-//
-//    // You can get the photos by block, the same as by delegate.
-//    // 你可以通过block或者代理，来得到用户选择的照片.
-//    [groupVC setDidFinishPickingPhotosWithInfosHandle:^(NSArray<UIImage *> *photos, NSArray *assets, BOOL isSelectOriginalPhoto, NSArray<NSDictionary *> *infos) {
-//
-//    }];
-//    groupVC.modalPresentationStyle = 0;
     [self presentViewController:groupVC animated:YES completion:nil];
 }
 
-- (IBAction)button2push:(UIButton *)sender {
- 
-    BSTestViewController * vc = [[BSTestViewController alloc]init];
-    [self.navigationController pushViewController:vc animated:YES];
+
+
+-(void)BSLooperView:(BSLooperView *)looperView cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath{
+    
+    
+    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, self.view.width - 60, 300)];
+    [cell.contentView addSubview:imageView];
+    
+    NSString *url = @"https://pics6.baidu.com/feed/0dd7912397dda144302b8277f02262a40df48675.jpeg?token=0f893277230d6dbe88ac6ed35e0be20d";
+    
+    [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
     
 }
+
+
 
 -(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
     

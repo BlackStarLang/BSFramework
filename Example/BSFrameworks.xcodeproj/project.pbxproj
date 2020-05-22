@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30484F2E2431D691004F5D62 /* BSTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30484F2C2431D691004F5D62 /* BSTestViewController.m */; };
-		30484F2F2431D691004F5D62 /* BSTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 30484F2D2431D691004F5D62 /* BSTestViewController.xib */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -41,9 +39,6 @@
 /* Begin PBXFileReference section */
 		1407A0FF819E0D4257A48958 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		249890230EA4254D28F53759 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		30484F2B2431D691004F5D62 /* BSTestViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTestViewController.h; sourceTree = "<group>"; };
-		30484F2C2431D691004F5D62 /* BSTestViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTestViewController.m; sourceTree = "<group>"; };
-		30484F2D2431D691004F5D62 /* BSTestViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BSTestViewController.xib; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* BSFrameworks_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSFrameworks_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -100,6 +95,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		30253546247786A900669C27 /* AppDelegate */ = {
+			isa = PBXGroup;
+			children = (
+				6003F59C195388D20070C39A /* BSAppDelegate.h */,
+				6003F59D195388D20070C39A /* BSAppDelegate.m */,
+			);
+			path = AppDelegate;
+			sourceTree = "<group>";
+		};
+		30253547247786B600669C27 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* BSViewController.h */,
+				6003F5A6195388D20070C39A /* BSViewController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
@@ -137,14 +150,9 @@
 		6003F593195388D20070C39A /* Example for BSFrameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6003F59C195388D20070C39A /* BSAppDelegate.h */,
-				6003F59D195388D20070C39A /* BSAppDelegate.m */,
+				30253547247786B600669C27 /* ViewController */,
+				30253546247786A900669C27 /* AppDelegate */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
-				6003F5A5195388D20070C39A /* BSViewController.h */,
-				6003F5A6195388D20070C39A /* BSViewController.m */,
-				30484F2B2431D691004F5D62 /* BSTestViewController.h */,
-				30484F2C2431D691004F5D62 /* BSTestViewController.m */,
-				30484F2D2431D691004F5D62 /* BSTestViewController.xib */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -293,7 +301,6 @@
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
-				30484F2F2431D691004F5D62 /* BSTestViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -430,7 +437,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
-				30484F2E2431D691004F5D62 /* BSTestViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
@@ -595,9 +601,9 @@
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shequbanjing.sc.uat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Smart Community UAT";
+				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Profile";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -615,9 +621,9 @@
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.shequbanjing.sc.uat;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "Smart Community UAT";
+				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Profile";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

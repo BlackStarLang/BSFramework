@@ -29,35 +29,25 @@
   },
   "subspecs": [
     {
+      "name": "BSCategory",
+      "source_files": "BSFrameworks/Classes/BSCategory/**/*{.h,.m}",
+      "frameworks": [
+        "AVFoundation",
+        "UIKit"
+      ]
+    },
+    {
       "name": "BSPhotoFramework",
       "source_files": "BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}",
       "frameworks": [
         "Photos",
         "AVFoundation"
       ],
-      "resources": "BSFrameworks/Assets/PhotoFramework/*",
-      "dependencies": {
-        "BSCategory": [
-
-        ]
-      }
+      "resources": "BSFrameworks/Assets/PhotoFramework/*"
     },
     {
       "name": "BSLooperView",
       "source_files": "BSFrameworks/Classes/BSLooperView/**/*{.h,.m}",
-      "frameworks": [
-        "AVFoundation",
-        "UIKit"
-      ],
-      "dependencies": {
-        "BSCategory": [
-
-        ]
-      }
-    },
-    {
-      "name": "BSCategory",
-      "source_files": "BSFrameworks/Classes/BSCategory/**/*{.h,.m}",
       "frameworks": [
         "AVFoundation",
         "UIKit"

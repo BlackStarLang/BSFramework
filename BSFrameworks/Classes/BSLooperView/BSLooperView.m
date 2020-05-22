@@ -46,13 +46,19 @@
 
 -(void)masonryLayout{
     
-    self.collectionView.frame = CGRectMake(0, 0, self.width, self.height);
+    self.collectionView.frame = CGRectMake(-10, 0, self.width + 20, self.height);
     
 }
 
 
 
 #pragma mark - set method
+
+-(void)setScrollDirection:(UICollectionViewScrollDirection)scrollDirection{
+    _scrollDirection = scrollDirection;
+    
+    self.flowLayout.scrollDirection = scrollDirection;
+}
 
 -(void)setCollectionCell:(UICollectionViewCell *)collectionCell{
     _collectionCell = collectionCell;
@@ -103,9 +109,11 @@
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
-        _collectionView = [[UICollectionView alloc]init];
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:self.flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.backgroundColor = [UIColor whiteColor];
+        _collectionView.pagingEnabled = YES;
     }
     return _collectionView;
 }
@@ -114,9 +122,11 @@
 -(UICollectionViewFlowLayout *)flowLayout{
     if (!_flowLayout) {
         _flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        _flowLayout.itemSize = CGSizeMake(200, 200);
+        _flowLayout.itemSize = CGSizeMake(self.width + 20, self.height);
         _flowLayout.minimumLineSpacing = 20;
         _flowLayout.minimumInteritemSpacing = 20;
+        _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+
     }
     return _flowLayout;
 }

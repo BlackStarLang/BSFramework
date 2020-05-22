@@ -39,6 +39,8 @@
 ///是否自动轮播(只有无限轮播，才可自动轮播)
 @property (nonatomic ,assign) BOOL AUTO;
 
+///滚动方向，默认横向 UICollectionViewScrollDirectionHorizontal
+@property (nonatomic ,assign) UICollectionViewScrollDirection scrollDirection;
 
 @property (nonatomic ,strong) UICollectionViewCell *collectionCell;
 
@@ -47,6 +49,7 @@
 
 
 @property (nonatomic ,strong) UICollectionViewFlowLayout *flowLayout;
+
 
 @end
 
