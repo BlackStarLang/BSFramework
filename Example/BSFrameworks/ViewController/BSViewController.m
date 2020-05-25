@@ -14,9 +14,12 @@
 #import "BSLooperView.h"
 #import <UIImageView+WebCache.h>
 #import <UIView+BSView.h>
+#import "BSSecondController.h"
+
+#import "BSCollectionViewCell.h"
 
 
-@interface BSViewController ()<BSPhotoProtocal,TZImagePickerControllerDelegate,BSLooperViewDelegate>
+@interface BSViewController ()<BSPhotoProtocal,TZImagePickerControllerDelegate>
 
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
@@ -29,44 +32,39 @@
     
     [super viewDidLoad];
 
-    BSLooperView *looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 200, self.view.frame.size.width, 300)];
-    looperView.collectionCell = [[UICollectionViewCell alloc]init];
-    looperView.delegate = self;
-    
-    [self.view addSubview:looperView];
+
 }
 
+
+
+#pragma mark - camera
 
 - (IBAction)gotoPhotoLibrary:(UIButton *)sender {
     
-    BSPhotoManagerController *groupVC = [[BSPhotoManagerController alloc]init];
-
-    groupVC.autoPush = YES;
-    groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
-
-    [self presentViewController:groupVC animated:YES completion:nil];
+//    BSPhotoManagerController *groupVC = [[BSPhotoManagerController alloc]init];
+//
+//    groupVC.autoPush = YES;
+//    groupVC.modalPresentationStyle = UIModalPresentationFullScreen;
+//
+//    [self presentViewController:groupVC animated:YES completion:nil];
+//
+    
+    BSSecondController *bsSecond = [[BSSecondController alloc]init];
+    bsSecond.modalPresentationStyle = UIModalPresentationFullScreen;
+    [self.navigationController pushViewController:bsSecond animated:YES];
 }
-
-
-
--(void)BSLooperView:(BSLooperView *)looperView cell:(UICollectionViewCell *)cell indexPath:(NSIndexPath *)indexPath{
-    
-    
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(40, 0, self.view.width - 60, 300)];
-    [cell.contentView addSubview:imageView];
-    
-    NSString *url = @"https://pics6.baidu.com/feed/0dd7912397dda144302b8277f02262a40df48675.jpeg?token=0f893277230d6dbe88ac6ed35e0be20d";
-    
-    [imageView sd_setImageWithURL:[NSURL URLWithString:url]];
-    
-}
-
 
 
 -(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
     
     self.imageView.image = image;
 }
+
+
+
+
+
+
 
 
 - (void)didReceiveMemoryWarning
