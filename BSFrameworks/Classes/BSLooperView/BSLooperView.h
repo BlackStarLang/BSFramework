@@ -16,7 +16,7 @@
 
 @required
 
-/// BSLooperView cellforrow 回调
+/// BSLooperView cellForRow 回调
 -(void)BSLooperView:(BSLooperView *)looperView cell:(UICollectionViewCell *)cell cellForModel:(id)model;
 
 
@@ -53,14 +53,13 @@
 @property (nonatomic ,assign) BOOL isCircle;
 
 
-///是否自动轮播(只有无限轮播，才可自动轮播)
+///是否自动轮播(只有无限轮播，才可自动轮播) 
 @property (nonatomic ,assign) BOOL AUTO;
 
 
 ///如果 AUTO=YES 可设置 轮播滚动时间间隔，单位（s），默认 3(s)
 ///如果 timeLength < 0.5 ，timeLength = 3
 @property (nonatomic ,assign) NSTimeInterval timeLength;
-
 
 
 ///滚动方向，默认横向 UICollectionViewScrollDirectionHorizontal
@@ -73,13 +72,14 @@
 
 
 /// 轮播图 数组:(所有属性 需在 dataArr 设置前 赋值，之后无效)
-@property (nonatomic ,strong) NSArray *dataArr;
+/// 数组内数据可为任意类型，BSLooperViewDelegate 会输出目标对象dataArr[indexPath.row]
+@property (nonatomic ,strong) NSArray <id>*dataArr;
 
 
 
 
 
-#pragma mark - method 方法
+#pragma mark - method
 
 /// 如果需要不一样的UI，需要自定义轮播图布局
 -(void)setCollectionViewLayout:(UICollectionViewLayout *)layout;

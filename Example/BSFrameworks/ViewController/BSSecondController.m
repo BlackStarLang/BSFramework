@@ -41,7 +41,6 @@
     self.looperView.isCircle = YES;
     self.looperView.AUTO = YES;
     
-    
     NSString *url = @"https://pics6.baidu.com/feed/0dd7912397dda144302b8277f02262a40df48675.jpeg?token=0f893277230d6dbe88ac6ed35e0be20d";
     NSString *url1 = @"https://pics0.baidu.com/feed/8b82b9014a90f60375143a228c59041db151ed85.jpeg?token=bf540b320d9f8fe20b306f4a0f863378";
     NSString *url2 = @"https://wenhui.whb.cn/u/cms/www/202005/251008229olq.png";

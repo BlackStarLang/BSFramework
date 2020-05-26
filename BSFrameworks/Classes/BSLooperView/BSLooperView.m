@@ -179,10 +179,11 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
 
+
         //如果 自动轮播 或者 无限循环
         if (self.isCircle || self.AUTO) {
             
-            if (!self.isDrag) {
+            if (self.AUTO && !self.isDrag) {
                 //如果是 timer,设置滚动，带动画
                 self.currentPageIndex ++;
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
@@ -209,7 +210,9 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
                     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataArr.count + self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                    self.currentPageIndex = self.dataArr.count;
+                    if (self.AUTO) {
+                        self.currentPageIndex = self.dataArr.count + self.currentPageIndex;
+                    }
                     
                 });
                 
@@ -221,7 +224,9 @@
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
                     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex - self.dataArr.count inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                    self.currentPageIndex = self.dataArr.count;
+                    if (self.AUTO) {
+                        self.currentPageIndex = self.currentPageIndex - self.dataArr.count;
+                    }
                     
                 });
             }
@@ -282,9 +287,10 @@
 /// 拖拽动作 ，timer 暂停
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
 
+    self.isDrag = YES;
+
     //如果自动轮播，拖拽时，停止timer
     if (self.AUTO) {
-        self.isDrag = YES;
         [self.timer invalidate];
         self.timer = nil;
     }
