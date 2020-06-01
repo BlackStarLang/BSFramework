@@ -9,38 +9,51 @@
 #import "UIView+BSView.h"
 #import "objc/runtime.h"
 #import <CoreFoundation/CoreFoundation.h>
+#import "BSLooper3DFlowLayout.h"
 
 @interface BSLooperView ()<UICollectionViewDelegate,UICollectionViewDataSource,UIScrollViewDelegate,UICollectionViewDelegateFlowLayout>
 
 
+#pragma mark - 属性
+
+
+/// 当前轮播图的位置下标
 @property (nonatomic ,assign) NSInteger currentPageIndex;
 
+
 /// 内置布局
-@property (nonatomic ,strong) UICollectionViewFlowLayout *flowLayout;
+@property (nonatomic ,strong) BSLooper3DFlowLayout *flowLayout;
+
 
 /// collectionView
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
 
+/// 如果无限轮播 ，使用 新 数组
 @property (nonatomic ,strong) NSMutableArray *newDataArr;
 
 
+/// 计时器
 @property (nonatomic ,strong) NSTimer *timer;
+
 
 /// 是否是手动拖拽
 @property (nonatomic ,assign) BOOL isDrag;
 
 
+/// 用于 解决 timer 强引用 self 的问题
 @property (nonatomic ,strong) TimerTarget *timerTarget;
+
 
 
 @end
 
 
-
+#pragma mark -
 @implementation BSLooperView
 
 
+#pragma mark - 生命周期
 -(void)dealloc{
     
     NSLog(@"BSLooperView 释放");
@@ -54,51 +67,57 @@
 -(instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
     if (self) {
+        [self configDefaultData];
         [self initSubViews];
-        [self masonryLayout];
     }
     return self;
 }
 
 
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        [self initSubViews];
-        [self masonryLayout];
-    }
-    return self;
-}
+#pragma mark - init method 初始化后基本配置
 
+/// 配置默认数据
+-(void)configDefaultData{
+    
+    self.itemSize = self.bounds.size;
+    self.sectionInset = UIEdgeInsetsZero;
+    self.timeLength = 3;
+    self.minimumLineSpacing = 0;
+    self.minimumLineSpacing = 0;
+    self.scale = 1;
+    self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+    
+}
 
 
 -(void)initSubViews{
-    
-    self.timeLength = 3;
+
     [self addSubview:self.collectionView];
 }
 
-
--(void)masonryLayout{
-    
-
-    
-}
 
 
 
 #pragma mark - set method
 
--(void)setScrollDirection:(UICollectionViewScrollDirection)scrollDirection{
-    _scrollDirection = scrollDirection;
+-(void)setAUTO:(BOOL)AUTO{
+    _AUTO = AUTO;
     
-    self.flowLayout.scrollDirection = scrollDirection;
+    if (AUTO) {
+        self.isInfinite = YES;
+    }
 }
 
 -(void)setCellName:(NSString *)cellName{
     _cellName = cellName;
-    
+    /// 注册cell
     [self.collectionView registerClass:NSClassFromString(cellName) forCellWithReuseIdentifier:cellName];
+}
+
+
+-(void)setItemSize:(CGSize)itemSize{
+    _itemSize = itemSize;
+    
 }
 
 
@@ -106,6 +125,9 @@
     _dataArr = dataArr;
     
     if (dataArr.count) {
+        
+        /// 设置 collectionView的frame 和 FlowLayout
+        [self resetCollectionView];
         
         /**
          * 如果 是无限循环 或者 自动滚动，
@@ -129,14 +151,33 @@
     }
 }
 
+-(void)resetCollectionView{
+    
+    self.flowLayout = [[BSLooper3DFlowLayout alloc]init];
+    self.flowLayout.itemSize = self.itemSize;
+    self.flowLayout.minimumLineSpacing = self.minimumLineSpacing;
+    self.flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
+    self.flowLayout.scrollDirection = self.scrollDirection;
+    self.flowLayout.sectionInset = self.sectionInset;
+    self.flowLayout.scale = self.scale;
+    
+    self.collectionView.collectionViewLayout = self.flowLayout;
+    
+    /// 设置 collectionView的frame
+    self.collectionView.frame = self.bounds;
+}
 
-/// 设置 collectionView 的滚动方向
+
+/// 设置 collectionView 的 自定义布局
 -(void)setCollectionViewLayout:(UICollectionViewLayout *)layout{
     
     self.collectionView.collectionViewLayout = layout;
     [self.collectionView reloadData];
 }
 
+
+
+#pragma mark - prive method 自定义方法
 
 /// 创建timer
 -(void)creatTimer{
@@ -162,10 +203,6 @@
     }
 }
 
-
-
-#pragma mark - prive method 自定义方法
-
 /// timer 回调
 -(void)looperTime{
 
@@ -175,21 +212,22 @@
 
 
 /// 重新设置 当前的 pageIndex 和 collectionView 要展示的cell
+
 -(void)resetCurrentPageIndex{
     
     dispatch_async(dispatch_get_main_queue(), ^{
 
 
         //如果 自动轮播 或者 无限循环
-        if (self.isCircle || self.AUTO) {
+        if (self.isInfinite || self.AUTO) {
             
             if (self.AUTO && !self.isDrag) {
                 //如果是 timer,设置滚动，带动画
                 self.currentPageIndex ++;
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:YES];
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
             }else{
                 //如果是 手动拖拽,计算 self.currentPageIndex
-                self.currentPageIndex = self.collectionView.contentOffset.x/self.width;
+                self.currentPageIndex = self.collectionView.contentOffset.x/(self.itemSize.width+10) + 1;
             }
             
             
@@ -204,14 +242,15 @@
             if (self.currentPageIndex < self.dataArr.count) {
                 
                 /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
-                
                 NSTimeInterval refreshTime = self.isDrag?0:0.5;
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
-                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataArr.count + self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                    NSInteger newPageIndex = self.dataArr.count + self.currentPageIndex;
+                    
+                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                     if (self.AUTO) {
-                        self.currentPageIndex = self.dataArr.count + self.currentPageIndex;
+                        self.currentPageIndex = newPageIndex;
                     }
                     
                 });
@@ -223,9 +262,11 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
-                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex - self.dataArr.count inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+                    NSInteger newPageIndex = self.currentPageIndex - self.dataArr.count;
+                    
+                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                     if (self.AUTO) {
-                        self.currentPageIndex = self.currentPageIndex - self.dataArr.count;
+                        self.currentPageIndex = newPageIndex;
                     }
                     
                 });
@@ -238,11 +279,11 @@
 
 
 
-#pragma mark - systemDelegate
+#pragma mark - collectionView Delegete
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    if (self.isCircle) {
+    if (self.isInfinite) {
         return self.newDataArr.count;
     }else{
         return self.dataArr.count;
@@ -271,6 +312,10 @@
 }
 
 
+
+
+#pragma mark - scrollView delegate
+
 /// 减速时，重置 UICollectionView 位置（手动滚动）
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
@@ -297,35 +342,29 @@
 }
 
 
-
+-(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    
+    
+}
 
 #pragma mark - init 属性初始化
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
         
-        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, self.width, self.height) collectionViewLayout:self.flowLayout];
+        UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
+        
+        _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
         _collectionView.showsVerticalScrollIndicator = NO;
         _collectionView.showsHorizontalScrollIndicator = NO;
+        _collectionView.backgroundColor = [UIColor whiteColor];
     }
     return _collectionView;
 }
 
-
--(UICollectionViewFlowLayout *)flowLayout{
-    if (!_flowLayout) {
-        _flowLayout = [[UICollectionViewFlowLayout alloc]init];
-        _flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _flowLayout.itemSize = CGSizeMake(self.width, self.height);
-        _flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
-        _flowLayout.minimumLineSpacing = 0;
-        _flowLayout.minimumInteritemSpacing = 0;
-    }
-    return _flowLayout;
-}
 
 -(NSMutableArray *)newDataArr{
     if (!_newDataArr) {

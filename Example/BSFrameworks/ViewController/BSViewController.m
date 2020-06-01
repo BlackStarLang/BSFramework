@@ -49,6 +49,14 @@
 //    [self presentViewController:groupVC animated:YES completion:nil];
 //
     
+    CATransition * transition = [CATransition animation];
+    transition.type = @"cube";
+    transition.subtype = @"fromRight";
+    transition.duration = 1;
+    
+    [self.view.window.layer removeAllAnimations];
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
     BSSecondController *bsSecond = [[BSSecondController alloc]init];
     bsSecond.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:bsSecond animated:YES];
