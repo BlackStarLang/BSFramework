@@ -18,26 +18,7 @@
                     <view key="view" contentMode="scaleToFill" id="TpU-gO-2f1">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P3Z-uO-paz">
-                                <rect key="frame" x="86" y="64" width="80" height="30"/>
-                                <color key="backgroundColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="80" id="6fv-J4-YRe"/>
-                                </constraints>
-                                <state key="normal" title="相册">
-                                    <color key="titleColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="gotoPhotoLibrary:" destination="whP-gf-Uak" eventType="touchUpInside" id="s2y-1C-u5e"/>
-                                </connections>
-                            </button>
-                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <constraints>
-                            <constraint firstItem="P3Z-uO-paz" firstAttribute="top" secondItem="uEw-UM-LJ8" secondAttribute="bottom" constant="20" id="6f6-U2-Lb7"/>
-                            <constraint firstItem="P3Z-uO-paz" firstAttribute="leading" secondItem="TpU-gO-2f1" secondAttribute="leadingMargin" constant="70" id="duK-nw-Mv0"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="uOk-ht-pPv"/>
                 </viewController>

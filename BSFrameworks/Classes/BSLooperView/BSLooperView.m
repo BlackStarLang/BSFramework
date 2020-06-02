@@ -227,7 +227,12 @@
                 [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
             }else{
                 //如果是 手动拖拽,计算 self.currentPageIndex
-                self.currentPageIndex = self.collectionView.contentOffset.x/(self.itemSize.width+10) + 1;
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    self.currentPageIndex = self.collectionView.contentOffset.y/(self.itemSize.height+self.minimumLineSpacing) + 1;
+                }else{
+                    self.currentPageIndex = self.collectionView.contentOffset.x/(self.itemSize.width+self.minimumLineSpacing) + 1;
+                }
+//                NSLog(@"currentPageIndex===%ld",self.currentPageIndex);
             }
             
             
@@ -262,7 +267,7 @@
                 
                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                    
-                    NSInteger newPageIndex = self.currentPageIndex - self.dataArr.count;
+                    NSInteger newPageIndex = self.currentPageIndex - self.dataArr.count ;
                     
                     [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                     if (self.AUTO) {
