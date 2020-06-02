@@ -38,7 +38,7 @@
         self.collectionView.contentInset = UIEdgeInsetsMake(0, contentInset*0.5, 0, contentInset*0.5);
         
         
-        /// 设置每个page的间距,正常 是 colectionView 的宽度，但是现在需要做成自己想要的宽度，则把多于的去掉
+        /// 设置每个页面之间的间距
         if ([self.collectionView respondsToSelector:NSSelectorFromString(@"_setInterpageSpacing:")]) {
             ((void(*)(id,SEL,CGSize))objc_msgSend)(self.collectionView,NSSelectorFromString(@"_setInterpageSpacing:"),CGSizeMake(-(contentInset-self.minimumLineSpacing), 0));
         }
@@ -61,7 +61,7 @@
         self.collectionView.contentInset = UIEdgeInsetsMake(contentInset*0.5, 0, contentInset*0.5, 0);
         
         
-        /// 设置每个page的间距,正常 是 colectionView 的宽度，但是现在需要做成自己想要的宽度，则把多于的去掉
+        /// 设置每个页面之间的间距
         if ([self.collectionView respondsToSelector:NSSelectorFromString(@"_setInterpageSpacing:")]) {
             ((void(*)(id,SEL,CGSize))objc_msgSend)(self.collectionView,NSSelectorFromString(@"_setInterpageSpacing:"),CGSizeMake(0, -(contentInset-self.minimumLineSpacing)));
         }
@@ -117,7 +117,7 @@
             
             /// 计算缩放比例
             CGFloat preScale = distance/(self.itemSize.width+self.minimumLineSpacing);
-//            preScale = MIN(1, preScale);
+
             
             /// 根据偏移量，重新设置 center
             attrs.center = CGPointMake(attrs.center.x - offsetX *preScale, attrs.center.y + self.centerOffset * preScale);
@@ -170,8 +170,8 @@
             CGFloat distance = ABS(attrs.center.y - centetY);
             /// 计算缩放比例
             CGFloat preScale = distance/(self.itemSize.height+self.minimumLineSpacing);
-//            preScale = MIN(1, preScale);
 
+            
             /// 根据偏移量，重新设置 center
             attrs.center = CGPointMake(attrs.center.x + self.centerOffset * preScale, attrs.center.y - offsetY * preScale);
             

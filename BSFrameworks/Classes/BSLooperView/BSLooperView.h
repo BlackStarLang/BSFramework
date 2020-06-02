@@ -143,12 +143,14 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 /// ====================================
 /// 设置 minimumInteritemSpacing
 /// 最小列（纵）间距：default 0
+/// 因为不支持多列，所以没用
 /// ====================================
-@property (nonatomic ,assign) CGFloat minimumInteritemSpacing;
+//@property (nonatomic ,assign) CGFloat minimumInteritemSpacing;
 
 
 ///=================================
 ///两边item的中心点偏移量
+///如果横向，则是中心点上下偏移，否则左右偏移
 ///默认 centerOffset = 0
 ///=================================
 @property (nonatomic ,assign) CGFloat centerOffset;

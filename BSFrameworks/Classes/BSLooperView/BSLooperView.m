@@ -158,7 +158,7 @@
     self.flowLayout = [[BSLooper3DFlowLayout alloc]init];
     self.flowLayout.itemSize = self.itemSize;
     self.flowLayout.minimumLineSpacing = self.minimumLineSpacing;
-    self.flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
+//    self.flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
     self.flowLayout.scrollDirection = self.scrollDirection;
     self.flowLayout.sectionInset = self.sectionInset;
     self.flowLayout.scale = self.scale;
