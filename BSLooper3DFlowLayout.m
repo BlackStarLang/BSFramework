@@ -170,7 +170,7 @@
             CGFloat distance = ABS(attrs.center.y - centetY);
             /// 计算缩放比例
             CGFloat preScale = distance/(self.itemSize.height+self.minimumLineSpacing);
-            preScale = MIN(1, preScale);
+//            preScale = MIN(1, preScale);
 
             /// 根据偏移量，重新设置 center
             attrs.center = CGPointMake(attrs.center.x + self.centerOffset * preScale, attrs.center.y - offsetY * preScale);
