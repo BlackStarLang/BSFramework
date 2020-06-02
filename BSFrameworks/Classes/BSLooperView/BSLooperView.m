@@ -85,13 +85,14 @@
     self.minimumLineSpacing = 0;
     self.minimumLineSpacing = 0;
     self.scale = 1;
+    self.centerOffset = 0;
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
     
 }
 
 
 -(void)initSubViews{
-
+    
     [self addSubview:self.collectionView];
 }
 
@@ -137,7 +138,7 @@
         [self.newDataArr addObjectsFromArray:dataArr];
         [self.newDataArr addObjectsFromArray:dataArr];
         [self.newDataArr addObjectsFromArray:dataArr];
-
+        
         [self.collectionView reloadData];
         
         self.currentPageIndex = dataArr.count;
@@ -160,10 +161,11 @@
     self.flowLayout.scrollDirection = self.scrollDirection;
     self.flowLayout.sectionInset = self.sectionInset;
     self.flowLayout.scale = self.scale;
-    
+    self.flowLayout.centerOffset = self.centerOffset;
     self.collectionView.collectionViewLayout = self.flowLayout;
     
     /// 设置 collectionView的frame
+    self.collectionView.frame = CGRectMake(0, (self.height-self.itemSize.height)/2, self.width, self.itemSize.height);
     self.collectionView.frame = self.bounds;
 }
 
@@ -205,7 +207,7 @@
 
 /// timer 回调
 -(void)looperTime{
-
+    
     self.isDrag = NO;
     [self resetCurrentPageIndex];
 }
@@ -216,8 +218,8 @@
 -(void)resetCurrentPageIndex{
     
     dispatch_async(dispatch_get_main_queue(), ^{
-
-
+        
+        
         //如果 自动轮播 或者 无限循环
         if (self.isInfinite || self.AUTO) {
             
@@ -232,7 +234,6 @@
                 }else{
                     self.currentPageIndex = self.collectionView.contentOffset.x/(self.itemSize.width+self.minimumLineSpacing) + 1;
                 }
-//                NSLog(@"currentPageIndex===%ld",self.currentPageIndex);
             }
             
             
@@ -244,38 +245,35 @@
              * 重置为 self.currentPageIndex - self.dataArr.count
              */
             
+            NSInteger newPageIndex = self.currentPageIndex;
+            
             if (self.currentPageIndex < self.dataArr.count) {
                 
-                /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
-                NSTimeInterval refreshTime = self.isDrag?0:0.5;
-                
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   
-                    NSInteger newPageIndex = self.dataArr.count + self.currentPageIndex;
-                    
-                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                    if (self.AUTO) {
-                        self.currentPageIndex = newPageIndex;
-                    }
-                    
-                });
+                newPageIndex = self.dataArr.count + self.currentPageIndex;
                 
             }else if (self.currentPageIndex >= self.dataArr.count*2){
                 
-                /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
-                NSTimeInterval refreshTime = self.isDrag?0:0.5;
+                newPageIndex = self.currentPageIndex - self.dataArr.count ;
                 
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-                   
-                    NSInteger newPageIndex = self.currentPageIndex - self.dataArr.count ;
-                    
-                    [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                    if (self.AUTO) {
-                        self.currentPageIndex = newPageIndex;
-                    }
-                    
-                });
             }
+            
+            /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
+            NSTimeInterval refreshTime = self.isDrag?0:0.5;
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                UICollectionViewScrollPosition position = UICollectionViewScrollPositionCenteredHorizontally;
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    position = UICollectionViewScrollPositionCenteredVertically;
+                }
+                
+//                NSLog(@"newPageIndex == %ld",newPageIndex);
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:position animated:NO];
+                
+                if (self.AUTO) {
+                    self.currentPageIndex = newPageIndex;
+                }
+            });
         }
     });
 }
@@ -299,7 +297,7 @@
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:self.cellName forIndexPath:indexPath];
-
+    
     if ([self.delegate respondsToSelector:@selector(BSLooperView:cell:cellForModel:)]) {
         [self.delegate BSLooperView:self cell:cell cellForModel:self.newDataArr[indexPath.row]];
     }
@@ -336,9 +334,9 @@
 
 /// 拖拽动作 ，timer 暂停
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-
+    
     self.isDrag = YES;
-
+    
     //如果自动轮播，拖拽时，停止timer
     if (self.AUTO) {
         [self.timer invalidate];
@@ -389,7 +387,7 @@
 @implementation TimerTarget
 
 - (NSMethodSignature *)methodSignatureForSelector:(SEL)sel {
-
+    
     return [self.target methodSignatureForSelector:sel];
 }
 

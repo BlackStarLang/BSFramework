@@ -29,7 +29,7 @@
 @optional
 
 /// ====================================
-/// cell 点击
+/// BSLooperView cell 点击
 /// ====================================
 
 -(void)BSLooperView:(BSLooperView *)looperView didSelectModel:(id)model;
@@ -101,40 +101,52 @@
 
 
 /// ====================================
-/// 设置item size   default self.bounds.size
+/// 设置item size
+/// default self.bounds.size
 /// ====================================
 @property (nonatomic ,assign) CGSize itemSize;
 
 
 
 /// ====================================
-/// 设置 sectionInset  default UIEdgeInsetsZero
+/// 设置 sectionInset
+/// default UIEdgeInsetsZero
 /// ====================================
 @property (nonatomic ,assign) UIEdgeInsets sectionInset;
 
 
 /// ====================================
-/// 设置 minimumLineSpacing  最小行间距：default 0
+/// 设置 minimumLineSpacing
+/// 最小行间距：default 0
 /// ====================================
 @property (nonatomic ,assign) CGFloat minimumLineSpacing;
 
 
 /// ====================================
-/// 设置 minimumInteritemSpacing  最小列（纵）间距：default 0
+/// 设置 minimumInteritemSpacing
+/// 最小列（纵）间距：default 0
 /// ====================================
 @property (nonatomic ,assign) CGFloat minimumInteritemSpacing;
 
 
+///=================================
+///两边item的中心点偏移量
+///默认 centerOffset = 0
+///=================================
+@property (nonatomic ,assign) CGFloat centerOffset;
+
+
 
 /// ====================================
-/// 设置 缩放比例  默认不缩放 scale = 1
+/// 设置 缩放比例
+/// 默认不缩放 scale = 1
 /// ====================================
 @property (nonatomic ,assign) CGFloat scale;
 
 
 
 /// ==============================================
-/// 轮播图 数组:(所有属性 需在 dataArr 设置前 赋值，之后无效)
+/// 轮播图 数组:所有属性 需在 dataArr 设置前 赋值，之后无效
 /// 数组内数据可为任意类型，
 /// BSLooperViewDelegate 会输出目标对象dataArr[indexPath.row]
 /// ==============================================
@@ -147,8 +159,9 @@
 
 /// ==============================================
 /// 可通过此方法，自定义 UICollectionViewLayout
+/// 暂不支持，后续版本增加
 /// ==============================================
--(void)setCollectionViewLayout:(UICollectionViewLayout *)layout;
+//-(void)setCollectionViewLayout:(UICollectionViewLayout *)layout;
 
 
 

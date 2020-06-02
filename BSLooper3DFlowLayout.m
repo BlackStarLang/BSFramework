@@ -79,7 +79,10 @@
 
 -(NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
-    NSArray * array = [super layoutAttributesForElementsInRect:rect];
+    NSArray *originArr = [super layoutAttributesForElementsInRect:rect];
+    
+    NSArray * array = [[NSArray alloc]initWithArray:originArr copyItems:YES];
+
     
     if (self.isHorizontal) {
         
@@ -113,23 +116,22 @@
             /// attri的中心X坐标与 当前中心坐标的 X 差值的绝对值
             CGFloat distance = ABS(attrs.center.x - centetX);
             
+            /// 计算缩放比例
+            CGFloat preScale = distance/(self.itemSize.width+self.minimumLineSpacing);
             
             /// 根据偏移量，重新设置 center
-            attrs.center = CGPointMake(attrs.center.x - offsetX *(distance/(self.itemSize.width+self.minimumLineSpacing)), attrs.center.y);
-            
-            
+            attrs.center = CGPointMake(attrs.center.x - offsetX *preScale, attrs.center.y + self.centerOffset * preScale);
+           
             //*********************************************//
             //************      设置缩放动画     ************//
             //*********************************************//
-            /// 计算缩放比例
-            CGFloat preScale = 1-(distance/self.itemSize.width);
             
             /// 根据设定的缩放比例，计算出最终需要的缩放比例
-            CGFloat scale = self.scale + (1-self.scale) * preScale;
+            CGFloat scale = self.scale + (1-self.scale) * (1-preScale);
             
             /// 设置最终动画的缩放比例
             attrs.transform=CGAffineTransformMakeScale(scale, scale);
-            
+
         }
         return array;
         
@@ -138,7 +140,9 @@
         
         
         CGFloat centetY = self.collectionView.contentOffset.y + self.collectionView.frame.size.height/2;
-        NSLog(@"centerY = %.2f",centetY);
+        
+//        NSLog(@"centetY = %.2f",centetY);
+        
         for (UICollectionViewLayoutAttributes * attrs in array) {
             
             
@@ -160,26 +164,28 @@
             CGFloat offsetY = (self.itemSize.height - self.itemSize.height* self.scale)/2;
             
             /// 如果 在左侧 偏移量需要改成 负方向
-            if (centetY>attrs.frame.origin.y) {
+            if (centetY>attrs.center.y) {
                 offsetY = offsetY * - 1;
             }
             
             /// attri的中心X坐标与 当前中心坐标的 X 差值的绝对值
             CGFloat distance = ABS(attrs.center.y - centetY);
             
-
-            /// 根据偏移量，重新设置 center
-            attrs.center = CGPointMake(attrs.center.x, attrs.center.y - offsetY *(distance/(self.itemSize.height+self.minimumLineSpacing)));
+            /// 计算缩放比例
+            CGFloat preScale = distance/(self.itemSize.height+self.minimumLineSpacing);
             
+            /// 根据偏移量，重新设置 center
+            attrs.center = CGPointMake(attrs.center.x + self.centerOffset * preScale, attrs.center.y - offsetY *preScale);
+            if (attrs.indexPath.row == 0) {
+                NSLog(@"%@",NSStringFromCGPoint(attrs.center));
+            }
             
             //*********************************************//
             //************      设置缩放动画     ************//
             //*********************************************//
-            /// 计算缩放比例
-            CGFloat preScale = 1-(distance/self.itemSize.height);
             
             /// 根据设定的缩放比例，计算出最终需要的缩放比例
-            CGFloat scale = self.scale + (1-self.scale) * preScale;
+            CGFloat scale = self.scale + (1-self.scale) * (1-preScale);
             
             /// 设置最终动画的缩放比例
             attrs.transform=CGAffineTransformMakeScale(scale, scale);

@@ -11,7 +11,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSLooper3DFlowLayout : UICollectionViewFlowLayout
 
+///=============
+///宽高缩放比例
+///=============
 @property (nonatomic ,assign) CGFloat scale;
+
+
+///=================================
+///两边item的中心点偏移量
+///默认 centerOffset = 0
+///=================================
+@property (nonatomic ,assign) CGFloat centerOffset;
 
 @end
 

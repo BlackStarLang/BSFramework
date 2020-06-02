@@ -12,6 +12,8 @@
 #import <UIImageView+WebCache.h>
 #import "UIView+BSView.h"
 
+
+
 @interface BSLooperViewVC ()<BSLooperViewDelegate>
 
 @property (nonatomic ,strong) BSLooperView *looperView;
@@ -20,11 +22,17 @@
 
 @implementation BSLooperViewVC
 
+-(void)dealloc{
+//    NSLog(@"BSLooperViewVC 释放");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
+
     // Do any additional setup after loading the view.
     [self initSubView];
     [self configData];
+    
 }
 
 -(void)initSubView{
@@ -43,7 +51,7 @@
     NSString *url2 = @"https://wenhui.whb.cn/u/cms/www/202005/251008229olq.png";
     NSString *url3 = @"https://pics5.baidu.com/feed/5fdf8db1cb13495446f2bdd96d87245ed3094aea.jpeg?token=4a4ada5a734da5504dfb371cd74ecf78";
 
-    self.looperView.dataArr = @[url,url1,url2,url3];
+    self.looperView.dataArr = @[url,url1];
 }
 
 
@@ -65,15 +73,14 @@
 
 -(BSLooperView *)looperView{
     if (!_looperView) {
-        self.looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.frame.size.width, 300)];
-        self.looperView.cellName = @"BSCollectionViewCell";
-        self.looperView.delegate = self;
-        self.looperView.isInfinite = YES;
-        self.looperView.itemSize = CGSizeMake(self.view.width - 80, 200);
-        self.looperView.minimumLineSpacing = 10;
-        self.looperView.minimumInteritemSpacing = 10;
-        self.looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
-        self.looperView.scale = 0.5;
+        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 300)];
+        _looperView.cellName = @"BSCollectionViewCell";
+        _looperView.delegate = self;
+        _looperView.isInfinite = YES;
+        _looperView.itemSize = CGSizeMake(self.view.width, 260);
+        _looperView.minimumLineSpacing = 10;
+        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _looperView.scale = 0.8;
     }
     return _looperView;
 }
