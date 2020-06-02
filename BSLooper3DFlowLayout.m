@@ -72,7 +72,6 @@
             ((void(*)(id,SEL,CGPoint))objc_msgSend)(self.collectionView,NSSelectorFromString(@"_setPagingOrigin:"),CGPointMake(0, -contentInset*0.5));
         }
     }
-    
 }
 
 
@@ -101,7 +100,7 @@
              * 那么 中心item两边的 item 的大小则变成 100 * 100
              * 但是实际item所占的区域 200 * 200 并没有变，而item布局居中
              * 这样的问题就造成了：如果行间距为10 那么经过scale缩放，行间距就变成了60
-             * 这就使 两个item 实际的 行间距或纵间距 看起来并不正确
+             * 这就使 两个item 实际的 行间距或纵间距 发生了改变
              */
             //*********************************************//
             
@@ -118,6 +117,7 @@
             
             /// 计算缩放比例
             CGFloat preScale = distance/(self.itemSize.width+self.minimumLineSpacing);
+//            preScale = MIN(1, preScale);
             
             /// 根据偏移量，重新设置 center
             attrs.center = CGPointMake(attrs.center.x - offsetX *preScale, attrs.center.y + self.centerOffset * preScale);
@@ -127,7 +127,7 @@
             //*********************************************//
             
             /// 根据设定的缩放比例，计算出最终需要的缩放比例
-            CGFloat scale = self.scale + (1-self.scale) * (1-preScale);
+            CGFloat scale = (self.scale + (1-self.scale) * (1-preScale));
             
             /// 设置最终动画的缩放比例
             attrs.transform=CGAffineTransformMakeScale(scale, scale);
@@ -140,9 +140,7 @@
         
         
         CGFloat centetY = self.collectionView.contentOffset.y + self.collectionView.frame.size.height/2;
-        
-//        NSLog(@"centetY = %.2f",centetY);
-        
+                
         for (UICollectionViewLayoutAttributes * attrs in array) {
             
             
@@ -170,22 +168,19 @@
             
             /// attri的中心X坐标与 当前中心坐标的 X 差值的绝对值
             CGFloat distance = ABS(attrs.center.y - centetY);
-            
             /// 计算缩放比例
             CGFloat preScale = distance/(self.itemSize.height+self.minimumLineSpacing);
-            
+            preScale = MIN(1, preScale);
+
             /// 根据偏移量，重新设置 center
-            attrs.center = CGPointMake(attrs.center.x + self.centerOffset * preScale, attrs.center.y - offsetY *preScale);
-            if (attrs.indexPath.row == 0) {
-                NSLog(@"%@",NSStringFromCGPoint(attrs.center));
-            }
+            attrs.center = CGPointMake(attrs.center.x + self.centerOffset * preScale, attrs.center.y - offsetY * preScale);
             
             //*********************************************//
             //************      设置缩放动画     ************//
             //*********************************************//
             
             /// 根据设定的缩放比例，计算出最终需要的缩放比例
-            CGFloat scale = self.scale + (1-self.scale) * (1-preScale);
+            CGFloat scale = self.scale + (1-self.scale) * (1 - preScale);
             
             /// 设置最终动画的缩放比例
             attrs.transform=CGAffineTransformMakeScale(scale, scale);

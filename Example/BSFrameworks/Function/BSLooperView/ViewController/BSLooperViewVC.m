@@ -51,7 +51,7 @@
     NSString *url2 = @"https://wenhui.whb.cn/u/cms/www/202005/251008229olq.png";
     NSString *url3 = @"https://pics5.baidu.com/feed/5fdf8db1cb13495446f2bdd96d87245ed3094aea.jpeg?token=4a4ada5a734da5504dfb371cd74ecf78";
 
-    self.looperView.dataArr = @[url,url1];
+    self.looperView.dataArr = @[url,url1,url2,url3];
 }
 
 
@@ -76,11 +76,13 @@
         _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 300)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.isInfinite = YES;
-        _looperView.itemSize = CGSizeMake(self.view.width, 260);
+        _looperView.itemSize = CGSizeMake(self.view.width - 40, 240);
         _looperView.minimumLineSpacing = 10;
-        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _looperView.scale = 0.8;
+        _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _looperView.scale = 0.7;
+        _looperView.isInfinite = YES;
+        _looperView.AUTO = YES;
+        _looperView.looperPosition = BSLooperPositionLeft;
     }
     return _looperView;
 }

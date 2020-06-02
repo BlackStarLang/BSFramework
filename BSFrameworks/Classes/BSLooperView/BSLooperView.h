@@ -48,9 +48,22 @@
 /* 的row=5,然后重置pageIndex=5                                 */
 /* ********************************************************* */
 
-
+/// *** 只支持一行或一列 ***
 
 #pragma mark -
+
+typedef NS_OPTIONS(NSInteger, BSLooperPosition){
+    
+    //只针对scrollDirection = ScrollDirectionHorizontal的
+    BSLooperPositionLeft    =   0,      /// 向左
+    BSLooperPositionRight   =   1<<0,   /// 向右
+    
+    //只针对scrollDirection = ScrollDirectionVertical的
+    BSLooperPositionUp      =   2<<1,   /// 向上
+    BSLooperPositionDown    =   3<<2    /// 向下
+};
+
+
 @interface BSLooperView : UIView
 
 #pragma mark - property 自定义属性
@@ -65,12 +78,10 @@
 
 
 
-
 /// ====================================
 ///  是否自动轮播(只有无限轮播，才可自动轮播)
 /// ====================================
 @property (nonatomic ,assign) BOOL AUTO;
-
 
 
 
@@ -83,13 +94,20 @@
 
 
 
-
 /// =========================================
 /// 默认横向滚动 UICollectionViewScrollDirectionHorizontal
 /// 只针对内置布局，对自定义 UICollectionViewLayout 无效
 /// =========================================
 @property (nonatomic ,assign) UICollectionViewScrollDirection scrollDirection;
 
+
+
+/// =========================================
+/// 横向默认 BSLooperPositionLeft（从左向右滚动）
+/// 纵向默认 BSLooperPositionUp  （从下向上滚动）
+/// 只针对内置布局，对自定义 UICollectionViewLayout 无效
+/// =========================================
+@property (nonatomic ,assign) BSLooperPosition looperPosition;
 
 
 

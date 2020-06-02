@@ -152,6 +152,7 @@
     }
 }
 
+
 -(void)resetCollectionView{
     
     self.flowLayout = [[BSLooper3DFlowLayout alloc]init];
@@ -165,7 +166,7 @@
     self.collectionView.collectionViewLayout = self.flowLayout;
     
     /// 设置 collectionView的frame
-    self.collectionView.frame = CGRectMake(0, (self.height-self.itemSize.height)/2, self.width, self.itemSize.height);
+//    self.collectionView.frame = CGRectMake(0, (self.height-self.itemSize.height)/2, self.width, self.itemSize.height);
     self.collectionView.frame = self.bounds;
 }
 
@@ -225,17 +226,48 @@
             
             if (self.AUTO && !self.isDrag) {
                 //如果是 timer,设置滚动，带动画
-                self.currentPageIndex ++;
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionLeft animated:YES];
-            }else{
-                //如果是 手动拖拽,计算 self.currentPageIndex
-                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    self.currentPageIndex = self.collectionView.contentOffset.y/(self.itemSize.height+self.minimumLineSpacing) + 1;
+                if (self.looperPosition == BSLooperPositionRight || self.looperPosition == BSLooperPositionDown) {
+                    self.currentPageIndex --;
                 }else{
-                    self.currentPageIndex = self.collectionView.contentOffset.x/(self.itemSize.width+self.minimumLineSpacing) + 1;
+                    self.currentPageIndex ++;
+                }
+                
+                UICollectionViewScrollPosition position = UICollectionViewScrollPositionLeft;
+                
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    if (self.looperPosition == BSLooperPositionDown) {
+                        position = UICollectionViewScrollPositionBottom;
+                    }else{
+                        position = UICollectionViewScrollPositionTop;
+                    }
+                }else{
+                    if (self.looperPosition == BSLooperPositionRight) {
+                        position = UICollectionViewScrollPositionRight;
+                    }else{
+                        position = UICollectionViewScrollPositionLeft;
+                    }
+                }
+
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:position animated:YES];
+                
+            }else{
+                
+                ///如果是 手动拖拽,计算 self.currentPageIndex
+                
+                /// 真正的偏移量 应该是 偏移量加上 当前item的边缘（ X或Y 坐标）
+                /// 使用真正的偏移量才能算出正确的 currentPageIndex
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    
+                    CGFloat offset = self.collectionView.height/2 + self.collectionView.contentOffset.y - self.itemSize.height;
+                    self.currentPageIndex = offset/(self.itemSize.height+self.minimumLineSpacing) + 1;
+                    
+                }else{
+
+                    CGFloat offset = self.collectionView.width/2 + self.collectionView.contentOffset.x - self.itemSize.width;
+                    self.currentPageIndex = offset/(self.itemSize.width+self.minimumLineSpacing) + 1;
                 }
             }
-            
+
             
             /**
              * 当前 pageIndex < self.dataArr.count ，将当前 pageIndex
@@ -257,18 +289,13 @@
                 
             }
             
+
             /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
             NSTimeInterval refreshTime = self.isDrag?0:0.5;
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-                UICollectionViewScrollPosition position = UICollectionViewScrollPositionCenteredHorizontally;
-                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    position = UICollectionViewScrollPositionCenteredVertically;
-                }
-                
-//                NSLog(@"newPageIndex == %ld",newPageIndex);
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:position animated:NO];
+                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
                 
                 if (self.AUTO) {
                     self.currentPageIndex = newPageIndex;
@@ -346,7 +373,6 @@
 
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
     
 }
 
