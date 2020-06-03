@@ -16,8 +16,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 BSFrameworks is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+
+usege
+
+所有 功能
 ```ruby
 pod 'BSFrameworks'
+```
+
+轮播图
+```ruby
+pod 'BSFrameworks/BSLooperView'
 ```
 
 ## Author

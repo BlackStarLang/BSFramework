@@ -53,7 +53,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
     ss.frameworks   = 'Photos','AVFoundation'
     ss.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
-#    ss.dependency     'BSCategory'
+    ss.dependency     'BSFrameworks/BSCategory'
   end
   
   
@@ -61,7 +61,7 @@ Pod::Spec.new do |s|
   s.subspec 'BSLooperView' do |ss|
     ss.source_files = 'BSFrameworks/Classes/BSLooperView/**/*{.h,.m}'
     ss.frameworks   = 'AVFoundation','UIKit'
-#    ss.dependency     'BSCategory'
+    ss.dependency     'BSFrameworks/BSCategory'
   end
 
   
