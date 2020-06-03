@@ -1,0 +1,1 @@
+../../../../../BSFrameworks/Classes/BSCategory/NSString+BSString.h
