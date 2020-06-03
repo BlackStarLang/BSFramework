@@ -81,7 +81,7 @@
     
     self.itemSize = self.bounds.size;
     self.sectionInset = UIEdgeInsetsZero;
-    self.timeLength = 3;
+    self.duration = 3;
     self.minimumLineSpacing = 0;
     self.minimumLineSpacing = 0;
     self.scale = 1;
@@ -188,8 +188,8 @@
     self.timer = nil;
     
     if (!self.timer) {
-        if (self.timeLength<0.5) {
-            self.timeLength = 3;
+        if (self.duration<0.5) {
+            self.duration = 3;
         }
         
         /**
@@ -201,7 +201,7 @@
          */
         self.timerTarget = [[TimerTarget alloc]init];
         self.timerTarget.target = self;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.timeLength target:self.timerTarget selector:@selector(looperTime) userInfo:nil repeats:YES];
+        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.duration target:self.timerTarget selector:@selector(looperTime) userInfo:nil repeats:YES];
     }
 }
 

@@ -88,9 +88,9 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 /// ====================================
 /// 如果 autoLoop=YES
 /// 可设置 轮播滚动时间间隔，单位（s），默认 3(s)
-/// 如果 timeLength < 0.5 ，timeLength = 3
+/// 如果 duration < 0.5 ，duration = 3
 /// ====================================
-@property (nonatomic ,assign) NSTimeInterval timeLength;
+@property (nonatomic ,assign) NSTimeInterval duration;
 
 
 

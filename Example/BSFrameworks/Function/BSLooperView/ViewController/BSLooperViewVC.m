@@ -79,10 +79,11 @@
         _looperView.itemSize = CGSizeMake(self.view.width - 120, 200);
         _looperView.minimumLineSpacing = 10;
         _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _looperView.scale = 0.5;
+        _looperView.scale = 0.8;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
-        _looperView.centerOffset = -32;
+//        _looperView.centerOffset = 50;
+        _looperView.timeLength = 1;
         _looperView.looperPosition = BSLooperPositionLeft;
     }
     return _looperView;
