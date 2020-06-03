@@ -76,14 +76,14 @@
         _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 300)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 120, 200);
+        _looperView.itemSize = CGSizeMake(self.view.width - 120, 100);
         _looperView.minimumLineSpacing = 10;
-        _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-        _looperView.scale = 0.8;
+        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _looperView.scale = 0.5;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
-//        _looperView.centerOffset = 50;
-        _looperView.timeLength = 1;
+        _looperView.centerOffset = -70;
+        _looperView.duration = 1;
         _looperView.looperPosition = BSLooperPositionLeft;
     }
     return _looperView;

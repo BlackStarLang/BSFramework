@@ -239,7 +239,7 @@
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
                     
                     CGFloat theoryOffset = (self.itemSize.height + self.minimumLineSpacing ) * self.currentPageIndex;
-                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 - self.minimumLineSpacing/2;
+                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 ;
                     CGFloat offsetY = theoryOffset - extraSize;
 
                     [self.collectionView setContentOffset:CGPointMake(0, offsetY) animated:YES];
@@ -306,7 +306,7 @@
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
 
                     CGFloat theoryOffset = (self.itemSize.height + self.minimumLineSpacing ) * newPageIndex;
-                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 - self.minimumLineSpacing/2;
+                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 ;
                     CGFloat offsetY = theoryOffset - extraSize;
 
                     [self.collectionView setContentOffset:CGPointMake(0, offsetY) animated:NO];
