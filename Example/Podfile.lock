@@ -1,16 +1,45 @@
 PODS:
-  - BSFrameworks (0.1.0)
+  - BSFrameworks (0.1.1):
+    - BSFrameworks/BSCategory (= 0.1.1)
+    - BSFrameworks/BSLooperView (= 0.1.1)
+    - BSFrameworks/BSPhotoFramework (= 0.1.1)
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSCategory (0.1.1):
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSLooperView (0.1.1):
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSPhotoFramework (0.1.1):
+    - Masonry
+    - SDWebImage
+  - Masonry (1.1.0)
+  - SDWebImage (5.5.2):
+    - SDWebImage/Core (= 5.5.2)
+  - SDWebImage/Core (5.5.2)
+  - TZImagePickerController (3.3.1)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
+  - TZImagePickerController
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Masonry
+    - SDWebImage
+    - TZImagePickerController
 
 EXTERNAL SOURCES:
   BSFrameworks:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 8f29fbef734bcdcc8c11b07e49b87d4b15643d72
+  BSFrameworks: 30a01d59673668f3e8f993f39b194ba5247ec7d1
+  Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  SDWebImage: 4d5c027c935438f341ed33dbac53ff9f479922ca
+  TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: 97d2fd7932fed13cda0069268eb27271a11e3c97
+PODFILE CHECKSUM: 9544a46571da8b1bc35b3ee8dc2c0d1762aa8f25
 
 COCOAPODS: 1.8.4

@@ -1,0 +1,1 @@
+../../../../../BSFrameworks/Classes/BSLooperView/BSLooperView.h

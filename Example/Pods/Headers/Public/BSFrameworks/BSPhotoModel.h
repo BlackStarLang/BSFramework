@@ -1,0 +1,1 @@
+../../../../../BSFrameworks/Classes/PhotoFramework/Model/BSPhotoModel.h

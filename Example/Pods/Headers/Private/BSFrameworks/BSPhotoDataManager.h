@@ -1,0 +1,1 @@
+../../../../../BSFrameworks/Classes/PhotoFramework/DataManager/BSPhotoDataManager.h
