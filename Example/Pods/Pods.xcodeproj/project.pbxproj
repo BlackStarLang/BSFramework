@@ -60,8 +60,8 @@
 		2E0222F84F50E881EB3D621F2F68AAD7 /* BSPhotoManagerController.h in Headers */ = {isa = PBXBuildFile; fileRef = 34BEA668A6D02E9703773F8C93CA10DF /* BSPhotoManagerController.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2E8FF9D3A4231C6A90F695A8C7C47B35 /* SDImageIOAnimatedCoder.h in Headers */ = {isa = PBXBuildFile; fileRef = 67C1029FC2E0FB41A361E8EFD5990E6A /* SDImageIOAnimatedCoder.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		2F67B1F3A80036170ADA8AACD0F5E5F3 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5547D777DD42C0FD48D113E918017572 /* TZPhotoPreviewController.m */; };
-		304A8ECB2480FF1800B8F18F /* BSLooper3DFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 304A8EC92480FF1800B8F18F /* BSLooper3DFlowLayout.h */; };
-		304A8ECC2480FF1800B8F18F /* BSLooper3DFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 304A8ECA2480FF1800B8F18F /* BSLooper3DFlowLayout.m */; };
+		304B3DB92487A8C100D889BE /* BSLooper3DFlowLayout.h in Headers */ = {isa = PBXBuildFile; fileRef = 304B3DB72487A8C100D889BE /* BSLooper3DFlowLayout.h */; };
+		304B3DBA2487A8C100D889BE /* BSLooper3DFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 304B3DB82487A8C100D889BE /* BSLooper3DFlowLayout.m */; };
 		305BEE426B506E487AE54E238260D612 /* UIImageView+WebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = C1091E227969B06AA240C960EC56CB80 /* UIImageView+WebCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		30A774FDAACB02FCDE553B885465F011 /* UIView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = C67215039AF8DFFCB6FF79B2181F883C /* UIView+WebCache.m */; };
 		30B8349BADB526A7B0A00FCB72AF1CF1 /* SDWebImageCacheKeyFilter.m in Sources */ = {isa = PBXBuildFile; fileRef = 50D0D97D46BD5DFE7201A0BDF583F6D2 /* SDWebImageCacheKeyFilter.m */; };
@@ -347,8 +347,8 @@
 		2DF3B757B1FA063581D4C5A25CBA800D /* NSArray+MASAdditions.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "NSArray+MASAdditions.h"; path = "Masonry/NSArray+MASAdditions.h"; sourceTree = "<group>"; };
 		2E7C4F30696DCA6B58563BE7B8DC54FF /* Pods-BSFrameworks_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-BSFrameworks_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		301B9605D87C2F0AE0A496561A56623E /* UIImage+ExtendedCacheData.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UIImage+ExtendedCacheData.m"; path = "SDWebImage/Core/UIImage+ExtendedCacheData.m"; sourceTree = "<group>"; };
-		304A8EC92480FF1800B8F18F /* BSLooper3DFlowLayout.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLooper3DFlowLayout.h; sourceTree = "<group>"; };
-		304A8ECA2480FF1800B8F18F /* BSLooper3DFlowLayout.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLooper3DFlowLayout.m; sourceTree = "<group>"; };
+		304B3DB72487A8C100D889BE /* BSLooper3DFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BSLooper3DFlowLayout.h; path = BSFrameworks/Classes/BSLooperView/BSLooper3DFlowLayout.h; sourceTree = "<group>"; };
+		304B3DB82487A8C100D889BE /* BSLooper3DFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BSLooper3DFlowLayout.m; path = BSFrameworks/Classes/BSLooperView/BSLooper3DFlowLayout.m; sourceTree = "<group>"; };
 		32741A24AD42BCA642FCCD1863A34EB6 /* photo_camera_light_auto.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = photo_camera_light_auto.png; path = BSFrameworks/Assets/PhotoFramework/photo_camera_light_auto.png; sourceTree = "<group>"; };
 		32BFCE38A644E3848CAAF4EF07F7E7F3 /* preview_original_def@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "preview_original_def@2x.png"; path = "BSFrameworks/Assets/PhotoFramework/preview_original_def@2x.png"; sourceTree = "<group>"; };
 		32F1C0CA9DEB4CB1832443FCE8E67BA2 /* UIImage+Transform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "UIImage+Transform.h"; path = "SDWebImage/Core/UIImage+Transform.h"; sourceTree = "<group>"; };
@@ -926,8 +926,8 @@
 			children = (
 				247B673F29B70C6246BC2F820400E6BB /* BSLooperView.h */,
 				B0DCCBF24F3ADA472E0DDF1EFF150333 /* BSLooperView.m */,
-				304A8EC92480FF1800B8F18F /* BSLooper3DFlowLayout.h */,
-				304A8ECA2480FF1800B8F18F /* BSLooper3DFlowLayout.m */,
+				304B3DB72487A8C100D889BE /* BSLooper3DFlowLayout.h */,
+				304B3DB82487A8C100D889BE /* BSLooper3DFlowLayout.m */,
 			);
 			name = BSLooperView;
 			sourceTree = "<group>";
@@ -1211,7 +1211,7 @@
 				53F744159771E767D41B0A4BD532CC75 /* BSCameraController.h in Headers */,
 				61DA16AA1B2B3F56451A8CA61833EA74 /* BSLooperView.h in Headers */,
 				449A55DBB3EED5F587CF0E48B758DABA /* BSPhotoDataManager.h in Headers */,
-				304A8ECB2480FF1800B8F18F /* BSLooper3DFlowLayout.h in Headers */,
+				304B3DB92487A8C100D889BE /* BSLooper3DFlowLayout.h in Headers */,
 				69C1826A985D29F1F04C2336A678C9F5 /* BSPhotoGroupController.h in Headers */,
 				1C1E2FFCAEC9D8CDFC378CF3CD57F3DB /* BSPhotoGroupModel.h in Headers */,
 				0F4917CB634CCB591D086A3E45ECCADA /* BSPhotoListController.h in Headers */,
@@ -1574,7 +1574,7 @@
 				177FFA3373B2DDB0D901FA672A7FA02B /* BSPhotoPreviewController.m in Sources */,
 				350A8DED4DDC72551F2D1CFCD13EE362 /* BSPhotoViewModel.m in Sources */,
 				010ECFC2863FF1605B55BD2E79AD0EA7 /* NSString+BSString.m in Sources */,
-				304A8ECC2480FF1800B8F18F /* BSLooper3DFlowLayout.m in Sources */,
+				304B3DBA2487A8C100D889BE /* BSLooper3DFlowLayout.m in Sources */,
 				EC40E8F146EAC9FA0F148D8D4F299848 /* PhotoGroupListCell.m in Sources */,
 				076453B09EB712896A344EA1E2CACF02 /* PhotoListCollectionCell.m in Sources */,
 				4CEEBC6AF0CA8E9B1DCBCCF7E070E82F /* PhotoPreviewCell.m in Sources */,

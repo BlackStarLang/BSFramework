@@ -7,7 +7,7 @@
 
 #import "BSLooperView.h"
 #import "UIView+BSView.h"
-#import "objc/runtime.h"
+//#import "objc/runtime.h"
 #import <CoreFoundation/CoreFoundation.h>
 #import "BSLooper3DFlowLayout.h"
 

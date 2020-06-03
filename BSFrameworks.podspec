@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BSFrameworks'
-  s.version          = '0.1.1'
-  s.summary          = '图片预览+相机拍照（水印）'
+  s.version          = '0.1.2'
+  s.summary          = '3D轮播图'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -22,10 +22,10 @@ Pod::Spec.new do |s|
  <<-DESC
 
   自己封装的所有的常用工具类
-  1、图片选择器，支持选择图片、视频 (以后可能追加 视频+图片 混合添加的功能)
-  2、图片预览控件+视频预览控件
-  3、图片相关：相机、选图、预览等相关功能
-  4、轮播图：'2D/3D'
+  1、图片选择器，支持选择图片、视频 (以后可能追加 视频+图片 混合添加的功能)（制作中）
+  2、图片预览控件+视频预览控件（未开始）
+  3、图片相关：相机、选图、预览等相关功能（待完善）
+  4、轮播图：'2D/3D'（完成）
   
   DESC
   
