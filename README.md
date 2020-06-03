@@ -23,15 +23,14 @@ usege
 ```ruby
 pod 'BSFrameworks'
 ```
-所有功能
+
 
 轮播图
 ```ruby
 pod 'BSFrameworks/BSLooperView'
 ```
+``` ruby
 功能简介：
-
-轮播图支持：
 
 2D/3D效果，支持设置3D缩放级别
 
@@ -43,7 +42,7 @@ pod 'BSFrameworks/BSLooperView'
 
 支持自定义cell
 
-
+```
 
 
 ## Author
