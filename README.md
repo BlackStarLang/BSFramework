@@ -23,7 +23,13 @@ usege
 ```ruby
 pod 'BSFrameworks'
 ```
+```ruby
+轮播图
 
+水印相机 + 图片预览
+
+常用Category
+```
 
 轮播图
 ```ruby
@@ -32,7 +38,7 @@ pod 'BSFrameworks/BSLooperView'
 ``` ruby
 功能简介：
 
-2D/3D效果，支持设置3D缩放级别
+2D/3D 效果，支持设置3D缩放级别
 
 支持无限轮播，支持自动轮播，支持自动轮播时间间隔设置，支持自动轮播时的滚动方向
 
