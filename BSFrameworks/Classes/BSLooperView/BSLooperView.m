@@ -101,10 +101,10 @@
 
 #pragma mark - set method
 
--(void)setAUTO:(BOOL)AUTO{
-    _AUTO = AUTO;
+-(void)setAutoLoop:(BOOL)autoLoop{
+    _autoLoop = autoLoop;
     
-    if (AUTO) {
+    if (autoLoop) {
         self.isInfinite = YES;
     }
 }
@@ -147,7 +147,7 @@
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
     }
     
-    if (self.AUTO) {
+    if (self.autoLoop) {
         [self creatTimer];
     }
 }
@@ -166,7 +166,6 @@
     self.collectionView.collectionViewLayout = self.flowLayout;
     
     /// 设置 collectionView的frame
-//    self.collectionView.frame = CGRectMake(0, (self.height-self.itemSize.height)/2, self.width, self.itemSize.height);
     self.collectionView.frame = self.bounds;
 }
 
@@ -215,6 +214,8 @@
 
 
 /// 重新设置 当前的 pageIndex 和 collectionView 要展示的cell
+/// *** 通过 newPageIndex 算出 实际偏移量,然后设置 contentOffset ***
+/// *** 如果用 NSIndexPath 缩放后，发现偏移量有问题，原因未知 ***
 
 -(void)resetCurrentPageIndex{
     
@@ -222,49 +223,52 @@
         
         
         //如果 自动轮播 或者 无限循环
-        if (self.isInfinite || self.AUTO) {
+        if (self.isInfinite || self.autoLoop) {
             
-            if (self.AUTO && !self.isDrag) {
-                //如果是 timer,设置滚动，带动画
+            if (self.autoLoop && !self.isDrag) {
+                
+                //如果是 timer,设置偏移，带动画
                 if (self.looperPosition == BSLooperPositionRight || self.looperPosition == BSLooperPositionDown) {
                     self.currentPageIndex --;
                 }else{
                     self.currentPageIndex ++;
                 }
                 
-                UICollectionViewScrollPosition position = UICollectionViewScrollPositionLeft;
-                
-                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    if (self.looperPosition == BSLooperPositionDown) {
-                        position = UICollectionViewScrollPositionBottom;
-                    }else{
-                        position = UICollectionViewScrollPositionTop;
-                    }
-                }else{
-                    if (self.looperPosition == BSLooperPositionRight) {
-                        position = UICollectionViewScrollPositionRight;
-                    }else{
-                        position = UICollectionViewScrollPositionLeft;
-                    }
-                }
 
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:position animated:YES];
+                // 计算实际偏移量 (理论偏移量 - 页面上可见的多于部分)
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    
+                    CGFloat theoryOffset = (self.itemSize.height + self.minimumLineSpacing ) * self.currentPageIndex;
+                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 - self.minimumLineSpacing/2;
+                    CGFloat offsetY = theoryOffset - extraSize;
+
+                    [self.collectionView setContentOffset:CGPointMake(0, offsetY) animated:YES];
+                    
+                }else{
+                    
+                    CGFloat theoryOffset = (self.itemSize.width + self.minimumLineSpacing ) * self.currentPageIndex;
+                    CGFloat extraSize = self.collectionView.width/2 - self.itemSize.width/2 ;
+                    CGFloat offsetX = theoryOffset - extraSize;
+
+                    [self.collectionView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
+                }
+                
+                
                 
             }else{
                 
-                ///如果是 手动拖拽,计算 self.currentPageIndex
-                
+                /// 如果是 手动拖拽,计算 self.currentPageIndex
                 /// 真正的偏移量 应该是 偏移量加上 当前item的边缘（ X或Y 坐标）
                 /// 使用真正的偏移量才能算出正确的 currentPageIndex
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
                     
-                    CGFloat offset = self.collectionView.height/2 + self.collectionView.contentOffset.y - self.itemSize.height;
-                    self.currentPageIndex = offset/(self.itemSize.height+self.minimumLineSpacing) + 1;
+                    CGFloat offset = self.collectionView.height/2 + self.collectionView.contentOffset.y - self.itemSize.height/2;
+                    self.currentPageIndex = offset/(self.itemSize.height+self.minimumLineSpacing);
                     
                 }else{
 
-                    CGFloat offset = self.collectionView.width/2 + self.collectionView.contentOffset.x - self.itemSize.width;
-                    self.currentPageIndex = offset/(self.itemSize.width+self.minimumLineSpacing) + 1;
+                    CGFloat offset = self.collectionView.width/2 + self.collectionView.contentOffset.x - self.itemSize.width/2;
+                    self.currentPageIndex = offset/(self.itemSize.width+self.minimumLineSpacing) ;
                 }
             }
 
@@ -285,19 +289,38 @@
                 
             }else if (self.currentPageIndex >= self.dataArr.count*2){
                 
-                newPageIndex = self.currentPageIndex - self.dataArr.count ;
+                newPageIndex = self.currentPageIndex - self.dataArr.count;
                 
             }
             
 
-            /// 由于 自动滚动是有动画的，所以重置 collectionView 展示的cell需要延迟 0.5s
+            // 由于 自动滚动是有动画的
+            // 所以重置 collectionView 展示的cell需要延迟 0.5s
+            // 否则动画未结束，就重置了offset，画面就会闪一下
+            
             NSTimeInterval refreshTime = self.isDrag?0:0.5;
 
             dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
 
-                [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:newPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
-                
-                if (self.AUTO) {
+                // 通过 newPageIndex 算出 实际偏移量
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+
+                    CGFloat theoryOffset = (self.itemSize.height + self.minimumLineSpacing ) * newPageIndex;
+                    CGFloat extraSize = self.collectionView.height/2 - self.itemSize.height/2 - self.minimumLineSpacing/2;
+                    CGFloat offsetY = theoryOffset - extraSize;
+
+                    [self.collectionView setContentOffset:CGPointMake(0, offsetY) animated:NO];
+
+                }else{
+
+                    CGFloat theoryOffset = (self.itemSize.width + self.minimumLineSpacing ) * newPageIndex;
+                    CGFloat extraSize = self.collectionView.width/2 - self.itemSize.width/2 ;
+                    CGFloat offsetX = theoryOffset - extraSize;
+
+                    [self.collectionView setContentOffset:CGPointMake(offsetX, 0) animated:NO];
+                }
+
+                if (self.autoLoop) {
                     self.currentPageIndex = newPageIndex;
                 }
             });
@@ -353,7 +376,7 @@
     [self resetCurrentPageIndex];
     
     //如果自动轮播，开启timer
-    if (self.AUTO) {
+    if (self.autoLoop) {
         [self creatTimer];
     }
 }
@@ -365,16 +388,14 @@
     self.isDrag = YES;
     
     //如果自动轮播，拖拽时，停止timer
-    if (self.AUTO) {
+    if (self.autoLoop) {
         [self.timer invalidate];
         self.timer = nil;
     }
 }
 
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
-    
-}
+
 
 #pragma mark - init 属性初始化
 
