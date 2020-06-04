@@ -7,12 +7,23 @@
 //
 
 #import "BSAppDelegate.h"
+#import "BSViewController.h"
 
 @implementation BSAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+//
+//    [self.window makeKeyAndVisible];
+//
+//    BSViewController *vc = [[BSViewController alloc]init];
+//
+//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+//    self.window.rootViewController = navi;
+    
     return YES;
 }
 

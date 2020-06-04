@@ -6,7 +6,7 @@
 //  Copyright (c) 2020 blackstar_lang@163.com. All rights reserved.
 //
 
-@import UIKit;
+#import <UIKit/UIKit.h>
 
 @interface BSViewController : UIViewController
 

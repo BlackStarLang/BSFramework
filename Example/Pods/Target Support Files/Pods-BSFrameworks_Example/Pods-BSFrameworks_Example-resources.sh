@@ -123,7 +123,6 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture80@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/VideoSendIcon@2x.png"
-  install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/img_preview_select.png"
@@ -152,7 +151,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture80@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/VideoSendIcon@2x.png"
-  install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 
 mkdir -p "${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}"

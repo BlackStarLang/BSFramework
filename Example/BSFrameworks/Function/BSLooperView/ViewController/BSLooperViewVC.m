@@ -23,7 +23,7 @@
 @implementation BSLooperViewVC
 
 -(void)dealloc{
-//    NSLog(@"BSLooperViewVC 释放");
+    NSLog(@"BSLooperViewVC 释放");
 }
 
 - (void)viewDidLoad {
@@ -32,11 +32,11 @@
     // Do any additional setup after loading the view.
     [self initSubView];
     [self configData];
-    
+
 }
 
 -(void)initSubView{
-    
+
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.looperView];
@@ -45,7 +45,7 @@
 
 /// 配置 数据
 -(void)configData{
-    
+
     NSString *url = @"https://pics6.baidu.com/feed/0dd7912397dda144302b8277f02262a40df48675.jpeg?token=0f893277230d6dbe88ac6ed35e0be20d";
     NSString *url1 = @"https://pics0.baidu.com/feed/8b82b9014a90f60375143a228c59041db151ed85.jpeg?token=bf540b320d9f8fe20b306f4a0f863378";
     NSString *url2 = @"https://wenhui.whb.cn/u/cms/www/202005/251008229olq.png";
@@ -60,9 +60,9 @@
 
 /// 通过 代理方法进行 cell 的操作
 -(void)BSLooperView:(BSLooperView *)looperView cell:(UICollectionViewCell *)cell cellForModel:(id)model{
-    
+
     BSCollectionViewCell *looperCell = (BSCollectionViewCell *)cell;
-    
+
     [looperCell.cellImageView sd_setImageWithURL:[NSURL URLWithString:model]];
 }
 

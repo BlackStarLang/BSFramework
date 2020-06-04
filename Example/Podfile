@@ -7,7 +7,7 @@ platform :ios, '9.0'
 target 'BSFrameworks_Example' do
   pod 'BSFrameworks', :path => '../'
   
-  pod 'TZImagePickerController'
+ # pod 'TZImagePickerController'
   
   target 'BSFrameworks_Tests' do
     inherit! :search_paths

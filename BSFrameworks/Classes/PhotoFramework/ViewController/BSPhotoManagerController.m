@@ -24,6 +24,7 @@
     self = [super init];
 
     if (self) {
+        
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
         self = [super initWithRootViewController:root];
         
@@ -43,7 +44,8 @@
 
 -(void)initSubViews{
     
-
+    self.autoPush = YES;
+    [self getGroupListData];
 }
 
 
@@ -65,13 +67,14 @@
     }];
 }
 
+
 #pragma mark - set method
 
--(void)setAutoPush:(BOOL)autoPush{
-    _autoPush = autoPush;
-    
-    [self getGroupListData];
-}
+//-(void)setAutoPush:(BOOL)autoPush{
+//    _autoPush = autoPush;
+//
+//    [self getGroupListData];
+//}
 
 
 
