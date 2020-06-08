@@ -18,7 +18,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BSPhotoViewModel : NSObject
 
 #pragma mark - PhotoGroupListCell 展示数据 BSPhotoGroupModel
-+(void)displayGroupListCell:(PhotoGroupListCell *)cell groupModel:(BSPhotoGroupModel *)groupModel;
++(void)displayGroupListCell:(PhotoGroupListCell *)cell groupModel:(BSPhotoGroupModel *)groupModel dataManager:(BSPhotoDataManager *)dataManager;
 
 
 #pragma mark - PhotoListCollectionCell 展示数据 BSPhotoModel

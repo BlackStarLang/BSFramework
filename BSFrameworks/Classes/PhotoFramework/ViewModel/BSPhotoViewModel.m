@@ -15,9 +15,14 @@
 @implementation BSPhotoViewModel
 
 #pragma mark - PhotoGroupListCell 展示数据 BSPhotoGroupModel
-+(void)displayGroupListCell:(PhotoGroupListCell *)cell groupModel:(BSPhotoGroupModel *)groupModel{
++(void)displayGroupListCell:(PhotoGroupListCell *)cell groupModel:(BSPhotoGroupModel *)groupModel dataManager:(BSPhotoDataManager *)dataManager{
     
-    cell.thumbImgView.image = groupModel.coverImage;
+    PHFetchResult *fetchResult = groupModel.fetchResult;
+    
+    [dataManager getImageWithPHAsset:fetchResult.lastObject targetSize:CGSizeMake(60 * [UIScreen mainScreen].scale, 60 * [UIScreen mainScreen].scale) imageBlock:^(UIImage *targetImage) {
+        cell.thumbImgView.image = targetImage;
+    }];
+    
     cell.groupNameLabel.text = groupModel.title;
     cell.countLabel.text = [NSString stringWithFormat:@"%ld",(long)groupModel.count];
 }

@@ -16,6 +16,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,weak) id<BSPhotoProtocal> delegate;
 
+
+@property (nonatomic ,assign) BOOL saveToAlbum;//是否存储到相册
+
 @end
 
 NS_ASSUME_NONNULL_END

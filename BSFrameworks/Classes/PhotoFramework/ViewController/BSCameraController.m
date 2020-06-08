@@ -291,6 +291,7 @@
 
 }
 
+/// 闪光灯
 -(void)ligntBtnClick{
     
     if ([self.device lockForConfiguration:nil]) {
@@ -328,6 +329,7 @@
 }
 
 
+/// 自拍
 -(void)selfieBtnClick{
 
     NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
@@ -393,7 +395,11 @@
     self.photoImageView.image = image;
 
     [self refreshBtnsHiddenStatus:NO];
-     
+    
+    /// 存到相册
+    if (self.saveToAlbum) {
+        [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:image]];
+    }
 }
 
 -(UIImage *)getWaterMarkImageWithOriginImage:(UIImage *)originImage{

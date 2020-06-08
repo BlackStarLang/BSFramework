@@ -19,6 +19,8 @@
 @property (nonatomic ,strong) UITableView *tableView;
 @property (nonatomic ,copy) NSMutableArray *dataSource;
 
+@property (nonatomic ,strong) BSPhotoDataManager *dataManager;
+
 @end
 
 @implementation BSPhotoGroupController
@@ -81,14 +83,14 @@
 
 
 -(void)getAllGroupList{
-//
-//    [BSPhotoDataManager getAllPhotoLibraryWithCacheCoverImageGroupList:^(NSArray *groupList) {
-//       
-//        [self.dataSource removeAllObjects];
-//        [self.dataSource addObjectsFromArray:[groupList copy]];
-//
-//        [self.tableView reloadData];
-//    }];
+
+    [self.dataManager getAllAlbumsWithType:0 albums:^(NSArray *albums) {
+               
+        [self.dataSource removeAllObjects];
+        [self.dataSource addObjectsFromArray:[albums copy]];
+
+        [self.tableView reloadData];
+    }];
 }
 
 
@@ -113,7 +115,7 @@
     
     PhotoGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoGroupListCell" forIndexPath:indexPath];
     
-    [BSPhotoViewModel displayGroupListCell:cell groupModel:self.dataSource[indexPath.row]];
+    [BSPhotoViewModel displayGroupListCell:cell groupModel:self.dataSource[indexPath.row] dataManager:self.dataManager];
     
     return cell;
 }
@@ -148,6 +150,13 @@
         _dataSource = [NSMutableArray array];
     }
     return _dataSource;
+}
+
+-(BSPhotoDataManager *)dataManager{
+    if (!_dataManager) {
+        _dataManager = [[BSPhotoDataManager alloc]init];
+    }
+    return _dataManager;
 }
 
 @end

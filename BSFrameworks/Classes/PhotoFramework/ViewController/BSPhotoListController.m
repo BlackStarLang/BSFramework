@@ -16,7 +16,7 @@
 #import "BSCameraController.h"
 #import <UIView+BSView.h>
 
-@interface BSPhotoListController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface BSPhotoListController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,BSPhotoProtocal>
 
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
@@ -123,6 +123,11 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+#pragma mark - prive delegate
+-(void)photoCameraTakeBtnClicked{
+    
+    [self configData];
+}
 
 
 #pragma mark - UICollectionView delegate
@@ -158,6 +163,8 @@
     
     if (indexPath.row == self.dataSource.count) {
         BSCameraController *cameraVC = [[BSCameraController alloc]init];
+        cameraVC.saveToAlbum = YES;
+        cameraVC.delegate = self;
         cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:cameraVC animated:YES];
     }else{

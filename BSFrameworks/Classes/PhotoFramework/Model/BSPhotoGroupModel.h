@@ -10,10 +10,13 @@
 NS_ASSUME_NONNULL_BEGIN
 
 @class PHAssetCollection;
+@class PHFetchResult;
+
 
 @interface BSPhotoGroupModel : NSObject
 
 @property (nonatomic ,strong) PHAssetCollection *assetCollection;//origin相册
+@property (nonatomic ,strong) PHFetchResult *fetchResult;        //相册图片数组
 
 @property (nonatomic ,assign ) NSInteger count;    //相册里图片个数
 @property (nonatomic ,strong ) NSString *title;    //相册名称

@@ -24,7 +24,7 @@
 
 -(void)dealloc{
  
-    NSLog(@" BSPhotoDataManager  dealloc == p = %p",self);
+    NSLog(@" BSPhotoDataManager  dealloc");
     
 }
 
@@ -47,12 +47,38 @@
             ) {
             
             BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
-            [model getTitleNameWithCollectionLocalizedTitle:collection.localizedTitle];
+            model.title = [model getTitleNameWithCollectionLocalizedTitle:collection.localizedTitle];
             model.assetCollection = collection;
             groupModel(model);
             break;
         }
     }
+}
+
+
+-(void)getAllAlbumsWithType:(LibraryType)libraryType albums:(void(^)(NSArray *albums))albums{
+
+    PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    
+    NSMutableArray *mutArr = [NSMutableArray array];
+    
+    for (PHAssetCollection *assetCollection in result) {
+        
+        PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+        NSInteger count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+       
+        if (count) {
+            BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            [mutArr addObject:model];
+            
+            model.fetchResult = assetResult;
+            model.assetCollection = assetCollection;
+            model.count = count;
+            model.title = [model getTitleNameWithCollectionLocalizedTitle:assetCollection.localizedTitle];
+        }
+    }
+    
+    albums(mutArr);
 }
 
 

@@ -30,6 +30,10 @@ typedef enum : NSUInteger {
 -(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel;
 
 
+#pragma mark - 获取所有相册
+-(void)getAllAlbumsWithType:(LibraryType)libraryType albums:(void(^)(NSArray *albums))albums;
+
+
 /// 预加载缓存 图片
 /// assetCollection 要加载的相册
 /// targetSize 缓存图片大小
