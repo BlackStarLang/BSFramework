@@ -13,10 +13,14 @@
 #import <BSPhotoManagerController.h>
 #import "BSPhotoProtocal.h"
 
+#import "TZImagePickerController.h"
+
 
 @interface BSPhotoVC ()<BSPhotoProtocal>
 
 @property (nonatomic ,strong) UIButton *cameraBtn;
+@property (nonatomic ,strong) UIButton *cameraBtn1;
+
 @property (nonatomic ,strong) UIImageView *imageView;
 
 @end
@@ -38,6 +42,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 
     [self.view addSubview:self.cameraBtn];
+    [self.view addSubview:self.cameraBtn1];
     [self.view addSubview:self.imageView];
 }
 
@@ -50,15 +55,26 @@
         make.right.offset(-80);
         make.height.mas_equalTo(45);
     }];
+    
+    [self.cameraBtn1 mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.top.equalTo(self.cameraBtn.mas_bottom).offset(50);
+        make.left.offset(80);
+        make.right.offset(-80);
+        make.height.mas_equalTo(45);
+    }];
 
     [self.imageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.equalTo(self.cameraBtn.mas_bottom).offset(50);
+        make.top.equalTo(self.cameraBtn1.mas_bottom).offset(50);
         make.left.offset(80);
         make.right.offset(-80);
         make.bottom.offset(80);
     }];
 
 }
+
+
+
+#pragma mark - action 交互事件
 
 
 -(void)cameraBtnClick{
@@ -71,6 +87,19 @@
 }
 
 
+
+-(void)cameraBtnClick1{
+
+    TZImagePickerController *managerVC = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:self];
+//    managerVC.delegate = self;
+    managerVC.modalPresentationStyle = 0;
+    [self presentViewController:managerVC animated:YES completion:nil];
+}
+
+
+#pragma mark - init 属性初始化
+
+
 -(UIButton *)cameraBtn{
     if (!_cameraBtn) {
         _cameraBtn = [[UIButton alloc]init];
@@ -79,6 +108,17 @@
         [_cameraBtn addTarget:self action:@selector(cameraBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cameraBtn;
+}
+
+
+-(UIButton *)cameraBtn1{
+    if (!_cameraBtn1) {
+        _cameraBtn1 = [[UIButton alloc]init];
+        _cameraBtn1.backgroundColor = [UIColor blueColor];
+        [_cameraBtn1 setTitle:@"三方" forState:UIControlStateNormal];
+        [_cameraBtn1 addTarget:self action:@selector(cameraBtnClick1) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _cameraBtn1;
 }
 
 

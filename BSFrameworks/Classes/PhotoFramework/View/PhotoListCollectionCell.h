@@ -11,6 +11,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface PhotoListCollectionCell : UICollectionViewCell
 
+@property (nonatomic ,copy) NSString *identifier;
+
 @property (nonatomic ,strong) UIImageView *imageView;
 
 @property (nonatomic ,strong) UIButton *selectBtn;

@@ -11,6 +11,7 @@
 		30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */; };
 		30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A372485E7FD002DBC8D /* BSFunctionModel.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
+		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -51,6 +52,8 @@
 		30494A372485E7FD002DBC8D /* BSFunctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFunctionModel.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
+		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
+		30AE96822488FEC6009A43FB /* BSRootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRootCell.m; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* BSFrameworks_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSFrameworks_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,6 +126,8 @@
 				6003F5A6195388D20070C39A /* BSViewController.m */,
 				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
 				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
+				30AE96812488FEC6009A43FB /* BSRootCell.h */,
+				30AE96822488FEC6009A43FB /* BSRootCell.m */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -446,6 +451,7 @@
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture80@2x.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/takePicture@2x.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/VideoSendIcon@2x.png",
+				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -475,6 +481,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/takePicture80@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/takePicture@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/VideoSendIcon@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -510,6 +517,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,

@@ -33,6 +33,7 @@
     [super viewWillAppear:animated];
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     
@@ -43,10 +44,16 @@
     [self getAllGroupList];
 }
 
+
 -(void)initSubViews{
     
     self.navigationController.navigationBar.topItem.title = @"";
 
+    
+    UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
+    
+    self.navigationItem.rightBarButtonItem = rightItem;
+    
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
     titleLabel.text = @"我的相册";
     titleLabel.font = [UIFont boldSystemFontOfSize:17];
@@ -56,6 +63,7 @@
     [self.view addSubview:self.tableView];
 }
 
+
 -(void)masonryLayout{
     
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -63,6 +71,7 @@
     }];
     
 }
+
 
 -(void)configData{
 
@@ -72,23 +81,24 @@
 
 
 -(void)getAllGroupList{
-    
-    [BSPhotoDataManager getAllPhotoLibraryWithCacheCoverImageGroupList:^(NSArray *groupList) {
-       
-        [self.dataSource removeAllObjects];
-        [self.dataSource addObjectsFromArray:[groupList copy]];
-
-        [self.tableView reloadData];
-        
-        if (self.dataSource.count && self.autoPush) {
-            
-            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
-            photoListVC.groupModel = self.dataSource[0];
-            photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
-            [self.navigationController pushViewController:photoListVC animated:YES];
-        }
-    }];
+//
+//    [BSPhotoDataManager getAllPhotoLibraryWithCacheCoverImageGroupList:^(NSArray *groupList) {
+//       
+//        [self.dataSource removeAllObjects];
+//        [self.dataSource addObjectsFromArray:[groupList copy]];
+//
+//        [self.tableView reloadData];
+//    }];
 }
+
+
+#pragma mark - action 交互事件
+
+-(void)dismiss{
+
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 
 
 #pragma mark - tableView delegate
@@ -97,6 +107,7 @@
     
     return self.dataSource.count;
 }
+
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
@@ -130,6 +141,7 @@
     }
     return _tableView;;
 }
+
 
 -(NSMutableArray *)dataSource{
     if (!_dataSource) {

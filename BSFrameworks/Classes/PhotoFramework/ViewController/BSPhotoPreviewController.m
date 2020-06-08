@@ -12,12 +12,22 @@
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
 #import "UINavigationBar+BSBar.h"
+#import "BSPhotoDataManager.h"
+#import "BSPhotoNaviView.h"
+#import "UIView+BSView.h"
+
 
 @interface BSPhotoPreviewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
 @property (nonatomic ,strong) UICollectionView *collectionView;
 
 @property (nonatomic ,assign) BOOL statusBarHiddenStatus;
+
+@property (nonatomic ,strong) BSPhotoDataManager *dataManager;
+
+@property (nonatomic ,assign) CGSize targetSize;
+
+@property (nonatomic ,strong) BSPhotoNaviView *naviView;
 
 @end
 
@@ -38,8 +48,10 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    [self.navigationController.navigationBar setNavigationBarBackgroundImage:nil shadowImage:nil];
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor] alpha:1 animate:YES];
+    
+    self.statusBarHiddenStatus = NO;
+    [self setNeedsStatusBarAppearanceUpdate];
+    [self.navigationController setNavigationBarHidden:NO];
 }
 
 
@@ -51,16 +63,33 @@
 
 
 -(void)initSubViews{
-
+    
+    CGFloat width = self.view.frame.size.width;
+    CGFloat height = self.view.frame.size.height;
+    CGFloat scale = [UIScreen mainScreen].scale;
+    self.targetSize = CGSizeMake(width * scale, height * scale);
+    
     self.view.backgroundColor = [UIColor blackColor];
     self.collectionView.backgroundColor = [UIColor blackColor];
     
-    [self.navigationController.navigationBar setNavigationBarBackgroundImage:[UIImage new] shadowImage:[UIImage new]];
-
-    [self.navigationController.navigationBar setBackgroundColor:[UIColor whiteColor] alpha:0 animate:YES];
-    
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
+    
+    
+    /// 隐藏 系统 NavigationBar， 使用View 替换
+    [self.navigationController setNavigationBarHidden:YES];
+    self.naviView.backgroundColor = [UIColor whiteColor];
+    self.naviView.frame = CGRectMake(0, 0, self.view.width, 64);
+    [self.view addSubview:self.naviView];
+    
+    
+    /// 自定义 navi 点击事件
+    __weak typeof(self)weakSelf = self;
+    self.naviView.naviAction = ^(BOOL isBack) {
+        if (isBack) {
+            [weakSelf.navigationController popViewControllerAnimated:YES];
+        }
+    };
 }
 
 
@@ -80,7 +109,6 @@
     _previewPhotos = [NSMutableArray arrayWithArray:previewPhotos];
     _previewType = previewType;
     _currentIndex = defaultIndex;
-
 }
 
 
@@ -124,11 +152,14 @@
         cell.imageView.image = image;
         
     }else if (self.previewType == PREVIEWTYPE_PHOTO){
+        
         BSPhotoModel *model = self.previewPhotos[indexPath.row];
-        cell.imageView.image = model.originImage;
+        
+        __weak typeof(PhotoPreviewCell*)weakCell = cell;
+        [self.dataManager getImageWithPHAsset:model.asset targetSize:self.targetSize imageBlock:^(UIImage *targetImage) {
+            weakCell.imageView.image = targetImage;
+        }];
     }
-    
-    
     return cell;
 }
 
@@ -139,7 +170,11 @@
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
         
-        [self.navigationController.navigationBar setBackgroundColor:[UIColor darkGrayColor] alpha:!self.statusBarHiddenStatus animate:YES];
+        [UIView animateWithDuration:0.3 animations:^{
+            self.naviView.top = self.statusBarHiddenStatus?0:-64;
+            self.naviView.alpha = self.statusBarHiddenStatus?1:0;
+        }];
+        
         self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
         [self setNeedsStatusBarAppearanceUpdate];
     }
@@ -149,7 +184,24 @@
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
-    
+    if (self.previewType == PREVIEWTYPE_PHOTO) {
+        
+        @autoreleasepool {
+            
+            CGFloat offsetX = scrollView.contentOffset.x + 20;
+            NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
+            
+            NSMutableArray *assets = [NSMutableArray array];
+            for (NSInteger i = pageIndex - 1; i<pageIndex + 1; i++) {
+                if (i>0 && i<self.previewPhotos.count) {
+                    BSPhotoModel *model = self.previewPhotos[i];
+                    [assets addObject:model.asset];
+                }
+            }
+            
+            [self.dataManager startPreLoadCacheImagesWithPHAssetArray:assets targetSize:self.targetSize contenModel:PHImageContentModeAspectFit];
+        }
+    }
 }
 
 
@@ -162,12 +214,10 @@
         UICollectionViewFlowLayout *flowLayout = [[UICollectionViewFlowLayout alloc]init];
         flowLayout.minimumLineSpacing = 0;
         flowLayout.minimumInteritemSpacing = 0;
-        flowLayout.sectionInset = UIEdgeInsetsMake(25, 0, 25, 0);
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
 
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-10, 0, self.view.frame.size.width+20, self.view.frame.size.height) collectionViewLayout:flowLayout];
-        
-        self.collectionView.contentSize = CGSizeMake(self.previewPhotos.count * (self.view.frame.size.width+20), self.view.frame.size.height - 64);
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
@@ -176,6 +226,21 @@
     return _collectionView;
 }
 
+
+-(BSPhotoDataManager *)dataManager{
+
+    if (!_dataManager) {
+        _dataManager = [[BSPhotoDataManager alloc]init];
+    }
+    return _dataManager;
+}
+
+-(BSPhotoNaviView *)naviView{
+    if (!_naviView) {
+        _naviView = [[BSPhotoNaviView alloc]init];
+    }
+    return _naviView;
+}
 
 /*
 #pragma mark - Navigation

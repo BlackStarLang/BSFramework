@@ -10,6 +10,7 @@
 #import "BSPhotoGroupModel.h"
 #import "PhotoListCollectionCell.h"
 #import "BSPhotoModel.h"
+#import "BSPhotoDataManager.h"
 
 @implementation BSPhotoViewModel
 
@@ -23,9 +24,14 @@
 
 
 #pragma mark - PhotoListCollectionCell 展示数据 BSPhotoModel
-+(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell photoModel:(BSPhotoModel *)photoModel{
++(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell targetSize:(CGSize )targetSize photoModel:(BSPhotoModel *)photoModel dataManager:(BSPhotoDataManager *)dataManager{
         
-    cell.imageView.image = photoModel.thumbImage;
+    [dataManager getImageWithPHAsset:photoModel.asset targetSize:targetSize imageBlock:^(UIImage *targetImage) {
+        if ([cell.identifier isEqualToString:photoModel.asset.localIdentifier]) {
+            cell.imageView.image = targetImage;
+        }
+    }];
+    
     cell.selectBtn.hidden = NO;
 }
 

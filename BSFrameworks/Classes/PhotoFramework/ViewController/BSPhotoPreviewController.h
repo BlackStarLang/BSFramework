@@ -19,7 +19,7 @@ NS_ASSUME_NONNULL_BEGIN
 typedef enum : NSUInteger {
     PREVIEWTYPE_URL = 0,    //url 预览
     PREVIEWTYPE_PATH,       //本地路径 预览
-    PREVIEWTYPE_IMAGE,      //image 预览
+    PREVIEWTYPE_IMAGE,      //image 预览  如果是大量IMAGE 会导致内存飙升，只适合少量实例图片预览
     PREVIEWTYPE_PHOTO,      //BSPhotoModel 预览(组件内图片对象)
 } PREVIEWTYPE;
 

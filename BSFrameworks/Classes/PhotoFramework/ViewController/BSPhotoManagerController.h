@@ -14,7 +14,7 @@
 
 
 #pragma mark - 数据相关
-/// 是否自动跳转到照片列表  默认YES
+/// 是否自动跳转到照片列表  必须设置
 @property (nonatomic ,assign) BOOL autoPush;
 
 

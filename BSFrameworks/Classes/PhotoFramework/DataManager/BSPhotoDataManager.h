@@ -21,17 +21,37 @@ typedef enum : NSUInteger {
 
 @interface BSPhotoDataManager : NSObject
 
-#pragma mark - 获取相机胶卷的照片
-+(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel;
 
 
-#pragma mark - 获取所有相册：封面为缓存图片（质量低）
-+(void)getAllPhotoLibraryWithCacheCoverImageGroupList:(void(^)(NSArray *groupList))groupList;
+-(void)stopAllCache;
+
+
+#pragma mark - 获取相机胶卷的 相册对象
+-(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel;
+
+
+/// 预加载缓存 图片
+/// assetCollection 要加载的相册
+/// targetSize 缓存图片大小
+/// contenModel 图片预显示模式
+-(void)startPreLoadCacheImagesWithPHAssetArray:(NSArray *)assetArray targetSize:(CGSize)targetSize contenModel:(PHImageContentMode)contentMode;
+
+
+/// 停止预加载缓存 图片
+/// assetCollection 要加载的相册
+/// targetSize 缓存图片大小 需要和start的相同
+/// contenModel 图片预显示模式 需要和start的相同
+-(void)stopPreLoadCacheImagesWithPHAssetArray:(NSArray *)assetArray targetSize:(CGSize)targetSize contenModel:(PHImageContentMode)contentMode;
 
 
 
-#pragma mark - 获取当前相册所有图片
-+(void)getCurrentImageListFromBSPhotoGroupModel:(BSPhotoGroupModel*)groupModel libraryType:(LibraryType)libraryType imageList:(void(^)(NSArray *imageList))imageList;
+/// 根据 PHAsset 获取缓存图片
+-(void)getImageWithPHAsset:(PHAsset *)asset targetSize:(CGSize)targetSize imageBlock:(void(^)(UIImage *targetImage))imageBlock;
+
+
+
+/// 根据 PHAsset 获取原始图片
+-(void)getOriginImageWithPHAsset:(PHAsset *)asset imageBlock:(void(^)(UIImage *targetImage))imageBlock;
 
 
 @end

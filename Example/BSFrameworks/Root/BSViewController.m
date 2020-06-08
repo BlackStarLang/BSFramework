@@ -12,8 +12,8 @@
 #import <UIView+BSView.h>
 #import <Masonry/Masonry.h>
 
+#import "BSRootCell.h"
 #import "BSFunctionModel.h"
-
 
 
 
@@ -24,6 +24,8 @@
 @property (nonatomic ,strong) UITableView *tableView;
 
 @end
+
+
 
 @implementation BSViewController
 
@@ -77,10 +79,6 @@
 
 #pragma mark - tableView delegate
 
--(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-
-    return 50;
-}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
 
@@ -90,17 +88,16 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    BSRootCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
     if (!cell) {
-        cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
-        cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
-        cell.selectionStyle = UITableViewCellSelectionStyleNone;
+        cell = [[BSRootCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];   
     }
 
     BSFunctionItem *item = self.dataSource[indexPath.row];
 
-    cell.textLabel.text = item.title;
+    cell.titleLabel.text = item.title;
+    
 
     return cell;
 }
@@ -129,7 +126,6 @@
         _tableView.dataSource = self;
         _tableView.tableFooterView = [UIView new];
         _tableView.separatorInset = UIEdgeInsetsMake(0, 20, 0, 20);
-        _tableView.estimatedRowHeight = 0;
         _tableView.estimatedSectionFooterHeight = 0;
         _tableView.estimatedSectionHeaderHeight = 0;
     }

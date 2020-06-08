@@ -20,14 +20,17 @@ PODS:
   - SDWebImage (5.8.0):
     - SDWebImage/Core (= 5.8.0)
   - SDWebImage/Core (5.8.0)
+  - TZImagePickerController (3.3.1)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
+  - TZImagePickerController
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
     - Masonry
     - SDWebImage
+    - TZImagePickerController
 
 EXTERNAL SOURCES:
   BSFrameworks:
@@ -37,7 +40,8 @@ SPEC CHECKSUMS:
   BSFrameworks: 30b7857c130b4bd59e2636d1758f883c13fc0dac
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
+  TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
 
-PODFILE CHECKSUM: faaa8d94ebc9b694dfe07eff8f8e430fb581421d
+PODFILE CHECKSUM: 9544a46571da8b1bc35b3ee8dc2c0d1762aa8f25
 
 COCOAPODS: 1.8.4

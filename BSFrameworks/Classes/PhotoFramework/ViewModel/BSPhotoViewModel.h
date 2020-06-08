@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @class PhotoListCollectionCell;
 @class BSPhotoGroupModel;
 @class BSPhotoModel;
-
+@class BSPhotoDataManager;
 
 @interface BSPhotoViewModel : NSObject
 
@@ -22,7 +22,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 #pragma mark - PhotoListCollectionCell 展示数据 BSPhotoModel
-+(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell photoModel:(BSPhotoModel *)photoModel;
++(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell targetSize:(CGSize )targetSize photoModel:(BSPhotoModel *)photoModel dataManager:(BSPhotoDataManager *)dataManager;
 
 
 @end

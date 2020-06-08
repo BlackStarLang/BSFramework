@@ -15,6 +15,8 @@
 
 @property (nonatomic ,copy) NSMutableArray *dataSource;
 
+@property (nonatomic ,strong) BSPhotoDataManager *dataManager;
+
 @end
 
 @implementation BSPhotoManagerController
@@ -41,11 +43,14 @@
     [self masonryLayout];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+}
 
 -(void)initSubViews{
     
-    self.autoPush = YES;
-    [self getGroupListData];
+
 }
 
 
@@ -56,25 +61,34 @@
 
 -(void)getGroupListData{
     
-    [BSPhotoDataManager getPhotoLibraryGroupModel:^(BSPhotoGroupModel *groupModel) {
-        
-        if (self.autoPush) {
+    __weak typeof(self)weakSelf = self;
+    [self.dataManager getPhotoLibraryGroupModel:^(BSPhotoGroupModel *groupModel) {
+        if (weakSelf.autoPush) {
             BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
             photoListVC.groupModel = groupModel;
             photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
-            [self pushViewController:photoListVC animated:YES];
+            [weakSelf pushViewController:photoListVC animated:YES];
         }
     }];
 }
 
+#pragma mark - action 交互事件
+
+
+
 
 #pragma mark - set method
 
-//-(void)setAutoPush:(BOOL)autoPush{
-//    _autoPush = autoPush;
-//
-//    [self getGroupListData];
-//}
+-(void)setAutoPush:(BOOL)autoPush{
+    _autoPush = autoPush;
+
+    [self getGroupListData];
+}
+
+
+#pragma mark - systemDelegate
+
+
 
 
 
@@ -94,7 +108,12 @@
     return _dataSource;
 }
 
-
+-(BSPhotoDataManager *)dataManager{
+    if (!_dataManager) {
+        _dataManager = [[BSPhotoDataManager alloc]init];
+    }
+    return _dataManager;
+}
 
 
 

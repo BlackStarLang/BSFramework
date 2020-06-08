@@ -15,7 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong) PHAsset *asset ;  //原始数据
 @property (nonatomic ,strong) NSString *identifier ;    //唯一标识
 
-@property (nonatomic ,strong) UIImage *thumbImage ; //缩略图 300 * 300,再大，加载就慢了
+@property (nonatomic ,strong) UIImage *thumbImage ; //缩略图
 @property (nonatomic ,strong) UIImage *originImage ;//原图
 @property (nonatomic ,assign) CGFloat originImageSize ;//原图大小（MB）
 
