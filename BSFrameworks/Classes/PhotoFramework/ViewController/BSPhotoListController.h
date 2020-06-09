@@ -15,6 +15,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,strong) BSPhotoGroupModel *groupModel;
 
+@property (nonatomic ,strong) NSMutableArray *selectDataArr;
+
 @end
 
 NS_ASSUME_NONNULL_END

@@ -35,7 +35,14 @@
 //第一次设置 滚动到底部
 @property (nonatomic ,assign) BOOL firstScroll;
 
-@property (nonatomic ,assign) CGRect previousPreheatRect;
+
+/// toolBar 视图
+// 用来显示已选择照片数量
+@property (nonatomic ,strong) UILabel *countLabel;
+// 原图 按钮
+@property (nonatomic ,strong) UIButton *selectOriginBtn;
+// 完成 按钮
+@property (nonatomic ,strong) UIButton *doneBtn;
 
 
 @end
@@ -46,32 +53,68 @@
 -(void)dealloc{
     NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
     [self.dataManager stopAllCache];
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = NO;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(reloadData) name:@"REFRESH_LIST_CELL_SELECT_STATUS" object:nil];
+    
     [self initSubViews];
+    [self initToolBarItems];
     [self masonryLayout];
     [self configData];
+}
+
+-(void)reloadData{
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+    [self.collectionView reloadData];
 }
 
 
 -(void)initSubViews{
     
-    
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+
     CGFloat width = (self.view.frame.size.width-10)/4-5;
     self.itemSize = CGSizeMake(width, width);
-    
     
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     self.navigationItem.rightBarButtonItem = rightItem;
     
+    UIBarButtonItem *leftItem = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"navi_back"] style:UIBarButtonItemStyleDone target:self action:@selector(popViewController)];
+    self.navigationItem.leftBarButtonItem = leftItem;
     
     self.title = self.groupModel.title;
-    self.navigationController.navigationBar.topItem.title = @"";
     [self.view addSubview:self.collectionView];
+}
+
+
+-(void)initToolBarItems{
+    
+    UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+        
+    UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    [originView addSubview:self.countLabel];
+    [originView addSubview:self.doneBtn];
+    
+    UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
+    
+    [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
 }
 
 
@@ -84,6 +127,7 @@
 
 
 -(void)configData{
+    
     
     self.scale = [UIScreen mainScreen].scale;
     
@@ -98,10 +142,12 @@
         BSPhotoModel *model = [[BSPhotoModel alloc]init];
         model.asset = asset;
         model.identifier = asset.localIdentifier;
+        if ([self.selectDataArr containsObject:asset.localIdentifier]) {
+            model.isSelect = YES;
+        }
         [self.dataSource addObject:model];
     }
     
-    self.previousPreheatRect = CGRectZero;
     [self.collectionView reloadData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -121,6 +167,29 @@
 -(void)dismiss{
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+-(void)popViewController{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+-(void)originalImage:(UIButton *)sender{
+    //是否使用原图
+    sender.selected = !sender.selected;
+    
+}
+
+-(void )doneBtnClick{
+    
+    
+}
+
+#pragma mark - prive method 自定义方法
+
+-(void)refreshSelectCount{
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
 }
 
 #pragma mark - prive delegate
@@ -153,6 +222,17 @@
         cell.identifier = photoModel.identifier;
         
         [BSPhotoViewModel displayPhotoListCollectionCell:cell targetSize:CGSizeMake(self.itemSize.width*self.scale, self.itemSize.height*self.scale) photoModel:photoModel dataManager:self.dataManager];
+        
+        __weak typeof(self)weakSelf = self;
+        cell.selectAction = ^(BOOL isSelect) {
+            photoModel.isSelect = isSelect;
+            if (isSelect) {
+                [weakSelf.selectDataArr addObject:photoModel.asset.localIdentifier];
+            }else{
+                [weakSelf.selectDataArr removeObject:photoModel.asset.localIdentifier];
+            }
+            [weakSelf refreshSelectCount];
+        };
     }
     
     return cell;
@@ -169,6 +249,8 @@
         [self.navigationController pushViewController:cameraVC animated:YES];
     }else{
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
+        previewVC.selectDataArr = self.selectDataArr;
+        previewVC.isOrigin = self.selectOriginBtn.selected;
         [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
@@ -280,6 +362,50 @@
     }
     return _collectionView;
 }
+
+-(UILabel *)countLabel{
+    if (!_countLabel) {
+        _countLabel = [[UILabel alloc]initWithFrame:CGRectMake(60 - 20, 12, 20, 20)];
+        _countLabel.textAlignment = 1;
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.font = [UIFont systemFontOfSize:14];
+        _countLabel.layer.cornerRadius = 10;
+        _countLabel.backgroundColor = [UIColor orangeColor];
+        _countLabel.layer.masksToBounds = YES;
+        _countLabel.text = @"0";
+    }
+    return _countLabel;
+}
+
+-(UIButton *)selectOriginBtn{
+    if (!_selectOriginBtn) {
+        _selectOriginBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 100)];
+        [_selectOriginBtn setImage:[UIImage imageNamed:@"photo_original_def"] forState:UIControlStateNormal];
+        [_selectOriginBtn setImage:[UIImage imageNamed:@"photo_original_sel"] forState:UIControlStateSelected];
+        [_selectOriginBtn setTitle:@"原图" forState:UIControlStateNormal];
+        [_selectOriginBtn setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+        [_selectOriginBtn addTarget:self action:@selector(originalImage:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectOriginBtn setAdjustsImageWhenHighlighted:NO];
+        _selectOriginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _selectOriginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+    }
+    return _selectOriginBtn;
+}
+
+-(UIButton *)doneBtn{
+    if (!_doneBtn) {
+        _doneBtn = [[UIButton alloc]initWithFrame:CGRectMake(60, 0, 40, 44)];
+        _doneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _doneBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+
+        [_doneBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_doneBtn setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+        [_doneBtn addTarget:self action:@selector(doneBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        
+    }
+    return _doneBtn;
+}
+
 
 -(NSMutableArray *)dataSource{
     return _dataSource=_dataSource?:[NSMutableArray array];

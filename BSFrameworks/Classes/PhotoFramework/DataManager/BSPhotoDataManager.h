@@ -50,7 +50,7 @@ typedef enum : NSUInteger {
 
 
 /// 根据 PHAsset 获取缓存图片
--(void)getImageWithPHAsset:(PHAsset *)asset targetSize:(CGSize)targetSize imageBlock:(void(^)(UIImage *targetImage))imageBlock;
+-(void)getImageWithPHAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentModel:(PHImageContentMode )contentModel imageBlock:(void(^)(UIImage *targetImage))imageBlock;
 
 
 

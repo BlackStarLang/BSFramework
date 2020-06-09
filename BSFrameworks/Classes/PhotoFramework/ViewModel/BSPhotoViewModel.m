@@ -19,7 +19,7 @@
     
     PHFetchResult *fetchResult = groupModel.fetchResult;
     
-    [dataManager getImageWithPHAsset:fetchResult.lastObject targetSize:CGSizeMake(60 * [UIScreen mainScreen].scale, 60 * [UIScreen mainScreen].scale) imageBlock:^(UIImage *targetImage) {
+    [dataManager getImageWithPHAsset:fetchResult.lastObject targetSize:CGSizeMake(60 * [UIScreen mainScreen].scale, 60 * [UIScreen mainScreen].scale) contentModel:PHImageContentModeAspectFill imageBlock:^(UIImage *targetImage) {
         cell.thumbImgView.image = targetImage;
     }];
     
@@ -31,13 +31,13 @@
 #pragma mark - PhotoListCollectionCell 展示数据 BSPhotoModel
 +(void)displayPhotoListCollectionCell:(PhotoListCollectionCell *)cell targetSize:(CGSize )targetSize photoModel:(BSPhotoModel *)photoModel dataManager:(BSPhotoDataManager *)dataManager{
         
-    [dataManager getImageWithPHAsset:photoModel.asset targetSize:targetSize imageBlock:^(UIImage *targetImage) {
+    [dataManager getImageWithPHAsset:photoModel.asset targetSize:targetSize contentModel:PHImageContentModeAspectFill imageBlock:^(UIImage *targetImage) {
         if ([cell.identifier isEqualToString:photoModel.asset.localIdentifier]) {
             cell.imageView.image = targetImage;
         }
     }];
-    
     cell.selectBtn.hidden = NO;
+    cell.selectBtn.selected = photoModel.isSelect;
 }
 
 

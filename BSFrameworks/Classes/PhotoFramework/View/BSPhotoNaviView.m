@@ -60,8 +60,8 @@
     }];
 
     [self.backImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.offset(0);
-        make.centerY.offset(0);
+        make.left.offset(4.5);
+        make.centerY.offset(-2.5);
     }];
     
     [self.leftBtn mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -99,6 +99,14 @@
 -(void)setTitleColor:(UIColor *)titleColor{
     self.titleLabel.textColor = titleColor;
 }
+
+-(void)setRightBtnImage:(NSString *)imageName{
+    
+    self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    self.rightBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
+    [self.rightBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
+}
+
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor{
     
@@ -180,6 +188,7 @@
 -(UIButton *)rightBtn{
     if (!_rightBtn) {
         _rightBtn = [[UIButton alloc]init];
+        _rightBtn.adjustsImageWhenHighlighted = NO;
         [_rightBtn addTarget:self action:@selector(rightBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _rightBtn;

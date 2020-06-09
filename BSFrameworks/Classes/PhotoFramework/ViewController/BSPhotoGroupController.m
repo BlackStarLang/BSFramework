@@ -33,6 +33,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    self.navigationController.toolbarHidden = YES;
 }
 
 
@@ -49,11 +50,7 @@
 
 -(void)initSubViews{
     
-    self.navigationController.navigationBar.topItem.title = @"";
-
-    
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
-    
     self.navigationItem.rightBarButtonItem = rightItem;
     
     UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
@@ -125,6 +122,7 @@
     
     BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
     photoListVC.groupModel = self.dataSource[indexPath.row];
+    photoListVC.selectDataArr = self.selectDataArr;
     photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];
 }

@@ -32,7 +32,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic ,assign ) BOOL isPresent;  //是push还是 present
 
--(void)setPreviewPhotos:(NSArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex;
+@property (nonatomic ,assign ) BOOL isOrigin;   //是否原图
+
+@property (nonatomic ,strong) NSMutableArray *selectDataArr;
+
+-(void)setPreviewPhotos:(NSMutableArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex;
 
 
 @end

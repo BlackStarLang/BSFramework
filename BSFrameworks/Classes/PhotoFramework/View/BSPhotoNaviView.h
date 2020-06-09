@@ -19,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 -(void)setRightBtnTitle:(NSString *)rightTitle titleColor:(UIColor *)titleColor;
 
+-(void)setRightBtnImage:(NSString *)imageName;
+
 @property (nonatomic ,copy) void(^naviAction)(BOOL isBack);
 
 @end

@@ -17,6 +17,8 @@
 
 @property (nonatomic ,strong) BSPhotoDataManager *dataManager;
 
+@property (nonatomic ,strong) NSMutableArray *selectDataArr;
+
 @end
 
 @implementation BSPhotoManagerController
@@ -28,8 +30,8 @@
     if (self) {
         
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
+        root.selectDataArr = self.selectDataArr;
         self = [super initWithRootViewController:root];
-        
     }
     
     return self;
@@ -63,12 +65,12 @@
     
     __weak typeof(self)weakSelf = self;
     [self.dataManager getPhotoLibraryGroupModel:^(BSPhotoGroupModel *groupModel) {
-        if (weakSelf.autoPush) {
-            BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
-            photoListVC.groupModel = groupModel;
-            photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
-            [weakSelf pushViewController:photoListVC animated:YES];
-        }
+        
+        BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
+        photoListVC.groupModel = groupModel;
+        photoListVC.selectDataArr = self.selectDataArr;
+        photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        [weakSelf pushViewController:photoListVC animated:YES];
     }];
 }
 
@@ -82,7 +84,9 @@
 -(void)setAutoPush:(BOOL)autoPush{
     _autoPush = autoPush;
 
-    [self getGroupListData];
+    if (autoPush) {
+        [self getGroupListData];
+    }
 }
 
 
@@ -115,6 +119,11 @@
     return _dataManager;
 }
 
-
+-(NSMutableArray *)selectDataArr{
+    if (!_selectDataArr) {
+        _selectDataArr = [NSMutableArray array];
+    }
+    return _selectDataArr;
+}
 
 @end

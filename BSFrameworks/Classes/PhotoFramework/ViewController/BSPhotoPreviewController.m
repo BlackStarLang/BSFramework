@@ -29,6 +29,16 @@
 
 @property (nonatomic ,strong) BSPhotoNaviView *naviView;
 
+
+/// toolBar 视图
+// 用来显示已选择照片数量
+@property (nonatomic ,strong) UILabel *countLabel;
+// 原图 按钮
+@property (nonatomic ,strong) UIButton *selectOriginBtn;
+// 完成 按钮
+@property (nonatomic ,strong) UIButton *doneBtn;
+
+
 @end
 
 @implementation BSPhotoPreviewController
@@ -52,12 +62,15 @@
     self.statusBarHiddenStatus = NO;
     [self setNeedsStatusBarAppearanceUpdate];
     [self.navigationController setNavigationBarHidden:NO];
+    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"REFRESH_LIST_CELL_SELECT_STATUS" object:nil];
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self initSubViews];
+    [self initToolBarItems];
     [self masonryLayout];
 }
 
@@ -75,12 +88,39 @@
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
+    self.selectOriginBtn.selected = self.isOrigin;
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+    
+    [self initNaviView];
+}
+
+
+-(void)initNaviView{
+    
+    CGFloat height = [UIScreen mainScreen].bounds.size.height;
+    
+    BOOL iphoneX = NO;
+    if (height == 812 || height == 896) {
+        iphoneX = YES;
+    }
+    
+    CGFloat naviHeight = self.navigationController.navigationBar.frame.size.height + (iphoneX?44:20);
+    
     
     /// 隐藏 系统 NavigationBar， 使用View 替换
     [self.navigationController setNavigationBarHidden:YES];
     self.naviView.backgroundColor = [UIColor whiteColor];
-    self.naviView.frame = CGRectMake(0, 0, self.view.width, 64);
+    self.naviView.frame = CGRectMake(0, 0, self.view.width, naviHeight);
     [self.view addSubview:self.naviView];
+    
+    
+    /// 初始化 时 naviView 右上角按钮图片
+    BSPhotoModel *model = self.previewPhotos[self.currentIndex];
+    if ([self.selectDataArr containsObject:model.identifier]) {
+        [self.naviView setRightBtnImage:@"img_select"];
+    }else{
+        [self.naviView setRightBtnImage:@"img_unselect"];
+    }
     
     
     /// 自定义 navi 点击事件
@@ -88,6 +128,24 @@
     self.naviView.naviAction = ^(BOOL isBack) {
         if (isBack) {
             [weakSelf.navigationController popViewControllerAnimated:YES];
+        }else{
+            
+            CGFloat offsetX = weakSelf.collectionView.contentOffset.x;
+            NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
+            BSPhotoModel *model = weakSelf.previewPhotos[pageIndex];
+
+            if ([weakSelf.selectDataArr containsObject:model.identifier]) {
+                
+                [weakSelf.selectDataArr removeObject:model.identifier];
+                [weakSelf.naviView setRightBtnImage:@"img_unselect"];
+                model.isSelect = NO;
+                
+            }else{
+                [weakSelf.selectDataArr addObject:model.identifier];
+                [weakSelf.naviView setRightBtnImage:@"img_select"];
+                model.isSelect = YES;
+            }
+            weakSelf.countLabel.text = [NSString stringWithFormat:@"%ld",weakSelf.selectDataArr.count];
         }
     };
 }
@@ -102,15 +160,42 @@
 }
 
 
+-(void)initToolBarItems{
+    
+    UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
+    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+        
+    UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    [originView addSubview:self.countLabel];
+    [originView addSubview:self.doneBtn];
+    
+    UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
+    
+    [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
+}
+
+
 #pragma mark - set method
 
--(void)setPreviewPhotos:(NSArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex{
+-(void)setPreviewPhotos:(NSMutableArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex{
     
-    _previewPhotos = [NSMutableArray arrayWithArray:previewPhotos];
+    _previewPhotos = previewPhotos;
     _previewType = previewType;
     _currentIndex = defaultIndex;
 }
 
+#pragma mark - action 交互事件
+
+-(void)originalImage:(UIButton *)sender{
+    //是否使用原图
+    sender.selected = !sender.selected;
+    
+}
+
+-(void )doneBtnClick{
+    
+    
+}
 
 
 
@@ -156,7 +241,7 @@
         BSPhotoModel *model = self.previewPhotos[indexPath.row];
         
         __weak typeof(PhotoPreviewCell*)weakCell = cell;
-        [self.dataManager getImageWithPHAsset:model.asset targetSize:self.targetSize imageBlock:^(UIImage *targetImage) {
+        [self.dataManager getImageWithPHAsset:model.asset targetSize:self.targetSize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
             weakCell.imageView.image = targetImage;
         }];
     }
@@ -175,6 +260,7 @@
             self.naviView.alpha = self.statusBarHiddenStatus?1:0;
         }];
         
+        [self.navigationController setToolbarHidden:!self.statusBarHiddenStatus animated:YES];
         self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
         [self setNeedsStatusBarAppearanceUpdate];
     }
@@ -188,7 +274,7 @@
         
         @autoreleasepool {
             
-            CGFloat offsetX = scrollView.contentOffset.x + 20;
+            CGFloat offsetX = scrollView.contentOffset.x;
             NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
             
             NSMutableArray *assets = [NSMutableArray array];
@@ -200,6 +286,17 @@
             }
             
             [self.dataManager startPreLoadCacheImagesWithPHAssetArray:assets targetSize:self.targetSize contenModel:PHImageContentModeAspectFit];
+            
+            
+            BSPhotoModel *model = self.previewPhotos[pageIndex];
+            model.isSelect = NO;
+            NSString *imgName = @"img_unselect";
+            if ([self.selectDataArr containsObject:model.identifier]) {
+                imgName = @"img_select";
+                model.isSelect = YES;
+            }
+            
+            [self.naviView setRightBtnImage:imgName];
         }
     }
 }
@@ -227,6 +324,50 @@
 }
 
 
+-(UILabel *)countLabel{
+    if (!_countLabel) {
+        _countLabel = [[UILabel alloc]initWithFrame:CGRectMake(60 - 20, 12, 20, 20)];
+        _countLabel.textAlignment = 1;
+        _countLabel.textColor = [UIColor whiteColor];
+        _countLabel.font = [UIFont systemFontOfSize:14];
+        _countLabel.layer.cornerRadius = 10;
+        _countLabel.backgroundColor = [UIColor orangeColor];
+        _countLabel.layer.masksToBounds = YES;
+        _countLabel.text = @"0";
+    }
+    return _countLabel;
+}
+
+-(UIButton *)selectOriginBtn{
+    if (!_selectOriginBtn) {
+        _selectOriginBtn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 20, 100)];
+        _selectOriginBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _selectOriginBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+        [_selectOriginBtn setImage:[UIImage imageNamed:@"photo_original_def"] forState:UIControlStateNormal];
+        [_selectOriginBtn setImage:[UIImage imageNamed:@"photo_original_sel"] forState:UIControlStateSelected];
+        [_selectOriginBtn setTitle:@"原图" forState:UIControlStateNormal];
+        [_selectOriginBtn setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+        [_selectOriginBtn addTarget:self action:@selector(originalImage:) forControlEvents:UIControlEventTouchUpInside];
+        [_selectOriginBtn setAdjustsImageWhenHighlighted:NO];
+    }
+    return _selectOriginBtn;
+}
+
+
+-(UIButton *)doneBtn{
+    if (!_doneBtn) {
+        _doneBtn = [[UIButton alloc]initWithFrame:CGRectMake(60, 0, 40, 44)];
+        _doneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
+        _doneBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
+
+        [_doneBtn setTitle:@"完成" forState:UIControlStateNormal];
+        [_doneBtn setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
+        [_doneBtn addTarget:self action:@selector(doneBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    }
+    return _doneBtn;
+}
+
+
 -(BSPhotoDataManager *)dataManager{
 
     if (!_dataManager) {
@@ -234,6 +375,7 @@
     }
     return _dataManager;
 }
+
 
 -(BSPhotoNaviView *)naviView{
     if (!_naviView) {

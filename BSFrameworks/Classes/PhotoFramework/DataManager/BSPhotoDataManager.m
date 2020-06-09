@@ -67,7 +67,7 @@
         PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
         NSInteger count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
        
-        if (count) {
+        if (count && ![assetCollection.localizedTitle isEqualToString:@"Recently Deleted"]) {
             BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
             [mutArr addObject:model];
             
@@ -103,9 +103,9 @@
 
 
 /// 根据 PHAsset 获取图片
--(void)getImageWithPHAsset:(PHAsset *)asset targetSize:(CGSize)targetSize imageBlock:(void(^)(UIImage *targetImage))imageBlock{
+-(void)getImageWithPHAsset:(PHAsset *)asset targetSize:(CGSize)targetSize contentModel:(PHImageContentMode )contentModel imageBlock:(void(^)(UIImage *targetImage))imageBlock{
     
-    [self.cacheManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFill options:self.options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+    [self.cacheManager requestImageForAsset:asset targetSize:targetSize contentMode:contentModel options:self.options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
 
         imageBlock(result);
     }];

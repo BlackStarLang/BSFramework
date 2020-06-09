@@ -7,6 +7,7 @@
 
 #import "PhotoListCollectionCell.h"
 #import <Masonry/Masonry.h>
+#import "UIView+BSView.h"
 
 @implementation PhotoListCollectionCell
 
@@ -47,8 +48,25 @@
     
     sender.selected = !sender.selected;
     
+    if (self.selectAction) {
+        self.selectAction(sender.selected);
+    }
 }
 
+
+/// 扩大 选择按钮点击范围
+-(UIView *)hitTest:(CGPoint)point withEvent:(UIEvent *)event{
+
+    UIView *view = [super hitTest:point withEvent:event];
+    
+    if ([view isKindOfClass:[UIImageView class]]) {
+        if (self.width - 35 <= point.x && point.y <= 35) {
+            return self.selectBtn;
+        }
+    }
+
+    return [super hitTest:point withEvent:event];
+}
 
 
 #pragma mark - init 属性初始化
