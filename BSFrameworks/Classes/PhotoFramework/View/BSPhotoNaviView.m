@@ -17,6 +17,8 @@
 
 @property (nonatomic ,strong) UIImageView *backImageView;
 
+@property (nonatomic ,strong) UINavigationBar *naviBar;
+
 @end
 
 @implementation BSPhotoNaviView
@@ -42,20 +44,18 @@
 
 -(void)initSubViews{
     
-    //设置UIVisualEffectView 毛玻璃
-    [self addSubview:self.visualView];
+    [self addSubview:self.naviBar];
     
     [self.leftBtn addSubview:self.backImageView];
     [self addSubview:self.leftBtn];
     [self addSubview:self.titleLabel];
     [self addSubview:self.rightBtn];
-    
 }
 
 
 -(void)masonryLayout{
     
-    [self.visualView mas_makeConstraints:^(MASConstraintMaker *make) {
+    [self.naviBar mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.offset(0);
     }];
 
@@ -110,12 +110,15 @@
 
 -(void)setBackgroundColor:(UIColor *)backgroundColor{
     
-    if ([self isLighterColor:backgroundColor]) {
-        self.backImageView.tintColor = [UIColor blueColor];
-    }else{
-        self.backImageView.tintColor = [UIColor whiteColor];
+    if (backgroundColor) {
+        if ([self isLighterColor:backgroundColor]) {
+            self.backImageView.tintColor = [UIColor blueColor];
+        }else{
+            self.backImageView.tintColor = [UIColor whiteColor];
+        }
+
+        self.naviBar.barTintColor = backgroundColor;
     }
-    self.visualView.backgroundColor = backgroundColor;
 }
 
 
@@ -194,13 +197,11 @@
     return _rightBtn;
 }
 
--(UIVisualEffectView *)visualView{
-    if (!_visualView) {
-        UIBlurEffect *blurEffect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
-        _visualView = [[UIVisualEffectView alloc]initWithEffect:blurEffect];
-        _visualView.alpha = 0.9;
+-(UINavigationBar *)naviBar{
+    if (!_naviBar) {
+        _naviBar = [[UINavigationBar alloc]init];
     }
-    return _visualView;
+    return _naviBar;
 }
 
 -(UIImageView *)backImageView{

@@ -18,6 +18,8 @@
 
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
+@property (nonatomic ,weak) BSPhotoGroupController *rootViewController;
+
 @end
 
 @implementation BSPhotoManagerController
@@ -39,6 +41,7 @@
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
         root.selectDataArr = self.selectDataArr;
         self = [super initWithRootViewController:root];
+        self.rootViewController = root;
     }
     
     return self;
@@ -84,6 +87,15 @@
     }
 }
 
+-(void)setMainColor:(UIColor *)mainColor{
+    _mainColor = mainColor;
+    
+    self.navigationBar.barTintColor = mainColor;
+    self.toolbar.barTintColor = mainColor;
+    
+    self.rootViewController.mainColor = mainColor;
+}
+
 #pragma mark - 数据请求
 
 -(void)getGroupListData{
@@ -94,6 +106,7 @@
         BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
         photoListVC.groupModel = groupModel;
         photoListVC.selectDataArr = self.selectDataArr;
+        photoListVC.mainColor = self.mainColor;
         photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [weakSelf pushViewController:photoListVC animated:YES];
     }];

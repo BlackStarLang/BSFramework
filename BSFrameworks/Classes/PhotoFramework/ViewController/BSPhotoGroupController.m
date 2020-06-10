@@ -123,6 +123,7 @@
     BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
     photoListVC.groupModel = self.dataSource[indexPath.row];
     photoListVC.selectDataArr = self.selectDataArr;
+    photoListVC.mainColor = self.mainColor;
     photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];
 }

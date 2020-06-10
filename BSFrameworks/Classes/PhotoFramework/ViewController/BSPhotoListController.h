@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
+@property (nonatomic ,strong) UIColor *mainColor;
+
 @end
 
 NS_ASSUME_NONNULL_END

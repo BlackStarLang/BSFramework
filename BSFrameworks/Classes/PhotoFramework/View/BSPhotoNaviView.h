@@ -13,7 +13,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,  copy) NSString *title;
 @property (nonatomic ,strong) UIColor *titleColor;
-@property (nonatomic ,assign) BOOL isPure;          //纯色，不适用毛玻璃效果
 
 -(void)setLeftBtnTitle:(NSString *)leftTitle titleColor:(UIColor *)titleColor;
 

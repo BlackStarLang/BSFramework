@@ -106,10 +106,8 @@
     
     CGFloat naviHeight = self.navigationController.navigationBar.frame.size.height + (iphoneX?44:20);
     
-    
     /// 隐藏 系统 NavigationBar， 使用View 替换
-    [self.navigationController setNavigationBarHidden:YES];
-    self.naviView.backgroundColor = [UIColor whiteColor];
+    [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.naviView.frame = CGRectMake(0, 0, self.view.width, naviHeight);
     [self.view addSubview:self.naviView];
     
@@ -176,6 +174,12 @@
 
 
 #pragma mark - set method
+
+-(void)setMainColor:(UIColor *)mainColor{
+    _mainColor = mainColor;
+    
+    self.naviView.backgroundColor = mainColor;
+}
 
 -(void)setPreviewPhotos:(NSMutableArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex{
     

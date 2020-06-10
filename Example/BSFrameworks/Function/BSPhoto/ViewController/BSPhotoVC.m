@@ -80,9 +80,10 @@
 -(void)cameraBtnClick{
 
     BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
-    managerVC.autoPush = YES;
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
+    managerVC.mainColor = [UIColor blueColor];
+    managerVC.autoPush = YES;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
 

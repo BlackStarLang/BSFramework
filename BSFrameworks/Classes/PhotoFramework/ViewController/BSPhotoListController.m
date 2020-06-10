@@ -250,9 +250,10 @@
         [self.navigationController pushViewController:cameraVC animated:YES];
     }else{
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
+        [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
         previewVC.selectDataArr = self.selectDataArr;
         previewVC.isOrigin = self.selectOriginBtn.selected;
-        [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
+        previewVC.mainColor = self.mainColor;
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }

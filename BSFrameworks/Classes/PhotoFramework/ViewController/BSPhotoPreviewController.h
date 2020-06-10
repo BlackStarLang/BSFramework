@@ -26,6 +26,8 @@ typedef enum : NSUInteger {
 
 @interface BSPhotoPreviewController : UIViewController
 
+@property (nonatomic ,strong) UIColor *mainColor;
+
 @property (nonatomic ,strong ,readonly) NSMutableArray *previewPhotos;//要预览的图片数组
 @property (nonatomic ,assign ,readonly) NSInteger currentIndex;       //当前预览的图片
 @property (nonatomic ,assign ,readonly) PREVIEWTYPE previewType;      //当前预览的图片类型
