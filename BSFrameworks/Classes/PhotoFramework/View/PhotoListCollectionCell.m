@@ -46,10 +46,8 @@
 
 -(void)selectBtnClick:(UIButton *)sender{
     
-    sender.selected = !sender.selected;
-    
     if (self.selectAction) {
-        self.selectAction(sender.selected);
+        self.selectAction(sender);
     }
 }
 

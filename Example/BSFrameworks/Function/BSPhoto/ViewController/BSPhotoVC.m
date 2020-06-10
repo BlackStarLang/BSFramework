@@ -82,7 +82,9 @@
     BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
-    managerVC.mainColor = [UIColor blueColor];
+    managerVC.mainColor = [UIColor darkTextColor];
+    managerVC.currentSelectedCount = 5;
+    managerVC.allowSelectMaxCount = 9;
     managerVC.autoPush = YES;
     [self presentViewController:managerVC animated:YES completion:nil];
 }

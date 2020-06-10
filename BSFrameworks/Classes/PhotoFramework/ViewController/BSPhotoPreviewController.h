@@ -38,6 +38,11 @@ typedef enum : NSUInteger {
 
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
+
+@property (nonatomic ,assign) NSInteger allowSelectMaxCount;
+@property (nonatomic ,assign) NSInteger currentSelectedCount;
+
+
 -(void)setPreviewPhotos:(NSMutableArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex;
 
 

@@ -197,6 +197,10 @@
 -(void)photoCameraTakeBtnClicked{
     
     [self configData];
+    
+    if (self.selectDataArr.count + self.currentSelectedCount >= self.allowSelectMaxCount) {
+        NSLog(@"图片个数超出限制");
+    }
 }
 
 
@@ -225,9 +229,17 @@
         [BSPhotoViewModel displayPhotoListCollectionCell:cell targetSize:CGSizeMake(self.itemSize.width*self.scale, self.itemSize.height*self.scale) photoModel:photoModel dataManager:self.dataManager];
         
         __weak typeof(self)weakSelf = self;
-        cell.selectAction = ^(BOOL isSelect) {
-            photoModel.isSelect = isSelect;
-            if (isSelect) {
+        cell.selectAction = ^(UIButton * _Nonnull sender) {
+                        
+            /// 大于最大选择数，不再添加
+            if (weakSelf.selectDataArr.count + weakSelf.currentSelectedCount >= weakSelf.allowSelectMaxCount) {
+                if (!sender.selected) {
+                    return;
+                }
+            }
+            sender.selected = !sender.selected;
+            photoModel.isSelect = sender.selected;
+            if (sender.selected) {
                 [weakSelf.selectDataArr addObject:photoModel.asset.localIdentifier];
             }else{
                 [weakSelf.selectDataArr removeObject:photoModel.asset.localIdentifier];
@@ -254,6 +266,8 @@
         previewVC.selectDataArr = self.selectDataArr;
         previewVC.isOrigin = self.selectOriginBtn.selected;
         previewVC.mainColor = self.mainColor;
+        previewVC.allowSelectMaxCount = self.allowSelectMaxCount;
+        previewVC.currentSelectedCount = self.currentSelectedCount;
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }

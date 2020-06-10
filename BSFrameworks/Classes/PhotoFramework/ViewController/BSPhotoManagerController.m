@@ -96,6 +96,18 @@
     self.rootViewController.mainColor = mainColor;
 }
 
+
+-(void)setAllowSelectMaxCount:(NSInteger)allowSelectMaxCount{
+    _allowSelectMaxCount = allowSelectMaxCount;
+    self.rootViewController.allowSelectMaxCount = allowSelectMaxCount;
+}
+
+
+-(void)setCurrentSelectedCount:(NSInteger)currentSelectedCount{
+    _currentSelectedCount = currentSelectedCount;
+    self.rootViewController.currentSelectedCount = currentSelectedCount;
+}
+
 #pragma mark - 数据请求
 
 -(void)getGroupListData{
@@ -107,6 +119,8 @@
         photoListVC.groupModel = groupModel;
         photoListVC.selectDataArr = self.selectDataArr;
         photoListVC.mainColor = self.mainColor;
+        photoListVC.allowSelectMaxCount = self.allowSelectMaxCount;
+        photoListVC.currentSelectedCount = self.currentSelectedCount;
         photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [weakSelf pushViewController:photoListVC animated:YES];
     }];

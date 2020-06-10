@@ -128,6 +128,8 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
             
+
+            
             CGFloat offsetX = weakSelf.collectionView.contentOffset.x;
             NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
             BSPhotoModel *model = weakSelf.previewPhotos[pageIndex];
@@ -139,6 +141,10 @@
                 model.isSelect = NO;
                 
             }else{
+                /// 大于最大选择数，不再添加
+                if (weakSelf.selectDataArr.count + weakSelf.currentSelectedCount >= weakSelf.allowSelectMaxCount) {
+                    return;
+                }
                 [weakSelf.selectDataArr addObject:model.identifier];
                 [weakSelf.naviView setRightBtnImage:@"img_select"];
                 model.isSelect = YES;

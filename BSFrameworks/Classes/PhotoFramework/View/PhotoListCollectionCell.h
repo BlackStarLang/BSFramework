@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,strong) UIButton *selectBtn;
 
-@property (nonatomic ,copy) void(^selectAction)(BOOL isSelect);
+@property (nonatomic ,copy) void(^selectAction)(UIButton *sender);
 
 @end
 

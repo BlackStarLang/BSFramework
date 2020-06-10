@@ -11,11 +11,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSPhotoGroupController : UIViewController
 
+@property (nonatomic ,strong) UIColor *mainColor;
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
-@property (nonatomic ,assign) BOOL autoPush;//自动跳转到第一个相册图片列表 default is YES
+@property (nonatomic ,assign) NSInteger allowSelectMaxCount;
+@property (nonatomic ,assign) NSInteger currentSelectedCount;
 
-@property (nonatomic ,strong) UIColor *mainColor;
 
 @end
 

@@ -124,6 +124,8 @@
     photoListVC.groupModel = self.dataSource[indexPath.row];
     photoListVC.selectDataArr = self.selectDataArr;
     photoListVC.mainColor = self.mainColor;
+    photoListVC.allowSelectMaxCount = self.allowSelectMaxCount;
+    photoListVC.currentSelectedCount = self.currentSelectedCount;
     photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];
 }

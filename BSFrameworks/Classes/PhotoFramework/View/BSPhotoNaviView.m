@@ -82,7 +82,7 @@
         make.bottom.offset(0);
         make.height.mas_equalTo(40);
         make.width.mas_greaterThanOrEqualTo(40);
-        make.right.offset(-15);
+        make.right.offset(-10);
     }];
     
     [self.leftBtn setContentCompressionResistancePriority:UILayoutPriorityDefaultHigh forAxis:UILayoutConstraintAxisHorizontal];
@@ -102,7 +102,7 @@
 
 -(void)setRightBtnImage:(NSString *)imageName{
     
-    self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 5, 5, 5);
+    self.rightBtn.imageEdgeInsets = UIEdgeInsetsMake(5, 20, 5, 5);
     self.rightBtn.imageView.contentMode = UIViewContentModeScaleAspectFit;
     [self.rightBtn setImage:[UIImage imageNamed:imageName] forState:UIControlStateNormal];
 }
