@@ -43,9 +43,9 @@
 
 
 /// =============================================
-/// 类型
+/// 类型 暂时只支持 Image,不支持 视频等
 /// =============================================
-@property (nonatomic ,assign) NSInteger imageType;
+//@property (nonatomic ,assign) NSInteger imageType;
 
 
 
@@ -54,6 +54,24 @@
 /// 更改 navigation 和 toolbar 颜色
 /// =============================================
 @property (nonatomic ,strong) UIColor *mainColor;
+
+
+
+/// =============================================
+/// 是否支持 相机
+/// 默认 YES
+/// =============================================
+@property (nonatomic ,assign) BOOL supCamera;
+
+
+
+/// =============================================
+/// 若 supCamera == YES
+/// 是否存储到照片到相册
+/// 默认 YES
+/// =============================================
+@property (nonatomic ,assign) BOOL saveToAlbum;
+
 
 
 

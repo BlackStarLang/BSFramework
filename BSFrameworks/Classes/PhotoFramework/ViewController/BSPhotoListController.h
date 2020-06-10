@@ -19,11 +19,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,strong) UIColor *mainColor;
 
-
-@property (nonatomic ,assign) NSInteger allowSelectMaxCount;
-@property (nonatomic ,assign) NSInteger currentSelectedCount;
-
-
 @end
 
 NS_ASSUME_NONNULL_END

@@ -85,6 +85,7 @@
     managerVC.mainColor = [UIColor darkTextColor];
     managerVC.currentSelectedCount = 5;
     managerVC.allowSelectMaxCount = 9;
+    managerVC.supCamera = NO;
     managerVC.autoPush = YES;
     [self presentViewController:managerVC animated:YES completion:nil];
 }

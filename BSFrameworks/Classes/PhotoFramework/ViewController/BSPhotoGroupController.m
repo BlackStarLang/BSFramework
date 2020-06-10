@@ -14,6 +14,7 @@
 #import "BSPhotoViewModel.h"
 #import "BSPhotoListController.h"
 
+
 @interface BSPhotoGroupController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic ,strong) UITableView *tableView;
@@ -27,7 +28,7 @@
 
 
 -(void)dealloc{
-    NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
+    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
 }
 
 
@@ -50,14 +51,10 @@
 
 -(void)initSubViews{
     
+    self.title = @"我的相册";
+
     UIBarButtonItem *rightItem = [[UIBarButtonItem alloc]initWithTitle:@"取消" style:UIBarButtonItemStylePlain target:self action:@selector(dismiss)];
     self.navigationItem.rightBarButtonItem = rightItem;
-    
-    UILabel *titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, 200, 30)];
-    titleLabel.text = @"我的相册";
-    titleLabel.font = [UIFont boldSystemFontOfSize:17];
-    titleLabel.textAlignment = 1;
-    self.navigationItem.titleView = titleLabel;
 
     [self.view addSubview:self.tableView];
 }
@@ -68,7 +65,6 @@
     [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.offset(0);
     }];
-    
 }
 
 
@@ -123,9 +119,6 @@
     BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
     photoListVC.groupModel = self.dataSource[indexPath.row];
     photoListVC.selectDataArr = self.selectDataArr;
-    photoListVC.mainColor = self.mainColor;
-    photoListVC.allowSelectMaxCount = self.allowSelectMaxCount;
-    photoListVC.currentSelectedCount = self.currentSelectedCount;
     photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];
 }

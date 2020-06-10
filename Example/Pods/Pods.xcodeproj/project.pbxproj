@@ -60,6 +60,8 @@
 		2F67B1F3A80036170ADA8AACD0F5E5F3 /* TZPhotoPreviewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5547D777DD42C0FD48D113E918017572 /* TZPhotoPreviewController.m */; };
 		30A1BAEC248E24A100A9BE9F /* BSPhotoNaviView.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A1BAEA248E24A100A9BE9F /* BSPhotoNaviView.h */; };
 		30A1BAED248E24A100A9BE9F /* BSPhotoNaviView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A1BAEB248E24A100A9BE9F /* BSPhotoNaviView.m */; };
+		30A1BAF82490C80900A9BE9F /* BSPhotoConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 30A1BAF62490C80900A9BE9F /* BSPhotoConfig.h */; };
+		30A1BAF92490C80900A9BE9F /* BSPhotoConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 30A1BAF72490C80900A9BE9F /* BSPhotoConfig.m */; };
 		30C85DD96848C73AC7EDDB89B3ADD796 /* UIImageView+HighlightedWebCache.h in Headers */ = {isa = PBXBuildFile; fileRef = 1747A4D338E89B31AD57D19C13A7790E /* UIImageView+HighlightedWebCache.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		3190771BE529D3D917FD8D5BC87226AC /* NSBezierPath+SDRoundedCorners.h in Headers */ = {isa = PBXBuildFile; fileRef = D40E698F187913FAE41768A219AA3960 /* NSBezierPath+SDRoundedCorners.h */; settings = {ATTRIBUTES = (Project, ); }; };
 		321D47FCDB828924C9EF814C4A73A474 /* ViewController+MASAdditions.h in Headers */ = {isa = PBXBuildFile; fileRef = 7D302EBF6080C2F4EA6AAC503652F6DE /* ViewController+MASAdditions.h */; settings = {ATTRIBUTES = (Project, ); }; };
@@ -369,6 +371,8 @@
 		2ED1A6CF3D437F46EA282EBE2099F77B /* BSFrameworks.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = BSFrameworks.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		30A1BAEA248E24A100A9BE9F /* BSPhotoNaviView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoNaviView.h; sourceTree = "<group>"; };
 		30A1BAEB248E24A100A9BE9F /* BSPhotoNaviView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoNaviView.m; sourceTree = "<group>"; };
+		30A1BAF62490C80900A9BE9F /* BSPhotoConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoConfig.h; sourceTree = "<group>"; };
+		30A1BAF72490C80900A9BE9F /* BSPhotoConfig.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoConfig.m; sourceTree = "<group>"; };
 		30CF0890A61D5B2D21567349AC5DE129 /* UINavigationBar+BSBar.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "UINavigationBar+BSBar.m"; path = "BSFrameworks/Classes/BSCategory/UINavigationBar+BSBar.m"; sourceTree = "<group>"; };
 		30E0CD228BC3E298D22C4B78A2E0FEE4 /* BSLooperView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = BSLooperView.h; path = BSFrameworks/Classes/BSLooperView/BSLooperView.h; sourceTree = "<group>"; };
 		3119A06B32BC4C79F4C7AD806FC58ADE /* SDInternalMacros.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = SDInternalMacros.m; path = SDWebImage/Private/SDInternalMacros.m; sourceTree = "<group>"; };
@@ -784,6 +788,8 @@
 				64E155315AE9FF4E2F92EC685B9A5B1D /* BSPhotoGroupModel.m */,
 				420DB8F24BAB1370EBCD5388D3230493 /* BSPhotoModel.h */,
 				09222FF207F2F37150099F47D5D8F95A /* BSPhotoModel.m */,
+				30A1BAF62490C80900A9BE9F /* BSPhotoConfig.h */,
+				30A1BAF72490C80900A9BE9F /* BSPhotoConfig.m */,
 			);
 			name = Model;
 			path = BSFrameworks/Classes/PhotoFramework/Model;
@@ -1220,6 +1226,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30A1BAF82490C80900A9BE9F /* BSPhotoConfig.h in Headers */,
 				ED5EDCAB4A7FFC7CCE5C11D3DAF361F4 /* BSCameraController.h in Headers */,
 				93506A723629697E0206FDC25029CF3A /* BSLooper3DFlowLayout.h in Headers */,
 				F2B6ECEC4090237C8CB63818FEA6C856 /* BSLooperView.h in Headers */,
@@ -1504,6 +1511,7 @@
 				2868CC522D52542CB89466D1738CA249 /* BSCameraController.m in Sources */,
 				7C6947BF4C827EF32A3130EED4CA5930 /* BSFrameworks-dummy.m in Sources */,
 				E6686EB0A8651DEAD5159EE293CF5002 /* BSLooper3DFlowLayout.m in Sources */,
+				30A1BAF92490C80900A9BE9F /* BSPhotoConfig.m in Sources */,
 				A85B0930C164C09A6D1C6C5E0B26D1F1 /* BSLooperView.m in Sources */,
 				E692AFD95113AB48EEB093D95E9B7976 /* BSPhotoDataManager.m in Sources */,
 				32308C43C7F6F838C2B54AA14497C5B4 /* BSPhotoGroupController.m in Sources */,

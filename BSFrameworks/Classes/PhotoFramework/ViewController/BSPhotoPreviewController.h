@@ -34,8 +34,6 @@ typedef enum : NSUInteger {
 
 @property (nonatomic ,assign ) BOOL isPresent;  //是push还是 present
 
-@property (nonatomic ,assign ) BOOL isOrigin;   //是否原图
-
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
 

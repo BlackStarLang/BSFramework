@@ -15,6 +15,7 @@
 #import "BSPhotoPreviewController.h"
 #import "BSCameraController.h"
 #import <UIView+BSView.h>
+#import "BSPhotoConfig.h"
 
 @interface BSPhotoListController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,BSPhotoProtocal>
 
@@ -49,21 +50,22 @@
 
 @implementation BSPhotoListController
 
+#pragma mark - 生命周期
 
 -(void)dealloc{
-    NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
+    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
     [self.dataManager stopAllCache];
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     self.navigationController.toolbarHidden = NO;
+    self.selectOriginBtn.selected = [BSPhotoConfig shareConfig].isOrigin;
 }
 
 
@@ -78,11 +80,9 @@
     [self configData];
 }
 
--(void)reloadData{
-    
-    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
-    [self.collectionView reloadData];
-}
+
+
+#pragma mark - prive method 自定义方法
 
 
 -(void)initSubViews{
@@ -105,6 +105,14 @@
 
 -(void)initToolBarItems{
     
+    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
+        [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    }else{
+        [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+
     UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
         
@@ -117,12 +125,30 @@
     [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
 }
 
+- (BOOL)isLighterColor:(UIColor *)color {
+    if (!color) {
+        return YES;
+    }
+    const CGFloat* components = CGColorGetComponents(color.CGColor);
+    return (components[0]+components[1]+components[2])/3 >= 0.5;
+}
+
+
 
 -(void)masonryLayout{
     
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.edges.offset(0);
     }];
+}
+
+
+#pragma mark - 数据 相关
+
+-(void)reloadData{
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+    [self.collectionView reloadData];
 }
 
 
@@ -152,7 +178,13 @@
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.firstScroll = YES;
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.dataSource.count inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        
+        NSInteger row = self.dataSource.count - 1;
+        if ([BSPhotoConfig shareConfig].supCamera) {
+            row = self.dataSource.count;
+        }
+        
+        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         self.centerY = self.collectionView.contentOffset.y + self.collectionView.height*3/4;
         self.firstScroll = NO;
     });
@@ -160,6 +192,10 @@
 }
 
 
+-(void)refreshSelectCount{
+    
+    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+}
 
 
 #pragma mark - action 交互事件
@@ -169,6 +205,7 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
+
 -(void)popViewController{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -177,8 +214,9 @@
 -(void)originalImage:(UIButton *)sender{
     //是否使用原图
     sender.selected = !sender.selected;
-    
+    [BSPhotoConfig shareConfig].isOrigin = sender.selected;
 }
+
 
 -(void )doneBtnClick{
     
@@ -186,19 +224,13 @@
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-#pragma mark - prive method 自定义方法
 
--(void)refreshSelectCount{
-    
-    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
-}
-
-#pragma mark - prive delegate
+#pragma mark - 相机协议 BSPhotoProtocal
 -(void)photoCameraTakeBtnClicked{
     
     [self configData];
     
-    if (self.selectDataArr.count + self.currentSelectedCount >= self.allowSelectMaxCount) {
+    if (self.selectDataArr.count + [BSPhotoConfig shareConfig].currentSelectedCount >= [BSPhotoConfig shareConfig].allowSelectMaxCount) {
         NSLog(@"图片个数超出限制");
     }
 }
@@ -208,7 +240,10 @@
 
 -(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     
-    return self.dataSource.count + 1;
+    if ([BSPhotoConfig shareConfig].supCamera) {
+        return self.dataSource.count + 1;
+    }
+    return self.dataSource.count;
 }
 
 
@@ -232,7 +267,7 @@
         cell.selectAction = ^(UIButton * _Nonnull sender) {
                         
             /// 大于最大选择数，不再添加
-            if (weakSelf.selectDataArr.count + weakSelf.currentSelectedCount >= weakSelf.allowSelectMaxCount) {
+            if (weakSelf.selectDataArr.count + [BSPhotoConfig shareConfig].currentSelectedCount >= [BSPhotoConfig shareConfig].allowSelectMaxCount) {
                 if (!sender.selected) {
                     return;
                 }
@@ -256,7 +291,7 @@
     
     if (indexPath.row == self.dataSource.count) {
         BSCameraController *cameraVC = [[BSCameraController alloc]init];
-        cameraVC.saveToAlbum = YES;
+        cameraVC.saveToAlbum = [BSPhotoConfig shareConfig].saveToAlbum;
         cameraVC.delegate = self;
         cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:cameraVC animated:YES];
@@ -264,16 +299,16 @@
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
         [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
         previewVC.selectDataArr = self.selectDataArr;
-        previewVC.isOrigin = self.selectOriginBtn.selected;
-        previewVC.mainColor = self.mainColor;
-        previewVC.allowSelectMaxCount = self.allowSelectMaxCount;
-        previewVC.currentSelectedCount = self.currentSelectedCount;
+        previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
+        previewVC.allowSelectMaxCount = [BSPhotoConfig shareConfig].allowSelectMaxCount;
+        previewVC.currentSelectedCount = [BSPhotoConfig shareConfig].currentSelectedCount;
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }
 }
 
 
+#pragma mark - scrollView delegate
 
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
 
@@ -317,7 +352,7 @@
     }
 }
 
-
+#pragma mark - 预加载图片功能
 -(void)startPreLoadRect:(CGRect)startRect stopPreLoadRect:(CGRect)stopRect{
     
     NSArray *startArr = [self getPreArrWithRect:startRect];

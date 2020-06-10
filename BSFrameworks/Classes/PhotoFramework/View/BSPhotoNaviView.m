@@ -113,19 +113,24 @@
     if (backgroundColor) {
         if ([self isLighterColor:backgroundColor]) {
             self.backImageView.tintColor = [UIColor blueColor];
+            self.titleLabel.textColor = [UIColor blackColor];
         }else{
             self.backImageView.tintColor = [UIColor whiteColor];
+            self.titleLabel.textColor = [UIColor whiteColor];
         }
 
         self.naviBar.barTintColor = backgroundColor;
     }
 }
 
-
 - (BOOL)isLighterColor:(UIColor *)color {
+    if (!color) {
+        return YES;
+    }
     const CGFloat* components = CGColorGetComponents(color.CGColor);
     return (components[0]+components[1]+components[2])/3 >= 0.5;
 }
+
 
 
 -(void)setIsPure:(BOOL)isPure{

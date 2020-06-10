@@ -15,7 +15,7 @@
 #import "BSPhotoDataManager.h"
 #import "BSPhotoNaviView.h"
 #import "UIView+BSView.h"
-
+#import "BSPhotoConfig.h"
 
 @interface BSPhotoPreviewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -88,7 +88,7 @@
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.selectOriginBtn.selected = self.isOrigin;
+    self.selectOriginBtn.selected = [BSPhotoConfig shareConfig].isOrigin;
     self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
     
     [self initNaviView];
@@ -166,6 +166,14 @@
 
 -(void)initToolBarItems{
     
+    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
+        [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    }else{
+        [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
+    
     UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
         
@@ -176,6 +184,14 @@
     UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
     
     [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
+}
+
+- (BOOL)isLighterColor:(UIColor *)color {
+    if (!color) {
+        return YES;
+    }
+    const CGFloat* components = CGColorGetComponents(color.CGColor);
+    return (components[0]+components[1]+components[2])/3 >= 0.5;
 }
 
 
@@ -199,6 +215,7 @@
 -(void)originalImage:(UIButton *)sender{
     //是否使用原图
     sender.selected = !sender.selected;
+    [BSPhotoConfig shareConfig].isOrigin = sender.selected;
 }
 
 
