@@ -189,12 +189,13 @@
 -(void)originalImage:(UIButton *)sender{
     //是否使用原图
     sender.selected = !sender.selected;
-    
 }
+
 
 -(void )doneBtnClick{
     
-    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectImage" object:nil];
+     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

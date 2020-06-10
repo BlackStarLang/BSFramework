@@ -58,6 +58,11 @@ typedef enum : NSUInteger {
 -(void)getOriginImageWithPHAsset:(PHAsset *)asset imageBlock:(void(^)(UIImage *targetImage))imageBlock;
 
 
+
+/// 根据 PHAsset 获取原始图片
+-(void)getImagesWithLocalIdentifiers:(NSArray *)localIdentifiers imageType:(NSString *)imageType isOrigin:(BOOL)isOrigin targetSize:(CGSize )targetSize resultCallBack:(void(^)(NSArray *imageArr))resultArr;
+
+
 @end
 
 

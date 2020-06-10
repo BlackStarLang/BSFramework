@@ -10,7 +10,6 @@
 #import "BSPhotoListController.h"
 #import "BSPhotoDataManager.h"
 
-
 @interface BSPhotoManagerController ()
 
 @property (nonatomic ,copy) NSMutableArray *dataSource;
@@ -23,12 +22,20 @@
 
 @implementation BSPhotoManagerController
 
--(instancetype)init{
-    
-    self = [super init];
 
+#pragma mark - 生命周期
+
+-(void)dealloc{
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
+}
+
+
+-(instancetype)init{
+
+    self = [super init];
+    
     if (self) {
-        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage) name:@"didFinishSelectImage" object:nil];
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
         root.selectDataArr = self.selectDataArr;
         self = [super initWithRootViewController:root];
@@ -39,27 +46,45 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    
-    [self initSubViews];
-    [self masonryLayout];
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-}
-
--(void)initSubViews{
-    
-
 }
 
 
--(void)masonryLayout{
+#pragma mark - noti 
+/// 点击完成发送通知 回调图片
+-(void)didFinishSelectImage{
+    
+    __weak typeof(self)weakSelf = self;
+    
+    if ([self.BSDelegate respondsToSelector:@selector(BSPhotoManagerDidFinishedSelectImage:)]) {
+        
+        [self.dataManager getImagesWithLocalIdentifiers:self.selectDataArr imageType:@"UIImage" isOrigin:YES targetSize:CGSizeMake(0, 0) resultCallBack:^(NSArray *imageArr) {
+            
+            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImage:imageArr];
+        }];
+    }
     
     
+    if ([self.BSDelegate respondsToSelector:@selector(BSPhotoManagerDidFinishedSelectImageData:)]) {
+        
+        [self.dataManager getImagesWithLocalIdentifiers:self.selectDataArr imageType:@"NSData" isOrigin:YES targetSize:CGSizeMake(0, 0) resultCallBack:^(NSArray *imageArr) {
+            
+            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImageData:imageArr];
+        }];
+    }
 }
+
+
+#pragma mark - set method
+
+-(void)setAutoPush:(BOOL)autoPush{
+    _autoPush = autoPush;
+
+    if (autoPush) {
+        [self getGroupListData];
+    }
+}
+
+#pragma mark - 数据请求
 
 -(void)getGroupListData{
     
@@ -73,33 +98,6 @@
         [weakSelf pushViewController:photoListVC animated:YES];
     }];
 }
-
-#pragma mark - action 交互事件
-
-
-
-
-#pragma mark - set method
-
--(void)setAutoPush:(BOOL)autoPush{
-    _autoPush = autoPush;
-
-    if (autoPush) {
-        [self getGroupListData];
-    }
-}
-
-
-#pragma mark - systemDelegate
-
-
-
-
-
-
-
-
-
 
 
 #pragma mark - init 属性初始化

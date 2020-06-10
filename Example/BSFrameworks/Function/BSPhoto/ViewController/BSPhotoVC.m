@@ -67,7 +67,7 @@
         make.top.equalTo(self.cameraBtn1.mas_bottom).offset(50);
         make.left.offset(80);
         make.right.offset(-80);
-        make.bottom.offset(80);
+        make.bottom.offset(-80);
     }];
 
 }
@@ -81,7 +81,7 @@
 
     BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
     managerVC.autoPush = YES;
-//    managerVC.delegate = self;
+    managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
@@ -95,6 +95,17 @@
     managerVC.modalPresentationStyle = 0;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
+
+
+#pragma mark - systemDelegate
+
+-(void)BSPhotoManagerDidFinishedSelectImage:(NSArray<UIImage *> *)images{
+    
+    self.imageView.image = images.firstObject;
+    NSLog(@"%@",images);
+}
+
+
 
 
 #pragma mark - init 属性初始化
@@ -121,5 +132,12 @@
     return _cameraBtn1;
 }
 
+-(UIImageView *)imageView{
+    if (!_imageView) {
+        _imageView = [[UIImageView alloc]init];
+        _imageView.contentMode = UIViewContentModeScaleAspectFit;
+    }
+    return _imageView;
+}
 
 @end

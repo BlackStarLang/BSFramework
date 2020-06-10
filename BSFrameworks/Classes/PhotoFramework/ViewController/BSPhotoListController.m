@@ -182,7 +182,8 @@
 
 -(void )doneBtnClick{
     
-    
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectImage" object:nil];
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 #pragma mark - prive method 自定义方法

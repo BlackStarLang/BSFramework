@@ -130,6 +130,54 @@
 
 
 
+
+
+/// 根据 PHAsset 获取原始图片
+-(void)getImagesWithLocalIdentifiers:(NSArray *)localIdentifiers imageType:(NSString *)imageType isOrigin:(BOOL)isOrigin targetSize:(CGSize )targetSize resultCallBack:(void(^)(NSArray *imageArr))resultArr{
+    
+    NSMutableArray *mutArr = [NSMutableArray array];
+        
+    
+    PHFetchResult *fetchResult = [PHAsset fetchAssetsWithLocalIdentifiers:localIdentifiers options:nil];
+    
+
+    for (PHAsset *asset in fetchResult) {
+     
+        self.options.synchronous = YES;
+        
+        if (isOrigin) {
+            
+            [self.cacheManager requestImageDataForAsset:asset options:self.options resultHandler:^(NSData * _Nullable imageData, NSString * _Nullable dataUTI, UIImageOrientation orientation, NSDictionary * _Nullable info) {
+                
+                if ([imageType isEqualToString:@"UIImage"]) {
+                    UIImage *image = [UIImage imageWithData:imageData];
+                    [mutArr addObject:image];
+                }else{
+                    [mutArr addObject:imageData];
+                }
+                
+            }];
+            
+        }else{
+         
+            [self.cacheManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:self.options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
+               
+                if ([imageType isEqualToString:@"UIImage"]) {
+                    [mutArr addObject:result];
+                }else{
+                    NSData *data = UIImageJPEGRepresentation(result, 0.8);
+                    [mutArr addObject:data];
+                }
+            }];
+        }
+    }
+    
+    resultArr(mutArr);
+}
+
+
+
+
 #pragma mark - init 属性初始化
 
 -(PHCachingImageManager *)cacheManager{
