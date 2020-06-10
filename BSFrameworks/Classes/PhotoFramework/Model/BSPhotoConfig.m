@@ -22,4 +22,15 @@
 }
 
 
+-(void)resetAllConfig{
+    
+    self.allowSelectMaxCount = 9;
+    self.currentSelectedCount = 0;
+    self.mainColor = nil;
+    self.saveToAlbum = YES;
+    self.supCamera = YES;
+    self.isOrigin = NO;
+    
+}
+
 @end

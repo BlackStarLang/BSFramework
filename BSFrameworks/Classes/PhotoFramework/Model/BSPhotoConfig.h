@@ -7,7 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface BSPhotoConfig : NSObject
 
@@ -59,6 +59,9 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong ) UIColor *mainColor;
 
 
+/// 重置所有属性值
+-(void)resetAllConfig;
+
 @end
 
-NS_ASSUME_NONNULL_END
+

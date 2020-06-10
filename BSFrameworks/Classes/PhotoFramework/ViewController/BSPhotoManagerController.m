@@ -29,6 +29,7 @@
 
 -(void)dealloc{
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [[BSPhotoConfig shareConfig]resetAllConfig];
 }
 
 
