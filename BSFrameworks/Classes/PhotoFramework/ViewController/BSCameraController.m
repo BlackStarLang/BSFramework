@@ -280,15 +280,20 @@
 
 -(void)nextBtnClick{
     
+    /// 存到相册
+    if (self.saveToAlbum) {
+        [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:self.photoImageView.image]];
+    }
+    
+    
     if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
         
         UIImage *image = [self getWaterMarkImageWithOriginImage:self.photoImageView.image];
         [self.delegate photoCameraNextBtnClickedWithImage:image];
     }
-    
+
     [self.navigationController popViewControllerAnimated:YES];
     [self.session stopRunning];
-
 }
 
 /// 闪光灯
@@ -395,11 +400,6 @@
     self.photoImageView.image = image;
 
     [self refreshBtnsHiddenStatus:NO];
-    
-    /// 存到相册
-    if (self.saveToAlbum) {
-        [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:image]];
-    }
 }
 
 -(UIImage *)getWaterMarkImageWithOriginImage:(UIImage *)originImage{

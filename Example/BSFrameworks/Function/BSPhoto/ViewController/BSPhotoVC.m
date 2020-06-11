@@ -87,7 +87,7 @@
     managerVC.allowSelectMaxCount = 9;
     managerVC.supCamera = YES;
     managerVC.autoPush = YES;
-    managerVC.saveToAlbum = NO;
+    managerVC.saveToAlbum = YES;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
 

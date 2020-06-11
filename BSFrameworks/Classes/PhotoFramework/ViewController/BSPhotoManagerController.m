@@ -128,21 +128,21 @@
     }
     [self setNeedsStatusBarAppearanceUpdate];
 }
-
+/// 判断 颜色明暗
 - (BOOL)isLighterColor:(UIColor *)color {
+    if (!color) {
+       return YES;
+    }
     const CGFloat* components = CGColorGetComponents(color.CGColor);
     return (components[0]+components[1]+components[2])/3 >= 0.5;
 }
 
 
 -(void)setAllowSelectMaxCount:(NSInteger)allowSelectMaxCount{
-
     [BSPhotoConfig shareConfig].allowSelectMaxCount = allowSelectMaxCount;
 }
 
-
 -(void)setCurrentSelectedCount:(NSInteger)currentSelectedCount{
-
     [BSPhotoConfig shareConfig].currentSelectedCount = currentSelectedCount;
 }
 
