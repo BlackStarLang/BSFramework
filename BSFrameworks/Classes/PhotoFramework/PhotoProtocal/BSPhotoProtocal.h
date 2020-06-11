@@ -33,7 +33,7 @@
 /// images 是 NSDate 对象数组
 /// ===================================
 
--(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray <NSDate *>*)imageDataArr;
+-(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray <NSData *>*)imageDataArr;
 
 
 

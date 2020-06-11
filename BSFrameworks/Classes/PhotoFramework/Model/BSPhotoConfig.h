@@ -59,6 +59,11 @@
 @property (nonatomic ,strong ) UIColor *mainColor;
 
 
+/// =============================================
+/// 状态栏颜色
+/// =============================================
+@property (nonatomic ,assign) UIStatusBarStyle barStyle;
+
 /// 重置所有属性值
 -(void)resetAllConfig;
 

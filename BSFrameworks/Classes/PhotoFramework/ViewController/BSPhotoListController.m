@@ -58,13 +58,19 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    return [BSPhotoConfig shareConfig].barStyle;
+}
+
+
+
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    self.navigationController.toolbarHidden = NO;
+    [self.navigationController setToolbarHidden:NO];
     self.selectOriginBtn.selected = [BSPhotoConfig shareConfig].isOrigin;
 }
 
@@ -77,7 +83,7 @@
     [self initSubViews];
     [self initToolBarItems];
     [self masonryLayout];
-    [self configData];
+    [self configData:NO];
 }
 
 
@@ -152,7 +158,7 @@
 }
 
 
--(void)configData{
+-(void)configData:(BOOL)selectLast{
     
     
     self.scale = [UIScreen mainScreen].scale;
@@ -174,6 +180,18 @@
         [self.dataSource addObject:model];
     }
     
+    /// 如果拍照 ：点击下一步了
+    if (selectLast) {
+        /// 大于最大选择数，不再添加
+        if (self.selectDataArr.count + [BSPhotoConfig shareConfig].currentSelectedCount < [BSPhotoConfig shareConfig].allowSelectMaxCount) {
+            
+            BSPhotoModel *model = self.dataSource.lastObject;
+            model.isSelect = YES;
+            [self.selectDataArr addObject:model.asset.localIdentifier];
+            self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+        }
+    }
+
     [self.collectionView reloadData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
@@ -188,7 +206,6 @@
         self.centerY = self.collectionView.contentOffset.y + self.collectionView.height*3/4;
         self.firstScroll = NO;
     });
-
 }
 
 
@@ -201,7 +218,6 @@
 #pragma mark - action 交互事件
 
 -(void)dismiss{
-    
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
@@ -228,10 +244,21 @@
 #pragma mark - 相机协议 BSPhotoProtocal
 -(void)photoCameraTakeBtnClicked{
     
-    [self configData];
+    [self configData:NO];
     
     if (self.selectDataArr.count + [BSPhotoConfig shareConfig].currentSelectedCount >= [BSPhotoConfig shareConfig].allowSelectMaxCount) {
         NSLog(@"图片个数超出限制");
+    }
+}
+
+-(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
+    
+    if ([BSPhotoConfig shareConfig].saveToAlbum == NO) {
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectImage" object:image];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }else{
+        /// 存储到相册
+        [self configData:YES];
     }
 }
 
@@ -290,18 +317,24 @@
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.row == self.dataSource.count) {
+        /// 相机
         BSCameraController *cameraVC = [[BSCameraController alloc]init];
         cameraVC.saveToAlbum = [BSPhotoConfig shareConfig].saveToAlbum;
         cameraVC.delegate = self;
         cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
+        cameraVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:cameraVC animated:YES];
+  
     }else{
+        /// 图片预览 相机
         BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
         [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
         previewVC.selectDataArr = self.selectDataArr;
         previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
         previewVC.allowSelectMaxCount = [BSPhotoConfig shareConfig].allowSelectMaxCount;
         previewVC.currentSelectedCount = [BSPhotoConfig shareConfig].currentSelectedCount;
+        previewVC.barStyle = [BSPhotoConfig shareConfig].barStyle;
+        previewVC.selectPreview = YES;
         previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
         [self.navigationController pushViewController:previewVC animated:YES];
     }

@@ -92,6 +92,10 @@
 
 #pragma mark - Set Method
 
+-(void)setHiddenRightBtn:(BOOL)hiddenRightBtn{
+    self.rightBtn.hidden = hiddenRightBtn;
+}
+
 - (void)setTitle:(NSString *)title{
     self.titleLabel.text = title;
 }

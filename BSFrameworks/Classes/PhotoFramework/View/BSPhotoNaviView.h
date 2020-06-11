@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,  copy) NSString *title;
 @property (nonatomic ,strong) UIColor *titleColor;
 
+@property (nonatomic ,assign) BOOL hiddenRightBtn;
+
 -(void)setLeftBtnTitle:(NSString *)leftTitle titleColor:(UIColor *)titleColor;
 
 -(void)setRightBtnTitle:(NSString *)rightTitle titleColor:(UIColor *)titleColor;

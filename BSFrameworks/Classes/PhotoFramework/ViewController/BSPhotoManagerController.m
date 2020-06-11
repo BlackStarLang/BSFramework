@@ -38,12 +38,12 @@
     self = [super init];
     
     if (self) {
-        
+                
         [BSPhotoConfig shareConfig].allowSelectMaxCount = 9;
         [BSPhotoConfig shareConfig].supCamera = YES;
         [BSPhotoConfig shareConfig].saveToAlbum = YES;
         
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage) name:@"didFinishSelectImage" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage:) name:@"didFinishSelectImage" object:nil];
         
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
         root.selectDataArr = self.selectDataArr;
@@ -58,9 +58,14 @@
 }
 
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    NSLog(@" manager ==== %ld",(long)[BSPhotoConfig shareConfig].barStyle);
+    return [BSPhotoConfig shareConfig].barStyle;
+}
+
 #pragma mark - noti 
 /// 点击完成发送通知 回调图片
--(void)didFinishSelectImage{
+-(void)didFinishSelectImage:(NSNotification*)noti{
     
     __weak typeof(self)weakSelf = self;
     
@@ -68,7 +73,12 @@
         
         [self.dataManager getImagesWithLocalIdentifiers:self.selectDataArr imageType:@"UIImage" isOrigin:[BSPhotoConfig shareConfig].isOrigin targetSize:CGSizeMake(0, 0) resultCallBack:^(NSArray *imageArr) {
             
-            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImage:imageArr];
+            NSMutableArray *targetImgs = [NSMutableArray arrayWithArray:imageArr];
+            if (noti.object && [noti.object isKindOfClass:[UIImage class]]) {
+                [targetImgs addObject:noti.object];
+            }
+            
+            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImage:targetImgs];
         }];
     }
     
@@ -77,7 +87,14 @@
         
         [self.dataManager getImagesWithLocalIdentifiers:self.selectDataArr imageType:@"NSData" isOrigin:[BSPhotoConfig shareConfig].isOrigin targetSize:CGSizeMake(0, 0) resultCallBack:^(NSArray *imageArr) {
             
-            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImageData:imageArr];
+            NSMutableArray *targetImgs = [NSMutableArray arrayWithArray:imageArr];
+            
+            if (noti.object && [noti.object isKindOfClass:[UIImage class]]) {
+                NSData *photoData = UIImageJPEGRepresentation(noti.object, 0.8);
+                [targetImgs addObject:photoData];
+            }
+            
+            [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImageData:targetImgs];
         }];
     }
 }
@@ -103,10 +120,13 @@
     if ([self isLighterColor:mainColor]) {
         self.navigationBar.tintColor = [UIColor blackColor];
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor blackColor]}];
+        [BSPhotoConfig shareConfig].barStyle = UIStatusBarStyleDefault;
     }else{
         self.navigationBar.tintColor = [UIColor whiteColor];
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+        [BSPhotoConfig shareConfig].barStyle = UIStatusBarStyleLightContent;
     }
+    [self setNeedsStatusBarAppearanceUpdate];
 }
 
 - (BOOL)isLighterColor:(UIColor *)color {
@@ -130,6 +150,9 @@
     [BSPhotoConfig shareConfig].supCamera = supCamera;
 }
 
+-(void)setSaveToAlbum:(BOOL)saveToAlbum{
+    [BSPhotoConfig shareConfig].saveToAlbum = saveToAlbum;
+}
 
 #pragma mark - 数据请求
 

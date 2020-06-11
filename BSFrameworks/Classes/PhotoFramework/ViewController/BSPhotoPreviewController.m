@@ -48,6 +48,10 @@
     NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
 }
 
+-(UIStatusBarStyle)preferredStatusBarStyle{
+    
+    return self.barStyle;
+}
 
 -(BOOL)prefersStatusBarHidden{
  
@@ -59,10 +63,7 @@
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
     
-    self.statusBarHiddenStatus = NO;
-    [self setNeedsStatusBarAppearanceUpdate];
     [self.navigationController setNavigationBarHidden:NO];
-    
     [[NSNotificationCenter defaultCenter]postNotificationName:@"REFRESH_LIST_CELL_SELECT_STATUS" object:nil];
 }
 
@@ -72,8 +73,19 @@
     [self initSubViews];
     [self initToolBarItems];
     [self masonryLayout];
+    [self initBarHiddenStatus];
 }
 
+-(void)initBarHiddenStatus{
+    if (self.selectPreview) {
+        [self initToolBarItems];
+        [self.navigationController setToolbarHidden:NO];
+        self.naviView.hiddenRightBtn = NO;
+    }else{
+        [self.navigationController setToolbarHidden:YES];
+        self.naviView.hiddenRightBtn = YES;
+    }
+}
 
 -(void)initSubViews{
     
@@ -128,8 +140,6 @@
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }else{
             
-
-            
             CGFloat offsetX = weakSelf.collectionView.contentOffset.x;
             NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
             BSPhotoModel *model = weakSelf.previewPhotos[pageIndex];
@@ -164,7 +174,7 @@
 }
 
 
--(void)initToolBarItems{
+-(void)autoLightOrDark{
     
     if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
         [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
@@ -173,6 +183,12 @@
         [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
+}
+
+
+-(void)initToolBarItems{
+    
+    [self autoLightOrDark];
     
     UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
@@ -185,6 +201,7 @@
     
     [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
 }
+
 
 - (BOOL)isLighterColor:(UIColor *)color {
     if (!color) {
@@ -288,9 +305,12 @@
             self.naviView.alpha = self.statusBarHiddenStatus?1:0;
         }];
         
-        [self.navigationController setToolbarHidden:!self.statusBarHiddenStatus animated:YES];
         self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
         [self setNeedsStatusBarAppearanceUpdate];
+
+        if (self.selectPreview) {
+            [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
+        }
     }
 }
 

@@ -83,10 +83,11 @@
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
     managerVC.mainColor = [UIColor darkTextColor];
-    managerVC.currentSelectedCount = 5;
+    managerVC.currentSelectedCount = 0;
     managerVC.allowSelectMaxCount = 9;
-    managerVC.supCamera = NO;
+    managerVC.supCamera = YES;
     managerVC.autoPush = YES;
+    managerVC.saveToAlbum = NO;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
 
@@ -103,13 +104,18 @@
 
 #pragma mark - systemDelegate
 
--(void)BSPhotoManagerDidFinishedSelectImage:(NSArray<UIImage *> *)images{
+//-(void)BSPhotoManagerDidFinishedSelectImage:(NSArray<UIImage *> *)images{
+//
+//    self.imageView.image = images.firstObject;
+//    NSLog(@"%@",images);
+//}
+
+-(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray<NSData *> *)imageDataArr{
+    NSLog(@"imageDataArr = %@",imageDataArr);
+    NSData *data = imageDataArr.firstObject;
     
-    self.imageView.image = images.firstObject;
-    NSLog(@"%@",images);
+    self.imageView.image = [UIImage imageWithData:data];
 }
-
-
 
 
 #pragma mark - init 属性初始化
