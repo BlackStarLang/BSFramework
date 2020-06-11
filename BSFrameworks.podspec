@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BSFrameworks'
-  s.version          = '0.1.3'
-  s.summary          = '紧急修复 UIView+BSView bug'
+  s.version          = '0.1.4'
+  s.summary          = '图片选择器+图片预览完成'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
