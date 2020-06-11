@@ -22,12 +22,6 @@
 
 @implementation BSPhotoDataManager
 
--(void)dealloc{
- 
-    NSLog(@" BSPhotoDataManager  dealloc");
-    
-}
-
 -(void)stopAllCache{
     
     [self.cacheManager stopCachingImagesForAllAssets];

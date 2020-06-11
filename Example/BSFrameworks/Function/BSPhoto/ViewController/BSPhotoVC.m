@@ -111,7 +111,7 @@
 //}
 
 -(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray<NSData *> *)imageDataArr{
-    NSLog(@"imageDataArr = %@",imageDataArr);
+
     NSData *data = imageDataArr.firstObject;
     
     self.imageView.image = [UIImage imageWithData:data];

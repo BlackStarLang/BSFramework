@@ -105,6 +105,7 @@
     self.navigationItem.leftBarButtonItem = leftItem;
     
     self.title = self.groupModel.title;
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.collectionView];
 }
 
@@ -169,9 +170,7 @@
     
     NSMutableArray *array = [NSMutableArray array];
     
-    [self.dataSource removeAllObjects];
     for (PHAsset *asset in result) {
-        [array addObject:asset];
         
         BSPhotoModel *model = [[BSPhotoModel alloc]init];
         model.asset = asset;
@@ -179,8 +178,12 @@
         if ([self.selectDataArr containsObject:asset.localIdentifier]) {
             model.isSelect = YES;
         }
-        [self.dataSource addObject:model];
+        [array addObject:model];
     }
+    NSLog(@"array==%ld",array.count);
+    [self.dataSource removeAllObjects];
+    [self.dataSource addObjectsFromArray:array];
+    [self.collectionView reloadData];
     
     /// 如果拍照 ：点击下一步了
     if (selectLast) {
@@ -194,7 +197,6 @@
         }
     }
 
-    [self.collectionView reloadData];
     
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.firstScroll = YES;
@@ -204,6 +206,7 @@
             row = self.dataSource.count;
         }
         
+        self.collectionView.hidden = NO;
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         self.centerY = self.collectionView.contentOffset.y + self.collectionView.height*3/4;
         self.firstScroll = NO;
@@ -244,14 +247,6 @@
 
 
 #pragma mark - 相机协议 BSPhotoProtocal
--(void)photoCameraTakeBtnClicked{
-    
-    [self configData:NO];
-    
-    if (self.selectDataArr.count + [BSPhotoConfig shareConfig].currentSelectedCount >= [BSPhotoConfig shareConfig].allowSelectMaxCount) {
-        NSLog(@"图片个数超出限制");
-    }
-}
 
 -(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
     
@@ -443,6 +438,7 @@
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectZero collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
+        _collectionView.hidden = YES;
         _collectionView.backgroundColor = [UIColor whiteColor];
         [_collectionView registerClass:[PhotoListCollectionCell class] forCellWithReuseIdentifier:@"PhotoListCollectionCell"];
     }

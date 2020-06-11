@@ -35,7 +35,7 @@
 #pragma mark - 生命周期
 
 -(void)dealloc{
-    NSLog(@"==== %@ dealloc =====",NSStringFromClass([self class]));
+    NSLog(@"%@ dealloc",NSStringFromClass([self class]));
     
     if ([self.device lockForConfiguration:nil]) {
         if ([self.device isTorchModeSupported:AVCaptureTorchModeOff]) {
@@ -279,12 +279,15 @@
 
 
 -(void)nextBtnClick{
-    
     /// 存到相册
     if (self.saveToAlbum) {
         [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:self.photoImageView.image]];
+    }else{
+        [self delegateCallBack];
     }
-    
+}
+
+-(void)delegateCallBack{
     
     if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
         
@@ -423,10 +426,14 @@
 
 -(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
     NSString *msg = nil ;
+    
     if(error){
         msg = @"保存图片失败" ;
+        [self.navigationController popViewControllerAnimated:YES];
+        [self.session stopRunning];
     }else{
         msg = @"保存图片成功" ;
+        [self delegateCallBack];
     }
 }
 

@@ -59,7 +59,7 @@
 
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
-    NSLog(@" manager ==== %ld",(long)[BSPhotoConfig shareConfig].barStyle);
+
     return [BSPhotoConfig shareConfig].barStyle;
 }
 
