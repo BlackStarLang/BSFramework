@@ -40,6 +40,7 @@ pod 'BSFrameworks'
 ```ruby
 pod 'BSFrameworks/BSLooperView'
 ```
+
 ``` ruby
 功能简介：
 
@@ -53,6 +54,9 @@ pod 'BSFrameworks/BSLooperView'
 
 支持自定义cell
 
+```
+
+```ruby
 -(BSLooperView *)looperView{
     if (!_looperView) {
         _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 300)];
@@ -71,13 +75,14 @@ pod 'BSFrameworks/BSLooperView'
     return _looperView;
 }
 
-    self.looperView.dataArr = self.dataArr;
+self.looperView.dataArr = self.dataArr;
 ```
 
 图片选择器、图片预览控件、水印相机
 ```ruby
 pod 'BSFrameworks/BSPhotoFramework'
 ```
+
 ``` ruby
 功能简介：
 
@@ -89,7 +94,9 @@ pod 'BSFrameworks/BSPhotoFramework'
    
 3、水印相机：使用AVFoundation框架自定义相机，拍照后图片添加水印（完成）
    fature: 调用相机即添加水印（未开始）
+```
 
+```ruby
 BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
 managerVC.BSDelegate = self;
 managerVC.modalPresentationStyle = 0;
