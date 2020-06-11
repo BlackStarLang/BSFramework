@@ -160,10 +160,12 @@
 
 -(void)configData:(BOOL)selectLast{
     
-    
     self.scale = [UIScreen mainScreen].scale;
     
-    PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:self.groupModel.assetCollection options:nil];
+    PHFetchOptions *options = [[PHFetchOptions alloc]init];
+    options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];;
+    
+    PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:self.groupModel.assetCollection options:options];
     
     NSMutableArray *array = [NSMutableArray array];
     

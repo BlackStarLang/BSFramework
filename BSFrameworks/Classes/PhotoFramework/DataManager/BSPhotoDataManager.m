@@ -64,7 +64,10 @@
     
     for (PHAssetCollection *assetCollection in result) {
         
-        PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:nil];
+        PHFetchOptions *options = [[PHFetchOptions alloc]init];
+        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];;
+        
+        PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
         NSInteger count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
        
         if (count && ![assetCollection.localizedTitle isEqualToString:@"Recently Deleted"]) {
