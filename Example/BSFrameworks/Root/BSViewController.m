@@ -15,8 +15,6 @@
 #import "BSRootCell.h"
 #import "BSFunctionModel.h"
 
-
-
 @interface BSViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic ,strong) NSArray *dataSource;

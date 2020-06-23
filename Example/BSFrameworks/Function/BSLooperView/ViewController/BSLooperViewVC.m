@@ -11,7 +11,7 @@
 #import "BSCollectionViewCell.h"
 #import <UIImageView+WebCache.h>
 #import "UIView+BSView.h"
-
+#import "BSFunctionModel.h"
 
 
 @interface BSLooperViewVC ()<BSLooperViewDelegate>

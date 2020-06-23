@@ -22,6 +22,7 @@
 
 -(void)initSubViews{
     
+    self.titleLabel.layer.masksToBounds = YES;
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.titleLabel];
@@ -46,6 +47,7 @@
         _titleLabel.textAlignment = 0;
         _titleLabel.numberOfLines = 0;
         _titleLabel.font = [UIFont systemFontOfSize:15];
+        _titleLabel.backgroundColor = [UIColor whiteColor];
     }
     return _titleLabel;
 }

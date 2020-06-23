@@ -33,7 +33,7 @@
     
     NSDictionary *pushInfo = @{@"3D轮播图":@"BSLooperViewVC",
                                @"自定义相机 + 拍照水印 + 图片选择器 + 预览等图片相关":@"BSPhotoVC",
-//                               @"时间选择器（可自定义时间格式）":@"",
+                               @"自定义kvo，用于更好地理解kvo原理":@"BSStudyObjcController",
 //                               @"trie 树 搜索":@"",
                                
     };

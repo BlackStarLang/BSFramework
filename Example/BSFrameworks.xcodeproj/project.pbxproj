@@ -10,6 +10,9 @@
 		3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */; };
 		30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */; };
 		30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A372485E7FD002DBC8D /* BSFunctionModel.m */; };
+		30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702836249C62F7000C5384 /* BSStudyObjcController.m */; };
+		3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702839249C695C000C5384 /* BSObjcPerson.m */; };
+		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
@@ -50,6 +53,12 @@
 		30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLooperViewVC.m; sourceTree = "<group>"; };
 		30494A362485E7FD002DBC8D /* BSFunctionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFunctionModel.h; sourceTree = "<group>"; };
 		30494A372485E7FD002DBC8D /* BSFunctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFunctionModel.m; sourceTree = "<group>"; };
+		30702835249C62F7000C5384 /* BSStudyObjcController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSStudyObjcController.h; sourceTree = "<group>"; };
+		30702836249C62F7000C5384 /* BSStudyObjcController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSStudyObjcController.m; sourceTree = "<group>"; };
+		30702838249C695C000C5384 /* BSObjcPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSObjcPerson.h; sourceTree = "<group>"; };
+		30702839249C695C000C5384 /* BSObjcPerson.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSObjcPerson.m; sourceTree = "<group>"; };
+		3070283C249CB35E000C5384 /* BSNotifacation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotifacation.h; sourceTree = "<group>"; };
+		3070283D249CB35E000C5384 /* BSNotifacation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotifacation.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
@@ -135,6 +144,8 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				3070283B249CB31C000C5384 /* BSNotifacation */,
+				30702832249C62AE000C5384 /* BSStudyObjc */,
 				30494A332485E7BA002DBC8D /* BSPhoto */,
 				30494A2D2485E435002DBC8D /* BSLooperView */,
 			);
@@ -191,6 +202,42 @@
 			children = (
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		30702832249C62AE000C5384 /* BSStudyObjc */ = {
+			isa = PBXGroup;
+			children = (
+				30702834249C62D0000C5384 /* Model */,
+				30702833249C62C3000C5384 /* ViewController */,
+			);
+			path = BSStudyObjc;
+			sourceTree = "<group>";
+		};
+		30702833249C62C3000C5384 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				30702835249C62F7000C5384 /* BSStudyObjcController.h */,
+				30702836249C62F7000C5384 /* BSStudyObjcController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		30702834249C62D0000C5384 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30702838249C695C000C5384 /* BSObjcPerson.h */,
+				30702839249C695C000C5384 /* BSObjcPerson.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		3070283B249CB31C000C5384 /* BSNotifacation */ = {
+			isa = PBXGroup;
+			children = (
+				3070283C249CB35E000C5384 /* BSNotifacation.h */,
+				3070283D249CB35E000C5384 /* BSNotifacation.m */,
+			);
+			path = BSNotifacation;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -519,12 +566,15 @@
 			files = (
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
+				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
+				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
+				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
