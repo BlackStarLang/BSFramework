@@ -202,7 +202,7 @@
         Class superClass = [self.object superclass];
         Method keyMethod = class_getInstanceMethod(superClass, @selector(class));
         const char *keyMethodType = method_getTypeEncoding(keyMethod);
-        
+
         IMP classImp = class_getMethodImplementation([self class], @selector(BSNotiClass));
         class_addMethod(notiClass, classSel, classImp, keyMethodType);
     }
