@@ -9,6 +9,7 @@
 #import "BSStudyObjcController.h"
 #import "BSObjcPerson.h"
 #import "BSNotifacation.h"
+#import "BSButton.h"
 #import <UIView+BSView.h>
 
 #import <objc/objc.h>
@@ -17,6 +18,7 @@
 @interface BSStudyObjcController ()
 
 @property (nonatomic ,strong) BSObjcPerson *person;
+@property (nonatomic ,strong) NSThread *thread;
 
 @end
 
@@ -33,12 +35,22 @@
     // Do any additional setup after loading the view.
     [self addBtn];
     [self addObserver];
+    
+//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 200, 200, 200)];
+//    label.backgroundColor = [UIColor grayColor];
+//    NSString *str = NULL;
+//    label.text = str;
+//
+//    [self.view addSubview:label];
 }
 
 
 -(void)addBtn{
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 84, self.view.width - 40, 40)];
+    [self.view addSubview:label];
+    
+    BSButton *btn = [[BSButton alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
     btn.center = self.view.center;
     btn.backgroundColor = [UIColor blueColor];
     [btn addTarget:self action:@selector(changePersonName) forControlEvents:UIControlEventTouchUpInside];
@@ -77,8 +89,69 @@
     //    [person1 addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
     //    person1.age = 6;
     //    person1.name = @"11";
+    
+
+    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(threadAction) object:nil];
+    [self.thread start];
+    
+    
 }
 
+
+-(void)threadAction{
+
+    NSLog(@" thread start");
+    
+    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+        
+        NSLog(@"%f",CFRunLoopGetNextTimerFireDate(CFRunLoopGetCurrent(),CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent())));
+        switch (activity) {
+            case kCFRunLoopEntry:
+                NSLog(@"runloop 进入");
+                break;
+            case kCFRunLoopBeforeTimers:
+                NSLog(@"将处理 timer");
+                break;
+            case kCFRunLoopBeforeSources:
+                NSLog(@"将处理 source");
+                break;
+            case kCFRunLoopBeforeWaiting:
+                NSLog(@"将进入等待状态，即runloop休息");
+                break;
+            case kCFRunLoopAfterWaiting:
+                NSLog(@"将进入唤醒状态，即runloop要工作了");
+                break;
+            case kCFRunLoopExit:
+                NSLog(@"runloop 退出");
+                break;
+                
+            default:
+                break;
+        }
+        
+    });
+    
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
+    CFRelease(observer);
+    
+//    [self performSelector:@selector(run2)];
+//    [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
+    [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
+    [[NSRunLoop currentRunLoop]run];
+    
+    NSLog(@" thread end");
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
+{
+    // 利用performSelector，在self.thread的线程中调用run2方法执行任务
+    [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
+}
+
+- (void) run2
+{
+    NSLog(@"----run2 in thread %@-----",[NSThread currentThread]);
+}
 
 #pragma mark - action 交互事件
 

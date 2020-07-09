@@ -390,7 +390,7 @@ void setterInt(id self , SEL _cmd , int value){
 }
 
 /// 方法交换，obsever 的 dealloc 和 obseverDealloc 进行交换
-/// 主动 调用 dealloc会闪退，没找到解决方案，暂时不做
+/// 主动 调用 dealloc 会闪退，没找到解决方案，暂时不做
 -(void)obseverDealloc{
     
 //    id notiObj = objc_getAssociatedObject(self, "bsnoti_obj");
