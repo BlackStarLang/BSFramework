@@ -193,17 +193,26 @@
         }
         
         /**
-         * 本来要加将timer 加入 runloop中（子线程加入，启动runloppe）
-         * 加入后，发现无法停止timer，暂时未找到解决方案
-         * 加runloop的好处就是，如果 滚动视图 的父视图 是ScrollView
-         * 那么 ScrollView 的滚动 不影响timer的执行
-         * 不加入runloop会造成 scrollview在滑动的时候timer 是暂停的（卡主）
+         * 将 timer 加入到 runloop
+         * 目的：ScrollView 的滚动 不影响 timer 的执行
+         * 场景：loopView 作为 tableview的headerView
+         *
+         * 目前加入到主线程RunLoop中
+         *
+         * 本来要将timer 加入 子线程runloop中
+         * 加入后发现无法停止timer，暂时未找到解决方案
          */
         self.timerTarget = [[TimerTarget alloc]init];
         self.timerTarget.target = self;
-        self.timer = [NSTimer scheduledTimerWithTimeInterval:self.duration target:self.timerTarget selector:@selector(looperTime) userInfo:nil repeats:YES];
+        self.timer = [NSTimer timerWithTimeInterval:self.duration target:self.timerTarget selector:@selector(looperTime) userInfo:nil repeats:YES];
+        if (self.joinRunLoopCommonMode) {
+            [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSRunLoopCommonModes];
+        }else{
+            [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        }
     }
 }
+
 
 /// timer 回调
 -(void)looperTime{
@@ -252,7 +261,6 @@
 
                     [self.collectionView setContentOffset:CGPointMake(offsetX, 0) animated:YES];
                 }
-                
                 
                 
             }else{

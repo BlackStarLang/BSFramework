@@ -20,6 +20,10 @@
 @property (nonatomic ,strong) BSObjcPerson *person;
 @property (nonatomic ,strong) NSThread *thread;
 
+@property (nonatomic ,strong) NSTimer *timer;
+@property (nonatomic ,assign) NSInteger timerCount;
+
+
 @end
 
 @implementation BSStudyObjcController
@@ -29,20 +33,37 @@
     NSLog(@"BSStudyObjcController dealloc");
 }
 
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    [self addBtn];
-    [self addObserver];
-    
-//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(100, 200, 200, 200)];
-//    label.backgroundColor = [UIColor grayColor];
-//    NSString *str = NULL;
-//    label.text = str;
-//
-//    [self.view addSubview:label];
+//    [self addBtn];
+//    [self addObserver];// 自定义notifacation
+//    [self runLoopTest];// runloop 测试
+    [self timerTest];
 }
+
+
+-(void)timerTest{
+    
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
+//        self.timer.tolerance = 2;
+//        [self.timer fire];
+//        [[NSRunLoop currentRunLoop]run];
+//    });
+    
+    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(timerAction)];
+    [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
+    
+}
+
+
+-(void)timerAction{
+    NSLog(@"timer 执行");
+}
+
 
 
 -(void)addBtn{
@@ -67,36 +88,12 @@
     [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(name) callBack:^(id  _Nonnull oldValue, id  _Nonnull newValue) {
         NSLog(@"\nnoti person1:\noldValue = %@\nnewValue = %@",oldValue,newValue);
     }];
-    
-    //    person1.name = @"personName1";
-    
-    
-    //    [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(age) callBack:^(id oldValue, id newValue) {
-    //        NSLog(@"\nnoti person2:\noldValue = %@\nnewValue = %@",oldValue,newValue);
-    //
-    //    }];
-    //
-    //    person1.age = 2;
-    //
-    //    [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(age) callBack:^(id oldValue, id newValue) {
-    //        NSLog(@"\nnoti person3:\noldValue = %@\nnewValue = %@",oldValue,newValue);
-    //
-    //    }];
-    //
-    //    person1.age = 6;
-    
-    //    [person1 addObserver:self forKeyPath:@"name" options:NSKeyValueObservingOptionNew context:nil];
-    //    [person1 addObserver:self forKeyPath:@"age" options:NSKeyValueObservingOptionNew context:nil];
-    //    person1.age = 6;
-    //    person1.name = @"11";
-    
-
-    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(threadAction) object:nil];
-    [self.thread start];
-    
-    
 }
 
+-(void)runLoopTest{
+    self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(threadAction) object:nil];
+    [self.thread start];
+}
 
 -(void)threadAction{
 
@@ -104,7 +101,8 @@
     
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         
-        NSLog(@"%f",CFRunLoopGetNextTimerFireDate(CFRunLoopGetCurrent(),CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent())));
+//        NSLog(@"%f",CFRunLoopGetNextTimerFireDate(CFRunLoopGetCurrent(),CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent())));
+      
         switch (activity) {
             case kCFRunLoopEntry:
                 NSLog(@"runloop 进入");
@@ -134,24 +132,25 @@
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
     CFRelease(observer);
     
-//    [self performSelector:@selector(run2)];
-//    [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
     [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
     [[NSRunLoop currentRunLoop]run];
     
     NSLog(@" thread end");
 }
 
-- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
-{
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
     // 利用performSelector，在self.thread的线程中调用run2方法执行任务
     [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
 }
 
-- (void) run2
-{
+
+- (void)run2{
+    
     NSLog(@"----run2 in thread %@-----",[NSThread currentThread]);
 }
+
 
 #pragma mark - action 交互事件
 
@@ -161,9 +160,5 @@
     self.person.age = 20;
 }
 
-
-//-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
-//
-//}
 
 @end

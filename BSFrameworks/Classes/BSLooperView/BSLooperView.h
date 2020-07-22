@@ -41,14 +41,14 @@
 
 /* ********************************************************* */
 /* 无限轮播原理:将目标数组添加到 轮播数组中，添加三次                */
-/* 构造成所叙述句样式,exampl:                                   */
+/* 构造成所需数据样式,exampl:                                   */
 /* 目标数组 A=[1,2,3], 构造新数组 newA=[1,2,3, 1,2,3, 1,2,3]    */
 /* 让当前pageIndex 始终处于 中间的1，2，3下，即pageIndex=3、4、5   */
 /* 当pageIndex=2是,设置collectionview的scrollToItemAtIndexPath */
 /* 的row=5,然后重置pageIndex=5                                 */
 /* ********************************************************* */
 
-/// *** 只支持一行或一列 ***
+/// *** 不支持多分组，即不支持section>1 ***
 
 #pragma mark -
 
@@ -83,6 +83,12 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 /// ====================================
 @property (nonatomic ,assign) BOOL autoLoop;
 
+
+/// ====================================
+///  是否加入到runloop的common mode 中
+///  默认不加入
+/// ====================================
+@property (nonatomic ,assign) BOOL joinRunLoopCommonMode;
 
 
 /// ====================================
