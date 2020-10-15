@@ -59,6 +59,13 @@
 @property (nonatomic ,strong ) UIColor *mainColor;
 
 
+/// ====================================
+/// 预览图片时，navibar 的 alpha 值
+/// navibar alpha,默认为 1
+/// naviBarAlpha <=0 时，按1处理
+/// ====================================
+@property (nonatomic ,assign) CGFloat preNaviAlpha;
+
 /// =============================================
 /// 状态栏颜色
 /// =============================================

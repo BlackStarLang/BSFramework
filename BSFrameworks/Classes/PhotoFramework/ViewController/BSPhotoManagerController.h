@@ -56,6 +56,13 @@
 @property (nonatomic ,strong) UIColor *mainColor;
 
 
+/// ====================================
+/// preBarAlpha 为预览时，navibar的透明度
+/// preBarAlpha alpha ,默认为 1
+/// preBarAlpha <=0 时 ,按1处理
+/// ====================================
+@property (nonatomic ,assign) CGFloat preBarAlpha;
+
 
 /// =============================================
 /// 是否支持 相机

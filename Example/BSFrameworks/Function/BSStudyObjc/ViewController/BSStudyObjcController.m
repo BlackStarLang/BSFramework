@@ -38,10 +38,10 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-//    [self addBtn];
-//    [self addObserver];// 自定义notifacation
+    [self addBtn];
+    [self addObserver];// 自定义notifacation
 //    [self runLoopTest];// runloop 测试
-    [self timerTest];
+//    [self timerTest]; //timer 测试
 }
 
 

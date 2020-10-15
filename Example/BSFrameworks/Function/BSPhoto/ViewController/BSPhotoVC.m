@@ -16,7 +16,7 @@
 #import "TZImagePickerController.h"
 
 
-@interface BSPhotoVC ()<BSPhotoProtocal>
+@interface BSPhotoVC ()<BSPhotoProtocal,TZImagePickerControllerDelegate>
 
 @property (nonatomic ,strong) UIButton *cameraBtn;
 @property (nonatomic ,strong) UIButton *cameraBtn1;
@@ -83,6 +83,7 @@
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
     managerVC.mainColor = [UIColor darkTextColor];
+    managerVC.preBarAlpha = 0.5;
     managerVC.currentSelectedCount = 0;
     managerVC.allowSelectMaxCount = 9;
     managerVC.supCamera = YES;
@@ -96,7 +97,6 @@
 -(void)cameraBtnClick1{
 
     TZImagePickerController *managerVC = [[TZImagePickerController alloc]initWithMaxImagesCount:9 delegate:self];
-//    managerVC.delegate = self;
     managerVC.modalPresentationStyle = 0;
     [self presentViewController:managerVC animated:YES completion:nil];
 }

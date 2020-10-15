@@ -33,15 +33,6 @@
 }
 
 
--(instancetype)init{
-    self = [super init];
-    if (self) {
-        [self initSubViews];
-        [self masonryLayout];
-    }
-    return self;
-}
-
 -(void)initSubViews{
     
     [self addSubview:self.naviBar];
@@ -125,6 +116,7 @@
 
         self.naviBar.barTintColor = backgroundColor;
     }
+    [super setBackgroundColor:backgroundColor];
 }
 
 - (BOOL)isLighterColor:(UIColor *)color {

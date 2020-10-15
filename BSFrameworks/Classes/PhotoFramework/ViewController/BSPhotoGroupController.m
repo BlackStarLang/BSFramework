@@ -13,6 +13,8 @@
 #import "BSPhotoGroupModel.h"
 #import "BSPhotoViewModel.h"
 #import "BSPhotoListController.h"
+#import <Photos/Photos.h>
+
 
 
 @interface BSPhotoGroupController ()<UITableViewDelegate,UITableViewDataSource>
@@ -44,8 +46,56 @@
     self.view.backgroundColor = [UIColor whiteColor];
     [self initSubViews];
     [self masonryLayout];
-    [self configData];
-    [self getAllGroupList];
+    [self authorization];
+}
+
+// 相册权限
+-(void)authorization{
+    //请求相机权限
+    PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
+    if (status == PHAuthorizationStatusNotDetermined) {
+        
+        [PHPhotoLibrary requestAuthorization:^(PHAuthorizationStatus status) {
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                if (status == PHAuthorizationStatusAuthorized) {
+                    //授权后，发送通知跳转到 图片列表页面
+                    [[NSNotificationCenter defaultCenter]postNotificationName:@"auth_img_library" object:nil];
+                    [self authorization];
+                }else{
+                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                        
+                        [self.navigationController popViewControllerAnimated:YES];
+                        [self dismissViewControllerAnimated:YES completion:nil];
+                    }];
+                    
+                    [controller addAction:action];
+                    [self presentViewController:controller animated:YES completion:nil];
+                    return;
+                }
+            });
+            
+        }];
+        
+    }else if (status == AVAuthorizationStatusDenied) {
+        
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            
+            [self.navigationController popViewControllerAnimated:YES];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        }];
+        
+        [controller addAction:action];
+        [self presentViewController:controller animated:YES completion:nil];
+        
+        return;
+    }else if (status == AVAuthorizationStatusAuthorized){
+        
+        [self configData];
+        [self getAllGroupList];
+    }
 }
 
 

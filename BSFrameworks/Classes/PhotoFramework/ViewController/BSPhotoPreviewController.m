@@ -302,7 +302,8 @@
         
         [UIView animateWithDuration:0.3 animations:^{
             self.naviView.top = self.statusBarHiddenStatus?0:-64;
-            self.naviView.alpha = self.statusBarHiddenStatus?1:0;
+            CGFloat alpha = [BSPhotoConfig shareConfig].preNaviAlpha;
+            self.naviView.alpha = self.statusBarHiddenStatus?(alpha<=0?1:alpha):0;
         }];
         
         self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
@@ -428,6 +429,7 @@
 -(BSPhotoNaviView *)naviView{
     if (!_naviView) {
         _naviView = [[BSPhotoNaviView alloc]init];
+        _naviView.alpha = [BSPhotoConfig shareConfig].preNaviAlpha;
     }
     return _naviView;
 }

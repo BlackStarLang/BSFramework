@@ -27,10 +27,10 @@
     self.allowSelectMaxCount = 9;
     self.currentSelectedCount = 0;
     self.mainColor = nil;
+    self.preNaviAlpha = 1;
     self.saveToAlbum = YES;
     self.supCamera = YES;
     self.isOrigin = NO;
-    
 }
 
 @end

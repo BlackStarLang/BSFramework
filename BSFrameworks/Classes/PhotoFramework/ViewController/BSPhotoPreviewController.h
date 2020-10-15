@@ -34,7 +34,6 @@ typedef enum : NSUInteger {
 @property (nonatomic ,strong) UIColor *mainColor;
 
 
-
 /// ====================================
 /// 状态栏样式
 /// ====================================

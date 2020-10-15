@@ -44,7 +44,8 @@
         [BSPhotoConfig shareConfig].saveToAlbum = YES;
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage:) name:@"didFinishSelectImage" object:nil];
-        
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGroupListData) name:@"auth_img_library" object:nil];
+
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
         root.selectDataArr = self.selectDataArr;
         self = [super initWithRootViewController:root];
@@ -128,6 +129,14 @@
     }
     [self setNeedsStatusBarAppearanceUpdate];
 }
+
+-(void)setPreBarAlpha:(CGFloat)preBarAlpha{
+    
+    _preBarAlpha = preBarAlpha;
+    [BSPhotoConfig shareConfig].preNaviAlpha = preBarAlpha;
+}
+
+
 /// 判断 颜色明暗
 - (BOOL)isLighterColor:(UIColor *)color {
     if (!color) {
