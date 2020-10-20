@@ -83,7 +83,7 @@
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
     managerVC.mainColor = [UIColor darkTextColor];
-    managerVC.preBarAlpha = 0.5;
+    managerVC.preBarAlpha = 0.7;
     managerVC.currentSelectedCount = 0;
     managerVC.allowSelectMaxCount = 9;
     managerVC.supCamera = YES;

@@ -45,7 +45,6 @@
     if (!_cellImageView) {
         _cellImageView = [[UIImageView alloc]init];
         _cellImageView.contentMode = UIViewContentModeScaleAspectFill;
-        _cellImageView.backgroundColor = [UIColor redColor];
     }
     return _cellImageView;
 }

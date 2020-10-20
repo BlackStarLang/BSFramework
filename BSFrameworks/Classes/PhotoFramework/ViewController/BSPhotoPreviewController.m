@@ -141,7 +141,7 @@
         }else{
             
             CGFloat offsetX = weakSelf.collectionView.contentOffset.x;
-            NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
+            NSInteger pageIndex = offsetX/weakSelf.collectionView.frame.size.width;
             BSPhotoModel *model = weakSelf.previewPhotos[pageIndex];
 
             if ([weakSelf.selectDataArr containsObject:model.identifier]) {
@@ -174,18 +174,6 @@
 }
 
 
--(void)autoLightOrDark{
-    
-    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
-        [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    }else{
-        [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
-}
-
-
 -(void)initToolBarItems{
     
     [self autoLightOrDark];
@@ -200,6 +188,17 @@
     UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
     
     [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
+}
+
+-(void)autoLightOrDark{
+    
+    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
+        [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    }else{
+        [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+    }
 }
 
 

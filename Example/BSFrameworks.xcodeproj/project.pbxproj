@@ -757,6 +757,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7EF9CD17C5C025348FBB461A /* Pods-BSFrameworks_Example.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = W97PTP9593;
@@ -777,6 +778,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7DAFF48ABAAB9BB1ECEE86FE /* Pods-BSFrameworks_Example.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = W97PTP9593;

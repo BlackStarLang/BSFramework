@@ -1,34 +1,40 @@
 PODS:
-  - BSFrameworks (0.1.3):
-    - BSFrameworks/BSCategory (= 0.1.3)
-    - BSFrameworks/BSLooperView (= 0.1.3)
-    - BSFrameworks/BSPhotoFramework (= 0.1.3)
+  - BSFrameworks (0.1.4):
+    - BSFrameworks/BSCategory (= 0.1.4)
+    - BSFrameworks/BSLooperView (= 0.1.4)
+    - BSFrameworks/BSPhotoFramework (= 0.1.4)
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSCategory (0.1.3):
+  - BSFrameworks/BSCategory (0.1.4):
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSLooperView (0.1.3):
+  - BSFrameworks/BSLooperView (0.1.4):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSPhotoFramework (0.1.3):
+  - BSFrameworks/BSPhotoFramework (0.1.4):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
+  - FBRetainCycleDetector (0.1.4)
   - Masonry (1.1.0)
-  - SDWebImage (5.8.0):
-    - SDWebImage/Core (= 5.8.0)
-  - SDWebImage/Core (5.8.0)
-  - TZImagePickerController (3.3.1)
+  - MLeaksFinder (1.0.0):
+    - FBRetainCycleDetector
+  - SDWebImage (5.9.3):
+    - SDWebImage/Core (= 5.9.3)
+  - SDWebImage/Core (5.9.3)
+  - TZImagePickerController (3.4.8)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
+  - MLeaksFinder
   - TZImagePickerController
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
+    - FBRetainCycleDetector
     - Masonry
+    - MLeaksFinder
     - SDWebImage
     - TZImagePickerController
 
@@ -37,11 +43,13 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 30b7857c130b4bd59e2636d1758f883c13fc0dac
+  BSFrameworks: 71110800409a2626b045e2ef774fffb87e622078
+  FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  SDWebImage: 84000f962cbfa70c07f19d2234cbfcf5d779b5dc
-  TZImagePickerController: 99f03b64145a8c92c55b9b1b931410967d9be4cb
+  MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
+  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
+  TZImagePickerController: 6685e6d81b8fd5453e80ba369dd4ebd6e97276ee
 
-PODFILE CHECKSUM: 9544a46571da8b1bc35b3ee8dc2c0d1762aa8f25
+PODFILE CHECKSUM: 8dc1d4e6d27372e86180cfd2f5f75adb067af205
 
 COCOAPODS: 1.8.4

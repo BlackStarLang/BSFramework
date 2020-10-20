@@ -9,8 +9,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface UIView (BSView)
+#define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
+#define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+@interface UIView (BSView)
 
 @property (nonatomic ,assign) CGFloat top;
 @property (nonatomic ,assign) CGFloat left;

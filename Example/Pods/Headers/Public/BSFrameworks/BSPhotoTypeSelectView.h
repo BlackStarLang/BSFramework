@@ -1,0 +1,1 @@
+../../../../../BSFrameworks/Classes/PhotoFramework/View/BSPhotoTypeSelectView.h

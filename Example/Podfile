@@ -1,6 +1,6 @@
 #use_frameworks!
 
-source 'https://github.com/CocoaPods/Specs.git'
+source 'https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git'
 
 platform :ios, '9.0'
 
@@ -8,6 +8,8 @@ target 'BSFrameworks_Example' do
   pod 'BSFrameworks', :path => '../'
   
   pod 'TZImagePickerController'
+  
+  pod 'MLeaksFinder'
   
   target 'BSFrameworks_Tests' do
     inherit! :search_paths
