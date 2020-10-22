@@ -14,6 +14,8 @@
 
 @interface BSCameraController ()<BSVideoBottomViewDelegate,AVCapturePhotoCaptureDelegate,AVCaptureVideoDataOutputSampleBufferDelegate,AVCaptureAudioDataOutputSampleBufferDelegate>
 
+@property (nonatomic ,assign) UIDeviceOrientation orientation;
+
 @property (nonatomic ,strong) AVCaptureSession *session;
 @property (nonatomic ,strong) AVCaptureDevice *device;
 @property (nonatomic ,strong) AVCaptureDeviceInput *deviceInput;//图像输入源
@@ -25,25 +27,21 @@
 
 @property (nonatomic ,strong) AVCaptureVideoPreviewLayer *previewLayer;
 @property (nonatomic ,strong) AVCaptureConnection *connection;
-@property (nonatomic ,assign) UIDeviceOrientation orientation;
+
+@property (nonatomic ,strong) AVAssetWriter *writer;//视频采集
+@property (nonatomic ,strong) AVAssetWriterInput *writerAudioInput;//视频采集
+@property (nonatomic ,strong) AVAssetWriterInput *writerVideoInput;//视频采集
 
 @property (nonatomic ,strong) UIImageView *photoImageView;
 @property (nonatomic ,strong) UIButton *ligntBtn;
 @property (nonatomic ,strong) UIButton *selfieBtn;
 
-@property (nonatomic ,strong) AVAssetWriter *writer;//视频采集
-@property (nonatomic ,strong) AVAssetWriterInput *writerAudioInput;//视频采集
-@property (nonatomic ,strong) AVAssetWriterInput *writerVideoInput;//视频采集
 @property (nonatomic ,assign) BOOL videoRecording;  //视频正在录制
 @property (nonatomic ,assign) BOOL canWritting;     //可以写入
 @property (nonatomic ,strong) NSURL *preVideoURL;   //视频预览（存储）地址
-@property (nonatomic ,strong) dispatch_queue_t videoQueue;
-@property (nonatomic ,strong) dispatch_queue_t audioQueue;
 
 @property (nonatomic ,strong) AVPlayer *player;
-@property (nonatomic ,strong) AVPlayerItem *playerItem;
 @property (nonatomic ,strong) AVPlayerLayer *playerLayer;
-
 
 @property (nonatomic ,strong) BSVideoBottomView *bottomView;
 
@@ -107,8 +105,8 @@
                 if (granted) {
                     [weakSelf authorization];
                 }else{
-                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
-                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                    UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往 手机-设置 开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+                    UIAlertAction *action = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         
                         [weakSelf.navigationController popViewControllerAnimated:YES];
                         [weakSelf dismissViewControllerAnimated:YES completion:nil];
@@ -123,8 +121,8 @@
         
     }else if (status == AVAuthorizationStatusDenied) {
         
-        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往手机-设置开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
-        UIAlertAction *action = [UIAlertAction actionWithTitle:@"确定" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往 手机-设置 开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
+        UIAlertAction *action = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
             [self.navigationController popViewControllerAnimated:YES];
             [self dismissViewControllerAnimated:YES completion:nil];
@@ -194,16 +192,20 @@
         self.session.sessionPreset = AVCaptureSessionPresetiFrame960x540;
     }
 
-    [self addPicIO];
-    [self addVideoIO];
-
-    self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
-    self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-    self.previewLayer.frame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 30 - 150);
-    [self.view.layer insertSublayer:self.previewLayer atIndex:0];
-
-
-    [self.session startRunning];
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        //如果不放在子线程里，跳转到相机的时候，会卡
+        [self addPicIO];
+        [self addVideoIO];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
+            self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
+            self.previewLayer.frame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 30 - 150);
+            [self.view.layer insertSublayer:self.previewLayer atIndex:0];
+            [self.session startRunning];
+        });
+    });
 }
 
 #pragma mark 设置 拍照类型的输入输出源
@@ -233,8 +235,8 @@
     self.videoPutData = [[AVCaptureVideoDataOutput alloc]init];
     self.videoPutData.videoSettings = videoSetting;
 
-    self.videoQueue = dispatch_queue_create("vidio", DISPATCH_QUEUE_CONCURRENT);
-    [self.videoPutData setSampleBufferDelegate:self queue:self.videoQueue];
+    dispatch_queue_t videoQueue = dispatch_queue_create("vidio", DISPATCH_QUEUE_CONCURRENT);
+    [self.videoPutData setSampleBufferDelegate:self queue:videoQueue];
 
     if ([self.session canAddOutput:self.videoPutData]) {
         [self.session addOutput:self.videoPutData];
@@ -257,9 +259,8 @@
         [self.session addOutput:self.audioPutData];
     }
 
-    self.audioQueue = dispatch_queue_create("audio", DISPATCH_QUEUE_CONCURRENT);
-    [self.audioPutData setSampleBufferDelegate:self queue:self.audioQueue];
-
+    dispatch_queue_t audioQueue = dispatch_queue_create("audio", DISPATCH_QUEUE_CONCURRENT);
+    [self.audioPutData setSampleBufferDelegate:self queue:audioQueue];
 }
 
 
@@ -272,111 +273,82 @@
 }
 
 
-#pragma mark 刷新各个按钮隐藏状态： isRecording 正在拍摄（还未拍）
--(void)refreshBtnsHiddenStatus:(BOOL)isRecording{
-
-    if (isRecording) {
-        if (!self.session.isRunning) {
-            [self.session startRunning];
-        }
-    }else{
-        if (self.session.isRunning) {
-            [self.session stopRunning];
-        }
-    }
-
-    self.bottomView.typeSelView.hidden = !isRecording;
-    self.bottomView.nextBtn.hidden = isRecording;
-    self.photoImageView.hidden = isRecording;
-    self.bottomView.takeBtn.hidden = !isRecording;
-    [self.bottomView.cancelBtn setTitle:isRecording?@"取消":@"重拍" forState:UIControlStateNormal];
-}
-
-
 #pragma mark - action 交互事件
 
-- (void)takePhotoBtnClick{
+// 拍照
+-(void)takePicture{
+    
+    // 防止快速连点
+    if (self.bottomView.recordStatus == RECORD_STATUS_UNRECORD) {
+        return;
+    }
 
-    if (self.bottomView.typeSelView.selectType == SELECTTYPE_VIDEO) {
+    if (@available(iOS 10.0, *)) {
 
-        if (self.videoRecording) {
-            [self videoStopRecord];
+        AVCapturePhotoOutput *outPut = (AVCapturePhotoOutput *)self.outPut;
+
+        AVCapturePhotoSettings *settings = [AVCapturePhotoSettings photoSettingsWithFormat:@{AVVideoCodecKey:AVVideoCodecJPEG}];
+        [outPut capturePhotoWithSettings:settings delegate:self];
+   
+    }else{
+        
+        // 兼容iOS 10以下机型，未测试，不清楚可不可以用
+        self.connection = [self.outPut connectionWithMediaType:AVMediaTypeVideo];
+        [self.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
+
+        AVCaptureStillImageOutput *outPut = (AVCaptureStillImageOutput *)self.outPut;
+
+        [outPut captureStillImageAsynchronouslyFromConnection:self.connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
+
+            [self.session stopRunning];
+            
+            NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
+            UIImage *image = [UIImage imageWithData:jpegData];
+            self.photoImageView.image = image;
+            self.photoImageView.hidden = NO;
+        }];
+    }
+
+    if ([self.delegate respondsToSelector:@selector(photoCameraTakeBtnClicked)]) {
+        [self.delegate photoCameraTakeBtnClicked];
+    }
+}
+
+
+/// 开始录制
+-(void)startRecordVideo{
+    
+    if (self.preVideoURL) {
+        //不要的视频删掉
+        NSFileManager *manager = [NSFileManager defaultManager];
+        [manager removeItemAtPath:self.preVideoURL.absoluteString error:nil];
+    }
+    [self configWriter];
+}
+
+
+// 下一步
+-(void)nextStep{
+
+    if (self.bottomView.selectType == SELECTTYPE_PIC) {
+        
+        if (self.saveToAlbum) {
+            [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:self.photoImageView.image]];
         }else{
+            
+            if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
 
-            if (self.preVideoURL) {
-                NSFileManager *manager = [NSFileManager defaultManager];
-                [manager removeItemAtPath:self.preVideoURL.absoluteString error:nil];
+                UIImage *image = [self getWaterMarkImageWithOriginImage:self.photoImageView.image];
+                [self.delegate photoCameraNextBtnClickedWithImage:image];
             }
 
-            //视频录制
-            [self startVideoRecording];
-        }
-
-    }else{
-        
-        if (!self.session.isRunning) {
-            [self refreshBtnsHiddenStatus:YES];
+            [self.navigationController popViewControllerAnimated:YES];
         }
         
-        if (@available(iOS 10.0, *)) {
-
-            AVCapturePhotoOutput *outPut = (AVCapturePhotoOutput *)self.outPut;
-
-            AVCapturePhotoSettings *settings = [[AVCapturePhotoSettings alloc]init];
-            [outPut capturePhotoWithSettings:settings delegate:self];
-
-        }else{
-
-            self.connection = [self.outPut connectionWithMediaType:AVMediaTypeVideo];
-            [self.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
-
-            AVCaptureStillImageOutput *outPut = (AVCaptureStillImageOutput *)self.outPut;
-
-            [outPut captureStillImageAsynchronouslyFromConnection:self.connection completionHandler:^(CMSampleBufferRef imageDataSampleBuffer, NSError *error) {
-
-                NSData *jpegData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageDataSampleBuffer];
-                UIImage *image = [UIImage imageWithData:jpegData];
-                self.photoImageView.image = image;
-                [self refreshBtnsHiddenStatus:NO];
-            }];
-        }
-
-        if ([self.delegate respondsToSelector:@selector(photoCameraTakeBtnClicked)]) {
-            [self.delegate photoCameraTakeBtnClicked];
-        }
-
-    }
-}
-
-
--(void)cancelBtnClick{
-
-    if ([self.bottomView.cancelBtn.titleLabel.text isEqualToString:@"重拍"]) {
-        [self refreshBtnsHiddenStatus:YES];
     }else{
-        [self.navigationController popViewControllerAnimated:YES];
+
+        [self saveVideoToAlbum:[self.preVideoURL path]];
     }
-}
-
-
--(void)nextBtnClick{
-    /// 存到相册
-    if (self.saveToAlbum) {
-        [self saveWaterMarkImage:[self getWaterMarkImageWithOriginImage:self.photoImageView.image]];
-    }else{
-        [self delegateCallBack];
-    }
-}
-
--(void)delegateCallBack{
-
-    if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
-
-        UIImage *image = [self getWaterMarkImageWithOriginImage:self.photoImageView.image];
-        [self.delegate photoCameraNextBtnClickedWithImage:image];
-    }
-
-    [self.navigationController popViewControllerAnimated:YES];
 }
 
 /// 闪光灯
@@ -478,7 +450,7 @@
 -(void)BSVideoBottomView:(BSVideoBottomView *)bottomView didSelectType:(SELECTTYPE)selectType{
 
     // 切换拍照类型时，使用毛玻璃效果过渡
-    CGRect blurFrame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 30 - 150);
+    CGRect blurFrame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 30);
     
     UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithFrame:blurFrame];
     blurView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];
@@ -493,26 +465,21 @@
         blurView.alpha = 1;
     }];
     
-    // 延迟 0.2 是为了 self.previewLayer.frame = blurFrame;
-    // 生效后再执行毛玻璃alpha动画
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-            
-            [UIView animateWithDuration:0.2 animations:^{
-                blurView.alpha = 0;
-            } completion:^(BOOL finished) {
-                [blurView removeFromSuperview];
-                
-                if (selectType == SELECTTYPE_VIDEO) {
-                    self.previewLayer.frame = self.view.bounds;
-                }
-            }];
-        });
+        [UIView animateWithDuration:0.2 animations:^{
+            blurView.alpha = 0;
+        } completion:^(BOOL finished) {
+            [blurView removeFromSuperview];
+        }];
+        
+        if (selectType == SELECTTYPE_VIDEO) {
+            self.previewLayer.frame = self.view.bounds;
+        }
     });
 }
 
-
+#pragma mark 点击底部按钮的delegate
 -(void)BSVideoBottomView:(BSVideoBottomView *)bottomView didClickFuncBtnWithType:(FUNCTYPE)funcType{
 
     if (funcType == FUNC_TYPE_BACK) {
@@ -521,31 +488,36 @@
 
     }else if (funcType == FUNC_TYPE_RETRY){
         //重拍
-        [self refreshBtnsHiddenStatus:YES];
+//        [[NSNotificationCenter defaultCenter]removeObserver:self];
+        [self.session startRunning];
+        
+        self.photoImageView.hidden = YES;
+        if (self.playerLayer) {
+            [self.playerLayer removeFromSuperlayer];
+        }
         
     }else if (funcType == FUNC_TYPE_NEXT){
-        //下一步
-        if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
-            [self.delegate photoCameraNextBtnClickedWithImage:self.photoImageView.image];
-        }
-        [self.navigationController popViewControllerAnimated:YES];
+
+        // 点击下一步
+//        [[NSNotificationCenter defaultCenter]removeObserver:self];
+        [self nextStep];
         
-    }else if (funcType == FUNC_TYPE_PIC_RECORDED){
+    }else if (funcType == FUNC_TYPE_PIC){
         
         //拍照
-        [self takePhotoBtnClick];
+        [self takePicture];
         
-    }else if (funcType == FUNC_TYPE_VIDEO_RECORDING){
+    }else if (funcType == FUNC_TYPE_VIDEO){
         
-        //开始录制
-        [self takePhotoBtnClick];
-        
-    }else if (funcType == FUNC_TYPE_VIDEO_RECORDED){
-        
-        //录制结束
-        [self videoStopRecord];
+        if (bottomView.recordStatus == RECORD_STATUS_RECORDING) {
+            //开始录制
+            [self startRecordVideo];
+            
+        }else if(bottomView.recordStatus == RECORD_STATUS_RECORDED){
+            //录制结束
+            [self videoStopRecord];
+        }
     }
-    
 }
 
 
@@ -564,64 +536,93 @@
     CMFormatDescriptionRef desMedia = CMSampleBufferGetFormatDescription(sampleBuffer);
     CMMediaType mediaType = CMFormatDescriptionGetMediaType(desMedia);
 
-    CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
 
     if (!self.canWritting) {
         self.canWritting = YES;
         [self.writer startWriting];
+        
+        CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
         [self.writer startSessionAtSourceTime:timestamp];
-        NSLog(@"====== 运行  startSessionAtSourceTime ======");
-    }
-
-    if (mediaType == kCMMediaType_Video) {
-
-        if (self.writerVideoInput.readyForMoreMediaData) {
-            BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
-            if (!success) {
-                NSLog(@"video write failed");
-            }
-        }
-
-    }else if (mediaType == kCMMediaType_Audio){
-
-        if (self.writerAudioInput.readyForMoreMediaData) {
-            BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
-            if (!success) {
-                NSLog(@"audio write failed");
-            }
-        }
-
+    
     }else{
-        NSLog(@"%d",mediaType);
+        
+        if (mediaType == kCMMediaType_Video) {
+
+            if (self.writerVideoInput.readyForMoreMediaData) {
+                BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
+                if (!success) {
+                    NSLog(@"video write failed");
+                }
+            }
+
+        }else if (mediaType == kCMMediaType_Audio){
+
+            if (self.writerAudioInput.readyForMoreMediaData) {
+                BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
+                if (!success) {
+                    NSLog(@"audio write failed");
+                }
+            }
+
+        }else{
+            NSLog(@"%d",mediaType);
+        }
     }
 }
-
 
 
 -(void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error API_AVAILABLE(ios(10.0)){
 
     if (photoSampleBuffer) {
+        [self.session stopRunning];
         NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
         UIImage *image = [UIImage imageWithData:data];
         self.photoImageView.image = image;
-
-        [self refreshBtnsHiddenStatus:NO];
+        self.photoImageView.hidden = NO;
     }
 }
 
+
 #pragma mark - 视频存储相关
 
--(void)startVideoRecording{
+// 配置视频存储路径
+-(NSURL *)getVideoURL{
+
+    NSString *documentPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/shortVideo"];
+
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"yyyyMMddHHmmss"];
+
+    NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
+    NSString *videoName = [destDateString stringByAppendingString:@".mp4"];
+
+    NSString *filePath = [documentPath stringByAppendingFormat:@"/%@",videoName];
+
+    NSFileManager *manager = [NSFileManager defaultManager];
+    BOOL isDir;
+    if ([manager fileExistsAtPath:documentPath isDirectory:&isDir]) {
+        if (!isDir) {
+            [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+        }
+    }else{
+        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+
+    return [NSURL fileURLWithPath:filePath];
+}
+
+
+// 配置 AVAssetWriter
+-(void)configWriter{
 
     dispatch_queue_t writeQueueCreate = dispatch_queue_create("writeQueueCreate", DISPATCH_QUEUE_CONCURRENT);
 
-    __weak typeof(self)weakSelf = self;
     dispatch_async(writeQueueCreate, ^{
 
         NSError *error = nil;
-        weakSelf.preVideoURL = [self getVideoURL];
+        self.preVideoURL = [self getVideoURL];
 
-        weakSelf.writer = [AVAssetWriter assetWriterWithURL:weakSelf.preVideoURL fileType:AVFileTypeMPEG4 error:&error];
+        self.writer = [AVAssetWriter assetWriterWithURL:self.preVideoURL fileType:AVFileTypeMPEG4 error:&error];
 
         if (!error) {
 
@@ -648,23 +649,23 @@
                                             AVNumberOfChannelsKey : @(1),
                                             AVSampleRateKey : @(22050) };
 
-            weakSelf.writerAudioInput = [[AVAssetWriterInput alloc]initWithMediaType:AVMediaTypeAudio outputSettings:audioSetting];
-            weakSelf.writerAudioInput.expectsMediaDataInRealTime = YES;
+            self.writerAudioInput = [[AVAssetWriterInput alloc]initWithMediaType:AVMediaTypeAudio outputSettings:audioSetting];
+            self.writerAudioInput.expectsMediaDataInRealTime = YES;
 
-            weakSelf.writerVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSetting];
-            weakSelf.writerVideoInput.expectsMediaDataInRealTime = YES;
+            self.writerVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSetting];
+            self.writerVideoInput.expectsMediaDataInRealTime = YES;
 
-            weakSelf.writerVideoInput.transform = CGAffineTransformMakeRotation(M_PI/2.0);
+            self.writerVideoInput.transform = CGAffineTransformMakeRotation(M_PI/2.0);
 
-            if ([weakSelf.writer canAddInput:weakSelf.writerAudioInput]) {
-                [weakSelf.writer addInput:weakSelf.writerAudioInput];
+            if ([self.writer canAddInput:self.writerAudioInput]) {
+                [self.writer addInput:self.writerAudioInput];
             }
 
-            if ([weakSelf.writer canAddInput:weakSelf.writerVideoInput]) {
-                [weakSelf.writer addInput:weakSelf.writerVideoInput];
+            if ([self.writer canAddInput:self.writerVideoInput]) {
+                [self.writer addInput:self.writerVideoInput];
             }
 
-            weakSelf.videoRecording = YES;
+            self.videoRecording = YES;
 
         }else{
             NSLog(@"write 初始化失败：%@",error);
@@ -673,36 +674,7 @@
     });
 }
 
-
--(NSURL *)getVideoURL{
-
-    NSString *documentPath = [NSHomeDirectory() stringByAppendingString:@"/Documents/shortVideo"];
-
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-
-    NSString *destDateString = [dateFormatter stringFromDate:[NSDate date]];
-    destDateString = [destDateString stringByReplacingOccurrencesOfString:@"-" withString:@""];
-    destDateString = [destDateString stringByReplacingOccurrencesOfString:@" " withString:@"_"];
-    destDateString = [destDateString stringByReplacingOccurrencesOfString:@":" withString:@""];
-    NSString *videoName = [destDateString stringByAppendingString:@".mp4"];
-
-    NSString *filePath = [documentPath stringByAppendingFormat:@"/%@",videoName];
-
-    NSFileManager *manager = [NSFileManager defaultManager];
-    BOOL isDir;
-    if ([manager fileExistsAtPath:documentPath isDirectory:&isDir]) {
-        if (!isDir) {
-            [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
-        }
-    }else{
-        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-
-    return [NSURL fileURLWithPath:filePath];
-}
-
-
+// 停止录制，并且将视频存储到相册
 -(void)videoStopRecord{
 
     self.canWritting = NO;
@@ -720,7 +692,6 @@
 
                 dispatch_async(dispatch_get_main_queue(), ^{
                     [weakSelf previewVideo];
-                    [weakSelf saveVideoToAlbum:weakSelf.preVideoURL.absoluteString];
                 });
             }];
         }
@@ -728,7 +699,6 @@
 }
 
 //videoPath为视频下载到本地之后的本地路径
-
 - (void)saveVideoToAlbum:(NSString*)videoPath{
 
     if(videoPath) {
@@ -736,53 +706,48 @@
         BOOL compatible = UIVideoAtPathIsCompatibleWithSavedPhotosAlbum(videoPath);
 
         if(compatible){
-            NSError *error ;
-            UISaveVideoAtPathToSavedPhotosAlbum(videoPath,self,@selector(savedVideoPhotoImage:didFinishSavingWithError:contextInfo:),&error);
+            UISaveVideoAtPathToSavedPhotosAlbum(videoPath,self,@selector(video:didFinishSavingWithError:contextInfo:),nil);
         }
     }
 }
 
 //保存视频完成之后的回调
-
-- (void)savedVideoPhotoImage:(UIImage*)image didFinishSavingWithError: (NSError*)error contextInfo: (void*)contextInfo {
+- (void)video:(NSString *)videoPath didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo{
 
     if(error) {
         NSLog(@"保存视频失败%@", error);
     }else{
-        NSLog(@"保存视频成功");
+        // 保存视频成功后退出，刷新相册，退出界面
+        if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithVideoPath:)]) {
+            [self.delegate photoCameraNextBtnClickedWithVideoPath:videoPath];
+        }
+        [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectVideo" object:videoPath];
+        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
-
+// 视频录制完成后 预览
 -(void)previewVideo{
 
-    UIView *view = [[UIView alloc]initWithFrame:self.view.frame];
-    [self.view addSubview:view];
+    if (self.playerLayer) {
+        [self.playerLayer removeFromSuperlayer];
+        self.player = nil;
+        self.playerLayer = nil;
+    }
 
-    self.playerItem = [AVPlayerItem playerItemWithAsset:[AVAsset assetWithURL:self.preVideoURL]];
-
-    self.player = [[AVPlayer alloc]initWithPlayerItem:self.playerItem];
+    AVPlayerItem *playerItem = [AVPlayerItem playerItemWithAsset:[AVAsset assetWithURL:self.preVideoURL]];
+    self.player = [[AVPlayer alloc]initWithPlayerItem:playerItem];
 
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
-    self.playerLayer.frame = view.bounds;
     self.playerLayer.videoGravity = AVLayerVideoGravityResizeAspect;
-    [view.layer addSublayer:self.playerLayer];
+    self.playerLayer.frame = self.view.frame;
 
+    [self.view.layer addSublayer:self.playerLayer];
     [self.player play];
+    
+    [self.view bringSubviewToFront:self.bottomView];
 
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(moviePlayDidEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
 }
-
-
--(void)moviePlayDidEnd:(NSNotification*)notification{
-
-    AVPlayerItem*item = [notification object];
-
-    [item seekToTime:kCMTimeZero];
-
-    [self.player play];
-}
-
 
 #pragma mark - 图片存储相关
 -(UIImage *)getWaterMarkImageWithOriginImage:(UIImage *)originImage{
@@ -809,7 +774,14 @@
     if(error){
         [self.navigationController popViewControllerAnimated:YES];
     }else{
-        [self delegateCallBack];
+        
+        if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
+
+            UIImage *image = [self getWaterMarkImageWithOriginImage:self.photoImageView.image];
+            [self.delegate photoCameraNextBtnClickedWithImage:image];
+        }
+
+        [self.navigationController popViewControllerAnimated:YES];
     }
 }
 

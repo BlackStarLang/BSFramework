@@ -118,6 +118,17 @@
 }
 
 
+-(void)BSPhotoCameraDidFinishedSelectVideoWithVideoPath:(NSString *)videoPath{
+    
+    NSLog(@"获取到视频地址：%@",videoPath);
+}
+
+
+-(void)photoCameraTakeBtnClicked{
+    NSLog(@"点击了拍照");
+    
+}
+
 #pragma mark - init 属性初始化
 
 

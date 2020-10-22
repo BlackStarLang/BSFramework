@@ -44,6 +44,8 @@
         [BSPhotoConfig shareConfig].saveToAlbum = YES;
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage:) name:@"didFinishSelectImage" object:nil];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectVideo:) name:@"didFinishSelectVideo" object:nil];
+        
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(getGroupListData) name:@"auth_img_library" object:nil];
 
         BSPhotoGroupController *root = [[BSPhotoGroupController alloc]init];
@@ -97,6 +99,14 @@
             
             [weakSelf.BSDelegate BSPhotoManagerDidFinishedSelectImageData:targetImgs];
         }];
+    }
+}
+
+-(void)didFinishSelectVideo:(NSNotification *)noti{
+    NSString *path = [noti object];
+    
+    if ([self.BSDelegate respondsToSelector:@selector(BSPhotoCameraDidFinishedSelectVideoWithVideoPath:)]) {
+        [self.BSDelegate BSPhotoCameraDidFinishedSelectVideoWithVideoPath:path?:@""];
     }
 }
 

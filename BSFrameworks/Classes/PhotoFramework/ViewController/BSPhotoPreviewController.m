@@ -235,7 +235,7 @@
 }
 
 
--(void )doneBtnClick{
+-(void)doneBtnClick{
     
     [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectImage" object:nil];
      [self dismissViewControllerAnimated:YES completion:nil];

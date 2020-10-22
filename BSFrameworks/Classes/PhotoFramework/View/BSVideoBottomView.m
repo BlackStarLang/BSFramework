@@ -31,6 +31,7 @@
 -(void)initSubViews{
     
     self.selectType = SELECTTYPE_PIC;
+    self.recordStatus = RECORD_STATUS_UNRECORD;
 
     [self addSubview:self.alphaView];
     [self addSubview:self.takeBtn];
@@ -49,20 +50,20 @@
     
     [self.takeBtn mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.offset(0);
-        make.width.height.mas_equalTo(80);
-        make.bottom.offset(-25);
+        make.width.height.mas_equalTo(70);
+        make.bottom.offset(-30);
     }];
     
     [self.cancelBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.takeBtn.mas_left).offset(-(SCREEN_WIDTH/2 - 40)/2);
+        make.centerX.equalTo(self.takeBtn.mas_left).offset(-(SCREEN_WIDTH/2 - 30)/2);
         make.centerY.equalTo(self.takeBtn);
-        make.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(44);
     }];
 
     [self.nextBtn mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.centerX.equalTo(self.takeBtn.mas_right).offset((SCREEN_WIDTH/2 - 40)/2);
+        make.centerX.equalTo(self.takeBtn.mas_right).offset((SCREEN_WIDTH/2 - 30)/2);
         make.centerY.equalTo(self.takeBtn);
-        make.height.mas_equalTo(30);
+        make.width.height.mas_equalTo(44);
     }];
 }
 
@@ -71,10 +72,12 @@
 
 -(void)cancelBtnClick{
     
-    if ([self.cancelBtn.titleLabel.text isEqualToString:@"重拍"] && self.selectType == SELECTTYPE_PIC) {
+    if (self.recordStatus != RECORD_STATUS_UNRECORD) {
         
         if ([self.delegate respondsToSelector:@selector(BSVideoBottomView:didClickFuncBtnWithType:)]) {
             [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_RETRY];
+            self.recordStatus = RECORD_STATUS_UNRECORD;
+            [self refreshUIHiddenStatusIsHidden:NO];
         }
         
     }else{
@@ -95,28 +98,78 @@
 
 -(void)takeBtnClick{
     
+    self.takeBtn.selected = !self.takeBtn.selected;
+    
     if ([self.delegate respondsToSelector:@selector(BSVideoBottomView:didClickFuncBtnWithType:)]) {
         
         if (self.selectType == SELECTTYPE_PIC) {
             
-            [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_PIC_RECORDED];
+            self.recordStatus = RECORD_STATUS_RECORDING;
+            [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_PIC];
+                        
         }else{
             
             if (self.takeBtn.selected == YES) {
-                [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_VIDEO_RECORDING];
+                self.recordStatus = RECORD_STATUS_RECORDING;
+                [self.takeBtn actionToAnimateTranslationForRecording:YES fillCorlor:[UIColor redColor]];
             }else{
-                [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_PIC_RECORDED];
+                self.recordStatus = RECORD_STATUS_RECORDED;
+                [self.takeBtn actionToAnimateTranslationForRecording:NO fillCorlor:[UIColor redColor]];
             }
+
+            [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_VIDEO];
+            [self takeBtnLayerAnimate];
+        }
+        
+        [self refreshUIHiddenStatusIsHidden:YES];
+    }
+}
+
+
+// 点击录制按钮后，开始按钮动画
+-(void)takeBtnLayerAnimate{
+    
+    [UIView animateWithDuration:0.5 animations:^{
+        self.takeBtn.takeBtn.frame = CGRectMake(0, 0, 20, 30);
+    }];
+}
+
+
+#pragma mark - Public Method
+
+-(void)refreshUIHiddenStatusIsHidden:(BOOL)hidden{
+    
+    self.nextBtn.hidden = !hidden;
+    self.takeBtn.hidden = hidden;
+    self.typeSelView.hidden = hidden;
+    self.cancelBtn.hidden = NO;
+    
+    if (self.selectType == SELECTTYPE_VIDEO) {
+        
+        if (self.recordStatus == RECORD_STATUS_RECORDED) {
+            self.takeBtn.hidden = YES;
+            self.nextBtn.hidden = NO;
+        }else{
+            self.takeBtn.hidden = NO;
+            self.nextBtn.hidden = YES;
+        }
+
+        if (self.recordStatus == RECORD_STATUS_RECORDING) {
+            self.cancelBtn.hidden = YES;
         }
     }
 }
 
 
-
 #pragma mark - priveDelegate 私有代理
 -(void)BSPhotoTypeSelectViewSelectedType:(SELECTTYPE)selectType{
     
+    self.takeBtn.selected = NO;
     self.selectType = selectType;
+    self.recordStatus = RECORD_STATUS_UNRECORD;
+    
+    [self refreshUIHiddenStatusIsHidden:NO];
+    
     [UIView animateWithDuration:0.3 animations:^{
         self.alphaView.alpha = (selectType==SELECTTYPE_PIC)?1:0.2;
     }];
@@ -124,6 +177,9 @@
     if ([self.delegate respondsToSelector:@selector(BSVideoBottomView:didSelectType:)]) {
         [self.delegate BSVideoBottomView:self didSelectType:selectType];
     }
+    
+    UIColor *fillColor = (selectType==SELECTTYPE_PIC?[UIColor whiteColor]:[UIColor redColor]);
+    [self.takeBtn actionToAnimateTranslationForRecording:NO fillCorlor:fillColor];
 }
 
 
@@ -151,7 +207,7 @@
     if (!_cancelBtn) {
         _cancelBtn = [[UIButton alloc]init];
         _cancelBtn.hidden = NO;
-        [_cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
+        [_cancelBtn setImage:[UIImage imageNamed:@"photo_camera_back"] forState:UIControlStateNormal];
         [_cancelBtn addTarget:self action:@selector(cancelBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _cancelBtn;;
@@ -161,7 +217,7 @@
     if (!_nextBtn) {
         _nextBtn = [[UIButton alloc]init];
         _nextBtn.hidden = YES;
-        [_nextBtn setTitle:@"下一步" forState:UIControlStateNormal];
+        [_nextBtn setImage:[UIImage imageNamed:@"photo_camera_next"] forState:UIControlStateNormal];
         [_nextBtn addTarget:self action:@selector(nextBtnClick) forControlEvents:UIControlEventTouchUpInside];
     }
     return _nextBtn;;
@@ -189,6 +245,14 @@
 
 
 #pragma mark - 拍照按钮封装
+
+@interface BSVideoTakeBtn ()<CAAnimationDelegate>
+
+
+
+@end
+
+
 @implementation BSVideoTakeBtn
 
 - (instancetype)initWithFrame:(CGRect)frame
@@ -202,14 +266,22 @@
 }
 
 -(void)initSubViews{
+    
     [self addSubview:self.takeBtn];
     
-//    self.circleLayer = [[CALayer alloc]init];
-//    self.circleLayer.borderWidth = 3;
-//    self.circleLayer.borderColor = [UIColor redColor].CGColor;
-//
-//    [self.layer addSublayer:self.circleLayer];
-//    UIBezierPath *path = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(3, 3, self.width - 6, self.height - 6) cornerRadius:self.width/2];
+    self.backgroundColor = [UIColor clearColor];
+    self.layer.cornerRadius = 35;
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.layer.borderWidth = 5;
+    self.layer.masksToBounds = YES;
+
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(7, 7, 28*2, 28*2) cornerRadius:28];
+    
+    self.shapLayer = [CAShapeLayer layer];
+    self.shapLayer.path = bezierPath.CGPath;
+    self.shapLayer.fillColor = [UIColor whiteColor].CGColor;
+    
+    [self.layer addSublayer:self.shapLayer];
     
 }
 
@@ -243,10 +315,45 @@
         if (distance<=self.width) {
             return self.takeBtn;
         }
-
     }
     return curView;
 }
+
+
+
+-(void)actionToAnimateTranslationForRecording:(BOOL)recording fillCorlor:(UIColor *)fillCorlor{
+    
+    self.shapLayer.fillColor = fillCorlor.CGColor;
+    
+    UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(7, 7, 28*2, 28*2) cornerRadius:28];
+    UIBezierPath *bezierPath1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 15, 20*2, 20*2) cornerRadius:10];
+
+    CABasicAnimation *basicAnimation = [CABasicAnimation animation];
+    basicAnimation.duration = 0.2;
+    basicAnimation.removedOnCompletion = NO;
+    basicAnimation.fillMode = kCAFillModeForwards;
+    basicAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];
+    
+    if (recording) {
+        basicAnimation.fromValue = (__bridge id _Nullable)(self.shapLayer.path);
+        basicAnimation.toValue = (__bridge id _Nullable)(bezierPath1.CGPath);
+    }else{
+        basicAnimation.fromValue = (__bridge id _Nullable)(self.shapLayer.path);
+        basicAnimation.toValue = (__bridge id _Nullable)(bezierPath.CGPath);
+    }
+    
+    [self.shapLayer addAnimation:basicAnimation forKey:@"path"];
+}
+
+
+#pragma mark - systemDelegate
+
+//-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
+//    if (flag) {
+//        self.shapLayer.path =
+//    }
+//}
+
 
 
 #pragma mark - init 属性初始化
@@ -254,7 +361,6 @@
 - (UIButton *)takeBtn{
     if (!_takeBtn) {
         _takeBtn = [[UIButton alloc]init];
-        [_takeBtn setImage:[UIImage imageNamed:@"photo_camera_take"] forState:UIControlStateNormal];
     }
     return _takeBtn;
 }

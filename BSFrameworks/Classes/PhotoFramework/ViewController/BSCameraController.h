@@ -12,11 +12,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSCameraController : UIViewController
 
-@property (nonatomic ,strong) UIView *waterMarkView;//水印 视图
+//照片添加水印视图（不支持视频）
+@property (nonatomic ,strong) UIView *waterMarkView;
 
 @property (nonatomic ,weak) id<BSPhotoProtocal> delegate;
 
-@property (nonatomic ,assign) BOOL saveToAlbum;//是否存储到相册
+//是否存储到相册（不支持视频，视频默认为存储）
+@property (nonatomic ,assign) BOOL saveToAlbum;
 
 
 @end
