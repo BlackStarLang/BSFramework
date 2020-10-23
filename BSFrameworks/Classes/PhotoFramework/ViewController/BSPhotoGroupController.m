@@ -14,7 +14,7 @@
 #import "BSPhotoViewModel.h"
 #import "BSPhotoListController.h"
 #import <Photos/Photos.h>
-
+#import "BSPhotoConfig.h"
 
 
 @interface BSPhotoGroupController ()<UITableViewDelegate,UITableViewDataSource>
@@ -127,7 +127,7 @@
 
 -(void)getAllGroupList{
 
-    [self.dataManager getAllAlbumsWithType:0 albums:^(NSArray *albums) {
+    [self.dataManager getAllAlbumsWithType:[BSPhotoConfig shareConfig].mediaType albums:^(NSArray *albums) {
                
         [self.dataSource removeAllObjects];
         [self.dataSource addObjectsFromArray:[albums copy]];

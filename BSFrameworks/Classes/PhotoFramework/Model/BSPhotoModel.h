@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,assign) BOOL isSelect ;   //图片是否被选中
 @property (nonatomic ,assign) BOOL needOrigin ; //是否需要原图
+@property (nonatomic ,assign) BOOL isVideo ;    //是否是 视频
+
+@property (nonatomic ,assign) NSTimeInterval duration ; //视频时长
+@property (nonatomic ,copy) NSString * durationStr;     //视频时长
 
 
 @end

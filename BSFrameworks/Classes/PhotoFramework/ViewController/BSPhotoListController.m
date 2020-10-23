@@ -13,6 +13,7 @@
 #import "BSPhotoModel.h"
 #import "BSPhotoGroupModel.h"
 #import "BSPhotoPreviewController.h"
+#import "BSPhotoPreviewVideoVC.h"
 #import "BSCameraController.h"
 #import <UIView+BSView.h>
 #import "BSPhotoConfig.h"
@@ -164,7 +165,11 @@
     self.scale = [UIScreen mainScreen].scale;
     
     PHFetchOptions *options = [[PHFetchOptions alloc]init];
-    options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];;
+    if ([BSPhotoConfig shareConfig].mediaType == 0) {
+        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];;
+    }else if ([BSPhotoConfig shareConfig].mediaType == 1){
+        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeVideo];;
+    }
     
     PHFetchResult *result = [PHAsset fetchAssetsInAssetCollection:self.groupModel.assetCollection options:options];
     
@@ -174,13 +179,19 @@
         
         BSPhotoModel *model = [[BSPhotoModel alloc]init];
         model.asset = asset;
+        if ([BSPhotoConfig shareConfig].mediaType == 2) {
+            model.isVideo = NO;
+        }else{
+            model.isVideo = (asset.mediaType==2?YES:NO);
+        }
+        model.duration = asset.duration;
         model.identifier = asset.localIdentifier;
         if ([self.selectDataArr containsObject:asset.localIdentifier]) {
             model.isSelect = YES;
         }
         [array addObject:model];
     }
-    NSLog(@"array==%ld",array.count);
+
     [self.dataSource removeAllObjects];
     [self.dataSource addObjectsFromArray:array];
     [self.collectionView reloadData];
@@ -279,6 +290,7 @@
         
         cell.imageView.image = [UIImage imageNamed:@"photo_camera_icon"];
         cell.selectBtn.hidden = YES;
+        cell.bottomView.hidden = YES;
         
     }else{
         
@@ -323,17 +335,39 @@
         [self.navigationController pushViewController:cameraVC animated:YES];
   
     }else{
-        /// 图片预览 相机
-        BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
-        [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
-        previewVC.selectDataArr = self.selectDataArr;
-        previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
-        previewVC.allowSelectMaxCount = [BSPhotoConfig shareConfig].allowSelectMaxCount;
-        previewVC.currentSelectedCount = [BSPhotoConfig shareConfig].currentSelectedCount;
-        previewVC.barStyle = [BSPhotoConfig shareConfig].barStyle;
-        previewVC.selectPreview = YES;
-        previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
-        [self.navigationController pushViewController:previewVC animated:YES];
+        
+        if ([BSPhotoConfig shareConfig].mediaType == 1) {
+            
+            BSPhotoPreviewVideoVC *previewVC = [[BSPhotoPreviewVideoVC alloc]init];
+            previewVC.preNaviAlpha = [BSPhotoConfig shareConfig].preNaviAlpha;
+            previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
+            previewVC.barStyle = [BSPhotoConfig shareConfig].barStyle;
+            previewVC.selectPreview = YES;
+            [previewVC setPreviewVideos:self.dataSource defaultIndex:indexPath.row];
+            previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self.navigationController pushViewController:previewVC animated:YES];
+            
+        }else{
+            
+            /// 图片预览
+            BSPhotoPreviewController *previewVC = [[BSPhotoPreviewController alloc]init];
+            [previewVC setPreviewPhotos:self.dataSource previewType:PREVIEWTYPE_PHOTO defaultIndex:indexPath.row];
+
+            previewVC.allowSelectMaxCount = [BSPhotoConfig shareConfig].allowSelectMaxCount;
+            previewVC.currentSelectedCount = [BSPhotoConfig shareConfig].currentSelectedCount;
+            previewVC.preNaviAlpha = [BSPhotoConfig shareConfig].preNaviAlpha;
+            previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
+            previewVC.barStyle = [BSPhotoConfig shareConfig].barStyle;
+            previewVC.isOrigin = [BSPhotoConfig shareConfig].isOrigin;
+            previewVC.selectDataArr = self.selectDataArr;
+            previewVC.selectPreview = YES;
+
+            previewVC.selectOriginImg = ^(BOOL isOrigin) {
+                [BSPhotoConfig shareConfig].isOrigin = isOrigin;
+            };
+            previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
+            [self.navigationController pushViewController:previewVC animated:YES];
+        }
     }
 }
 

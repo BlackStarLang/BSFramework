@@ -36,7 +36,10 @@
             cell.imageView.image = targetImage;
         }
     }];
-    cell.selectBtn.hidden = NO;
+    
+    cell.durationLabel.text = photoModel.durationStr;
+    cell.bottomView.hidden = !photoModel.isVideo;
+    cell.selectBtn.hidden = photoModel.isVideo;
     cell.selectBtn.selected = photoModel.isSelect;
 }
 

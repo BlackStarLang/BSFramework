@@ -31,6 +31,7 @@
     self.saveToAlbum = YES;
     self.supCamera = YES;
     self.isOrigin = NO;
+    self.mediaType = 0;
 }
 
 @end

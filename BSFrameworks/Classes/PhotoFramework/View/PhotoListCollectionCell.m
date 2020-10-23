@@ -26,6 +26,10 @@
     
     [self addSubview:self.imageView];
     [self addSubview:self.selectBtn];
+    
+    [self addSubview:self.bottomView];
+    [self.bottomView addSubview:self.bottomAlphaView];
+    [self.bottomView addSubview:self.durationLabel];
 }
 
 
@@ -39,6 +43,21 @@
         make.right.offset(0);
         make.top.offset(0);
         make.width.height.mas_equalTo(25);
+    }];
+    
+    [self.bottomView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.offset(0);
+        make.bottom.offset(0);
+        make.height.mas_equalTo(16);
+    }];
+    
+    [self.bottomAlphaView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.edges.offset(0);
+    }];
+    
+    [self.durationLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.bottom.offset(0);
+        make.right.offset(-5);
     }];
 }
 
@@ -58,7 +77,7 @@
     UIView *view = [super hitTest:point withEvent:event];
     
     if ([view isKindOfClass:[UIImageView class]]) {
-        if (self.width - 35 <= point.x && point.y <= 35) {
+        if (self.width - 35 <= point.x && point.y <= 35 && self.selectBtn.hidden == NO) {
             return self.selectBtn;
         }
     }
@@ -91,5 +110,36 @@
     return _selectBtn;;
 }
 
+
+-(UIView *)bottomView{
+    
+    if (!_bottomView) {
+        _bottomView = [[UIView alloc]init];
+        _bottomView.hidden = YES;
+    }
+    return _bottomView;
+}
+
+
+-(UIView *)bottomAlphaView{
+    
+    if (!_bottomAlphaView) {
+        _bottomAlphaView = [[UIView alloc]init];
+        _bottomAlphaView.alpha = 0.1;
+        _bottomAlphaView.backgroundColor = [UIColor blackColor];
+    }
+    return _bottomAlphaView;
+}
+
+
+-(UILabel *)durationLabel{
+    if (!_durationLabel) {
+        _durationLabel = [[UILabel alloc]init];
+        _durationLabel.textAlignment = 2;
+        _durationLabel.font = [UIFont systemFontOfSize:12];
+        _durationLabel.textColor = [UIColor whiteColor];
+    }
+    return _durationLabel;
+}
 
 @end

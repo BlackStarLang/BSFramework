@@ -11,11 +11,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /**
-* 支持预览的三种类型：
-* url
-* path
-* image
-*/
+ * 支持预览的三种类型：
+ * url
+ * path
+ * image
+ */
 typedef enum : NSUInteger {
     PREVIEWTYPE_URL = 0,    //url 预览
     PREVIEWTYPE_PATH,       //本地路径 预览
@@ -32,6 +32,14 @@ typedef enum : NSUInteger {
 /// navi tintColor
 /// ====================================
 @property (nonatomic ,strong) UIColor *mainColor;
+
+
+/// ====================================
+/// 预览图片时，navibar 的 alpha 值
+/// navibar alpha,默认为 1
+/// naviBarAlpha <=0 时，按1处理
+/// ====================================
+@property (nonatomic ,assign) CGFloat preNaviAlpha;
 
 
 /// ====================================
@@ -68,15 +76,28 @@ typedef enum : NSUInteger {
 
 
 /// ====================================
-/// 以下为 选择图片控件需要，普通预览不需要
+/// 如果仅仅使用预览类，则不需要使用下列属性
+/// 下列属性为图片选择器内部使用
+/// 即 BSPhotoListController 使用
 /// ====================================
-@property (nonatomic ,assign ) BOOL selectPreview;  //选择的预览还是 普通预览，默认NO
+
+/// 选择的预览还是 普通预览，默认NO
+@property (nonatomic ,assign ) BOOL selectPreview;
+
+/// 已经选择的图片数组
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;
 
+/// 允许选择最大个数
 @property (nonatomic ,assign) NSInteger allowSelectMaxCount;
+
+/// 当前选择了多少个
 @property (nonatomic ,assign) NSInteger currentSelectedCount;
 
+/// 是否选择原图
+@property (nonatomic ,assign) BOOL isOrigin;
 
+
+@property (nonatomic ,copy) void(^selectOriginImg)(BOOL isOrigin);
 
 
 @end

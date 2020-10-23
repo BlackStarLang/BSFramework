@@ -43,9 +43,11 @@
 
 
 /// =============================================
-/// 类型 暂时只支持 Image,不支持 视频等
+/// 0 图片
+/// 1 视频
+/// 2 图片+视频 (目前不支持混选，如果设置为2，则统一按图片处理)
 /// =============================================
-//@property (nonatomic ,assign) NSInteger imageType;
+@property (nonatomic ,assign) NSInteger mediaType;
 
 
 

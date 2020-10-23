@@ -11,11 +11,8 @@
 #import "BSPhotoViewModel.h"
 #import "Masonry.h"
 #import "UIImageView+WebCache.h"
-#import "UINavigationBar+BSBar.h"
 #import "BSPhotoDataManager.h"
 #import "BSPhotoNaviView.h"
-#import "UIView+BSView.h"
-#import "BSPhotoConfig.h"
 
 @interface BSPhotoPreviewController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
 
@@ -100,7 +97,7 @@
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
     
-    self.selectOriginBtn.selected = [BSPhotoConfig shareConfig].isOrigin;
+    self.selectOriginBtn.selected = self.isOrigin;
     self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
     
     [self initNaviView];
@@ -120,7 +117,7 @@
     
     /// 隐藏 系统 NavigationBar， 使用View 替换
     [self.navigationController setNavigationBarHidden:YES animated:YES];
-    self.naviView.frame = CGRectMake(0, 0, self.view.width, naviHeight);
+    self.naviView.frame = CGRectMake(0, 0, self.view.frame.size.width, naviHeight);
     [self.view addSubview:self.naviView];
     
     
@@ -192,7 +189,7 @@
 
 -(void)autoLightOrDark{
     
-    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
+    if ([self isLighterColor:self.mainColor]) {
         [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
         [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
     }else{
@@ -231,7 +228,8 @@
 -(void)originalImage:(UIButton *)sender{
     //是否使用原图
     sender.selected = !sender.selected;
-    [BSPhotoConfig shareConfig].isOrigin = sender.selected;
+    self.isOrigin = sender.selected;
+    self.selectOriginImg(self.isOrigin);
 }
 
 
@@ -300,8 +298,12 @@
     }else{
         
         [UIView animateWithDuration:0.3 animations:^{
-            self.naviView.top = self.statusBarHiddenStatus?0:-64;
-            CGFloat alpha = [BSPhotoConfig shareConfig].preNaviAlpha;
+            
+            CGRect frame = self.naviView.frame;
+            frame.origin.y = self.statusBarHiddenStatus?0:-64;
+            self.naviView.frame = frame;
+
+            CGFloat alpha = self.preNaviAlpha;
             self.naviView.alpha = self.statusBarHiddenStatus?(alpha<=0?1:alpha):0;
         }];
         
@@ -428,7 +430,7 @@
 -(BSPhotoNaviView *)naviView{
     if (!_naviView) {
         _naviView = [[BSPhotoNaviView alloc]init];
-        _naviView.alpha = [BSPhotoConfig shareConfig].preNaviAlpha;
+        _naviView.alpha = self.preNaviAlpha;
     }
     return _naviView;
 }

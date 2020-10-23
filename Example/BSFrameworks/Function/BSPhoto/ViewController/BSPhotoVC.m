@@ -89,6 +89,7 @@
     managerVC.supCamera = YES;
     managerVC.autoPush = YES;
     managerVC.saveToAlbum = YES;
+    managerVC.mediaType = 1;
     [self presentViewController:managerVC animated:YES completion:nil];
 }
 

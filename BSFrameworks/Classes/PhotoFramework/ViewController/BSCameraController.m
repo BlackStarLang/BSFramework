@@ -531,42 +531,40 @@
         return;
     }
 
-    self.connection = nil;
+//    self.connection = nil;
 
     CMFormatDescriptionRef desMedia = CMSampleBufferGetFormatDescription(sampleBuffer);
     CMMediaType mediaType = CMFormatDescriptionGetMediaType(desMedia);
 
-
-    if (!self.canWritting) {
-        self.canWritting = YES;
-        [self.writer startWriting];
+    if (mediaType == kCMMediaType_Video) {
         
-        CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-        [self.writer startSessionAtSourceTime:timestamp];
-    
-    }else{
-        
-        if (mediaType == kCMMediaType_Video) {
-
-            if (self.writerVideoInput.readyForMoreMediaData) {
-                BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
-                if (!success) {
-                    NSLog(@"video write failed");
-                }
-            }
-
-        }else if (mediaType == kCMMediaType_Audio){
-
-            if (self.writerAudioInput.readyForMoreMediaData) {
-                BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
-                if (!success) {
-                    NSLog(@"audio write failed");
-                }
-            }
-
-        }else{
-            NSLog(@"%d",mediaType);
+        // 要点：这里需要
+        if (!self.canWritting) {
+            [self.writer startWriting];
+            
+            CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
+            [self.writer startSessionAtSourceTime:timestamp];
+            self.canWritting = YES;
         }
+        
+        if (self.writerVideoInput.readyForMoreMediaData) {
+
+            BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
+            if (!success) {
+                NSLog(@"video write failed");
+            }
+        }
+        
+    }else if (mediaType == kCMMediaType_Audio && self.canWritting){
+        
+        if (self.writerAudioInput.readyForMoreMediaData) {
+            BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
+            if (!success) {
+                NSLog(@"audio write failed");
+            }
+        }
+    }else{
+
     }
 }
 

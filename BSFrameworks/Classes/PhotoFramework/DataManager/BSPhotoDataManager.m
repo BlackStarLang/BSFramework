@@ -56,14 +56,29 @@
     
     NSMutableArray *mutArr = [NSMutableArray array];
     
+    PHFetchOptions *options = [[PHFetchOptions alloc]init];
+    if (libraryType == 0) {
+        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType == %d",PHAssetMediaTypeImage];
+    }else if (libraryType == 1){
+        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType == %d",PHAssetMediaTypeVideo];
+    }else{
+        
+    }
+    
     for (PHAssetCollection *assetCollection in result) {
-        
-        PHFetchOptions *options = [[PHFetchOptions alloc]init];
-        options.predicate =  [NSPredicate predicateWithFormat:@"mediaType = %d",PHAssetMediaTypeImage];;
-        
+
         PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
-        NSInteger count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
-       
+        NSInteger count = 0;
+        if (libraryType == 0) {
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+        }else if (libraryType == 1){
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+        }else{
+            NSInteger imgCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+            NSInteger videoCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+            count = imgCount + videoCount;
+        }
+        
         if (count && ![assetCollection.localizedTitle isEqualToString:@"Recently Deleted"]) {
             BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
             [mutArr addObject:model];

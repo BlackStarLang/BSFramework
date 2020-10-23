@@ -19,6 +19,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,copy) void(^selectAction)(UIButton *sender);
 
+@property (nonatomic ,strong) UIView *bottomView;       //视频信息展示
+@property (nonatomic ,strong) UIView *bottomAlphaView;  //视频信息透明度View
+@property (nonatomic ,strong) UILabel *durationLabel;   //视频时长展示
+
 @end
 
 NS_ASSUME_NONNULL_END

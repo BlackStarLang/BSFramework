@@ -42,6 +42,7 @@
         [BSPhotoConfig shareConfig].allowSelectMaxCount = 9;
         [BSPhotoConfig shareConfig].supCamera = YES;
         [BSPhotoConfig shareConfig].saveToAlbum = YES;
+        [BSPhotoConfig shareConfig].mediaType = 0;
         
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectImage:) name:@"didFinishSelectImage" object:nil];
         [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(didFinishSelectVideo:) name:@"didFinishSelectVideo" object:nil];
@@ -156,6 +157,14 @@
     return (components[0]+components[1]+components[2])/3 >= 0.5;
 }
 
+
+-(void)setMediaType:(NSInteger)mediaType{
+    
+    if (mediaType > 2) {
+        mediaType = 2;
+    }
+    [BSPhotoConfig shareConfig].mediaType = mediaType;
+}
 
 -(void)setAllowSelectMaxCount:(NSInteger)allowSelectMaxCount{
     [BSPhotoConfig shareConfig].allowSelectMaxCount = allowSelectMaxCount;
