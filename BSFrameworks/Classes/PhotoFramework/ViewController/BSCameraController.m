@@ -531,40 +531,63 @@
         return;
     }
 
-//    self.connection = nil;
-
     CMFormatDescriptionRef desMedia = CMSampleBufferGetFormatDescription(sampleBuffer);
     CMMediaType mediaType = CMFormatDescriptionGetMediaType(desMedia);
 
     if (mediaType == kCMMediaType_Video) {
         
-        // 要点：这里需要
+        /**
+         * 要点1：
+         * 由于 self.canWritting = YES 放在 startSessionAtSourceTime
+         * 下，会出现录制的视频 前几帧相同(可能2-3帧都是第一帧) 的问题，故而将
+         * self.canWritting = YES 放在 startsession 上，目前测试没出现问题
+         */
+        
+        /**
+         * 要点2：
+         * 对于 startSessionAtSourceTime 开启时机需要放在类型为
+         * kCMMediaType_Video 里判断，因为如果放在外边，可能会导致录制的时候
+         * 是没有画面的，但是有声音，这就导致了预览视频的时候发现开头有一段空白视频
+         * 但是是有声音的
+         */
+        
+        /**
+         * 要点3：
+         * 需要将 startSessionAtSourceTime 方法放在类型为kCMMediaType_Video里
+         * 确保第一帧为图像在开启录制
+         */
+        
         if (!self.canWritting) {
             [self.writer startWriting];
-            
+
             CMTime timestamp = CMSampleBufferGetPresentationTimeStamp(sampleBuffer);
-            [self.writer startSessionAtSourceTime:timestamp];
+
             self.canWritting = YES;
+            [self.writer startSessionAtSourceTime:timestamp];
         }
+    }
+    
+    
+    if (self.canWritting) {
         
-        if (self.writerVideoInput.readyForMoreMediaData) {
-
-            BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
-            if (!success) {
-                NSLog(@"video write failed");
+        if (mediaType == kCMMediaType_Video) {
+            if (self.writerVideoInput.readyForMoreMediaData ) {
+                
+                BOOL success = [self.writerVideoInput appendSampleBuffer:sampleBuffer];
+                if (!success) {
+                    NSLog(@"video write failed");
+                }
+            }
+            
+        }else if (mediaType == kCMMediaType_Audio && self.canWritting){
+            
+            if (self.writerAudioInput.readyForMoreMediaData) {
+                BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
+                if (!success) {
+                    NSLog(@"audio write failed");
+                }
             }
         }
-        
-    }else if (mediaType == kCMMediaType_Audio && self.canWritting){
-        
-        if (self.writerAudioInput.readyForMoreMediaData) {
-            BOOL success = [self.writerAudioInput appendSampleBuffer:sampleBuffer];
-            if (!success) {
-                NSLog(@"audio write failed");
-            }
-        }
-    }else{
-
     }
 }
 
@@ -647,7 +670,7 @@
                                             AVNumberOfChannelsKey : @(1),
                                             AVSampleRateKey : @(22050) };
 
-            self.writerAudioInput = [[AVAssetWriterInput alloc]initWithMediaType:AVMediaTypeAudio outputSettings:audioSetting];
+            self.writerAudioInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeAudio outputSettings:audioSetting];
             self.writerAudioInput.expectsMediaDataInRealTime = YES;
 
             self.writerVideoInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo outputSettings:videoSetting];
