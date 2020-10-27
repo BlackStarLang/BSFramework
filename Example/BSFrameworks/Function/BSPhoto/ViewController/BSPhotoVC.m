@@ -80,25 +80,25 @@
 
 -(void)cameraBtnClick{
 
-//    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
-//    managerVC.BSDelegate = self;
-//    managerVC.modalPresentationStyle = 0;
-//    managerVC.mainColor = [UIColor darkTextColor];
-//    managerVC.preBarAlpha = 0.7;
-//    managerVC.currentSelectedCount = 0;
-//    managerVC.allowSelectMaxCount = 9;
-//    managerVC.supCamera = YES;
-//    managerVC.autoPush = YES;
-//    managerVC.saveToAlbum = YES;
-//    managerVC.mediaType = 0;
-//    [self presentViewController:managerVC animated:YES completion:nil];
+    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
+    managerVC.BSDelegate = self;
+    managerVC.modalPresentationStyle = 0;
+    managerVC.mainColor = [UIColor darkTextColor];
+    managerVC.preBarAlpha = 0.7;
+    managerVC.currentSelectedCount = 0;
+    managerVC.allowSelectMaxCount = 9;
+    managerVC.supCamera = YES;
+    managerVC.autoPush = YES;
+    managerVC.saveToAlbum = YES;
+    managerVC.mediaType = 0;
+    [self presentViewController:managerVC animated:YES completion:nil];
     
-    BSPhotoPreviewController *controller = [[BSPhotoPreviewController alloc]init];
-    NSArray *arr = @[[UIImage imageNamed:@"photo_camera_icon"],[UIImage imageNamed:@"preview_video_play"]];
-    
-    [controller setPreviewPhotos:[NSMutableArray arrayWithArray:arr] previewType:PREVIEWTYPE_IMAGE defaultIndex:0];
-    controller.modalPresentationStyle = 0;
-    [self presentViewController:controller animated:YES completion:nil];
+//    BSPhotoPreviewController *controller = [[BSPhotoPreviewController alloc]init];
+//    NSArray *arr = @[[UIImage imageNamed:@"photo_camera_icon"],[UIImage imageNamed:@"preview_video_play"]];
+//
+//    [controller setPreviewPhotos:[NSMutableArray arrayWithArray:arr] previewType:PREVIEWTYPE_IMAGE defaultIndex:0];
+//    controller.modalPresentationStyle = 0;
+//    [self presentViewController:controller animated:YES completion:nil];
 }
 
 
@@ -121,6 +121,7 @@
 
 -(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray<NSData *> *)imageDataArr{
 
+    NSLog(@"选择的图片个数 ： %ld",imageDataArr.count);
     NSData *data = imageDataArr.firstObject;
     
     self.imageView.image = [UIImage imageWithData:data];

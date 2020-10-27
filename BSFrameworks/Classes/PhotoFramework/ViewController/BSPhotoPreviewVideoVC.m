@@ -298,6 +298,8 @@
 
     if (self.selectPreview) {
         [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
+    }else{
+        [self.navigationController setToolbarHidden:NO animated:YES];
     }
 }
 

@@ -311,10 +311,8 @@
         
         self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
         [self setNeedsStatusBarAppearanceUpdate];
-
-        if (self.selectPreview) {
-            [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
-        }
+        
+        [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
     }
 }
 
