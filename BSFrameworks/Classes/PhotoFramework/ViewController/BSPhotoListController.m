@@ -374,7 +374,6 @@
             previewVC.isOrigin = [BSPhotoConfig shareConfig].isOrigin;
             previewVC.selectDataArr = self.selectDataArr;
             previewVC.selectPreview = YES;
-
             previewVC.selectOriginImg = ^(BOOL isOrigin) {
                 [BSPhotoConfig shareConfig].isOrigin = isOrigin;
             };

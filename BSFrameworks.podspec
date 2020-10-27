@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BSFrameworks'
-  s.version          = '0.1.4'
-  s.summary          = '图片选择器+图片预览完成'
+  s.version          = '0.1.5'
+  s.summary          = '相机增加 录制视频功能 ，增加视频预览功能'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?

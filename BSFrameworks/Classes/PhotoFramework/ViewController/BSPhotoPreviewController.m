@@ -121,14 +121,15 @@
     [self.view addSubview:self.naviView];
     
     
-    /// 初始化 时 naviView 右上角按钮图片
-    BSPhotoModel *model = self.previewPhotos[self.currentIndex];
-    if ([self.selectDataArr containsObject:model.identifier]) {
-        [self.naviView setRightBtnImage:@"img_select"];
-    }else{
-        [self.naviView setRightBtnImage:@"img_unselect"];
+    if (self.previewType == PREVIEWTYPE_PHOTO && self.selectPreview) {
+        /// 初始化 时 naviView 右上角按钮图片
+        BSPhotoModel *model = self.previewPhotos[self.currentIndex];
+        if ([self.selectDataArr containsObject:model.identifier]) {
+            [self.naviView setRightBtnImage:@"img_select"];
+        }else{
+            [self.naviView setRightBtnImage:@"img_unselect"];
+        }
     }
-    
     
     /// 自定义 navi 点击事件
     __weak typeof(self)weakSelf = self;
@@ -293,10 +294,11 @@
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.isPresent) {
+    if (!self.selectPreview) {
+        // 仅预览功能时，点击图片退出预览模式
         [self dismissViewControllerAnimated:YES completion:nil];
     }else{
-        
+        // 相册功能
         [UIView animateWithDuration:0.3 animations:^{
             
             CGRect frame = self.naviView.frame;

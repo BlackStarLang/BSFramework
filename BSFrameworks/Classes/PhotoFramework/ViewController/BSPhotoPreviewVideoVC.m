@@ -180,11 +180,11 @@
     AVAsset *asset = self.currentCell.playerLayer.player.currentItem.asset;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectVideo" object:asset];
     
-    if (!self.isPresent) {
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }else{
+//    if (!self.isPresent) {
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//    }else{
         [self dismissViewControllerAnimated:YES completion:nil];
-    }
+//    }
 }
 
 

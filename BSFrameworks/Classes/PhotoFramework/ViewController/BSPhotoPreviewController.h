@@ -27,6 +27,9 @@ typedef enum : NSUInteger {
 @interface BSPhotoPreviewController : UIViewController
 
 
+/// selectPreview = YES 时，为相册的预览（带有选中图片、原图等功能
+/// 否则为普通预览，仅仅用来预览图片使用
+@property (nonatomic ,assign ) BOOL selectPreview;
 
 /// ====================================
 /// navi tintColor
@@ -48,14 +51,6 @@ typedef enum : NSUInteger {
 @property (nonatomic ,assign) UIStatusBarStyle barStyle;
 
 
-
-/// ====================================
-/// 页面是 present 还是 pop
-/// ====================================
-@property (nonatomic ,assign ) BOOL isPresent;
-
-
-
 /// ====================================
 /// 预览信息：只读
 /// ====================================
@@ -74,15 +69,12 @@ typedef enum : NSUInteger {
 
 
 
-
+#pragma mark -
 /// ====================================
 /// 如果仅仅使用预览类，则不需要使用下列属性
 /// 下列属性为图片选择器内部使用
 /// 即 BSPhotoListController 使用
 /// ====================================
-
-/// 选择的预览还是 普通预览，默认NO
-@property (nonatomic ,assign ) BOOL selectPreview;
 
 /// 已经选择的图片数组
 @property (nonatomic ,strong) NSMutableArray *selectDataArr;

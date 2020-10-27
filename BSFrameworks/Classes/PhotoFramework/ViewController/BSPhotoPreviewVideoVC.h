@@ -12,6 +12,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSPhotoPreviewVideoVC : UIViewController
 
+/// selectPreview = YES 时，为相册的预览（带有选中图片、原图等功能
+/// 否则为普通预览，仅仅用来预览图片使用
+@property (nonatomic ,assign ) BOOL selectPreview;
+
 
 /// ====================================
 /// navi tintColor
@@ -34,12 +38,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 
 /// ====================================
-/// 页面是 present 还是 pop
-/// ====================================
-@property (nonatomic ,assign ) BOOL isPresent;
-
-
-/// ====================================
 /// 预览信息：只读
 /// ====================================
 @property (nonatomic ,strong ,readonly) NSMutableArray *previewVideos;//要预览的视频数组
@@ -56,9 +54,6 @@ NS_ASSUME_NONNULL_BEGIN
 /// 下列属性为图片选择器内部使用
 /// 即 BSPhotoListController 使用
 /// ====================================
-
-/// 图片选择器的预览还是 普通预览，默认NO
-@property (nonatomic ,assign ) BOOL selectPreview;
 
 
 /// ====================================
