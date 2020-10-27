@@ -62,6 +62,8 @@ typedef enum : NSUInteger {
 
 @property (nonatomic ,weak) id <BSVideoBottomViewDelegate> delegate;
 
+// 0,1 不展示
+@property (nonatomic ,assign) NSInteger mediaType;
 
 @end
 

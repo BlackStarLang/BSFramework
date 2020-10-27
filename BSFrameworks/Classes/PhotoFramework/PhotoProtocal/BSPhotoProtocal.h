@@ -7,6 +7,7 @@
 
 #import <Foundation/Foundation.h>
 
+@class AVAsset;
 
 @protocol BSPhotoProtocal <NSObject>
 
@@ -38,19 +39,17 @@
 
 
 /// ===================================
-/// 获取视频回调
-/// 仅支持获取视频存放地址
-///
-/// ***
-/// 如果视频地址要做缓存，由于拼接的路径是沙盒路径，可能会随运行改变，
-/// 这时缓存的路径就是错误的，需要将 Documents 前的路径使用 NSHomeDirectory()
-/// 重新获取，在拼接上后边的绝对路径即可拿到真正的资源
-/// ***
-///
+/// 相机拍摄后使用视频的回调
+/// 仅支持回调AVAsset
 /// ===================================
--(void)BSPhotoCameraDidFinishedSelectVideoWithVideoPath:(NSString*)videoPath;
+-(void)BSPhotoCameraDidFinishedSelectVideoWithAVAsset:(AVAsset*)avAsset;
 
 
+/// ===================================
+/// 相册选择视频后的回调
+/// 仅支持回调AVAsset
+/// ===================================
+-(void)BSPhotoManagerDidFinishedSelectVideoWithAVAsset:(AVAsset*)avAsset;
 
 
 //******************************************//

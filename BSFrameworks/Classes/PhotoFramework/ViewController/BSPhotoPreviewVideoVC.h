@@ -6,6 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BSPhotoProtocal.h"
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -44,6 +45,11 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,strong ,readonly) NSMutableArray *previewVideos;//要预览的视频数组
 @property (nonatomic ,assign ,readonly) NSInteger currentIndex;       //当前下标
 
+
+
+#pragma mark  - 相机独立使用时
+//=============== 我是分割线 ===============
+//=============== 我是分割线 ===============
 
 /// ====================================
 /// 如果仅仅使用预览类，则不需要使用下列属性

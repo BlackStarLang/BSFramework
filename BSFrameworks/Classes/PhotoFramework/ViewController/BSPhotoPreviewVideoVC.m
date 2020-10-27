@@ -28,12 +28,16 @@
 
 @property (nonatomic ,strong) BSPhotoDataManager *dataManager;
 
+@property (nonatomic ,strong) PhotoPreviewVideoCell *currentCell;
+@property (nonatomic ,strong) NSIndexPath *indexPath;//即将加载的下标
+
 @end
 
 @implementation BSPhotoPreviewVideoVC
 
 -(void)dealloc{
     NSLog(@"%@ dealloc",NSStringFromClass([self class]));
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
 -(UIStatusBarStyle)preferredStatusBarStyle{
@@ -121,6 +125,9 @@
     
     [self autoLightOrDark];
     
+    UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+    UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:leftView];
+
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
         
     UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
@@ -128,7 +135,7 @@
     
     UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
     
-    [self setToolbarItems:@[spaceItem,toolRightItem] animated:NO];
+    [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
 }
 
 -(void)autoLightOrDark{
@@ -170,6 +177,14 @@
 
 -(void)doneBtnClick{
     
+    AVAsset *asset = self.currentCell.playerLayer.player.currentItem.asset;
+    [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectVideo" object:asset];
+    
+    if (!self.isPresent) {
+        [self.navigationController popToRootViewControllerAnimated:YES];
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 
@@ -192,80 +207,105 @@
 -(__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     
     PhotoPreviewVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPreviewVideoCell" forIndexPath:indexPath];
-
+    
     BSPhotoModel *model = self.previewVideos[indexPath.row];
     
     CGFloat width = self.view.frame.size.width;
     CGFloat height = self.view.frame.size.height;
     CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize targetSize = CGSizeMake(width * scale, height * scale);
+    CGSize tsize = CGSizeMake(width * scale, height * scale);
     
     __weak typeof(PhotoPreviewVideoCell*)weakCell = cell;
-    [self.dataManager getImageWithPHAsset:model.asset targetSize:targetSize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
+    [self.dataManager getImageWithPHAsset:model.asset targetSize:tsize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
         weakCell.imageView.image = targetImage;
     }];
+    
+    __weak typeof(self)weakSelf = self;
+    cell.replayCallBack = ^{
+        [weakSelf cell:weakCell willPlayVideoWithIndexPath:indexPath];
+    };
     
     return cell;
 }
 
 
+
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-    
-    PhotoPreviewVideoCell *pcell = (PhotoPreviewVideoCell *)cell;
-    
-    BSPhotoModel *model = self.previewVideos[indexPath.row];
-    
-    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
-    options.version = PHImageRequestOptionsVersionCurrent;
-    options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
-    
-    PHImageManager *manager = [PHImageManager defaultManager];
-    [manager requestAVAssetForVideo:model.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
         
-        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-        pcell.playerLayer.player = player;
-        [player play];
-    }];
+    if (!self.indexPath) {
+        [self cell:(PhotoPreviewVideoCell *)cell willPlayVideoWithIndexPath:indexPath];
+    }
+    self.indexPath = indexPath;
 }
 
 
+
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
+   
+    /// 已经过去的cell 停止播放， player置空，replayBtn隐藏
     PhotoPreviewVideoCell *pcell = (PhotoPreviewVideoCell *)cell;
+    [pcell.playerLayer.player pause];
     pcell.playerLayer.player = nil;
+    pcell.replayBtn.hidden = YES;
+    
+    /// 即将播放的cell ，获取资源然后播放
+    PhotoPreviewVideoCell *curCell = (PhotoPreviewVideoCell *)[self.collectionView cellForItemAtIndexPath:self.indexPath];
+    [self cell:(PhotoPreviewVideoCell *)curCell willPlayVideoWithIndexPath:self.indexPath];
+}
+
+
+-(void)cell:(PhotoPreviewVideoCell *)cell willPlayVideoWithIndexPath:(NSIndexPath *)indexPath{
+        
+    BSPhotoModel *model = self.previewVideos[indexPath.row];
+
+    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+    options.version = PHImageRequestOptionsVersionCurrent;
+    options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
+
+    PHImageManager *manager = [PHImageManager defaultManager];
+    [manager requestAVAssetForVideo:model.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
+            AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+            cell.playerLayer.player = player;
+            cell.replayBtn.hidden = YES;
+            [player play];
+            self.currentCell = cell;
+            
+            [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        });
+    }];
 }
 
 
 -(void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
     
-    if (self.isPresent) {
-        [self dismissViewControllerAnimated:YES completion:nil];
-    }else{
+    [UIView animateWithDuration:0.3 animations:^{
         
-        [UIView animateWithDuration:0.3 animations:^{
-            
-            CGRect frame = self.naviView.frame;
-            frame.origin.y = self.statusBarHiddenStatus?0:-64;
-            self.naviView.frame = frame;
-            
-            CGFloat alpha = self.preNaviAlpha;
-            self.naviView.alpha = self.statusBarHiddenStatus?(alpha<=0?1:alpha):0;
-        }];
+        CGRect frame = self.naviView.frame;
+        frame.origin.y = self.statusBarHiddenStatus?0:-64;
+        self.naviView.frame = frame;
         
-        self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
-        [self setNeedsStatusBarAppearanceUpdate];
+        CGFloat alpha = self.preNaviAlpha;
+        self.naviView.alpha = self.statusBarHiddenStatus?(alpha<=0?1:alpha):0;
+    }];
+    
+    self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
+    [self setNeedsStatusBarAppearanceUpdate];
 
-        if (self.selectPreview) {
-            [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
-        }
+    if (self.selectPreview) {
+        [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
     }
 }
 
-#pragma mark - systemDelegate
+#pragma mark notification
 
--(void)scrollViewDidScroll:(UIScrollView *)scrollView{
+-(void)videoPlayToEnd:(NSNotification*)noti{
     
-    
+    self.currentCell.replayBtn.hidden = NO;
 }
 
 
@@ -280,11 +320,12 @@
         flowLayout.minimumInteritemSpacing = 0;
         flowLayout.sectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
         flowLayout.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-
+        
         _collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(-10, 0, self.view.frame.size.width+20, self.view.frame.size.height) collectionViewLayout:flowLayout];
         _collectionView.delegate = self;
         _collectionView.dataSource = self;
         _collectionView.pagingEnabled = YES;
+        _collectionView.alwaysBounceVertical = NO;
         [_collectionView registerClass:[PhotoPreviewVideoCell class] forCellWithReuseIdentifier:@"PhotoPreviewVideoCell"];
     }
     return _collectionView;

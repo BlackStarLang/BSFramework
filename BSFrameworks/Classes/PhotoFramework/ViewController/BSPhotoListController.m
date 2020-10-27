@@ -71,7 +71,11 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
-    [self.navigationController setToolbarHidden:NO];
+    if ([BSPhotoConfig shareConfig].mediaType != 1) {
+        [self.navigationController setToolbarHidden:NO];
+    }else{
+        [self.navigationController setToolbarHidden:YES];
+    }
     self.selectOriginBtn.selected = [BSPhotoConfig shareConfig].isOrigin;
 }
 
@@ -113,24 +117,27 @@
 
 -(void)initToolBarItems{
     
-    if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
-        [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-        [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    }else{
-        [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    }
-
-    UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
-    UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+    if ([BSPhotoConfig shareConfig].mediaType != 1) {
         
-    UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
-    [originView addSubview:self.countLabel];
-    [originView addSubview:self.doneBtn];
-    
-    UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
-    
-    [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
+        if ([self isLighterColor:[BSPhotoConfig shareConfig].mainColor]) {
+            [self.selectOriginBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+            [self.doneBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+        }else{
+            [self.selectOriginBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+            [self.doneBtn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        }
+
+        UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:self.selectOriginBtn];
+        UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
+            
+        UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
+        [originView addSubview:self.countLabel];
+        [originView addSubview:self.doneBtn];
+        
+        UIBarButtonItem *toolRightItem = [[UIBarButtonItem alloc]initWithCustomView:originView];
+        
+        [self setToolbarItems:@[toolLeftItem,spaceItem,toolRightItem] animated:NO];
+    }
 }
 
 - (BOOL)isLighterColor:(UIColor *)color {
@@ -330,6 +337,12 @@
         BSCameraController *cameraVC = [[BSCameraController alloc]init];
         cameraVC.saveToAlbum = [BSPhotoConfig shareConfig].saveToAlbum;
         cameraVC.delegate = self;
+        
+        NSInteger mediaType = [BSPhotoConfig shareConfig].mediaType;
+        if (mediaType == 2) {
+            mediaType = 0;
+        }
+        cameraVC.mediaType = mediaType;
         cameraVC.modalPresentationStyle = UIModalPresentationFullScreen;
         cameraVC.hidesBottomBarWhenPushed = YES;
         [self.navigationController pushViewController:cameraVC animated:YES];

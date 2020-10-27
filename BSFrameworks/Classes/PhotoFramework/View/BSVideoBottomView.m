@@ -141,7 +141,9 @@
     
     self.nextBtn.hidden = !hidden;
     self.takeBtn.hidden = hidden;
-    self.typeSelView.hidden = hidden;
+    if (self.mediaType == 2) {
+        self.typeSelView.hidden = hidden;
+    }
     self.cancelBtn.hidden = NO;
     
     if (self.selectType == SELECTTYPE_VIDEO) {
@@ -161,11 +163,17 @@
 }
 
 
+-(void)setSelectType:(SELECTTYPE)selectType{
+    [self BSPhotoTypeSelectViewSelectedType:selectType];
+}
+
+
 #pragma mark - priveDelegate 私有代理
 -(void)BSPhotoTypeSelectViewSelectedType:(SELECTTYPE)selectType{
     
+    _selectType = selectType;
+
     self.takeBtn.selected = NO;
-    self.selectType = selectType;
     self.recordStatus = RECORD_STATUS_UNRECORD;
     
     [self refreshUIHiddenStatusIsHidden:NO];
@@ -326,7 +334,7 @@
     self.shapLayer.fillColor = fillCorlor.CGColor;
     
     UIBezierPath *bezierPath = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(7, 7, 28*2, 28*2) cornerRadius:28];
-    UIBezierPath *bezierPath1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(15, 15, 20*2, 20*2) cornerRadius:10];
+    UIBezierPath *bezierPath1 = [UIBezierPath bezierPathWithRoundedRect:CGRectMake(17, 17, 18*2, 18*2) cornerRadius:8];
 
     CABasicAnimation *basicAnimation = [CABasicAnimation animation];
     basicAnimation.duration = 0.2;

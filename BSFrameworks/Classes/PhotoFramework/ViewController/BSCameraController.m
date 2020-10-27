@@ -55,6 +55,7 @@
 -(void)dealloc{
     NSLog(@"%@ dealloc",NSStringFromClass([self class]));
     
+    [[NSNotificationCenter defaultCenter]removeObserver:self];
     if ([self.device lockForConfiguration:nil]) {
         if ([self.device isTorchModeSupported:AVCaptureTorchModeOff]) {
             self.device.flashMode = AVCaptureFlashModeOff;
@@ -270,6 +271,22 @@
     _waterMarkView = waterMarkView;
 
     [self.photoImageView addSubview:waterMarkView];
+}
+
+
+-(void)setMediaType:(NSInteger)mediaType{
+    _mediaType = mediaType;
+    
+    self.bottomView.mediaType = self.mediaType;
+
+    if (self.mediaType == 0) {
+        self.bottomView.typeSelView.hidden = YES;
+    }else if (self.mediaType == 1){
+        self.bottomView.typeSelView.hidden = YES;
+        self.bottomView.selectType = SELECTTYPE_VIDEO;
+    }else{
+        self.bottomView.typeSelView.hidden = NO;
+    }
 }
 
 
@@ -622,9 +639,12 @@
     NSFileManager *manager = [NSFileManager defaultManager];
     BOOL isDir;
     if ([manager fileExistsAtPath:documentPath isDirectory:&isDir]) {
+        // 为防止占用空间过高，每次使用的时候，先清理，如果要使用就视频，可先保存到相册
         if (!isDir) {
-            [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+            [manager removeItemAtPath:documentPath error:nil];
         }
+        [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
+
     }else{
         [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
     }

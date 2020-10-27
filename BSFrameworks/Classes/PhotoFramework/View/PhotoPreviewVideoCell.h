@@ -17,6 +17,9 @@
 @property (nonatomic ,strong) AVPlayerLayer  *playerLayer;
 @property (nonatomic ,strong) AVPlayer  *player;
 
+@property (nonatomic ,strong) UIButton *replayBtn;
+
+@property (nonatomic ,copy) void(^replayCallBack)(void);
 
 @end
 

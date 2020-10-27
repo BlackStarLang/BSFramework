@@ -119,9 +119,14 @@
 }
 
 
--(void)BSPhotoCameraDidFinishedSelectVideoWithVideoPath:(NSString *)videoPath{
+- (void)BSPhotoManagerDidFinishedSelectVideoWithAVAsset:(AVAsset *)avAsset{
     
-    NSLog(@"获取到视频地址：%@",videoPath);
+    NSLog(@"相册获取到视频地址：%@",avAsset);
+}
+
+-(void)BSPhotoCameraDidFinishedSelectVideoWithAVAsset:(AVAsset *)avAsset{
+    
+    NSLog(@"相机 == 获取到视频地址：%@",avAsset);
 }
 
 

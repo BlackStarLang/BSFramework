@@ -104,10 +104,21 @@
 }
 
 -(void)didFinishSelectVideo:(NSNotification *)noti{
-    NSString *path = [noti object];
-    
-    if ([self.BSDelegate respondsToSelector:@selector(BSPhotoCameraDidFinishedSelectVideoWithVideoPath:)]) {
-        [self.BSDelegate BSPhotoCameraDidFinishedSelectVideoWithVideoPath:path?:@""];
+
+    if ([[noti object]isKindOfClass:[NSString class]]) {
+       
+        NSString *path = [noti object];
+        if ([self.BSDelegate respondsToSelector:@selector(BSPhotoCameraDidFinishedSelectVideoWithAVAsset:)]) {
+            AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
+            [self.BSDelegate BSPhotoCameraDidFinishedSelectVideoWithAVAsset:asset];
+        }
+        
+    }else{
+        
+        AVAsset *asset = [noti object];
+        if ([self.BSDelegate respondsToSelector:@selector(BSPhotoManagerDidFinishedSelectVideoWithAVAsset:)]) {
+            [self.BSDelegate BSPhotoManagerDidFinishedSelectVideoWithAVAsset:asset];
+        }
     }
 }
 
