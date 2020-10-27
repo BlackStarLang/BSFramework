@@ -331,18 +331,6 @@
 }
 
 
-/// 开始录制
--(void)startRecordVideo{
-    
-    if (self.preVideoURL) {
-        //不要的视频删掉
-        NSFileManager *manager = [NSFileManager defaultManager];
-        [manager removeItemAtPath:self.preVideoURL.absoluteString error:nil];
-    }
-    [self configWriter];
-}
-
-
 // 下一步
 -(void)nextStep{
 
@@ -525,7 +513,7 @@
         
         if (bottomView.recordStatus == RECORD_STATUS_RECORDING) {
             //开始录制
-            [self startRecordVideo];
+            [self configWriter];
             
         }else if(bottomView.recordStatus == RECORD_STATUS_RECORDED){
             //录制结束
@@ -637,9 +625,11 @@
     BOOL isDir;
     if ([manager fileExistsAtPath:documentPath isDirectory:&isDir]) {
         // 为防止占用空间过高，每次使用的时候，先清理，如果要使用就视频，可先保存到相册
-        if (!isDir) {
-            [manager removeItemAtPath:documentPath error:nil];
+        if (isDir) {
+            NSError *error = nil;
+            [manager removeItemAtPath:documentPath error:&error];
         }
+       
         [manager createDirectoryAtPath:documentPath withIntermediateDirectories:YES attributes:nil error:nil];
 
     }else{
