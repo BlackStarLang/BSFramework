@@ -11,6 +11,8 @@
 
 @interface BSVideoBottomView ()<BSPhotoTypeSelectViewDelegate>
 
+@property (nonatomic ,strong) NSTimer *timer;
+@property (nonatomic ,assign) int timeCount;
 
 @end
 
@@ -34,6 +36,7 @@
     self.recordStatus = RECORD_STATUS_UNRECORD;
 
     [self addSubview:self.alphaView];
+    [self addSubview:self.videoTimeLabel];
     [self addSubview:self.takeBtn];
     [self addSubview:self.cancelBtn];
     [self addSubview:self.nextBtn];
@@ -65,13 +68,19 @@
         make.centerY.equalTo(self.takeBtn);
         make.width.height.mas_equalTo(44);
     }];
+    
+    [self.videoTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.top.offset(5);
+        make.right.offset(-5);
+        make.height.mas_equalTo(30);
+    }];
 }
 
 
 #pragma mark - action 交互事件
 
 -(void)cancelBtnClick{
-    
+    self.videoTimeLabel.hidden = YES;
     if (self.recordStatus != RECORD_STATUS_UNRECORD) {
         
         if ([self.delegate respondsToSelector:@selector(BSVideoBottomView:didClickFuncBtnWithType:)]) {
@@ -112,9 +121,11 @@
             if (self.takeBtn.selected == YES) {
                 self.recordStatus = RECORD_STATUS_RECORDING;
                 [self.takeBtn actionToAnimateTranslationForRecording:YES fillCorlor:[UIColor redColor]];
+                [self startTime];
             }else{
                 self.recordStatus = RECORD_STATUS_RECORDED;
                 [self.takeBtn actionToAnimateTranslationForRecording:NO fillCorlor:[UIColor redColor]];
+                [self stopTime];
             }
 
             [self.delegate BSVideoBottomView:self didClickFuncBtnWithType:FUNC_TYPE_VIDEO];
@@ -132,6 +143,48 @@
     [UIView animateWithDuration:0.5 animations:^{
         self.takeBtn.takeBtn.frame = CGRectMake(0, 0, 20, 30);
     }];
+}
+
+
+-(void)startTime{
+    
+    self.videoTimeLabel.hidden = (self.selectType==1);
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timeAddCount) userInfo:nil repeats:YES];
+}
+
+
+-(void)timeAddCount{
+    
+    self.timeCount ++ ;
+    self.videoTimeLabel.text = [self getTimeStr];
+}
+
+
+-(NSString *)getTimeStr{
+    
+    NSString *timeStr = @"00:00:00";
+    if (self.timeCount<60) {
+        
+        timeStr = [NSString stringWithFormat:@"00:00:%02d",self.timeCount];
+
+    }else if (self.timeCount>=60 && self.timeCount<=3600){
+        
+        timeStr = [NSString stringWithFormat:@"00:%02d:%02d",self.timeCount/60,self.timeCount%60];
+
+    }else{
+        timeStr = [NSString stringWithFormat:@"%02d:%02d:%02d",self.timeCount/3600,self.timeCount/60,self.timeCount%60];
+
+    }
+    
+    return timeStr;
+}
+
+
+-(void)stopTime{
+ 
+    [self.timer invalidate];
+    self.timer = nil;
+    self.timeCount = 0;
 }
 
 
@@ -201,6 +254,20 @@
     }
     return _alphaView;
 }
+
+
+-(UILabel *)videoTimeLabel{
+    if (!_videoTimeLabel) {
+        _videoTimeLabel = [[UILabel alloc]init];
+        _videoTimeLabel.textAlignment = 1;
+        _videoTimeLabel.textColor = [UIColor whiteColor];
+        _videoTimeLabel.font = [UIFont systemFontOfSize:16];
+        _videoTimeLabel.hidden = YES;
+        _videoTimeLabel.text = @"00:00:00";
+    }
+    return _videoTimeLabel;
+}
+
 
 -(BSVideoTakeBtn *)takeBtn{
     if (!_takeBtn) {
@@ -352,17 +419,6 @@
     
     [self.shapLayer addAnimation:basicAnimation forKey:@"path"];
 }
-
-
-#pragma mark - systemDelegate
-
-//-(void)animationDidStop:(CAAnimation *)anim finished:(BOOL)flag{
-//    if (flag) {
-//        self.shapLayer.path =
-//    }
-//}
-
-
 
 #pragma mark - init 属性初始化
 

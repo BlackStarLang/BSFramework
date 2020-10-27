@@ -150,7 +150,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataSource.count;
+    return self.dataSource.count!=0?:1;
 }
 
 
@@ -158,7 +158,11 @@
     
     PhotoGroupListCell *cell = [tableView dequeueReusableCellWithIdentifier:@"PhotoGroupListCell" forIndexPath:indexPath];
     
-    [BSPhotoViewModel displayGroupListCell:cell groupModel:self.dataSource[indexPath.row] dataManager:self.dataManager];
+    if (self.dataSource.count) {
+        [BSPhotoViewModel displayGroupListCell:cell groupModel:self.dataSource[indexPath.row] dataManager:self.dataManager];
+    }else{
+        [BSPhotoViewModel displayGroupListCell:cell groupModel:nil dataManager:self.dataManager];
+    }
     
     return cell;
 }
@@ -167,7 +171,9 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     BSPhotoListController *photoListVC = [[BSPhotoListController alloc]init];
-    photoListVC.groupModel = self.dataSource[indexPath.row];
+    if (self.dataSource.count) {
+        photoListVC.groupModel = self.dataSource[indexPath.row];
+    }
     photoListVC.selectDataArr = self.selectDataArr;
     photoListVC.modalPresentationStyle = UIModalPresentationFullScreen;
     [self.navigationController pushViewController:photoListVC animated:YES];

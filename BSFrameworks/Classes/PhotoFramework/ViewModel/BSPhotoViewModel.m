@@ -17,14 +17,23 @@
 #pragma mark - PhotoGroupListCell 展示数据 BSPhotoGroupModel
 +(void)displayGroupListCell:(PhotoGroupListCell *)cell groupModel:(BSPhotoGroupModel *)groupModel dataManager:(BSPhotoDataManager *)dataManager{
     
-    PHFetchResult *fetchResult = groupModel.fetchResult;
-    
-    [dataManager getImageWithPHAsset:fetchResult.lastObject targetSize:CGSizeMake(60 * [UIScreen mainScreen].scale, 60 * [UIScreen mainScreen].scale) contentModel:PHImageContentModeAspectFill imageBlock:^(UIImage *targetImage) {
-        cell.thumbImgView.image = targetImage;
-    }];
-    
-    cell.groupNameLabel.text = groupModel.title;
-    cell.countLabel.text = [NSString stringWithFormat:@"%ld",(long)groupModel.count];
+    if (groupModel == nil) {
+        
+        cell.groupNameLabel.text = @"去拍照";
+        cell.countLabel.text = @"0";
+        cell.thumbImgView.image = [UIImage imageNamed:@"photo_camera_icon"];
+        
+    }else{
+        
+        PHFetchResult *fetchResult = groupModel.fetchResult;
+        
+        [dataManager getImageWithPHAsset:fetchResult.lastObject targetSize:CGSizeMake(60 * [UIScreen mainScreen].scale, 60 * [UIScreen mainScreen].scale) contentModel:PHImageContentModeAspectFill imageBlock:^(UIImage *targetImage) {
+            cell.thumbImgView.image = targetImage;
+        }];
+        
+        cell.groupNameLabel.text = groupModel.title;
+        cell.countLabel.text = [NSString stringWithFormat:@"%ld",(long)groupModel.count];
+    }
 }
 
 

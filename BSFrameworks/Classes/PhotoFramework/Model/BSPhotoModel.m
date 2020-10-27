@@ -11,27 +11,18 @@
 
 -(void)setDuration:(NSTimeInterval)duration{
     _duration = duration;
-    
-    NSString *time = @"0";
 
-    if (duration<10) {
+    if (duration<60) {
         
-        time = [NSString stringWithFormat:@"0:0%.f",duration];
+        //秒
+        self.durationStr = [NSString stringWithFormat:@"0:%02d",(int)duration];
         
-    }else if (duration<60 && duration >=10){
+    }else if (duration>=60 && duration < 3600){
         
-        time = [NSString stringWithFormat:@"0:%.f",duration];
-        
-    }else if (duration>=60 && duration < 600){
-        
+        //分钟
         int minutes = duration/60;
         int second = (int)duration % 60;
-        
-        if (second<10) {
-            time = [NSString stringWithFormat:@"%d:0%d",minutes,second];
-        }else{
-            time = [NSString stringWithFormat:@"%d:%d",minutes,second];
-        }
+        self.durationStr = [NSString stringWithFormat:@"%02d:%02d",minutes,second];
 
     }else{
         
@@ -39,23 +30,9 @@
         int hour = duration/60/60;
         int minutes = (int)duration / 60 % 60;
         int second = (int)duration % 60;
-        
-        NSString *minutesStr = @"";
-        if (minutes<10) {
-            minutesStr = [NSString stringWithFormat:@"0%d",minutes];
-        }else{
-            minutesStr = [NSString stringWithFormat:@"%d",minutes];
-        }
-        
-        if (second<10) {
-            time = [NSString stringWithFormat:@"%d:%@:0%d",hour,minutesStr,second];
-        }else{
-            time = [NSString stringWithFormat:@"%d:%@:%d",hour,minutesStr,second];
-        }
-        
+        self.durationStr = [NSString stringWithFormat:@"%d:%02d:%02d",hour,minutes,second];
     }
     
-    self.durationStr = time;
 }
 
 @end

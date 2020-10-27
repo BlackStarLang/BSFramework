@@ -50,8 +50,10 @@ typedef enum : NSUInteger {
 
 @interface BSVideoBottomView : UIView
 
-@property (nonatomic ,strong) BSPhotoTypeSelectView *typeSelView;
 @property (nonatomic ,strong) UIView *alphaView;        // 用来控制透明度的背景
+
+@property (nonatomic ,strong) BSPhotoTypeSelectView *typeSelView;
+@property (nonatomic ,strong) UILabel *videoTimeLabel;  // 录制时间
 
 @property (nonatomic ,strong) BSVideoTakeBtn *takeBtn;  //拍照按钮
 @property (nonatomic ,strong) UIButton *cancelBtn;      //取消、重新拍摄按钮

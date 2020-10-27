@@ -55,7 +55,6 @@
 -(void)dealloc{
     NSLog(@"%@ dealloc",NSStringFromClass([self class]));
     
-    [[NSNotificationCenter defaultCenter]removeObserver:self];
     if ([self.device lockForConfiguration:nil]) {
         if ([self.device isTorchModeSupported:AVCaptureTorchModeOff]) {
             self.device.flashMode = AVCaptureFlashModeOff;
@@ -505,7 +504,6 @@
 
     }else if (funcType == FUNC_TYPE_RETRY){
         //重拍
-//        [[NSNotificationCenter defaultCenter]removeObserver:self];
         [self.session startRunning];
         
         self.photoImageView.hidden = YES;
@@ -516,7 +514,6 @@
     }else if (funcType == FUNC_TYPE_NEXT){
 
         // 点击下一步
-//        [[NSNotificationCenter defaultCenter]removeObserver:self];
         [self nextStep];
         
     }else if (funcType == FUNC_TYPE_PIC){
