@@ -95,6 +95,7 @@
     __weak typeof(self)weakSelf = self;
     self.naviView.naviAction = ^(BOOL isBack) {
         if (isBack) {
+            [weakSelf dismissViewControllerAnimated:YES completion:nil];
             [weakSelf.navigationController popViewControllerAnimated:YES];
         }
     };
@@ -165,11 +166,17 @@
     self.naviView.backgroundColor = mainColor;
 }
 
+-(void)setPreNaviAlpha:(CGFloat)preNaviAlpha{
+    _preNaviAlpha = preNaviAlpha;
+    self.naviView.alpha = self.preNaviAlpha;
+}
 
--(void)setPreviewVideos:(NSMutableArray *)previewVideos defaultIndex:(NSInteger)defaultIndex{
+
+-(void)setPreviewVideos:(NSMutableArray *)previewVideos defaultIndex:(NSInteger)defaultIndex videoType:(VIDEOTYPE)videoType{
     
     _previewVideos = previewVideos;
     _currentIndex = defaultIndex;
+    _videoType = videoType;
 }
 
 
@@ -179,12 +186,7 @@
     
     AVAsset *asset = self.currentCell.playerLayer.player.currentItem.asset;
     [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectVideo" object:asset];
-    
-//    if (!self.isPresent) {
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//    }else{
-        [self dismissViewControllerAnimated:YES completion:nil];
-//    }
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
@@ -208,17 +210,21 @@
     
     PhotoPreviewVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPreviewVideoCell" forIndexPath:indexPath];
     
-    BSPhotoModel *model = self.previewVideos[indexPath.row];
-    
-    CGFloat width = self.view.frame.size.width;
-    CGFloat height = self.view.frame.size.height;
-    CGFloat scale = [UIScreen mainScreen].scale;
-    CGSize tsize = CGSizeMake(width * scale, height * scale);
-    
     __weak typeof(PhotoPreviewVideoCell*)weakCell = cell;
-    [self.dataManager getImageWithPHAsset:model.asset targetSize:tsize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
-        weakCell.imageView.image = targetImage;
-    }];
+
+    if (self.videoType == VIDEOTYPE_PHOTO) {
+        BSPhotoModel *model = self.previewVideos[indexPath.row];
+        
+        CGFloat width = self.view.frame.size.width;
+        CGFloat height = self.view.frame.size.height;
+        CGFloat scale = [UIScreen mainScreen].scale;
+        CGSize tsize = CGSizeMake(width * scale, height * scale);
+        
+        [self.dataManager getImageWithPHAsset:model.asset targetSize:tsize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
+            weakCell.imageView.image = targetImage;
+        }];
+    }
+    
     
     __weak typeof(self)weakSelf = self;
     cell.replayCallBack = ^{
@@ -256,28 +262,74 @@
 
 -(void)cell:(PhotoPreviewVideoCell *)cell willPlayVideoWithIndexPath:(NSIndexPath *)indexPath{
         
-    BSPhotoModel *model = self.previewVideos[indexPath.row];
-
-    PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
-    options.version = PHImageRequestOptionsVersionCurrent;
-    options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
-
-    PHImageManager *manager = [PHImageManager defaultManager];
-    [manager requestAVAssetForVideo:model.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
+    if (self.videoType == VIDEOTYPE_PHOTO) {
         
-        dispatch_async(dispatch_get_main_queue(), ^{
+        BSPhotoModel *model = self.previewVideos[indexPath.row];
 
-            AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-            AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-            cell.playerLayer.player = player;
-            cell.replayBtn.hidden = YES;
-            [player play];
-            self.currentCell = cell;
+        PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
+        options.version = PHImageRequestOptionsVersionCurrent;
+        options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
+
+        PHImageManager *manager = [PHImageManager defaultManager];
+        [manager requestAVAssetForVideo:model.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             
-            [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-            [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-        });
-    }];
+            dispatch_async(dispatch_get_main_queue(), ^{
+                NSLog(@"%@",asset);
+                AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
+                AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+                cell.playerLayer.player = player;
+                cell.replayBtn.hidden = YES;
+                [player play];
+                self.currentCell = cell;
+                
+                [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+                [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+            });
+        }];
+        
+    }else if (self.videoType == VIDEOTYPE_URL){
+        
+        NSString *url = self.previewVideos[indexPath.row];
+        AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:url]];
+        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
+        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+        cell.playerLayer.player = player;
+        cell.replayBtn.hidden = YES;
+        [player play];
+        self.currentCell = cell;
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        
+    }else if (self.videoType == VIDEOTYPE_AVASSET){
+        
+        AVAsset *asset = self.previewVideos[indexPath.row];
+        
+        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
+        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+        cell.playerLayer.player = player;
+        cell.replayBtn.hidden = YES;
+        [player play];
+        self.currentCell = cell;
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        
+    }else if (self.videoType == VIDEOTYPE_PATH){
+        
+        NSString *path = self.previewVideos[indexPath.row];
+        AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
+        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
+        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+        cell.playerLayer.player = player;
+        cell.replayBtn.hidden = YES;
+        [player play];
+        self.currentCell = cell;
+        
+        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+    }
+    
 }
 
 
@@ -299,7 +351,7 @@
     if (self.selectPreview) {
         [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
     }else{
-        [self.navigationController setToolbarHidden:NO animated:YES];
+        [self.navigationController setToolbarHidden:YES animated:YES];
     }
 }
 
@@ -352,7 +404,6 @@
 -(BSPhotoNaviView *)naviView{
     if (!_naviView) {
         _naviView = [[BSPhotoNaviView alloc]init];
-        _naviView.alpha = self.preNaviAlpha;
     }
     return _naviView;
 }

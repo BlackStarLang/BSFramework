@@ -356,7 +356,7 @@
             previewVC.mainColor = [BSPhotoConfig shareConfig].mainColor;
             previewVC.barStyle = [BSPhotoConfig shareConfig].barStyle;
             previewVC.selectPreview = YES;
-            [previewVC setPreviewVideos:self.dataSource defaultIndex:indexPath.row];
+            [previewVC setPreviewVideos:self.dataSource defaultIndex:indexPath.row videoType:VIDEOTYPE_PHOTO];
             previewVC.modalPresentationStyle = UIModalPresentationFullScreen;
             [self.navigationController pushViewController:previewVC animated:YES];
             

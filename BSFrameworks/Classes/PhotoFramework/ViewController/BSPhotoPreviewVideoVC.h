@@ -10,6 +10,19 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+/**
+ * 支持预览的三种类型：
+ * url
+ * path
+ * avasset
+ */
+typedef enum : NSUInteger {
+    VIDEOTYPE_URL = 0,    //网络链接url(非URL)
+    VIDEOTYPE_PATH,       //本地路径 预览
+    VIDEOTYPE_AVASSET,    //系统AVASSET对象预览
+    VIDEOTYPE_PHOTO,      //BSPhotoModel 预览(组件内对象)
+} VIDEOTYPE;
+
 @interface BSPhotoPreviewVideoVC : UIViewController
 
 /// selectPreview = YES 时，为相册的预览（带有选中图片、原图等功能
@@ -42,6 +55,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// ====================================
 @property (nonatomic ,strong ,readonly) NSMutableArray *previewVideos;//要预览的视频数组
 @property (nonatomic ,assign ,readonly) NSInteger currentIndex;       //当前下标
+@property (nonatomic ,assign ,readonly) VIDEOTYPE videoType; // 预览的视频类型
 
 
 
@@ -59,8 +73,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// ====================================
 /// 设置 要预览的图片源 previewVideos
 /// defaultIndex默认下标
+/// 仅支持 AVAsset 类型
 /// ====================================
--(void)setPreviewVideos:(NSMutableArray *)previewVideos defaultIndex:(NSInteger)defaultIndex;
+-(void)setPreviewVideos:(NSMutableArray *)previewVideos defaultIndex:(NSInteger)defaultIndex videoType:(VIDEOTYPE)videoType;
 
 
 @end

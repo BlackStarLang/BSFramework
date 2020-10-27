@@ -217,6 +217,11 @@
     self.naviView.backgroundColor = mainColor;
 }
 
+-(void)setPreNaviAlpha:(CGFloat)preNaviAlpha{
+    _preNaviAlpha = preNaviAlpha;
+    self.naviView.alpha = self.preNaviAlpha;
+}
+
 -(void)setPreviewPhotos:(NSMutableArray *)previewPhotos previewType:(PREVIEWTYPE)previewType defaultIndex:(NSInteger)defaultIndex{
     
     _previewPhotos = previewPhotos;
@@ -430,7 +435,6 @@
 -(BSPhotoNaviView *)naviView{
     if (!_naviView) {
         _naviView = [[BSPhotoNaviView alloc]init];
-        _naviView.alpha = self.preNaviAlpha;
     }
     return _naviView;
 }
