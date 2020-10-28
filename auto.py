@@ -160,23 +160,26 @@ def commit_and_push_git():
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
-    print ('返回值:' + commit_rsp)
 
-    # if os.system(commit_command) == 0:
-    #     if os.system(push_command) == 0:
-    #         if os.system(git_tag_command_local)== 0:
-    #             os.system(git_tag_command_remote)
-    #         else:
-    #             print('本地tag提交失败')
-    #     else:
-    #         print('push 失败')
-    # else:
-    #     print('commit 失败')
-    
-    
-    
+    push_open = os.popen(push_command)
+    push_rsp = push_open.read()
+    push_open.close()
 
+    local_tag_open = os.popen(git_tag_command_local)
+    local_tag_rsp = local_tag_open.read()
+    local_tag_open.close()
 
+    remote_tag_open = os.popen(git_tag_command_remote)
+    remote_tag_rsp = remote_tag_open.read()
+    remote_tag_open.close()
+
+    print('---------- git command ----------')
+    print('commit :' + commit_rsp + '\n')
+    print('push :' + push_rsp + '\n')
+    print('local tag :' + local_tag_rsp + '\n')
+    print('remote tag :' + remote_tag_rsp)
+    print('---------------------------------')
+    
 
 edit_spec_version()
 commit_and_push_git()
