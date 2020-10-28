@@ -158,11 +158,13 @@ def commit_and_push_git():
     # 调用 git 命令
     os.system('git add .')
 
-    print('\n')
-    print('---------- git commit ----------')
+
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
+    print('\n')
+    print('---------- git commit ----------')
+    print(commit_rsp)
     print('--------------------------------')
 
     print('\n')
