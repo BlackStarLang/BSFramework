@@ -138,26 +138,22 @@ def commit_and_push_git():
 
     global tag_version
 
+    # commit 命令
     ctime = time.strftime("%Y-%m-%d %H:%M%:%S",time.localtime())
     commit_command = 'git commit -m "最新上传日期：%s       版本号：%s"' % (ctime,tag_version)
-    print(commit_command)
 
-    # 获取当前分支名称
+    # 获取当前分支名称, push命令
     git_head = os.popen('git symbolic-ref --short -q HEAD')
     current_branch = git_head.read()
     git_head.close()
-
     push_command = 'git push origin %s'%(current_branch)
-    print(push_command)
 
+    # tag 命令
     git_tag_command_local = 'git tag -m "%s %s" %s'%('version :',tag_version,tag_version)
     git_tag_command_remote = 'git push --tag'
-    print(git_tag_command_local)
-
 
     # 调用 git 命令
     os.system('git add .')
-
 
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
@@ -165,40 +161,24 @@ def commit_and_push_git():
     print('\n')
     print('---------- git commit ----------')
     print(commit_rsp)
-    print('--------------------------------')
 
     print('\n')
     print('---------- git push ----------')
     push_open = os.popen(push_command)
     push_rsp = push_open.read()
     push_open.close()
-    print('--------------------------------')
 
     print('\n')
     print('---------- git local tag ----------')
     local_tag_open = os.popen(git_tag_command_local)
     local_tag_rsp = local_tag_open.read()
     local_tag_open.close()
-    print('--------------------------------')
 
     print('\n')
     print('---------- git remote tag ----------')
     remote_tag_open = os.popen(git_tag_command_remote)
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
-    print('--------------------------------')
-
-    # print('---------- git command 结果 ----------')
-    # print('\n')
-
-    # print('commit :' + commit_rsp + '\n')
-    # print('push :' + push_rsp + '\n')
-    # print('local tag :' + local_tag_rsp + '\n')
-    # print('remote tag :' + remote_tag_rsp)
-
-    # print('\n')
-    # print('-------------------------------------')
-    
 
 edit_spec_version()
 if auto_tag == True:
