@@ -46,7 +46,7 @@
 }
 
 -(BOOL)prefersStatusBarHidden{
- 
+    
     return self.statusBarHiddenStatus;
 }
 
@@ -70,7 +70,7 @@
     self.collectionView.backgroundColor = [UIColor blackColor];
     [self.view addSubview:self.collectionView];
     self.automaticallyAdjustsScrollViewInsets = NO;
-        
+    
     [self initNaviView];
 }
 
@@ -128,9 +128,9 @@
     
     UIView *leftView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     UIBarButtonItem *toolLeftItem = [[UIBarButtonItem alloc]initWithCustomView:leftView];
-
+    
     UIBarButtonItem *spaceItem = [[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemFixedSpace target:self action:nil];
-        
+    
     UIView *originView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 100, 44)];
     [originView addSubview:self.doneBtn];
     
@@ -201,7 +201,7 @@
     
     CGFloat width = self.view.frame.size.width + 20;
     CGFloat height = self.view.frame.size.height;
-
+    
     return CGSizeMake(width, height);
 }
 
@@ -211,7 +211,7 @@
     PhotoPreviewVideoCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PhotoPreviewVideoCell" forIndexPath:indexPath];
     
     __weak typeof(PhotoPreviewVideoCell*)weakCell = cell;
-
+    
     if (self.videoType == VIDEOTYPE_PHOTO) {
         BSPhotoModel *model = self.previewVideos[indexPath.row];
         
@@ -223,9 +223,16 @@
         [self.dataManager getImageWithPHAsset:model.asset targetSize:tsize contentModel:PHImageContentModeAspectFit imageBlock:^(UIImage *targetImage) {
             weakCell.imageView.image = targetImage;
         }];
+        
+    }else{
+        
+        AVAsset *asset = [self getAssetWithIndex:indexPath.row];
+        if (asset) {
+            cell.imageView.image = [self getVideoFirstViewImageFromAsset:asset];
+        }
     }
     
-    
+    /// 重播
     __weak typeof(self)weakSelf = self;
     cell.replayCallBack = ^{
         [weakSelf cell:weakCell willPlayVideoWithIndexPath:indexPath];
@@ -234,10 +241,24 @@
     return cell;
 }
 
+/// 获取视频第一帧图片作为底图
+- (UIImage*)getVideoFirstViewImageFromAsset:(AVAsset *)avAsset {
+    
+    AVAssetImageGenerator *assetGen = [[AVAssetImageGenerator alloc] initWithAsset:avAsset];
+    
+    assetGen.appliesPreferredTrackTransform = YES;
+    CMTime time = CMTimeMakeWithSeconds(0.0, 600);
+    NSError *error = nil;
+    CMTime actualTime;
+    CGImageRef image = [assetGen copyCGImageAtTime:time actualTime:&actualTime error:&error];
+    UIImage *videoImage = [[UIImage alloc] initWithCGImage:image];
+    CGImageRelease(image);
+    return videoImage;
+}
 
 
 -(void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-        
+    
     if (!self.indexPath) {
         [self cell:(PhotoPreviewVideoCell *)cell willPlayVideoWithIndexPath:indexPath];
     }
@@ -247,7 +268,7 @@
 
 
 -(void)collectionView:(UICollectionView *)collectionView didEndDisplayingCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath{
-   
+    
     /// 已经过去的cell 停止播放， player置空，replayBtn隐藏
     PhotoPreviewVideoCell *pcell = (PhotoPreviewVideoCell *)cell;
     [pcell.playerLayer.player pause];
@@ -261,75 +282,65 @@
 
 
 -(void)cell:(PhotoPreviewVideoCell *)cell willPlayVideoWithIndexPath:(NSIndexPath *)indexPath{
-        
+    
     if (self.videoType == VIDEOTYPE_PHOTO) {
         
         BSPhotoModel *model = self.previewVideos[indexPath.row];
-
+        
         PHVideoRequestOptions *options = [[PHVideoRequestOptions alloc] init];
         options.version = PHImageRequestOptionsVersionCurrent;
         options.deliveryMode = PHVideoRequestOptionsDeliveryModeAutomatic;
-
+        
         PHImageManager *manager = [PHImageManager defaultManager];
         [manager requestAVAssetForVideo:model.asset options:options resultHandler:^(AVAsset * _Nullable asset, AVAudioMix * _Nullable audioMix, NSDictionary * _Nullable info) {
             
             dispatch_async(dispatch_get_main_queue(), ^{
-                NSLog(@"%@",asset);
-                AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-                AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-                cell.playerLayer.player = player;
-                cell.replayBtn.hidden = YES;
-                [player play];
-                self.currentCell = cell;
-                
-                [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-                [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+                [self playVideoWithAVAsset:asset cell:cell];
             });
         }];
         
-    }else if (self.videoType == VIDEOTYPE_URL){
+    }else{
+        AVAsset *asset = [self getAssetWithIndex:indexPath.row];
+        if (asset) {
+            [self playVideoWithAVAsset:asset cell:cell];
+        }
+    }
+}
+
+/// 获取 AVAsset
+-(AVAsset *)getAssetWithIndex:(NSInteger)index{
+    
+    if (self.videoType == VIDEOTYPE_URL){
         
-        NSString *url = self.previewVideos[indexPath.row];
+        NSString *url = self.previewVideos[index];
         AVAsset *asset = [AVAsset assetWithURL:[NSURL URLWithString:url]];
-        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-        cell.playerLayer.player = player;
-        cell.replayBtn.hidden = YES;
-        [player play];
-        self.currentCell = cell;
-        
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        return asset;
         
     }else if (self.videoType == VIDEOTYPE_AVASSET){
         
-        AVAsset *asset = self.previewVideos[indexPath.row];
-        
-        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-        cell.playerLayer.player = player;
-        cell.replayBtn.hidden = YES;
-        [player play];
-        self.currentCell = cell;
-        
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-        
+        AVAsset *asset = self.previewVideos[index];
+        return asset;
     }else if (self.videoType == VIDEOTYPE_PATH){
         
-        NSString *path = self.previewVideos[indexPath.row];
+        NSString *path = self.previewVideos[index];
         AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:path]];
-        AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:asset];
-        AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
-        cell.playerLayer.player = player;
-        cell.replayBtn.hidden = YES;
-        [player play];
-        self.currentCell = cell;
-        
-        [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
-        [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+        return asset;
     }
+    return nil;
+}
+
+
+-(void)playVideoWithAVAsset:(AVAsset *)avAsset cell:(PhotoPreviewVideoCell *)cell{
     
+    AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:avAsset];
+    AVPlayer *player = [AVPlayer playerWithPlayerItem:item];
+    cell.playerLayer.player = player;
+    cell.replayBtn.hidden = YES;
+    [player play];
+    self.currentCell = cell;
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:AVPlayerItemDidPlayToEndTimeNotification object:item];
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(videoPlayToEnd:) name:AVPlayerItemDidPlayToEndTimeNotification object:item];
 }
 
 
@@ -347,7 +358,7 @@
     
     self.statusBarHiddenStatus =! self.statusBarHiddenStatus;
     [self setNeedsStatusBarAppearanceUpdate];
-
+    
     if (self.selectPreview) {
         [self.navigationController setToolbarHidden:self.statusBarHiddenStatus animated:YES];
     }else{
@@ -392,7 +403,7 @@
         _doneBtn = [[UIButton alloc]initWithFrame:CGRectMake(60, 0, 40, 44)];
         _doneBtn.titleLabel.font = [UIFont systemFontOfSize:14];
         _doneBtn.titleEdgeInsets = UIEdgeInsetsMake(0, 5, 0, -5);
-
+        
         [_doneBtn setTitle:@"完成" forState:UIControlStateNormal];
         [_doneBtn setTitleColor:[UIColor purpleColor] forState:UIControlStateNormal];
         [_doneBtn addTarget:self action:@selector(doneBtnClick) forControlEvents:UIControlEventTouchUpInside];
@@ -409,7 +420,7 @@
 }
 
 -(BSPhotoDataManager *)dataManager{
-
+    
     if (!_dataManager) {
         _dataManager = [[BSPhotoDataManager alloc]init];
     }

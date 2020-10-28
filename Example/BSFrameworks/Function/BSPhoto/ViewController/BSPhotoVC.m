@@ -83,18 +83,18 @@
 
 -(void)cameraBtnClick{
      /// 真个图片选择控件测试，包含预览 + 相机
-//    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
-//    managerVC.BSDelegate = self;
-//    managerVC.modalPresentationStyle = 0;
-//    managerVC.mainColor = [UIColor darkTextColor];
-//    managerVC.preBarAlpha = 0.7;
-//    managerVC.currentSelectedCount = 0;
-//    managerVC.allowSelectMaxCount = 9;
-//    managerVC.supCamera = YES;
-//    managerVC.autoPush = YES;
-//    managerVC.saveToAlbum = YES;
-//    managerVC.mediaType = 1;
-//    [self presentViewController:managerVC animated:YES completion:nil];
+    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
+    managerVC.BSDelegate = self;
+    managerVC.modalPresentationStyle = 0;
+    managerVC.mainColor = [UIColor darkTextColor];
+    managerVC.preBarAlpha = 0.7;
+    managerVC.currentSelectedCount = 0;
+    managerVC.allowSelectMaxCount = 9;
+    managerVC.supCamera = YES;
+    managerVC.autoPush = YES;
+    managerVC.saveToAlbum = YES;
+    managerVC.mediaType = 1;
+    [self presentViewController:managerVC animated:YES completion:nil];
     
     
     /// 图片预览测试
@@ -108,22 +108,22 @@
     
     
     /// 视频预览测试
-    BSPhotoPreviewVideoVC *vc = [[BSPhotoPreviewVideoVC alloc]init];
-    vc.barStyle = UIStatusBarStyleLightContent;
-    vc.mainColor = [UIColor blackColor];
-    vc.preNaviAlpha = 0.7;
-
-    NSString *test = [[NSBundle mainBundle]pathForResource:@"test" ofType:@".mp4"];
-    NSString *test1 = [[NSBundle mainBundle]pathForResource:@"test1" ofType:@".mp4"];
-
-    NSArray *arr = @[test,test1];
-
-    [vc setPreviewVideos:[NSMutableArray arrayWithArray:arr] defaultIndex:0 videoType:VIDEOTYPE_PATH];
-
-
-    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
-    navi.modalPresentationStyle = 0;
-    [self presentViewController:navi animated:YES completion:nil];
+//    BSPhotoPreviewVideoVC *vc = [[BSPhotoPreviewVideoVC alloc]init];
+//    vc.barStyle = UIStatusBarStyleLightContent;
+//    vc.mainColor = [UIColor blackColor];
+//    vc.preNaviAlpha = 0.7;
+//
+//    NSString *test = [[NSBundle mainBundle]pathForResource:@"test" ofType:@".mp4"];
+//    NSString *test1 = [[NSBundle mainBundle]pathForResource:@"test1" ofType:@".mp4"];
+//
+//    NSArray *arr = @[test,test1];
+//
+//    [vc setPreviewVideos:[NSMutableArray arrayWithArray:arr] defaultIndex:0 videoType:VIDEOTYPE_PATH];
+//
+//
+//    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
+//    navi.modalPresentationStyle = 0;
+//    [self presentViewController:navi animated:YES completion:nil];
 }
 
 
