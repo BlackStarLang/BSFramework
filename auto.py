@@ -137,10 +137,9 @@ def edit_spec_version():
 def commit_and_push_git():
 
     global tag_version
-    print(tag_version)
 
     ctime = time.strftime("%Y-%m-%d %H:%M%:%S",time.localtime())
-    commit_command = 'git commit -m "最新上传日期：%s    版本号：%s"' % (ctime,tag_version)
+    commit_command = 'git commit -m "最新上传日期：%s       版本号：%s"' % (ctime,tag_version)
     print(commit_command)
 
     # 获取当前分支名称
@@ -151,7 +150,7 @@ def commit_and_push_git():
     push_command = 'git push origin %s'%(current_branch)
     print(push_command)
 
-    git_tag_command_local = 'git tag -m %s %s %s'%('version :',tag_version,tag_version)
+    git_tag_command_local = 'git tag -m "%s %s" %s'%('version :',tag_version,tag_version)
     git_tag_command_remote = 'git push --tag'
     print(git_tag_command_local)
 
