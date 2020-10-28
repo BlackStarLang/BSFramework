@@ -158,8 +158,9 @@ def commit_and_push_git():
     print(git_tag_command_local)
 
     commit_rsp = os.popen(commit_command)
-    print (commit_rsp)
-    
+    commit_rsp.close()
+    print ('返回值:' + commit_rsp)
+
     # if os.system(commit_command) == 0:
     #     if os.system(push_command) == 0:
     #         if os.system(git_tag_command_local)== 0:
