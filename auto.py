@@ -148,7 +148,6 @@ def commit_and_push_git():
     git_head.close()
 
     push_command = 'git push origin %s'%(current_branch)
-
     print(push_command)
 
     git_tag_command_local = 'git tag -m %s %s %s'%('version :',tag_version,tag_version)
@@ -177,10 +176,14 @@ def commit_and_push_git():
 
     print('\n')
     print('---------- git command 结果 ----------')
+    print('\n')
+
     print('commit :' + commit_rsp + '\n')
     print('push :' + push_rsp + '\n')
     print('local tag :' + local_tag_rsp + '\n')
     print('remote tag :' + remote_tag_rsp)
+
+    print('\n')
     print('-------------------------------------')
     
 
