@@ -157,8 +157,9 @@ def commit_and_push_git():
     git_tag_command_remote = 'git push --tag'
     print(git_tag_command_local)
 
-    commit_rsp = os.popen(commit_command)
-    commit_rsp.close()
+    commit_open = os.popen(commit_command)
+    commit_rsp = commit_open.read()
+    commit_open.close()
     print ('返回值:' + commit_rsp)
 
     # if os.system(commit_command) == 0:
