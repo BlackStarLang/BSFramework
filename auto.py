@@ -158,38 +158,53 @@ def commit_and_push_git():
     # 调用 git 命令
     os.system('git add .')
 
+
+    print('\n')
+    print('---------- git commit 结果 ----------')
+    print('\n')
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
 
+    print('\n')
+    print('---------- git push 结果 ----------')
+    print('\n')
     push_open = os.popen(push_command)
     push_rsp = push_open.read()
     push_open.close()
 
+    print('\n')
+    print('---------- git local tag 结果 ----------')
+    print('\n')
     local_tag_open = os.popen(git_tag_command_local)
     local_tag_rsp = local_tag_open.read()
     local_tag_open.close()
 
+    print('\n')
+    print('---------- git remote tag 结果 ----------')
+    print('\n')
     remote_tag_open = os.popen(git_tag_command_remote)
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
 
     print('\n')
-    print('---------- git command 结果 ----------')
-    print('\n')
+    # print('---------- git command 结果 ----------')
+    # print('\n')
 
-    print('commit :' + commit_rsp + '\n')
-    print('push :' + push_rsp + '\n')
-    print('local tag :' + local_tag_rsp + '\n')
-    print('remote tag :' + remote_tag_rsp)
+    # print('commit :' + commit_rsp + '\n')
+    # print('push :' + push_rsp + '\n')
+    # print('local tag :' + local_tag_rsp + '\n')
+    # print('remote tag :' + remote_tag_rsp)
 
-    print('\n')
-    print('-------------------------------------')
+    # print('\n')
+    # print('-------------------------------------')
     
 
 edit_spec_version()
-commit_and_push_git()
+if auto_tag == True:
+    commit_and_push_git()
 
+commit_and_push_git()
 
 
 
