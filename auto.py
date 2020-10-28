@@ -138,8 +138,6 @@ def commit_and_push_git():
 
     global tag_version
 
-    os.system('git add .')
-
     ctime = time.strftime("%Y-%m-%d %H:%M%:%S",time.localtime())
     commit_command = 'git commit -m \'日期：%s    版本号：%s\'' % (ctime,tag_version)
     print(commit_command)
@@ -157,6 +155,10 @@ def commit_and_push_git():
     git_tag_command_remote = 'git push --tag'
     print(git_tag_command_local)
 
+
+    # 调用 git 命令
+    os.system('git add .')
+
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
@@ -173,12 +175,13 @@ def commit_and_push_git():
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
 
-    print('---------- git command ----------')
+    print('\n')
+    print('---------- git command 结果 ----------')
     print('commit :' + commit_rsp + '\n')
     print('push :' + push_rsp + '\n')
     print('local tag :' + local_tag_rsp + '\n')
     print('remote tag :' + remote_tag_rsp)
-    print('---------------------------------')
+    print('-------------------------------------')
     
 
 edit_spec_version()
