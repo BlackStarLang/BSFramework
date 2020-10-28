@@ -107,7 +107,7 @@
     
     
     
-    /// 视频预览测试
+    /// 视频预览本地视频测试
 //    BSPhotoPreviewVideoVC *vc = [[BSPhotoPreviewVideoVC alloc]init];
 //    vc.barStyle = UIStatusBarStyleLightContent;
 //    vc.mainColor = [UIColor blackColor];
