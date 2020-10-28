@@ -158,36 +158,34 @@ def commit_and_push_git():
     # 调用 git 命令
     os.system('git add .')
 
-
     print('\n')
-    print('---------- git commit 结果 ----------')
-    print('\n')
+    print('---------- git commit ----------')
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
+    print('--------------------------------')
 
     print('\n')
-    print('---------- git push 结果 ----------')
-    print('\n')
+    print('---------- git push ----------')
     push_open = os.popen(push_command)
     push_rsp = push_open.read()
     push_open.close()
+    print('--------------------------------')
 
     print('\n')
-    print('---------- git local tag 结果 ----------')
-    print('\n')
+    print('---------- git local tag ----------')
     local_tag_open = os.popen(git_tag_command_local)
     local_tag_rsp = local_tag_open.read()
     local_tag_open.close()
+    print('--------------------------------')
 
     print('\n')
-    print('---------- git remote tag 结果 ----------')
-    print('\n')
+    print('---------- git remote tag ----------')
     remote_tag_open = os.popen(git_tag_command_remote)
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
+    print('--------------------------------')
 
-    print('\n')
     # print('---------- git command 结果 ----------')
     # print('\n')
 
