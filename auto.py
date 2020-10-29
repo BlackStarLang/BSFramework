@@ -226,11 +226,12 @@ def commit_and_push_git():
     push_rsp = push_open.read()
     push_open.close()
 
-    print('\n')
-    print('---------- git local tag ----------')
     local_tag_open = os.popen(git_tag_command_local)
     local_tag_rsp = local_tag_open.read()
     local_tag_open.close()
+    print('\n')
+    print('---------- git local tag ----------')
+    print(local_tag_rsp)
 
     print('\n')
     print('---------- git remote tag ----------')
