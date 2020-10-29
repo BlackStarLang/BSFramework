@@ -12,6 +12,7 @@
 
 执行脚本可选参数有
 --auto          : 自增版本号，只增加最后一位(只有自增版本号时，才会自动打tag，否则手动打tag)
+--auto-remove   : 删除当前tag并重新打tag，不修改podspec的版本号
 --use-libraries : 使用 --use-libraries
 --verbose       : 使用 ---verbose       (发布时将显示所有log)
 --allow-warnings: 使用 --allow-warnings (是否忽略警告，大多数都需要此参数)
@@ -42,7 +43,7 @@ print('\n\n')
 is_release_push = False
 
 # 是否自动修改tag 和 .podspec的 version
-auto_tag = False
+auto_tag = ''
 
 # podspec 和 git tag 的版本号
 tag_version = ''
@@ -74,8 +75,8 @@ def get_args():
     global is_release_push
 
     for arg in sys.argv:
-        if arg == '--auto':
-            auto_tag = True
+        if arg == '--auto' or arg == '--auto-remove':
+            auto_tag = arg
         elif arg == '--use-libraries':
             use_libraries = '{}{}'.format(' ', arg)
         elif arg == '--verbose':
@@ -87,13 +88,21 @@ def get_args():
             repo_name = liarg[1]
         elif arg == '--push':
             is_release_push = True
+        elif arg == '--retag':
+            is_release_push = True
 
     print('================== 变量 ====================')
-    print('=== auto_tag : %s' % auto_tag)
-    print('=== use_libraries : %s' % use_libraries)
-    print('=== verbose : %s' % verbose)
-    print('=== allow_warnings : %s' % allow_warnings)
-    print('=== spec_name : %s' % repo_name)
+    if auto_tag == '--auto':
+        print('=== auto_tag : %s (自动增加版本号)' % auto_tag)
+    elif auto_tag == '--auto-remove':
+        print('=== auto_tag : %s (删除当前tag并重新打tag)' % auto_tag)
+    else:
+        print('=== auto_tag : %s (不处理版本号和git)' % auto_tag)
+    
+    print('=== use_libraries    : %s' % use_libraries)
+    print('=== verbose          : %s' % verbose)
+    print('=== allow_warnings   : %s' % allow_warnings)
+    print('=== spec_name        : %s' % repo_name)
     print('===========================================')
     print('\n\n')
 
@@ -127,11 +136,11 @@ def edit_spec_version():
     print('============================================')
     print('\n')
 
-    file = open(filepath, 'r+')
-    all_line = file.readlines()
-
     global auto_tag
     global tag_version
+
+    file = open(filepath, 'r+')
+    all_line = file.readlines()
 
     for i,line in enumerate(all_line):
 
@@ -142,7 +151,7 @@ def edit_spec_version():
             trip_version = version_full.replace(' ', '')
             trip_version = trip_version.replace('\'', '')
 
-            if auto_tag == True:
+            if auto_tag == '--auto':
                 # 获取版本号的最后一位
                 versionWrap = trip_version.split('.')
                 version_last_value = versionWrap[2]
@@ -177,16 +186,25 @@ def edit_spec_version():
 def commit_and_push_git():
 
     global tag_version
+    global auto_tag
 
     # commit 命令
     ctime = time.strftime("%Y-%m-%d %H:%M%:%S",time.localtime())
-    commit_command = 'git commit -m "最新上传日期：%s       版本号：%s"' % (ctime,tag_version)
+    commit_command = 'git commit -m "AUTO_VERSION   最新上传日期：%s       版本号：%s"' % (ctime,tag_version)
 
     # 获取当前分支名称, push命令
     git_head = os.popen('git symbolic-ref --short -q HEAD')
     current_branch = git_head.read()
     git_head.close()
     push_command = 'git push origin %s'%(current_branch)
+
+    if auto_tag == '--auto-remove':
+        remove_localtag_command = 'git tag -d %s'%(tag_version)
+        remove_tag_command = 'git push origin :refs/tags/%s' % (tag_version)
+        print('\n')
+        print('---------- git tag -d ----------')
+        os.system(remove_localtag_command)
+        os.system(remove_tag_command)
 
     # tag 命令
     git_tag_command_local = 'git tag -m "%s %s" %s'%('version :',tag_version,tag_version)
@@ -238,6 +256,11 @@ def pod_trunk_push():
     os.system(pod_push_command)
 
 
+
+# ========================================
+#               程序启动入口
+# ========================================
+
 if __name__ == "__main__":
 
     #获取参数后，修改version，修改后，提交代码导git，然后发布
@@ -245,7 +268,7 @@ if __name__ == "__main__":
     edit_spec_version()
 
     # 如果自动更改版本号，则提交代码
-    if auto_tag == True:
+    if auto_tag == '--auto' or auto_tag == '--auto-remove':
         commit_and_push_git()
 
 
