@@ -88,14 +88,14 @@ def get_args():
         elif arg == '--push':
             is_release_push = True
 
-        print('================== 变量 ====================')
-        print('=== auto_tag : %s' % auto_tag)
-        print('=== use_libraries : %s' % use_libraries)
-        print('=== verbose : %s' % verbose)
-        print('=== allow_warnings : %s' % allow_warnings)
-        print('=== spec_name : %s' % repo_name)
-        print('===========================================')
-        print('\n\n')
+    print('================== 变量 ====================')
+    print('=== auto_tag : %s' % auto_tag)
+    print('=== use_libraries : %s' % use_libraries)
+    print('=== verbose : %s' % verbose)
+    print('=== allow_warnings : %s' % allow_warnings)
+    print('=== spec_name : %s' % repo_name)
+    print('===========================================')
+    print('\n\n')
 
 
 
@@ -228,14 +228,14 @@ def pod_spc_lint():
     pod_lint_command = 'pod spec lint %s%s%s%s' % (
         spec_name, allow_warnings, use_libraries, verbose)
     print('======== %s ========' % pod_lint_command)
-    # os.system(pod_lint_command)
+    os.system(pod_lint_command)
 
 # pod 发布
 def pod_trunk_push():
     pod_push_command = 'pod trunk push %s%s%s%s' % (
         spec_name, allow_warnings, use_libraries, verbose)
     print('======== %s ========' % pod_push_command)
-    # os.system(pod_push_command)
+    os.system(pod_push_command)
 
 
 if __name__ == "__main__":
