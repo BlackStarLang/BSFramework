@@ -96,7 +96,7 @@ def get_args():
     elif auto_tag == '--auto-remove':
         print('=== auto_tag : %s (删除当前tag并重新打tag)' % auto_tag)
     else:
-        print('=== auto_tag : %s (不处理版本号和git)' % auto_tag)
+        print('=== auto_tag : %s (不处理版本号和 git tag)' % auto_tag)
     
     print('=== use_libraries    : %s' % use_libraries)
     print('=== verbose          : %s' % verbose)
