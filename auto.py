@@ -2,8 +2,6 @@
 # -*- coding:utf-8 -*-
 
 
-
-
 """ 
 *****************************************************************
 脚本说明：
@@ -18,6 +16,7 @@
 --allow-warnings: 使用 --allow-warnings (是否忽略警告，大多数都需要此参数)
 --push          : 表示直接上传到pod       (默认为 验证 ，即 pod lib lint)
 repo=           : 暂时无用，准备做私有库发布的，目前没写
+
 完整示例: 
 python auto.py --auto --use-libraries --verbose --allow-warnings --push
 
@@ -29,11 +28,11 @@ import os, sys
 import fileinput
 import time
 
-print('\n')
-print('=================== 参数 ==================')
-print('argvs = %s'%sys.argv)
-print('===========================================')
-print('\n\n')
+# print('\n')
+# print('=================== 参数 ==================')
+# print('argvs = %s'%sys.argv)
+# print('===========================================')
+# print('\n\n')
 
 # mygit = 'https://github.com/blackstar_lang@163.com/BSFrameworks.git'
 # sources = ['https://github.com/CocoaPods/Specs.git']
@@ -91,7 +90,7 @@ def get_args():
         elif arg == '--retag':
             is_release_push = True
 
-    print('================== 变量 ====================')
+    print('\n======== 解析参数，赋值给全局变量 ==========')
     if auto_tag == '--auto':
         print('=== auto_tag : %s (自动增加版本号)' % auto_tag)
     elif auto_tag == '--auto-remove':
@@ -103,8 +102,7 @@ def get_args():
     print('=== verbose          : %s' % verbose)
     print('=== allow_warnings   : %s' % allow_warnings)
     print('=== spec_name        : %s' % repo_name)
-    print('===========================================')
-    print('\n\n')
+    print('==========================================\n')
 
 
 
@@ -216,44 +214,37 @@ def commit_and_push_git():
     commit_open = os.popen(commit_command)
     commit_rsp = commit_open.read()
     commit_open.close()
-    print('\n')
-    print('---------- git commit ----------')
+    print('\n---------- git commit ----------')
     print(commit_rsp)
 
-    print('\n')
-    print('---------- git push ----------')
+    print('\n---------- git push ----------')
     push_open = os.popen(push_command)
     push_rsp = push_open.read()
     push_open.close()
 
+
+    print('\n---------- git tag ----------')
     local_tag_open = os.popen(git_tag_command_local)
     local_tag_rsp = local_tag_open.read()
     local_tag_open.close()
-    print('\n')
-    print('---------- git local tag ----------')
-    print(local_tag_rsp)
 
-    print('\n')
-    print('---------- git remote tag ----------')
     remote_tag_open = os.popen(git_tag_command_remote)
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
-    print('\n')
 
 
 # pod 验证
-
 def pod_spc_lint():
     pod_lint_command = 'pod spec lint %s%s%s%s' % (
         spec_name, allow_warnings, use_libraries, verbose)
-    print('======== %s ========' % pod_lint_command)
+    print('\n======== %s ========' % pod_lint_command)
     os.system(pod_lint_command)
 
 # pod 发布
 def pod_trunk_push():
     pod_push_command = 'pod trunk push %s%s%s%s' % (
         spec_name, allow_warnings, use_libraries, verbose)
-    print('======== %s ========' % pod_push_command)
+    print('\n======== %s ========' % pod_push_command)
     os.system(pod_push_command)
 
 
