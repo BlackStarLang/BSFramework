@@ -1,6 +1,29 @@
 #!/usr/bin/python3
 # -*- coding:utf-8 -*-
 
+
+
+
+""" 
+*****************************************************************
+脚本说明：
+
+目录：需要放在pod工程的根目录下，即和 .podspec 文件同一目录
+
+执行脚本可选参数有
+--auto          : 自增版本号，只增加最后一位(只有自增版本号时，才会自动打tag，否则手动打tag)
+--use-libraries : 使用 --use-libraries
+--verbose       : 使用 ---verbose       (发布时将显示所有log)
+--allow-warnings: 使用 --allow-warnings (是否忽略警告，大多数都需要此参数)
+--push          : 表示直接上传到pod       (默认为 验证 ，即 pod lib lint)
+repo=           : 暂时无用，准备做私有库发布的，目前没写
+完整示例: 
+python auto.py --auto --use-libraries --verbose --allow-warnings --push
+
+*****************************************************************
+"""
+
+
 import os, sys
 import fileinput
 import time
@@ -11,9 +34,12 @@ print('argvs = %s'%sys.argv)
 print('===========================================')
 print('\n\n')
 
-mygit = 'https://github.com/blackstar_lang@163.com/BSFrameworks.git'
-sources = ['https://github.com/CocoaPods/Specs.git']
+# mygit = 'https://github.com/blackstar_lang@163.com/BSFrameworks.git'
+# sources = ['https://github.com/CocoaPods/Specs.git']
 
+
+# 是否是正式发布， False 为验证
+is_release_push = False
 
 # 是否自动修改tag 和 .podspec的 version
 auto_tag = False
@@ -37,27 +63,40 @@ spec_name = ''
 repo_name = ''
 
 
-for arg in sys.argv:
-    if arg == 'autoTag':
-        auto_tag = True
-    elif arg == '--use-libraries':
-        use_libraries = '{}{}'.format(' ',arg)
-    elif arg == '--verbose':
-        verbose = ' %s'%(arg)
-    elif arg == '--allow-warnings':
-        allow_warnings = ' ' + arg
-    elif arg.startswith('repo='):
-        liarg = arg.split('=',1)
-        repo_name = liarg[1]
-    
+# 获取参数
+def get_args():
+
+    global auto_tag
+    global use_libraries
+    global verbose
+    global allow_warnings
+    global repo_name
+    global is_release_push
+
+    for arg in sys.argv:
+        if arg == '--auto':
+            auto_tag = True
+        elif arg == '--use-libraries':
+            use_libraries = '{}{}'.format(' ', arg)
+        elif arg == '--verbose':
+            verbose = ' %s' % (arg)
+        elif arg == '--allow-warnings':
+            allow_warnings = ' ' + arg
+        elif arg.startswith('repo='):
+            liarg = arg.split('=', 1)
+            repo_name = liarg[1]
+        elif arg == '--push':
+            is_release_push = True
+
 print('================== 变量 ====================')
-print('=== auto_tag : %s' %auto_tag)
+print('=== auto_tag : %s' % auto_tag)
 print('=== use_libraries : %s' % use_libraries)
 print('=== verbose : %s' % verbose)
 print('=== allow_warnings : %s' % allow_warnings)
 print('=== spec_name : %s' % repo_name)
 print('===========================================')
 print('\n\n')
+
 
 
 # ============================
@@ -179,182 +218,35 @@ def commit_and_push_git():
     remote_tag_open = os.popen(git_tag_command_remote)
     remote_tag_rsp = remote_tag_open.read()
     remote_tag_open.close()
-
-edit_spec_version()
-if auto_tag == True:
-    commit_and_push_git()
-
-commit_and_push_git()
+    print('\n')
 
 
+# pod 验证
 
-# ======================  edit by yourself  ======================
-# sources = ['https://github.com/blackstar_lang@163.com/BSFrameworks.git',]
+def pod_spc_lint():
+    pod_lint_command = 'pod spec lint %s%s%s%s' % (
+        spec_name, allow_warnings, use_libraries, verbose)
+    os.system(pod_lint_command)
 
-# spec_libraries_name = 'cocoapods'
-# use_libraries = '--use-libraries'
-# is_allow_warnings = True
-# is_use_libraries = True
-# is_show_verbose_log = True
-# # ==================================================================
-
-# new_tag = ""
-# lib_command = ""
-# pod_push_command = ""
-# podspec_file_name = ""
-# spec_file_path = ""
-# allow_warnings = ""
-# use_libraries = ""
-# show_verbose_log = ""
-# find_version_flag = False
-
-
-# def initSpecCmd():
-#     current_file = os.getcwd()
-#     list_file = os.path.split(current_file)
-#     global podspec_file_name
-#     global spec_file_path
-#     global allow_warnings
-#     global use_libraries
-#     global show_verbose_log
-
-#     podspec_file_name = list_file[-1] + ".podspec"
-#     spec_file_path = "./" + podspec_file_name
-
-#     if (is_allow_warnings):
-#         allow_warnings = " --allow-warnings"
-#     else:
-#         allow_warnings = ""
-
-#     if (is_show_verbose_log):
-#         show_verbose_log = " --verbose"
-#     else:
-#         show_verbose_log = ""
-
-#     if (is_use_libraries):
-#         use_libraries = " --use-libraries"
-#     else:
-#         use_libraries = ""
-
-
-# def podCommandEdit():
-#     global lib_command
-#     global pod_push_command
-
-#     source_suffix = 'https://github.com/CocoaPods/Specs.git'
-#     lib_command = 'pod lib lint --sources='
-#     pod_push_command = 'pod trunk push ' + spec_libraries_name + ' ' + podspec_file_name
-#     if len(sources) > 0:
-#         # rely on  private sourece
-#         pod_push_command += ' --sources='
-
-#         for index,source in enumerate(sources):
-#             lib_command += source
-#             lib_command += ','
-#             pod_push_command += source
-#             pod_push_command += ','
-#         pod_push_command = pod_push_command + source_suffix + allow_warnings + show_verbose_log + use_libraries
-#     else:
-#         lib_command = 'pod lib lint'
-
-#     lib_command = lib_command + source_suffix + allow_warnings + show_verbose_log + use_libraries
-#     print lib_command
-#     print pod_push_command
-
-# def updateVersion():
-#     f = open(spec_file_path, 'r+')
-#     infos = f.readlines()
-#     f.seek(0, 0)
-#     file_data = ""
-#     new_line = ""
-#     global find_version_flag
-
-#     for line in infos:
-#         if line.find(".version") != -1:
-#             if find_version_flag == False:
-#                 # find s.version = "xxxx"
-
-#                 spArr = line.split('.')
-#                 last = spArr[-1]
-#                 last = last.replace('"', '')
-#                 last = last.replace("'", "")
-#                 newNum = int(last) + 1
-
-#                 arr2 = line.split('"')
-#                 arr3 = line.split("'")
-
-#                 versionStr = ""
-#                 if len(arr2) > 2:
-#                     versionStr = arr2[1]
-
-#                 if len(arr3) > 2:
-#                     versionStr = arr3[1]
-#                 numArr = versionStr.split(".")
-
-#                 numArr[-1] = str(newNum)
-#                 # rejoint string
-#                 global new_tag
-#                 for index,subNumStr in enumerate(numArr):
-#                     new_tag += subNumStr
-#                     if index < len(numArr)-1:
-#                         new_tag += "."
-
-#                 # complete new_tag
-
-#                 if len(arr2) > 2:
-#                     line = arr2[0] + '"' + new_tag + '"' + '\n'
-
-#                 if len(arr3) > 2:
-#                     line = arr3[0] + "'" + new_tag + "'" + "\n"
-
-#                 # complete new_line
-
-#                 print "this is new tag  " + new_tag
-#                 find_version_flag = True
-
-#         file_data += line
-
-
-#     with open(spec_file_path, 'w', ) as f1:
-#         f1.write(file_data)
-
-#     f.close()
-
-#     print "--------- auto update version -------- "
-
-
-# def libLint():
-#     print("-------- waiting for pod lib lint checking ...... ---------")
-#     os.system(lib_command)
-
-# def gitOperation():
-#     os.system('git add .')
-#     commit_desc = "version_" + new_tag
-#     commit_command = 'git commit -m "' + commit_desc + '"'
-#     os.system(commit_command)
-#     # git push
-#     r = os.popen('git symbolic-ref --short -q HEAD')
-#     current_branch = r.read()
-#     r.close()
-#     push_command = 'git push origin ' + current_branch
-
-#     # tag
-#     tag_command = 'git tag -m "' + new_tag + '" ' + new_tag
-#     os.system(tag_command)
-
-#     # push tags
-#     os.system('git push --tags')
-
-# def podPush():
-#     print("--------  waiting for pod push  ...... ---------")
-#     os.system(pod_push_command)
+# pod 发布
+def pod_trunk_push():
+    pod_push_command = 'pod trunk push %s%s%s%s' % (
+        spec_name, allow_warnings, use_libraries, verbose)
 
 
 
-# run commands
-# initSpecCmd()
-# updateVersion()
-# podCommandEdit()
-# #libLint()
-# gitOperation()
-# podPush()
+if __name__ == "__main__":
+
+    #获取参数后，修改version，修改后，提交代码导git，然后发布
+    get_args()
+    edit_spec_version()
+
+    # 如果自动更改版本号，则提交代码
+    if auto_tag == True:
+        commit_and_push_git()
+
+
+    if is_release_push == True:
+        pod_trunk_push()
+    else:
+        pod_spc_lint()
