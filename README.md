@@ -141,6 +141,21 @@ pod 'BSFrameworks/BSPhotoFramework'
     UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
     navi.modalPresentationStyle = 0;
     [self presentViewController:navi animated:YES completion:nil];
+    
+    
+    /// 自定义相机调用
+    /// 水印视图，点击拍照后会显示出来
+    /// 之所以这么做是因为公司需求需要，所以水印的逻辑是这样的，但是又懒得优化，就这样吧
+    self.waterMarkView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 100, 40, 40)];
+    self.waterMarkView.image = [UIImage imageNamed:@"test.jpg"];
+    
+    BSCameraController *camera = [[BSCameraController alloc]init];
+    camera.modalPresentationStyle = 0;
+    camera.delegate = self;
+    camera.saveToAlbum = YES;
+    camera.mediaType = 2;
+    camera.waterMarkView = self.waterMarkView;
+    [self presentViewController:camera animated:YES completion:nil];
 
 ```
 
