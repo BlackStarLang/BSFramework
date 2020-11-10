@@ -12,6 +12,19 @@ NS_ASSUME_NONNULL_BEGIN
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
 
+//是否全面屏包括X XS XSMax XR
+#define iPhoneX (SCREEN_HEIGHT==812||SCREEN_HEIGHT==896)
+
+//适配iPhoneX
+#define STATUSBAR_HEIGHT      (iPhoneX ? 44.f : 20.f)   //状态栏
+
+#define STATUSNAVIBAR_HEIGHT  (iPhoneX ? 88.f : 64.f)   //状态栏 + 导航栏
+
+#define TABBAR_HEIGHT         (iPhoneX ? (49.f+34.f) : 49.f)    //Tabbar
+
+#define BOTTOM_SAFE_MARGIN    (iPhoneX ? 34.f : 0.f)    //安全域底部的高度
+
+
 @interface UIView (BSView)
 
 @property (nonatomic ,assign) CGFloat top;

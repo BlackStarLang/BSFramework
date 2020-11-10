@@ -27,14 +27,35 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self initView];
+    
 //    [self attachment];
 //    [self gravityBehavior];
-    [self collistionBehavior];
+//    [self collistionBehavior];
     [self pushBehaviorAction];
 }
 
 
+-(void)initView{
+    
+    self.view.backgroundColor = [UIColor whiteColor];
+
+    self.pointView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
+    self.pointView.backgroundColor = [UIColor greenColor];
+    self.pointView.center = self.view.center;
+    [self.view addSubview:self.pointView];
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 100, SCREEN_WIDTH - 40, 300)];
+    label.numberOfLines = 0;
+    label.font = [UIFont systemFontOfSize:15];
+    label.userInteractionEnabled = NO;
+    [self.view addSubview:label];
+    
+    label.text = @"碰撞行为测试需要同时打开 gravityBehavior 和 collistionBehavior 方法进行测试\n\npushBehaviorAction 推动行为也含有碰撞行为的联合使用。\n\n在测试推动行为时，需要拖动绿色方块并松手才会生效\n\n碰撞行为可以使用贝塞尔曲线规划路径";
+}
+
+
+#pragma mark - 行为测试
 //吸附行为
 -(void)attachment{
     
@@ -72,7 +93,7 @@
     [self.view addSubview:self.pointView];
     
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc]initWithItems:@[self.pointView]];
-    gravityBehavior.gravityDirection = CGVectorMake(1.0, 1.0);
+    gravityBehavior.gravityDirection = CGVectorMake(0.0, 1.0);
     gravityBehavior.magnitude = 0.5;
     [self.animator addBehavior:gravityBehavior];
     
@@ -82,15 +103,10 @@
 
 -(void)collistionBehavior{
     
-    self.pointView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
-    self.pointView.backgroundColor = [UIColor greenColor];
-    self.pointView.center = self.view.center;
-    [self.view addSubview:self.pointView];
-    
-//    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.pointView]];
-//    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-//
-//    [self.animator addBehavior:collisionBehavior];
+    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.pointView]];
+    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+
+    [self.animator addBehavior:collisionBehavior];
 }
 
 
@@ -137,9 +153,10 @@
         //每1个magnigude将会引起100/平方秒的加速度，这里分母越大，速度越小
 
             
+        // 碰撞行为，设置当前视图边界为碰撞边界
         UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.pointView]];
         collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
-        
+        [collisionBehavior setTranslatesReferenceBoundsIntoBoundaryWithInsets:UIEdgeInsetsMake(STATUSNAVIBAR_HEIGHT, 0, 0, 0 )];
         [self.animator addBehavior:collisionBehavior];
     }
     

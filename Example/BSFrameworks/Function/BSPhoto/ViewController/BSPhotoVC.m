@@ -86,20 +86,20 @@
 
 -(void)cameraBtnClick{
     /// 整个图片选择控件测试，包含预览 + 相机
-//    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
-//    managerVC.BSDelegate = self;
-//    managerVC.modalPresentationStyle = 0;
-//    managerVC.mainColor = [UIColor darkTextColor];
-//    managerVC.preBarAlpha = 0.7;
-//    managerVC.currentSelectedCount = 0;
-//    managerVC.allowSelectMaxCount = 9;
-//    managerVC.supCamera = YES;
-//    managerVC.autoPush = YES;
-//    managerVC.saveToAlbum = YES;
-//    managerVC.mediaType = 1;
-//    [self presentViewController:managerVC animated:YES completion:nil];
-//
-//
+    BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
+    managerVC.BSDelegate = self;
+    managerVC.modalPresentationStyle = 0;
+    managerVC.mainColor = [UIColor darkTextColor];
+    managerVC.preBarAlpha = 0.7;
+    managerVC.currentSelectedCount = 0;
+    managerVC.allowSelectMaxCount = 9;
+    managerVC.supCamera = YES;
+    managerVC.autoPush = YES;
+    managerVC.saveToAlbum = YES;
+    managerVC.mediaType = 1;
+    [self presentViewController:managerVC animated:YES completion:nil];
+
+
 //    /// 图片预览测试
 //    BSPhotoPreviewController *controller = [[BSPhotoPreviewController alloc]init];
 //    NSArray *arr = @[[UIImage imageNamed:@"photo_camera_icon"],[UIImage imageNamed:@"preview_video_play"]];
@@ -127,17 +127,18 @@
 //    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
 //    navi.modalPresentationStyle = 0;
 //    [self presentViewController:navi animated:YES completion:nil];
+
+    /// 相机单独使用测试，可以添加水印
+//    UIImageView *waterMarkView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 100, 40, 40)];
+//    waterMarkView.image = [UIImage imageNamed:@""];
     
-//    self.waterMarkView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 100, 40, 40)];
-//    self.waterMarkView.image = [UIImage imageNamed:@""];
-    
-    BSCameraController *camera = [[BSCameraController alloc]init];
-    camera.modalPresentationStyle = 0;
-    camera.delegate = self;
-    camera.saveToAlbum = YES;
-    camera.mediaType = 2;
-//    camera.waterMarkView = self.waterMarkView;
-    [self presentViewController:camera animated:YES completion:nil];
+//    BSCameraController *camera = [[BSCameraController alloc]init];
+//    camera.modalPresentationStyle = 0;
+//    camera.delegate = self;
+//    camera.saveToAlbum = YES;
+//    camera.mediaType = 2;
+//    camera.waterMarkView = waterMarkView;
+//    [self presentViewController:camera animated:YES completion:nil];
     
 }
 
