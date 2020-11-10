@@ -14,6 +14,7 @@
 #import "BSPhotoProtocal.h"
 #import "BSPhotoPreviewController.h"
 #import "BSPhotoPreviewVideoVC.h"
+#import "BSCameraController.h"
 
 #import "TZImagePickerController.h"
 
@@ -26,6 +27,8 @@
 @property (nonatomic ,strong) UIImageView *imageView;
 
 @property (nonatomic ,strong) AVPlayer *player;
+
+@property (nonatomic ,strong) NSMutableArray *mutArr;
 
 @end
 
@@ -82,7 +85,7 @@
 
 
 -(void)cameraBtnClick{
-     /// 真个图片选择控件测试，包含预览 + 相机
+    /// 整个图片选择控件测试，包含预览 + 相机
     BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
     managerVC.BSDelegate = self;
     managerVC.modalPresentationStyle = 0;
@@ -95,19 +98,19 @@
     managerVC.saveToAlbum = YES;
     managerVC.mediaType = 1;
     [self presentViewController:managerVC animated:YES completion:nil];
-    
-    
-    /// 图片预览测试
+//
+//
+//    /// 图片预览测试
 //    BSPhotoPreviewController *controller = [[BSPhotoPreviewController alloc]init];
 //    NSArray *arr = @[[UIImage imageNamed:@"photo_camera_icon"],[UIImage imageNamed:@"preview_video_play"]];
 //
 //    [controller setPreviewPhotos:[NSMutableArray arrayWithArray:arr] previewType:PREVIEWTYPE_IMAGE defaultIndex:0];
 //    controller.modalPresentationStyle = 0;
 //    [self presentViewController:controller animated:YES completion:nil];
-    
-    
-    
-    /// 视频预览本地视频测试
+//
+//
+//
+//    /// 视频预览本地视频测试
 //    BSPhotoPreviewVideoVC *vc = [[BSPhotoPreviewVideoVC alloc]init];
 //    vc.barStyle = UIStatusBarStyleLightContent;
 //    vc.mainColor = [UIColor blackColor];
@@ -116,14 +119,22 @@
 //    NSString *test = [[NSBundle mainBundle]pathForResource:@"test" ofType:@".mp4"];
 //    NSString *test1 = [[NSBundle mainBundle]pathForResource:@"test1" ofType:@".mp4"];
 //
-//    NSArray *arr = @[test,test1];
+//    NSArray *arr1 = @[test,test1];
 //
-//    [vc setPreviewVideos:[NSMutableArray arrayWithArray:arr] defaultIndex:0 videoType:VIDEOTYPE_PATH];
+//    [vc setPreviewVideos:[NSMutableArray arrayWithArray:arr1] defaultIndex:0 videoType:VIDEOTYPE_PATH];
 //
 //
 //    UINavigationController *navi = [[UINavigationController alloc]initWithRootViewController:vc];
 //    navi.modalPresentationStyle = 0;
 //    [self presentViewController:navi animated:YES completion:nil];
+    
+//    BSCameraController *camera = [[BSCameraController alloc]init];
+//    camera.modalPresentationStyle = 0;
+//    camera.delegate = self;
+//    camera.saveToAlbum = YES;
+//    camera.mediaType = 2;
+//    [self presentViewController:camera animated:YES completion:nil];
+    
 }
 
 
@@ -138,15 +149,15 @@
 
 #pragma mark - systemDelegate
 
-//-(void)BSPhotoManagerDidFinishedSelectImage:(NSArray<UIImage *> *)images{
-//
-//    self.imageView.image = images.firstObject;
-//    NSLog(@"%@",images);
-//}
+-(void)BSPhotoManagerDidFinishedSelectImage:(NSArray<UIImage *> *)images{
+
+    self.imageView.image = images.firstObject;
+    NSLog(@"UIImage 类型 图片回调");
+}
 
 -(void)BSPhotoManagerDidFinishedSelectImageData:(NSArray<NSData *> *)imageDataArr{
 
-    NSLog(@"选择的图片个数 ： %ld",imageDataArr.count);
+    NSLog(@"NSData 类型 图片回调，选择的图片个数 ： %ld",imageDataArr.count);
     NSData *data = imageDataArr.firstObject;
     
     self.imageView.image = [UIImage imageWithData:data];
@@ -186,6 +197,18 @@
     NSLog(@"点击了拍照");
     
 }
+
+
+-(void)photoCameraNextBtnClickedWithImage:(UIImage *)image{
+    NSLog(@"拍照点击了下一步： %@",image);
+}
+
+
+-(void)photoCameraNextBtnClickedWithVideoPath:(NSString *)videoPath{
+    NSLog(@"视频点击了下一步： %@",videoPath);
+}
+
+
 
 #pragma mark - init 属性初始化
 

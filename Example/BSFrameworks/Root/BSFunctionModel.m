@@ -32,7 +32,7 @@
 -(NSDictionary *)getInfoDic{
     
     NSDictionary *pushInfo = @{@"3D轮播图":@"BSLooperViewVC",
-                               @"自定义相机 + 拍照水印 + 图片选择器 + 预览等图片相关":@"BSPhotoVC",
+                               @"选择图片控件，拍照+视频（自定义相机）":@"BSPhotoVC",
                                @"自定义kvo，用于更好地理解kvo原理":@"BSStudyObjcController",
                                @"动态行为 Dynamic Behavior":@"BSDynamicBehavior",
                                

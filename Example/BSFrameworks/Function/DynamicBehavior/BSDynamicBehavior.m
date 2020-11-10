@@ -7,12 +7,13 @@
 //
 
 #import "BSDynamicBehavior.h"
+#import <UIView+BSView.h>
 
 @interface BSDynamicBehavior ()
 
 @property (nonatomic ,strong) UIDynamicAnimator *animator;
 @property (nonatomic ,strong) UIAttachmentBehavior *attBehavior;
-
+@property (nonatomic ,strong) UIPushBehavior *pushBehavior;
 
 // 吸附
 @property (nonatomic ,strong) UIView *redView;
@@ -27,8 +28,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    [self attachment];
-    // Do any additional setup after loading the view.
+//    [self attachment];
+//    [self gravityBehavior];
+    [self collistionBehavior];
+    [self pushBehaviorAction];
 }
 
 
@@ -43,34 +46,111 @@
     self.redView.frame = CGRectMake(20, 20, 20, 20);
     self.dynbItem.frame = CGRectMake(150, 200, 100, 100);
     
-//    self.attBehavior = [[UIAttachmentBehavior alloc]initWithItem:self.dynbItem offsetFromCenter:UIOffsetMake(-25, -25) attachedToAnchor:self.pointView.frame.origin];
-
-    self.attBehavior = [UIAttachmentBehavior pinAttachmentWithItem:self.dynbItem attachedToItem:self.pointView attachmentAnchor:CGPointMake(200, 100)];
+    self.attBehavior = [[UIAttachmentBehavior alloc]initWithItem:self.dynbItem offsetFromCenter:UIOffsetMake(-25, -25) attachedToAnchor:self.pointView.frame.origin];
     
     [self.animator addBehavior:self.attBehavior];
     
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(panAction:)];
-    
     [self.view addGestureRecognizer:pan];
 }
 
+
+
 -(void)panAction:(UIGestureRecognizer *)sender{
     
-//    self.pointView.center = [sender locationInView:self.view];
     [self.attBehavior setAnchorPoint:[sender locationInView:self.view]];
-//    self.pointView.center = self.attBehavior.anchorPoint;
+    self.pointView.center = [sender locationInView:self.view];
+
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)gravityBehavior{
+    
+    self.pointView.frame = CGRectMake(50, 100, 20, 20);
+    self.pointView.centerX = self.view.centerX;
+    [self.view addSubview:self.pointView];
+    
+    UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc]initWithItems:@[self.pointView]];
+    gravityBehavior.gravityDirection = CGVectorMake(1.0, 1.0);
+    gravityBehavior.magnitude = 0.5;
+    [self.animator addBehavior:gravityBehavior];
+    
 }
-*/
+
+
+
+-(void)collistionBehavior{
+    
+    self.pointView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
+    self.pointView.backgroundColor = [UIColor greenColor];
+    self.pointView.center = self.view.center;
+    [self.view addSubview:self.pointView];
+    
+//    UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.pointView]];
+//    collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+//
+//    [self.animator addBehavior:collisionBehavior];
+}
+
+
+
+-(void)pushBehaviorAction{
+    
+
+    UIPushBehavior *pushBehavior = [[UIPushBehavior alloc]initWithItems:@[self.pointView] mode:UIPushBehaviorModeInstantaneous];
+    [self.animator addBehavior:pushBehavior];
+    self.pushBehavior = pushBehavior;
+    
+    UIPanGestureRecognizer * pan = [[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(pan:)];
+
+    [self.pointView addGestureRecognizer:pan];
+}
+
+
+
+- (void)pan:(UIPanGestureRecognizer *)paramTap{
+    
+    if (paramTap.state == UIGestureRecognizerStateBegan) {
+        
+        
+    }else if (paramTap.state == UIGestureRecognizerStateEnded) {
+        
+        self.pushBehavior.active = YES;
+
+        CGPoint tapPoint = [paramTap locationInView:self.view];  //p2
+        CGPoint squareViewCenterPoint = self.pointView.center;  //p1
+
+        CGFloat deltaX = tapPoint.x - squareViewCenterPoint.x;
+        CGFloat deltaY = tapPoint.y - squareViewCenterPoint.y;
+        CGFloat angle = atan2(deltaY, deltaX);
+        [self.pushBehavior setAngle:angle];  //推移的角度
+
+        //勾股
+        CGFloat distanceBetweenPoints =
+        sqrt(pow(tapPoint.x - squareViewCenterPoint.x, 2.0) +
+             pow(tapPoint.y - squareViewCenterPoint.y, 2.0));
+        //double pow(double x, double y）;计算以x为底数的y次幂
+        //double sqrt (double);开平方
+        
+        [self.pushBehavior setMagnitude:distanceBetweenPoints / 200.0f]; //推力的大小（移动速度）
+        //每1个magnigude将会引起100/平方秒的加速度，这里分母越大，速度越小
+
+            
+        UICollisionBehavior *collisionBehavior = [[UICollisionBehavior alloc]initWithItems:@[self.pointView]];
+        collisionBehavior.translatesReferenceBoundsIntoBoundary = YES;
+        
+        [self.animator addBehavior:collisionBehavior];
+    }
+    
+
+}
+
+
+
+#pragma mark - init 属性初始化
+
+
 
 - (UIDynamicAnimator *)animator{
     if (!_animator) {

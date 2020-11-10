@@ -32,8 +32,8 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) NSInteger mediaType;
 
 
-/// 如果是 视频，限制最大录制秒数，不设置或设置0为不限制
-@property (nonatomic ,assign) NSInteger maxSecond;
+/// 如果是 视频，限制最大录制秒数，不设置或设置0为不限制(暂不支持)
+//@property (nonatomic ,assign) NSInteger maxSecond;
 
 
 @end

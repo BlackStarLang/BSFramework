@@ -71,11 +71,11 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 84, self.view.width - 40, 40)];
     [self.view addSubview:label];
     
-    BSButton *btn = [[BSButton alloc]initWithFrame:CGRectMake(100, 100, 100, 40)];
+    BSButton *btn = [[BSButton alloc]initWithFrame:CGRectMake(100, 100, 300, 40)];
     btn.center = self.view.center;
     btn.backgroundColor = [UIColor blueColor];
     [btn addTarget:self action:@selector(changePersonName) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"点击" forState:UIControlStateNormal];
+    [btn setTitle:@"点击触发自定义kvo" forState:UIControlStateNormal];
     [self.view addSubview:btn];
 }
 

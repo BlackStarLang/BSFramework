@@ -99,21 +99,19 @@
         
         [AVCaptureDevice requestAccessForMediaType:AVMediaTypeVideo completionHandler:^(BOOL granted) {
             
-            __weak typeof(self)weakSelf = self;
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 if (granted) {
-                    [weakSelf authorization];
+                    [self authorization];
                 }else{
                     UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往 手机-设置 开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
                     UIAlertAction *action = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
                         
-                        [weakSelf.navigationController popViewControllerAnimated:YES];
-                        [weakSelf dismissViewControllerAnimated:YES completion:nil];
+                        [self back];
                     }];
                     
                     [controller addAction:action];
-                    [weakSelf presentViewController:controller animated:YES completion:nil];
+                    [self presentViewController:controller animated:YES completion:nil];
                     return;
                 }
             });
@@ -124,8 +122,7 @@
         UIAlertController *controller = [UIAlertController alertControllerWithTitle:@"" message:@"相机权限未开启,请前往 手机-设置 开启相机权限" preferredStyle:UIAlertControllerStyleAlert];
         UIAlertAction *action = [UIAlertAction actionWithTitle:@"我知道了" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
             
-            [self.navigationController popViewControllerAnimated:YES];
-            [self dismissViewControllerAnimated:YES completion:nil];
+            [self back];
         }];
         
         [controller addAction:action];
@@ -345,8 +342,7 @@
                 UIImage *image = [self getWaterMarkImageWithOriginImage:self.photoImageView.image];
                 [self.delegate photoCameraNextBtnClickedWithImage:image];
             }
-
-            [self.navigationController popViewControllerAnimated:YES];
+            [self back];
         }
         
     }else{
@@ -449,6 +445,21 @@
 }
 
 
+-(void)back{
+    
+    NSArray *viewcontrollers = self.navigationController.viewControllers;
+    if (viewcontrollers.count > 1){
+        if ([viewcontrollers objectAtIndex:viewcontrollers.count - 1] == self){
+            [self.navigationController popViewControllerAnimated:YES];
+        }else{
+            [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        }
+    }else{
+        [self dismissViewControllerAnimated:YES completion:nil];
+    }
+}
+
+
 #pragma mark - priveDelegate 私有代理
 
 -(void)BSVideoBottomView:(BSVideoBottomView *)bottomView didSelectType:(SELECTTYPE)selectType{
@@ -488,8 +499,8 @@
 
     if (funcType == FUNC_TYPE_BACK) {
         //返回
-        [self.navigationController popViewControllerAnimated:YES];
-
+        [self back];
+        
     }else if (funcType == FUNC_TYPE_RETRY){
         //重拍
         [self.session startRunning];
@@ -749,8 +760,9 @@
         if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithVideoPath:)]) {
             [self.delegate photoCameraNextBtnClickedWithVideoPath:videoPath];
         }
+        [self.player pause];
         [[NSNotificationCenter defaultCenter]postNotificationName:@"didFinishSelectVideo" object:videoPath];
-        [self.navigationController dismissViewControllerAnimated:YES completion:nil];
+        [self dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
@@ -800,7 +812,7 @@
 -(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo {
 
     if(error){
-        [self.navigationController popViewControllerAnimated:YES];
+        [self back];
     }else{
         
         if ([self.delegate respondsToSelector:@selector(photoCameraNextBtnClickedWithImage:)]) {
@@ -809,7 +821,7 @@
             [self.delegate photoCameraNextBtnClickedWithImage:image];
         }
 
-        [self.navigationController popViewControllerAnimated:YES];
+        [self back];
     }
 }
 
