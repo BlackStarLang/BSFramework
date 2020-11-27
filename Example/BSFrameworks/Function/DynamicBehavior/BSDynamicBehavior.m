@@ -30,9 +30,9 @@
     [self initView];
     
 //    [self attachment];
-//    [self gravityBehavior];
-//    [self collistionBehavior];
-    [self pushBehaviorAction];
+    [self gravityBehavior];
+    [self collistionBehavior];
+//    [self pushBehaviorAction];
 }
 
 
@@ -50,7 +50,7 @@
     label.font = [UIFont systemFontOfSize:15];
     label.userInteractionEnabled = NO;
     [self.view addSubview:label];
-    
+
     label.text = @"碰撞行为测试需要同时打开 gravityBehavior 和 collistionBehavior 方法进行测试\n\npushBehaviorAction 推动行为也含有碰撞行为的联合使用。\n\n在测试推动行为时，需要拖动绿色方块并松手才会生效\n\n碰撞行为可以使用贝塞尔曲线规划路径";
 }
 
@@ -92,9 +92,15 @@
     self.pointView.centerX = self.view.centerX;
     [self.view addSubview:self.pointView];
     
+    UIDynamicItemBehavior *dyItemB = [[UIDynamicItemBehavior alloc]initWithItems:@[self.pointView]];
+    dyItemB.elasticity = 0.7;
+    dyItemB.resistance = 0.9;
+    [self.animator addBehavior:dyItemB];
+    
     UIGravityBehavior *gravityBehavior = [[UIGravityBehavior alloc]initWithItems:@[self.pointView]];
     gravityBehavior.gravityDirection = CGVectorMake(0.0, 1.0);
-    gravityBehavior.magnitude = 0.5;
+    gravityBehavior.magnitude = 0.9;
+
     [self.animator addBehavior:gravityBehavior];
     
 }

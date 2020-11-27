@@ -118,6 +118,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_original_def@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_display@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_play@2x.png"
+  install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -142,6 +143,7 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_original_def@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_display@2x.png"
   install_resource "${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_play@2x.png"
+  install_resource "${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle"
   install_resource "${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle"
 fi
 

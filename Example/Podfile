@@ -8,7 +8,7 @@ target 'BSFrameworks_Example' do
   pod 'BSFrameworks', :path => '../'
   
   pod 'TZImagePickerController'
-  
+  pod 'MJRefresh'
   pod 'MLeaksFinder'
   
   target 'BSFrameworks_Tests' do

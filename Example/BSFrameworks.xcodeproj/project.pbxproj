@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */; };
+		3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3034EFF3255B8922001084AC /* BSRefreshController.m */; };
 		30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */; };
 		30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A372485E7FD002DBC8D /* BSFunctionModel.m */; };
 		30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702836249C62F7000C5384 /* BSStudyObjcController.m */; };
@@ -17,6 +18,8 @@
 		30AA549424B31CFA0056DEA1 /* BSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AA549324B31CFA0056DEA1 /* BSButton.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
+		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
+		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D8BA6D2548099000275C1A /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA6C2548099000275C1A /* test.mp4 */; };
 		30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA7225480B7C00275C1A /* test1.mp4 */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
@@ -53,6 +56,8 @@
 		249890230EA4254D28F53759 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		3025354A2477CD7B00669C27 /* BSCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCollectionViewCell.h; sourceTree = "<group>"; };
 		3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCollectionViewCell.m; sourceTree = "<group>"; };
+		3034EFF2255B8922001084AC /* BSRefreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRefreshController.h; sourceTree = "<group>"; };
+		3034EFF3255B8922001084AC /* BSRefreshController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRefreshController.m; sourceTree = "<group>"; };
 		30494A2E2485E55A002DBC8D /* BSLooperViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSLooperViewVC.h; sourceTree = "<group>"; };
 		30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLooperViewVC.m; sourceTree = "<group>"; };
 		30494A362485E7FD002DBC8D /* BSFunctionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFunctionModel.h; sourceTree = "<group>"; };
@@ -71,6 +76,10 @@
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
 		30AE96822488FEC6009A43FB /* BSRootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRootCell.m; sourceTree = "<group>"; };
+		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
+		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
+		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
+		30D2E5CA256F495A001EFB02 /* BSATransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSATransitionController.m; sourceTree = "<group>"; };
 		30D8BA6C2548099000275C1A /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		30D8BA7225480B7C00275C1A /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -138,6 +147,15 @@
 			path = AppDelegate;
 			sourceTree = "<group>";
 		};
+		3034EFC2255B7FFC001084AC /* TableViewRefresh */ = {
+			isa = PBXGroup;
+			children = (
+				3034EFF2255B8922001084AC /* BSRefreshController.h */,
+				3034EFF3255B8922001084AC /* BSRefreshController.m */,
+			);
+			path = TableViewRefresh;
+			sourceTree = "<group>";
+		};
 		30494A2B2485E3EF002DBC8D /* Root */ = {
 			isa = PBXGroup;
 			children = (
@@ -154,6 +172,8 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				30D2E5C3256F4887001EFB02 /* TransitionAnimate */,
+				3034EFC2255B7FFC001084AC /* TableViewRefresh */,
 				3070283F24A474D0000C5384 /* DynamicBehavior */,
 				3070283B249CB31C000C5384 /* BSNotifacation */,
 				30702832249C62AE000C5384 /* BSStudyObjc */,
@@ -268,6 +288,17 @@
 				30AA549324B31CFA0056DEA1 /* BSButton.m */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		30D2E5C3256F4887001EFB02 /* TransitionAnimate */ = {
+			isa = PBXGroup;
+			children = (
+				30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */,
+				30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */,
+				30D2E5C9256F495A001EFB02 /* BSATransitionController.h */,
+				30D2E5CA256F495A001EFB02 /* BSATransitionController.m */,
+			);
+			path = TransitionAnimate;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -527,6 +558,7 @@
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_original_def@2x.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_display@2x.png",
 				"${PODS_ROOT}/../../BSFrameworks/Assets/PhotoFramework/preview_video_play@2x.png",
+				"${PODS_ROOT}/MJRefresh/MJRefresh/MJRefresh.bundle",
 				"${PODS_ROOT}/TZImagePickerController/TZImagePickerController/TZImagePickerController/TZImagePickerController.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -552,6 +584,7 @@
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/preview_original_def@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/preview_video_display@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/preview_video_play@2x.png",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/MJRefresh.bundle",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/TZImagePickerController.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -590,12 +623,15 @@
 			files = (
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
+				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
+				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
+				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,

@@ -72,5 +72,13 @@ Pod::Spec.new do |s|
     ss.dependency     'BSFrameworks/BSCategory'
   end
 
+  # 上拉下拉刷新控件
+#  s.subspec 'BSRefresh' do |ss|
+#    ss.source_files = 'BSFrameworks/Classes/BSRefresh/**/*{.h,.m}'
+#    ss.frameworks   = 'UIKit'
+#    ss.dependency     'BSFrameworks/BSCategory'
+#    ss.resources = 'BSFrameworks/Assets/BSRefresh/*'
+#    ss.public_header_files = 'BSFrameworks/Assets/BSRefresh/BSRefresh.h'
+#  end
   
 end

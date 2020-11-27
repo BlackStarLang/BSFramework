@@ -183,8 +183,8 @@
             CGFloat scale = self.scale + (1-self.scale) * (1 - preScale);
             
             /// 设置最终动画的缩放比例
-            attrs.transform=CGAffineTransformMakeScale(scale, scale);
-            
+//            attrs.transform=CGAffineTransformMakeScale(scale, scale);
+            attrs.transform3D = CATransform3DMakeRotation(-M_PI_2, 0, 0, 1.0);
         }
         return array;
         

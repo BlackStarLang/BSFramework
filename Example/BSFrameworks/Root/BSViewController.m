@@ -47,6 +47,7 @@
     self.dataSource = functionM.funcArr;
 
     [self.view addSubview:self.tableView];
+    
 }
 
 

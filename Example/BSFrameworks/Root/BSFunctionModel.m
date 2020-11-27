@@ -35,6 +35,8 @@
                                @"选择图片控件，拍照+视频（自定义相机）":@"BSPhotoVC",
                                @"自定义kvo，用于更好地理解kvo原理":@"BSStudyObjcController",
                                @"动态行为 Dynamic Behavior":@"BSDynamicBehavior",
+                               @"自定义上下拉刷新 discard":@"BSRefreshController",
+                               @"转场动画，UIView Transition 动画": @"BSTransitionController",
                                
     };
     

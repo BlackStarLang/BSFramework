@@ -1,23 +1,24 @@
 PODS:
-  - BSFrameworks (0.1.5):
-    - BSFrameworks/BSCategory (= 0.1.5)
-    - BSFrameworks/BSLooperView (= 0.1.5)
-    - BSFrameworks/BSPhotoFramework (= 0.1.5)
+  - BSFrameworks (0.1.6):
+    - BSFrameworks/BSCategory (= 0.1.6)
+    - BSFrameworks/BSLooperView (= 0.1.6)
+    - BSFrameworks/BSPhotoFramework (= 0.1.6)
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSCategory (0.1.5):
+  - BSFrameworks/BSCategory (0.1.6):
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSLooperView (0.1.5):
+  - BSFrameworks/BSLooperView (0.1.6):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSPhotoFramework (0.1.5):
+  - BSFrameworks/BSPhotoFramework (0.1.6):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
   - FBRetainCycleDetector (0.1.4)
   - Masonry (1.1.0)
+  - MJRefresh (3.5.0)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
   - SDWebImage (5.9.3):
@@ -27,6 +28,7 @@ PODS:
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
+  - MJRefresh
   - MLeaksFinder
   - TZImagePickerController
 
@@ -34,6 +36,7 @@ SPEC REPOS:
   https://mirrors.tuna.tsinghua.edu.cn/git/CocoaPods/Specs.git:
     - FBRetainCycleDetector
     - Masonry
+    - MJRefresh
     - MLeaksFinder
     - SDWebImage
     - TZImagePickerController
@@ -43,13 +46,14 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 5ad1d79b068d757e41d16cf5f06fc5c27b01b475
+  BSFrameworks: fadec0b43d9d141a403fd65bad057c1033c55a80
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
+  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
   TZImagePickerController: 6685e6d81b8fd5453e80ba369dd4ebd6e97276ee
 
-PODFILE CHECKSUM: 8dc1d4e6d27372e86180cfd2f5f75adb067af205
+PODFILE CHECKSUM: 8f5e6d369c970af895432d61fb634c9f1eeb9815
 
 COCOAPODS: 1.8.4
