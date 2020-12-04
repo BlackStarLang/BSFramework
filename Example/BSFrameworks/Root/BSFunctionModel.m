@@ -37,6 +37,8 @@
                                @"动态行为 Dynamic Behavior":@"BSDynamicBehavior",
                                @"自定义上下拉刷新 discard":@"BSRefreshController",
                                @"转场动画，UIView Transition 动画": @"BSTransitionController",
+                               @"自定义 alertcontroller": @"BSAlertController",
+                               @"NSOperator 线程":@"BSOperatorController",
                                
     };
     

@@ -15,6 +15,10 @@
 
 @implementation BSATransitionController
 
+-(void)dealloc{
+    NSLog(@"BSATransitionController dealloc");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
@@ -26,12 +30,6 @@
     button.backgroundColor = [UIColor redColor];
     [button addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
-    
-    UINavigationController *navi = (UINavigationController *)self.presentingViewController;
-
-    NSLog(@"presenting :%@",self.presentingViewController);
-    NSLog(@"presented :%@",navi.presentedViewController);
     
 }
 

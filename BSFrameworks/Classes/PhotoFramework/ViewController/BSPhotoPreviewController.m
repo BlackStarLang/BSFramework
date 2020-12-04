@@ -326,33 +326,32 @@
 -(void)scrollViewDidScroll:(UIScrollView *)scrollView{
     
     if (self.previewType == PREVIEWTYPE_PHOTO) {
+                
+        CGFloat offsetX = scrollView.contentOffset.x;
+        NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
         
-        @autoreleasepool {
-            
-            CGFloat offsetX = scrollView.contentOffset.x;
-            NSInteger pageIndex = offsetX/self.collectionView.frame.size.width;
-            
-            NSMutableArray *assets = [NSMutableArray array];
-            for (NSInteger i = pageIndex - 1; i<pageIndex + 1; i++) {
+        NSMutableArray *assets = [NSMutableArray array];
+        for (NSInteger i = pageIndex - 1; i<pageIndex + 1; i++) {
+            @autoreleasepool {
                 if (i>0 && i<self.previewPhotos.count) {
                     BSPhotoModel *model = self.previewPhotos[i];
                     [assets addObject:model.asset];
                 }
             }
-            
-            [self.dataManager startPreLoadCacheImagesWithPHAssetArray:assets targetSize:self.targetSize contenModel:PHImageContentModeAspectFit];
-            
-            
-            BSPhotoModel *model = self.previewPhotos[pageIndex];
-            model.isSelect = NO;
-            NSString *imgName = @"img_unselect";
-            if ([self.selectDataArr containsObject:model.identifier]) {
-                imgName = @"img_select";
-                model.isSelect = YES;
-            }
-            
-            [self.naviView setRightBtnImage:imgName];
         }
+        
+        [self.dataManager startPreLoadCacheImagesWithPHAssetArray:assets targetSize:self.targetSize contenModel:PHImageContentModeAspectFit];
+        
+        
+        BSPhotoModel *model = self.previewPhotos[pageIndex];
+        model.isSelect = NO;
+        NSString *imgName = @"img_unselect";
+        if ([self.selectDataArr containsObject:model.identifier]) {
+            imgName = @"img_select";
+            model.isSelect = YES;
+        }
+        
+        [self.naviView setRightBtnImage:imgName];
     }
 }
 

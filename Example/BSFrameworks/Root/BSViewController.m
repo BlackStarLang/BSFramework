@@ -41,6 +41,8 @@
 
     self.title = @"BSFrameWork";
 
+//    BSFunctionModel *functionM = [[BSFunctionModel alloc]init];
+    
     BSFunctionModel *functionM = [[BSFunctionModel alloc]init];
     [functionM getFunctionArr];
 

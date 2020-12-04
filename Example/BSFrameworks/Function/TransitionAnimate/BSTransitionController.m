@@ -8,6 +8,7 @@
 
 #import "BSTransitionController.h"
 #import "BSATransitionController.h"
+#import "BSProtocalController.h"
 
 @interface BSTransitionController ()
 
@@ -93,19 +94,10 @@
 -(void)pushTransition:(UIButton *)sender{
     
     BSATransitionController *aVC = [[BSATransitionController alloc]init];
-    
-//    UINavigationController *nav = [[UINavigationController alloc] initWithRootViewController:aVC];
-//    nav.navigationBarHidden = YES;
-//    nav.modalPresentationStyle = UIModalPresentationCurrentContext;
-//    nav.modalTransitionStyle = 2;
-    
-//    aVC.modalTransitionStyle = UIModalTransitionStylePartialCurl;
-//    [self.navigationController pushViewController:aVC animated:YES];
+    BSProtocalController *pc = [[BSProtocalController alloc] initWithPresentedViewController:aVC presentingViewController:self];
+    aVC.transitioningDelegate = pc;
     [self presentViewController:aVC animated:YES completion:nil];
-
-//    NSLog(@"presenting :%@",self.presentingViewController);
-//    NSLog(@"presented :%@",self.presentedViewController);
-//    NSLog(@"%@",self.parentViewController);
+    aVC.preferredContentSize = CGSizeMake(10, 520);
 }
 
 

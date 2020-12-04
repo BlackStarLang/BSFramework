@@ -15,11 +15,14 @@
 		3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702839249C695C000C5384 /* BSObjcPerson.m */; };
 		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
 		3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070284124A474F9000C5384 /* BSDynamicBehavior.m */; };
+		3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097574C2574E84100A3E2CA /* BSOperatorController.m */; };
 		30AA549424B31CFA0056DEA1 /* BSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AA549324B31CFA0056DEA1 /* BSButton.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
+		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
+		30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5DA257108BF001EFB02 /* BSProtocalController.m */; };
 		30D8BA6D2548099000275C1A /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA6C2548099000275C1A /* test.mp4 */; };
 		30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA7225480B7C00275C1A /* test1.mp4 */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
@@ -70,6 +73,8 @@
 		3070283D249CB35E000C5384 /* BSNotifacation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotifacation.m; sourceTree = "<group>"; };
 		3070284024A474F9000C5384 /* BSDynamicBehavior.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSDynamicBehavior.h; sourceTree = "<group>"; };
 		3070284124A474F9000C5384 /* BSDynamicBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDynamicBehavior.m; sourceTree = "<group>"; };
+		3097574B2574E84100A3E2CA /* BSOperatorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSOperatorController.h; sourceTree = "<group>"; };
+		3097574C2574E84100A3E2CA /* BSOperatorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSOperatorController.m; sourceTree = "<group>"; };
 		30AA549224B31CFA0056DEA1 /* BSButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSButton.h; sourceTree = "<group>"; };
 		30AA549324B31CFA0056DEA1 /* BSButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSButton.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
@@ -80,6 +85,10 @@
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
 		30D2E5CA256F495A001EFB02 /* BSATransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSATransitionController.m; sourceTree = "<group>"; };
+		30D2E5D12570DB8A001EFB02 /* BSAlertController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAlertController.h; sourceTree = "<group>"; };
+		30D2E5D22570DB8A001EFB02 /* BSAlertController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAlertController.m; sourceTree = "<group>"; };
+		30D2E5D9257108BF001EFB02 /* BSProtocalController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSProtocalController.h; sourceTree = "<group>"; };
+		30D2E5DA257108BF001EFB02 /* BSProtocalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSProtocalController.m; sourceTree = "<group>"; };
 		30D8BA6C2548099000275C1A /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		30D8BA7225480B7C00275C1A /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -172,6 +181,8 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				3097574A2574E81C00A3E2CA /* NSOperator */,
+				30D2E5D02570DB52001EFB02 /* AlertController */,
 				30D2E5C3256F4887001EFB02 /* TransitionAnimate */,
 				3034EFC2255B7FFC001084AC /* TableViewRefresh */,
 				3070283F24A474D0000C5384 /* DynamicBehavior */,
@@ -281,6 +292,15 @@
 			path = DynamicBehavior;
 			sourceTree = "<group>";
 		};
+		3097574A2574E81C00A3E2CA /* NSOperator */ = {
+			isa = PBXGroup;
+			children = (
+				3097574B2574E84100A3E2CA /* BSOperatorController.h */,
+				3097574C2574E84100A3E2CA /* BSOperatorController.m */,
+			);
+			path = NSOperator;
+			sourceTree = "<group>";
+		};
 		30AA549124B31CE30056DEA1 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,8 +317,19 @@
 				30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */,
 				30D2E5C9256F495A001EFB02 /* BSATransitionController.h */,
 				30D2E5CA256F495A001EFB02 /* BSATransitionController.m */,
+				30D2E5D9257108BF001EFB02 /* BSProtocalController.h */,
+				30D2E5DA257108BF001EFB02 /* BSProtocalController.m */,
 			);
 			path = TransitionAnimate;
+			sourceTree = "<group>";
+		};
+		30D2E5D02570DB52001EFB02 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
+				30D2E5D12570DB8A001EFB02 /* BSAlertController.h */,
+				30D2E5D22570DB8A001EFB02 /* BSAlertController.m */,
+			);
+			path = AlertController;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -621,11 +652,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */,
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
+				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
@@ -637,6 +670,7 @@
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
 				30AA549424B31CFA0056DEA1 /* BSButton.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
+				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -7,11 +7,11 @@
 
 #import "BSPhotoConfig.h"
 
+static BSPhotoConfig *photoConfig = nil;
+
 @implementation BSPhotoConfig
 
 +(instancetype)shareConfig{
-    
-    static BSPhotoConfig *photoConfig = nil;
     
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
