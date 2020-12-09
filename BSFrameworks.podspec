@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BSFrameworks'
-  s.version          = '0.1.6'
-  s.summary          = '相机返回bug修复'
+  s.version          = '0.1.7'
+  s.summary          = '修复 重写View的center方法导致的UI错误问题（wkwebView 展示异常）'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
