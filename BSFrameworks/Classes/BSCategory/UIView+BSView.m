@@ -110,31 +110,6 @@
 }
 
 
-
-#pragma mark - center
-
--(CGPoint)center{
-
-    CGRect frame = self.frame;
-    CGFloat X = frame.origin.x + self.frame.size.width/2;
-    CGFloat Y = frame.origin.y + self.frame.size.height/2;
-    
-    CGPoint point = CGPointMake(X,Y);
-    
-    return point;
-}
-
-
--(void)setCenter:(CGPoint)center{
-    
-    CGRect frame = self.frame;
-    frame.origin.x = center.x - self.frame.size.width/2;
-    frame.origin.y= center.y - self.frame.size.height/2;
-    
-    self.frame = frame;
-}
-
-
 #pragma mark - centerX
 
 -(CGFloat)centerX{

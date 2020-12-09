@@ -33,7 +33,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic ,assign) CGFloat bottom;
 @property (nonatomic ,assign) CGFloat width;
 @property (nonatomic ,assign) CGFloat height;
-@property (nonatomic ,assign) CGPoint center;
 @property (nonatomic ,assign) CGFloat centerX;
 @property (nonatomic ,assign) CGFloat centerY;
 

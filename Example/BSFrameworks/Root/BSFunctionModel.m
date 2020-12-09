@@ -39,6 +39,7 @@
                                @"转场动画，UIView Transition 动画": @"BSTransitionController",
                                @"自定义 alertcontroller": @"BSAlertController",
                                @"NSOperator 线程":@"BSOperatorController",
+                               @"WKWebView":@"BSWebViewController",
                                
     };
     
