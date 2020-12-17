@@ -1,8 +1,8 @@
 //
-//  BSButton.h
+//  BSKVOTestController.h
 //  BSFrameworks_Example
 //
-//  Created by 叶一枫 on 2020/7/6.
+//  Created by 叶一枫 on 2020/12/17.
 //  Copyright © 2020 blackstar_lang@163.com. All rights reserved.
 //
 
@@ -10,12 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BSButton : UIButton
-
-
-
-
-
+@interface BSKVOTestController : UIViewController
 
 @end
 

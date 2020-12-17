@@ -8,32 +8,55 @@
 
 #import "BSWebViewController.h"
 #import <WebKit/WebKit.h>
-//#import <UIView+BSView.h>
+#import <objc/runtime.h>
+#import "BSFunctionModel.h"
+
+
 
 @interface BSWebViewController ()
 
 @property (nonatomic ,strong) WKWebView *webView;
-//@property (nonatomic ,strong) UIWebView *webView;
+
 
 @end
 
 @implementation BSWebViewController
 
+
+
+-(void)dealloc{
+    NSLog(@"=======");
+}
+
+
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
-    self.view.backgroundColor = [UIColor whiteColor];
+    [self initWebView];
     
+}
+
+
+#pragma mark autoreleasepool 测试
+
+
+
+
+#pragma mark - initWebView
+
+-(void)initWebView{
+    
+    self.view.backgroundColor = [UIColor grayColor];
 
     WKWebViewConfiguration *config = [[WKWebViewConfiguration alloc] init];
     self.webView = [[WKWebView alloc]initWithFrame:self.view.bounds configuration:config];
-    [self.view addSubview:self.webView];
-
+    
     NSURL *url = [NSURL URLWithString:@"https://www.baidu.com"];
     NSURLRequest *request  = [NSURLRequest requestWithURL:url];
     [self.webView loadRequest:request];
+    
+    [self.view addSubview:self.webView];
+    
 }
-
 
 
 @end

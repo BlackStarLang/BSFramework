@@ -12,6 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSATransitionController : UIViewController
 
+-(instancetype)init NS_UNAVAILABLE;
+
+-(instancetype)initWithAlertTitle:(NSString *)title message:(NSString *)message delegate:(UIViewController *)delegate;
+
+
 @end
 
 NS_ASSUME_NONNULL_END

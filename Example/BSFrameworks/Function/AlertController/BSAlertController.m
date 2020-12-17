@@ -31,9 +31,8 @@
 
 -(void)alert{
 
-//    [self presentAlertNomal];
+    [self presentAlertNomal];
     
-    [self presentAlertTest];
 }
 
 
@@ -62,20 +61,6 @@
     NSLog(@"%@",alertVC.navigationController);
     
     [self presentViewController:alertVC animated:YES completion:nil];
-}
-
-
-
--(void)presentAlertTest{
-    
-    UIViewController *controller = [[UIViewController alloc]init];
-    controller.view.frame = CGRectMake(0, 0, 200, 300);
-    controller.view.backgroundColor = [UIColor whiteColor];
-    controller.modalPresentationStyle = 4;
-    controller.modalTransitionStyle = 0;
-    controller.preferredContentSize = CGSizeMake(320, 320);
-    [self presentViewController:controller animated:YES completion:nil];
-    
 }
 
 

@@ -7,9 +7,11 @@
 //
 
 #import "BSATransitionController.h"
-
+#import "BSProtocalController.h"
 
 @interface BSATransitionController ()
+
+@property (nonatomic ,strong) BSProtocalController *protocalVC;
 
 @end
 
@@ -18,6 +20,19 @@
 -(void)dealloc{
     NSLog(@"BSATransitionController dealloc");
 }
+
+-(instancetype)initWithAlertTitle:(NSString *)title message:(NSString *)message delegate:(nonnull UIViewController *)delegate{
+    
+    self = [super init];
+    if (self) {
+        
+        BSProtocalController *protocalVC = [[BSProtocalController alloc] initWithPresentedViewController:self presentingViewController:delegate];
+        self.transitioningDelegate = protocalVC;
+        self.preferredContentSize = CGSizeMake(10, 300);
+    }
+    return self;
+}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,22 +45,16 @@
     button.backgroundColor = [UIColor redColor];
     [button addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button];
-    
+
 }
+
 
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
+
 
 @end

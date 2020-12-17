@@ -17,7 +17,6 @@
 		3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070284124A474F9000C5384 /* BSDynamicBehavior.m */; };
 		30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30754B8F257F71AE00398CA3 /* BSWebViewController.m */; };
 		3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097574C2574E84100A3E2CA /* BSOperatorController.m */; };
-		30AA549424B31CFA0056DEA1 /* BSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AA549324B31CFA0056DEA1 /* BSButton.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
@@ -26,6 +25,8 @@
 		30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5DA257108BF001EFB02 /* BSProtocalController.m */; };
 		30D8BA6D2548099000275C1A /* test.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA6C2548099000275C1A /* test.mp4 */; };
 		30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA7225480B7C00275C1A /* test1.mp4 */; };
+		30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B2A258B2B6600E49AD9 /* BSKVOTestController.m */; };
+		30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -78,8 +79,6 @@
 		30754B8F257F71AE00398CA3 /* BSWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebViewController.m; sourceTree = "<group>"; };
 		3097574B2574E84100A3E2CA /* BSOperatorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSOperatorController.h; sourceTree = "<group>"; };
 		3097574C2574E84100A3E2CA /* BSOperatorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSOperatorController.m; sourceTree = "<group>"; };
-		30AA549224B31CFA0056DEA1 /* BSButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSButton.h; sourceTree = "<group>"; };
-		30AA549324B31CFA0056DEA1 /* BSButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSButton.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
@@ -94,6 +93,10 @@
 		30D2E5DA257108BF001EFB02 /* BSProtocalController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSProtocalController.m; sourceTree = "<group>"; };
 		30D8BA6C2548099000275C1A /* test.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test.mp4; sourceTree = "<group>"; };
 		30D8BA7225480B7C00275C1A /* test1.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = test1.mp4; sourceTree = "<group>"; };
+		30DD8B29258B2B6600E49AD9 /* BSKVOTestController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSKVOTestController.h; sourceTree = "<group>"; };
+		30DD8B2A258B2B6600E49AD9 /* BSKVOTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKVOTestController.m; sourceTree = "<group>"; };
+		30DD8B36258B2EEB00E49AD9 /* BSAutoreleasePoolController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAutoreleasePoolController.h; sourceTree = "<group>"; };
+		30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAutoreleasePoolController.m; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* BSFrameworks_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSFrameworks_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -184,14 +187,15 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				30DD8B35258B2ED100E49AD9 /* AutoreleasePool */,
 				30754B84257F717800398CA3 /* WKWebView */,
 				3097574A2574E81C00A3E2CA /* NSOperator */,
 				30D2E5D02570DB52001EFB02 /* AlertController */,
 				30D2E5C3256F4887001EFB02 /* TransitionAnimate */,
 				3034EFC2255B7FFC001084AC /* TableViewRefresh */,
 				3070283F24A474D0000C5384 /* DynamicBehavior */,
-				3070283B249CB31C000C5384 /* BSNotifacation */,
-				30702832249C62AE000C5384 /* BSStudyObjc */,
+				3070283B249CB31C000C5384 /* BSNotifacation_KVO */,
+				30702832249C62AE000C5384 /* RunLoop */,
 				30494A332485E7BA002DBC8D /* BSPhoto */,
 				30494A2D2485E435002DBC8D /* BSLooperView */,
 			);
@@ -250,23 +254,13 @@
 			path = View;
 			sourceTree = "<group>";
 		};
-		30702832249C62AE000C5384 /* BSStudyObjc */ = {
-			isa = PBXGroup;
-			children = (
-				30AA549124B31CE30056DEA1 /* View */,
-				30702834249C62D0000C5384 /* Model */,
-				30702833249C62C3000C5384 /* ViewController */,
-			);
-			path = BSStudyObjc;
-			sourceTree = "<group>";
-		};
-		30702833249C62C3000C5384 /* ViewController */ = {
+		30702832249C62AE000C5384 /* RunLoop */ = {
 			isa = PBXGroup;
 			children = (
 				30702835249C62F7000C5384 /* BSStudyObjcController.h */,
 				30702836249C62F7000C5384 /* BSStudyObjcController.m */,
 			);
-			path = ViewController;
+			path = RunLoop;
 			sourceTree = "<group>";
 		};
 		30702834249C62D0000C5384 /* Model */ = {
@@ -278,13 +272,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3070283B249CB31C000C5384 /* BSNotifacation */ = {
+		3070283B249CB31C000C5384 /* BSNotifacation_KVO */ = {
 			isa = PBXGroup;
 			children = (
-				3070283C249CB35E000C5384 /* BSNotifacation.h */,
-				3070283D249CB35E000C5384 /* BSNotifacation.m */,
+				30DD8B30258B2C4100E49AD9 /* BSNotifacation */,
+				30702834249C62D0000C5384 /* Model */,
+				30DD8B29258B2B6600E49AD9 /* BSKVOTestController.h */,
+				30DD8B2A258B2B6600E49AD9 /* BSKVOTestController.m */,
 			);
-			path = BSNotifacation;
+			path = BSNotifacation_KVO;
 			sourceTree = "<group>";
 		};
 		3070283F24A474D0000C5384 /* DynamicBehavior */ = {
@@ -314,15 +310,6 @@
 			path = NSOperator;
 			sourceTree = "<group>";
 		};
-		30AA549124B31CE30056DEA1 /* View */ = {
-			isa = PBXGroup;
-			children = (
-				30AA549224B31CFA0056DEA1 /* BSButton.h */,
-				30AA549324B31CFA0056DEA1 /* BSButton.m */,
-			);
-			path = View;
-			sourceTree = "<group>";
-		};
 		30D2E5C3256F4887001EFB02 /* TransitionAnimate */ = {
 			isa = PBXGroup;
 			children = (
@@ -343,6 +330,24 @@
 				30D2E5D22570DB8A001EFB02 /* BSAlertController.m */,
 			);
 			path = AlertController;
+			sourceTree = "<group>";
+		};
+		30DD8B30258B2C4100E49AD9 /* BSNotifacation */ = {
+			isa = PBXGroup;
+			children = (
+				3070283C249CB35E000C5384 /* BSNotifacation.h */,
+				3070283D249CB35E000C5384 /* BSNotifacation.m */,
+			);
+			path = BSNotifacation;
+			sourceTree = "<group>";
+		};
+		30DD8B35258B2ED100E49AD9 /* AutoreleasePool */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B36258B2EEB00E49AD9 /* BSAutoreleasePoolController.h */,
+				30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */,
+			);
+			path = AutoreleasePool;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -665,6 +670,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */,
 				30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */,
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */,
@@ -673,6 +679,7 @@
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
+				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
@@ -682,7 +689,6 @@
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
-				30AA549424B31CFA0056DEA1 /* BSButton.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,
 			);

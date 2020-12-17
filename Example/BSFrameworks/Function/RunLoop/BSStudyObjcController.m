@@ -7,9 +7,6 @@
 //
 
 #import "BSStudyObjcController.h"
-#import "BSObjcPerson.h"
-#import "BSNotifacation.h"
-#import "BSButton.h"
 #import <UIView+BSView.h>
 
 #import <objc/objc.h>
@@ -17,7 +14,6 @@
 
 @interface BSStudyObjcController ()
 
-@property (nonatomic ,strong) BSObjcPerson *person;
 @property (nonatomic ,strong) NSThread *thread;
 
 @property (nonatomic ,strong) NSTimer *timer;
@@ -38,57 +34,24 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    [self addBtn];
-    [self addObserver];// 自定义notifacation
-//    [self runLoopTest];// runloop 测试
-//    [self timerTest]; //timer 测试
+    
+
+    [self initView];
+    [self runLoopTest];// runloop 测试
 }
 
-
--(void)timerTest{
+-(void)initView{
     
-//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
-//        self.timer = [NSTimer scheduledTimerWithTimeInterval:3 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
-//        self.timer.tolerance = 2;
-//        [self.timer fire];
-//        [[NSRunLoop currentRunLoop]run];
-//    });
-    
-    CADisplayLink *link = [CADisplayLink displayLinkWithTarget:self selector:@selector(timerAction)];
-    [link addToRunLoop:[NSRunLoop currentRunLoop] forMode:NSDefaultRunLoopMode];
-    
-}
-
-
--(void)timerAction{
-    NSLog(@"timer 执行");
-}
-
-
-
--(void)addBtn{
-    
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 84, self.view.width - 40, 40)];
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, SCREEN_HEIGHT)];
+    label.center = self.view.center;
+    label.font = [UIFont systemFontOfSize:15];
+    label.textAlignment = 1;
+    label.text = @"点击屏幕任意位置，将触发 runloop 监听";
     [self.view addSubview:label];
-    
-    BSButton *btn = [[BSButton alloc]initWithFrame:CGRectMake(100, 100, 300, 40)];
-    btn.center = self.view.center;
-    btn.backgroundColor = [UIColor blueColor];
-    [btn addTarget:self action:@selector(changePersonName) forControlEvents:UIControlEventTouchUpInside];
-    [btn setTitle:@"点击触发自定义kvo" forState:UIControlStateNormal];
-    [self.view addSubview:btn];
 }
 
 
--(void)addObserver{
-    
-    BSObjcPerson *person1 = [[BSObjcPerson alloc]init];
-    self.person = person1;
-    
-    [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(name) callBack:^(id  _Nonnull oldValue, id  _Nonnull newValue) {
-        NSLog(@"\nnoti person1:\noldValue = %@\nnewValue = %@",oldValue,newValue);
-    }];
-}
+#pragma mark 开启 runloop 测试
 
 -(void)runLoopTest{
     self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(threadAction) object:nil];
@@ -97,7 +60,7 @@
 
 -(void)threadAction{
 
-    NSLog(@" thread start");
+    NSLog(@"thread start，开始监听 runloop 状态");
     
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         
@@ -126,7 +89,6 @@
             default:
                 break;
         }
-        
     });
     
     CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
@@ -149,15 +111,6 @@
 - (void)run2{
     
     NSLog(@"----run2 in thread %@-----",[NSThread currentThread]);
-}
-
-
-#pragma mark - action 交互事件
-
--(void)changePersonName{
-    
-    self.person.name = @"kvo change";
-    self.person.age = 20;
 }
 
 
