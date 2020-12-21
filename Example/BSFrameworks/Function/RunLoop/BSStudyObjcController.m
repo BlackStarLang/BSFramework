@@ -37,7 +37,12 @@
     
 
     [self initView];
-    [self runLoopTest];// runloop 测试
+//    [self runLoopTest];// runloop 测试
+    
+    NSLog(@"%@",[^{NSLog(@"test global block");}class]);
+    
+    int i = 10;
+    NSLog(@"%@",[^{NSLog(@"test statck block, i = %d",i);}class]);
 }
 
 -(void)initView{

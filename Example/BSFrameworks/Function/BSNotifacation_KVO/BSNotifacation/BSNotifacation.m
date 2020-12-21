@@ -7,10 +7,7 @@
 //
 
 #import "BSNotifacation.h"
-#import <objc/objc.h>
 #import <objc/runtime.h>
-#import <objc/message.h>
-#import "BSObjcPerson.h"
 
 @interface BSNotifacation ()
 
@@ -37,7 +34,6 @@
     // 以免使用的时候混淆 class 的真正面目
     // ==================================================
     BSNotifacationObject *notiObj = [BSNotifacationObject notiObjectWithObsever:obsever object:object keyForSel:keyForSel callBack:change];
-    
     
     
     // ==================================================

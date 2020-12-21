@@ -17,7 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
-    
+    [self initView];
+}
+
+-(void)initView{
     self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 80, 40)];
@@ -29,11 +32,12 @@
 }
 
 
+
 -(void)alert{
 
     [self presentAlertNomal];
-    
 }
+
 
 
 -(void)presentAlertNomal{

@@ -27,6 +27,9 @@
 		30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 30D8BA7225480B7C00275C1A /* test1.mp4 */; };
 		30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B2A258B2B6600E49AD9 /* BSKVOTestController.m */; };
 		30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */; };
+		30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */; };
+		30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B462590881500E49AD9 /* BSCalculationRoot.m */; };
+		30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */; };
 		416E53D261B0F56FA76024DA /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
@@ -97,6 +100,12 @@
 		30DD8B2A258B2B6600E49AD9 /* BSKVOTestController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSKVOTestController.m; sourceTree = "<group>"; };
 		30DD8B36258B2EEB00E49AD9 /* BSAutoreleasePoolController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSAutoreleasePoolController.h; sourceTree = "<group>"; };
 		30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSAutoreleasePoolController.m; sourceTree = "<group>"; };
+		30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIViewController+WhiteController.h"; sourceTree = "<group>"; };
+		30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+WhiteController.m"; sourceTree = "<group>"; };
+		30DD8B452590881500E49AD9 /* BSCalculationRoot.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCalculationRoot.h; sourceTree = "<group>"; };
+		30DD8B462590881500E49AD9 /* BSCalculationRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCalculationRoot.m; sourceTree = "<group>"; };
+		30DD8B4C25908D7400E49AD9 /* BSHuiwenStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSHuiwenStr.h; sourceTree = "<group>"; };
+		30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSHuiwenStr.m; sourceTree = "<group>"; };
 		3546885A5EEF37385DEB3BE2 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* BSFrameworks_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSFrameworks_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -180,6 +189,8 @@
 				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
 				30AE96812488FEC6009A43FB /* BSRootCell.h */,
 				30AE96822488FEC6009A43FB /* BSRootCell.m */,
+				30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */,
+				30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -187,6 +198,7 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				30DD8B422590879E00E49AD9 /* SuanFa */,
 				30DD8B35258B2ED100E49AD9 /* AutoreleasePool */,
 				30754B84257F717800398CA3 /* WKWebView */,
 				3097574A2574E81C00A3E2CA /* NSOperator */,
@@ -348,6 +360,33 @@
 				30DD8B37258B2EEB00E49AD9 /* BSAutoreleasePoolController.m */,
 			);
 			path = AutoreleasePool;
+			sourceTree = "<group>";
+		};
+		30DD8B422590879E00E49AD9 /* SuanFa */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B44259087C400E49AD9 /* SuanFaRootVC */,
+				30DD8B43259087BB00E49AD9 /* Calculation */,
+			);
+			path = SuanFa;
+			sourceTree = "<group>";
+		};
+		30DD8B43259087BB00E49AD9 /* Calculation */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B4C25908D7400E49AD9 /* BSHuiwenStr.h */,
+				30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */,
+			);
+			path = Calculation;
+			sourceTree = "<group>";
+		};
+		30DD8B44259087C400E49AD9 /* SuanFaRootVC */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B452590881500E49AD9 /* BSCalculationRoot.h */,
+				30DD8B462590881500E49AD9 /* BSCalculationRoot.m */,
+			);
+			path = SuanFaRootVC;
 			sourceTree = "<group>";
 		};
 		6003F581195388D10070C39A = {
@@ -676,6 +715,7 @@
 				30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
+				30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
@@ -686,7 +726,9 @@
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
+				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
+				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
