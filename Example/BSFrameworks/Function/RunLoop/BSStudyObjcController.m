@@ -64,7 +64,7 @@
     CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         
 //        NSLog(@"%f",CFRunLoopGetNextTimerFireDate(CFRunLoopGetCurrent(),CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent())));
-      
+        NSLog(@"\n");
         switch (activity) {
             case kCFRunLoopEntry:
                 NSLog(@"runloop 进入");

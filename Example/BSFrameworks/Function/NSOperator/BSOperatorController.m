@@ -7,6 +7,7 @@
 //
 
 #import "BSOperatorController.h"
+#import <UIView+BSView.h>
 
 @interface BSOperatorController ()
 
@@ -16,8 +17,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
+    
+    [self initView];
     
     [self operatorBlock];
 //    [self operatorInvocation];
@@ -25,11 +27,24 @@
 }
 
 
+-(void)initView{
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH - 40, 300)];
+    label.textAlignment = 0;
+    label.numberOfLines = 0;
+    label.center = self.view.center;
+    label.text = @"block 打印顺序说明\n\ncurrentQueue 的打印 和 thread 的打印是有先后顺序的，两个 currentQueue 打印完成后,才会 打印 thread ， 两个 currentQueue 打印顺序不确定，两个 thread 打印顺序不确定。因为测试次数不是很大，结果的必然性无法确定\n\n测试次数 大概 30次";
+    
+    [self.view addSubview:label];
+}
+
+
 -(void)operatorBlock{
     /**
      * block 打印顺序说明
      * currentQueue 的打印 和 thread 的打印是有先后顺序的，两个 currentQueue 打印完成后
-     * 才会 打印 thread ， 两个 currentQueue 打印顺序不确定，两个 thread 打印顺序不确定
+     * 才会 打印 thread ， 两个 currentQueue 打印顺序不确定，两个 thread 打印顺序不确定,
+     * 是不是必然结果，无法确定
      * 测试次数 大概 30次
      */
     NSBlockOperation *operation = [NSBlockOperation blockOperationWithBlock:^{
