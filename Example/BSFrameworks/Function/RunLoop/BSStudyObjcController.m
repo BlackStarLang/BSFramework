@@ -34,15 +34,9 @@
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
     // Do any additional setup after loading the view.
-    
 
     [self initView];
-//    [self runLoopTest];// runloop 测试
-    
-    NSLog(@"%@",[^{NSLog(@"test global block");}class]);
-    
-    int i = 10;
-    NSLog(@"%@",[^{NSLog(@"test statck block, i = %d",i);}class]);
+    [self runLoopTest];// runloop 测试
 }
 
 -(void)initView{
