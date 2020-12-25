@@ -38,7 +38,7 @@
                                @"自定义上下拉刷新 discard":@"BSRefreshController",
                                @"转场动画，UIView Transition 动画": @"BSTransitionController",
                                @"自定义 alertcontroller": @"BSAlertController",
-                               @"NSOperator 线程":@"BSOperatorController",
+                               @"多线程研究，GCD 和 NSOperation":@"BSOperatorController",
                                @"WKWebView":@"BSWebViewController",
                                @"AutoreleasePool ":@"BSAutoreleasePoolController",
                                @"自定义KVO，用于更好地理解kvo原理 ":@"BSKVOTestController",

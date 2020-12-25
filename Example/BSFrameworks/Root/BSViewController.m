@@ -97,7 +97,7 @@
 
     BSFunctionItem *item = self.dataSource[indexPath.row];
 
-    cell.titleLabel.text = item.title;
+    cell.titleLabel.text = [NSString stringWithFormat:@"%ld、 %@",(long)indexPath.row + 1,item.title];
     
 
     return cell;

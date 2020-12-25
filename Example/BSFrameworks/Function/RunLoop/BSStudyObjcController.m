@@ -19,6 +19,8 @@
 @property (nonatomic ,strong) NSTimer *timer;
 @property (nonatomic ,assign) NSInteger timerCount;
 
+@property (nonatomic ,strong) dispatch_queue_t queue;
+
 
 @end
 
@@ -36,7 +38,11 @@
     // Do any additional setup after loading the view.
 
     [self initView];
-    [self runLoopTest];// runloop 测试
+    
+    /// 以下方法只能开启一个进行测试
+//    [self runLoopTest];// runloop 测试
+    [self testAsyncSerialQueue];// runloop + GCD_Async + 串行队列测试
+    
 }
 
 -(void)initView{
@@ -53,9 +59,46 @@
 #pragma mark 开启 runloop 测试
 
 -(void)runLoopTest{
+    
     self.thread = [[NSThread alloc]initWithTarget:self selector:@selector(threadAction) object:nil];
     [self.thread start];
 }
+
+
+
+-(void)testAsyncSerialQueue{
+    // 查看堆栈可发现
+    // 如果不使用 NSThread，而是使用 GCD ，在 runInThread 方法里 调用
+    // dispatch_async(self.queue, ^{})，回调将不会执行
+    // 猜测原因：首先分析主队列，dispatch_async(dispatch_get_main_queue(),^{})
+    // 方法在执行任务的时候，回到了主线程和主队列，可见主队列没有创建子线程的能力。
+    // 也就是主线程和主队列是一一对应的关系，测试非主线程串行队列会发现，串行队列最多只有一个线程，
+    // 所以综合可以肯定，串行队列只能有一个线程。而在串行队列中，主队列可以使用
+    // dispatch_async(dispatch_get_main_queue(),^{})方式可以回到当前线程
+    // 在分析非主线程串行队列，在使用 dispatch_async 的时候，会创建一个
+    // 如果是并发队列，async 将创建新的子线程，将不会受 threadAction 方法里的 runloop 影响。
+    
+    
+    // 这个例子是为了验证 dispatch_async(dispatch_get_main_queue(),^{}) 的逻辑，
+    // 首先dispatch_get_main_queue是串行队列 ，在使用 dispatch_async(dispatch_get_main_queue(),^{})
+    // 的时候发现 此函数任务将会在主线程主队列执行，并且将受 main runloop 影响。
+    // 故仿照此情况，模拟一个非主队列的异步串行队列。
+    // 结果表明，串行队列下，只有主队列执行的 dispatch_async(dispatch_get_main_queue(),^{})函数可以调用，
+    // 而非主队列的异步操作，如果异步操作在为当前的非主队列里，那么将不会执行
+    
+    self.queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+    dispatch_async(self.queue, ^{
+        self.thread = [NSThread currentThread];
+        [self threadAction];
+    });
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        dispatch_sync(self.queue, ^{
+//            NSLog(@"hehe");
+//        });
+//    });
+}
+
 
 -(void)threadAction{
 
@@ -84,7 +127,7 @@
             case kCFRunLoopExit:
                 NSLog(@"runloop 退出");
                 break;
-                
+
             default:
                 break;
         }
@@ -96,20 +139,24 @@
     [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
     [[NSRunLoop currentRunLoop]run];
     
-    NSLog(@" thread end");
+    NSLog(@" runloop 结束");
 }
 
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    // 利用performSelector，在self.thread的线程中调用run2方法执行任务
-    [self performSelector:@selector(run2) onThread:self.thread withObject:nil waitUntilDone:NO];
+    // 利用performSelector，在self.thread的线程中调用runInThread方法执行任务
+    [self performSelector:@selector(runInThread) onThread:self.thread withObject:nil waitUntilDone:NO];
 }
 
 
-- (void)run2{
+- (void)runInThread{
     
-    NSLog(@"----run2 in thread %@-----",[NSThread currentThread]);
+    dispatch_async(self.queue, ^{
+        NSLog(@"haha");
+    });
+    
+    NSLog(@"RunInThread in thread %@",[NSThread currentThread]);
 }
 
 
