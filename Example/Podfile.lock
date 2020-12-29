@@ -1,18 +1,18 @@
 PODS:
-  - BSFrameworks (0.1.6):
-    - BSFrameworks/BSCategory (= 0.1.6)
-    - BSFrameworks/BSLooperView (= 0.1.6)
-    - BSFrameworks/BSPhotoFramework (= 0.1.6)
+  - BSFrameworks (0.1.7):
+    - BSFrameworks/BSCategory (= 0.1.7)
+    - BSFrameworks/BSLooperView (= 0.1.7)
+    - BSFrameworks/BSPhotoFramework (= 0.1.7)
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSCategory (0.1.6):
+  - BSFrameworks/BSCategory (0.1.7):
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSLooperView (0.1.6):
+  - BSFrameworks/BSLooperView (0.1.7):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
-  - BSFrameworks/BSPhotoFramework (0.1.6):
+  - BSFrameworks/BSPhotoFramework (0.1.7):
     - BSFrameworks/BSCategory
     - Masonry
     - SDWebImage
@@ -46,7 +46,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: fadec0b43d9d141a403fd65bad057c1033c55a80
+  BSFrameworks: 61fdba0d28eafa63b16396de85d54db264521722
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16

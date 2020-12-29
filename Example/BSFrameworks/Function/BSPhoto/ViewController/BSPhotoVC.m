@@ -85,6 +85,7 @@
 
 
 -(void)cameraBtnClick{
+    
     /// 整个图片选择控件测试，包含预览 + 相机
     BSPhotoManagerController *managerVC = [[BSPhotoManagerController alloc]init];
     managerVC.BSDelegate = self;
@@ -100,6 +101,9 @@
     [self presentViewController:managerVC animated:YES completion:nil];
 
 
+    
+    
+    
 //    /// 图片预览测试
 //    BSPhotoPreviewController *controller = [[BSPhotoPreviewController alloc]init];
 //    NSArray *arr = @[[UIImage imageNamed:@"photo_camera_icon"],[UIImage imageNamed:@"preview_video_play"]];
@@ -128,6 +132,11 @@
 //    navi.modalPresentationStyle = 0;
 //    [self presentViewController:navi animated:YES completion:nil];
 
+    
+    
+    
+    
+    
     /// 相机单独使用测试，可以添加水印
 //    UIImageView *waterMarkView = [[UIImageView alloc]initWithFrame:CGRectMake(50, 100, 40, 40)];
 //    waterMarkView.image = [UIImage imageNamed:@""];

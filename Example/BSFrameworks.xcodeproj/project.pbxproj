@@ -201,7 +201,7 @@
 				30DD8B422590879E00E49AD9 /* SuanFa */,
 				30DD8B35258B2ED100E49AD9 /* AutoreleasePool */,
 				30754B84257F717800398CA3 /* WKWebView */,
-				3097574A2574E81C00A3E2CA /* NSOperator */,
+				3097574A2574E81C00A3E2CA /* Mutil-Threading */,
 				30D2E5D02570DB52001EFB02 /* AlertController */,
 				30D2E5C3256F4887001EFB02 /* TransitionAnimate */,
 				3034EFC2255B7FFC001084AC /* TableViewRefresh */,
@@ -313,13 +313,13 @@
 			path = WKWebView;
 			sourceTree = "<group>";
 		};
-		3097574A2574E81C00A3E2CA /* NSOperator */ = {
+		3097574A2574E81C00A3E2CA /* Mutil-Threading */ = {
 			isa = PBXGroup;
 			children = (
 				3097574B2574E84100A3E2CA /* BSOperatorController.h */,
 				3097574C2574E84100A3E2CA /* BSOperatorController.m */,
 			);
-			path = NSOperator;
+			path = "Mutil-Threading";
 			sourceTree = "<group>";
 		};
 		30D2E5C3256F4887001EFB02 /* TransitionAnimate */ = {

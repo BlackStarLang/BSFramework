@@ -17,6 +17,11 @@
 
 @implementation BSOperatorController
 
+- (void)dealloc
+{
+    NSLog(@"BSOperatorController delloc");
+}
+
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
@@ -42,7 +47,7 @@
 
 
 
-#pragma mark  Operation 测试
+#pragma mark - Operation 测试
 
 /// ====================================================
 /// 从打印的 thread 来看，Operation 这几种方式都可能产生新的线程
@@ -56,7 +61,7 @@
 }
 
 /**
- * block 和 invocation 两种 NSoperation 子类的测试打印顺序说明
+ * block 和 invocation 两种 NSOperation 子类的测试打印顺序说明
  * currentQueue 的打印 和 thread 的打印是有先后顺序的，两个 currentQueue 打印完成后
  * 才会 打印 thread ， 两个 currentQueue 打印顺序不确定，两个 thread 打印顺序不确定,
  * 是不是必然结果，无法确定
@@ -191,95 +196,192 @@
 ///
 /// 4、主队列 Main Queue ,无论是 同步操作还是异步操作，执行任务都是在主线程 、主队列。
 ///    说明了 主队列 是不能开辟子线程的。也就是说，子线程的队列永远也不可能是主队列
+///
 ///    延伸1：同样情况的非主线程的串行队列，最多只能创建一个子线程，类似于主队列对应的主线程
-///    如果想开辟额外的新线程，是不能的。即：串行队列，无论是不是主队列，只能有一个线程
-///    因为主队列系统已经帮我们创建了主线程，所以只有非主串行队列，才会去创建一个新的线程，
-///    但是也就只有这么一个
+///    即：串行队列，无论是不是主队列，只能有一个线程绑定（执行任务是可以在两个线程的）
+///    因为主队列系统已经帮我们创建了主线程，所以只有非主串行队列，才会去创建一个新的线程
+///
 ///    延伸2：在串行队列中，主队列可以使用
 ///    dispatch_async(dispatch_get_main_queue(),^{})方式回到当前线程（主线程）
 ///    那么非主串行队列queue，在使用 dispatch_async(queue,^{}) 的时候，是否也会回到当前线程？
-///    答案是：代码不执行。（）
+///    答案是：如果有runloop，那么代码不执行。如果没有runloop，和主线程一样，会回到队列所对应的线程。
 ///    原因未知，只能猜测，这种情况下，系统对主队列是有不同的处理方式的。
 ///
-///    主队列不会出现在其他线程中，而非主队列可以在主线程中执行（同步操作），也可以在子线程中执行
+/// 5、主队列不会出现在其他线程中，而非主队列可以在主线程中执行（同步操作），也可以在子线程中执行
+///
+/// 6、dispatch_async(dispatch_get_main_queue(), ^{});方法，永远都会在当前作用域的最后调用
+///    跟他调用的位置无关，即 dispatch_async 会将调用他的主方法里的所有其他操作执行完，才会执行
+///    dispatch_async ,如果有多个dispatch_async(dispatch_get_main_queue(), ^{});方法
+///    按照调用顺序依次执行
+///
 /// =====================================
-#pragma mark GCD 测试
+#pragma mark - GCD 测试
 
 -(void)studyGCD{
 
-//    [self serialQueue];
+    [self serialQueue];
 //    [self concurrentQueueTest];
 //    [self globalQueue];
-    
-    
-    dispatch_queue_t quque = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
-    
-    dispatch_sync(quque, ^{
+//    [self gcdBarrier];
 
-        // 主线程 串行队列 quque
-        dispatch_async(quque, ^{
-            // 子主线程，串行队列 quque
-            dispatch_queue_t quque1 = dispatch_queue_create("myqueue1", DISPATCH_QUEUE_SERIAL);
-
-            dispatch_async(quque1, ^{
-                // 子主线程，串行队列 quque
-//                NSLog(@"这里不执行，如果去掉runloop 就可以执行");
-            });
-            
-            NSRunLoop *runloop = [NSRunLoop currentRunLoop];
-            [runloop addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
-            [runloop run];
-        });
-        
-    });
-    
-    dispatch_async(dispatch_get_main_queue(), ^{
-        
-    });
 }
 
 
-/// 1、同步操作 sync ，不管在什么队列（非主队列，主队列将会死锁），执行任务都将在当前线程线程、当前线程队列
-/// 2、串行队列，异步操作，也会顺序执行，不管多少异步操作，只会有一个子线程去执行任务
+/// 串行队列
+/// 1、同步操作 sync ，不会开启新的线程，有死锁的可能，不是只有主队列才死锁
+///    如果当前队列是 自定义串行队列 queue，然后把 sync 操作也放入 队列 queue 那么
+///    也将会导致死锁
+/// 2、异步操作，也会顺序执行，不管多少个异步操作，只会有一个子线程去执行任务
 /// 3、如果当前线程的比如说 number 为 5，那么如果推出页面再次进入时，
 ///    如果线程还是5，这个线程其实是之前的线程，内存地址不变
 ///    猜测：大概是因为此线程没有释放，但是也没事情做了，当有事情的时候，他又被重新利用了
+/// 4、串行队列：只能绑定一条子线程，但是他最多可以在两条线程中执行，除了新创建的线程，
+///    还可以通过sync在当前线程中执行，但是我们可以认为是非绑定关系，而是依赖关系。
+///    因此才有了主队列执行的任务会回到主线程。而一条线程，是可以在多个队列执行的。
+///    而主线程是有对应的runloop的回到主线程后，依然受runloop 影响，但是如果子线程我们自己
+///    创建runloop，将当前子线程挂起，通过当前队列回到对应的子线程，发现代码不执行。
+///   （需要异步执行任务，如果任务同步的，会导致没有先创建runloop，这时，
+///    任务还是可以执行的，因为runloop没执行，就已经完成了任务）（具体原因未知）
 
+#pragma mark 串行队列 SERIAL
 -(void)serialQueue{
-//    群里大牛说的：记录一下
-//    我刚查了下资料,主队列是不能开启子线程的,
-//    其它串行队列可以开启,你这里的sync要求在当前线程立即执行,
-//    跟你指定在哪个队列没有关系,队列里的任务终究是要取出来放在线程里执行的（这句话感觉不太对）
-    
+
     //串行队列
     dispatch_queue_t serialqueue = dispatch_queue_create("serialqueue", DISPATCH_QUEUE_SERIAL);
-
-//    for (int i= 0; i<100; i++) {
-//        dispatch_async(serialqueue, ^{
-//            NSLog(@"serialqueue thread i = %d  %@ " ,i,[NSThread currentThread]);
-//        });
-//    }
-
-    dispatch_async(serialqueue, ^{
-        NSLog(@"serialqueue thread 2%@ " ,[NSThread currentThread]);
-    });
-
-    dispatch_async(serialqueue, ^{
-        NSLog(@"serialqueue thread 3%@ " ,[NSThread currentThread]);
-    });
+    
+    /// 只创建一条线程
+    for (int i= 0; i<100; i++) {
+        dispatch_async(serialqueue, ^{
+            NSLog(@"serialqueue thread i = %d  %@ " ,i,[NSThread currentThread]);
+        });
+    }
     
     
-    /// 死锁原因
+    
+    /// 死锁
     // 下边dispatch_sync如果使用主队列的话，会造成死锁，
     // 因为 serialQueue 方法 是在主队列进行的，而在主队列进行的同步操作，
     // 需要等待serialQueue方法执行完才会执行dispatch_sync，
     // 但是 serialQueue 方法也在等待 dispatch_sync 执行完才能完结方法，造成了相互等待，死锁
 
-    /// 使用自定义队列，将不会造成死锁
-//    [dispatch_sync(dispatch_get_main_queue(), ^{
-//        NSLog(@"syn serialqueue thread 1%@ " ,[NSThread currentThread]);
-//    })] ;
+    
+    /// 死锁案例1 ，主队列
+    //[dispatch_sync(dispatch_get_main_queue(), ^{
+    //  NSLog(@"syn serialqueue thread 1%@ " ,[NSThread currentThread]);
+    //})] ;
+    
+    
+    /// 死锁案例2 自定义串行队列
+    //dispatch_queue_t serialqueueLock = dispatch_queue_create("serialqueueLock", DISPATCH_QUEUE_SERIAL);
+    //
+    //dispatch_async(serialqueueLock, ^{
+    //
+    //  dispatch_sync(serialqueueLock, ^{
+    //      NSLog(@"死锁，无法打印");
+    //  });
+    //});
+    
+    
+    /// 测试自定义串行队列和主队列的是否相同，验证主队列是否特殊
+    //[self backSerialQueue];
 }
+
+
+
+
+
+/// =====================================
+/// 通过自定义串行队列，返回到对应线程
+///
+/// 测试结论：通过当前队列，我们可以回到队列第一次创建的线程中。
+/// 就如 dispatch_async(dispatch_get_main_queue()) 可以回到主线程一样。
+/// 而这两种情况的区别在于，主线程有对应的runloop,会到主线程，会调用runloop。
+/// 而子线程如果调用runloop，dispatch_async(queue)方法不会执行
+///
+/// dispatch_async(dispatch_get_main_queue(), ^{});方法，永远都会在当前作用域的最后调用
+/// 跟他调用的位置无关，即 dispatch_async 会将调用他的主方法里的所有其他操作执行完，才会执行
+/// dispatch_async mainqueue ,如果有多个dispatch_async(dispatch_get_main_queue(), ^{})
+/// 会按照调用顺序依次执行（下边的打印 dispatch_get_main_queue 1、2、3号会依次执行，
+/// 而且会在所有打印之后打印）
+///
+/// 而如果使用自定义串行队列模仿主队列，发现打印结果并不是如此。
+///
+/// =====================================
+
+-(void)backSerialQueue{
+    
+    // 验证 自定义串行队列是否如同主线程一样，可以通过队列返回到对应线程
+    
+    dispatch_queue_t quque = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+    
+    dispatch_async(quque, ^{
+
+        NSLog(@"quque 首次进入");
+        dispatch_queue_t quque1 = dispatch_queue_create("myqueue1", DISPATCH_QUEUE_CONCURRENT);
+        
+        dispatch_async(quque1, ^{
+            NSLog(@"quque 1 进入");
+        });
+        
+        dispatch_async(quque, ^{
+            NSLog(@"这里不执行，如果去掉runloop 就可以执行 ");
+        });
+        
+        dispatch_async(quque1, ^{
+            NSLog(@"quque 2 进入");
+        });
+        
+        NSRunLoop *runloop = [NSRunLoop currentRunLoop];
+        [runloop addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
+        [runloop runUntilDate:[NSDate distantFuture]];
+    });
+    
+    
+      ///验证 dispatch_get_main_queue 的打印顺序
+    
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSLog(@"dispatch_get_main_queue 1 号");
+//    });
+//    [self testMain];
+//
+//    dispatch_async(dispatch_get_main_queue(), ^{
+//        NSLog(@"dispatch_get_main_queue 3号");
+//    });
+    
+    
+    /// 验证线程和串行队列绑定问题
+    
+//    dispatch_queue_t quque = dispatch_queue_create("mySerialQueue", DISPATCH_QUEUE_SERIAL);
+//
+//    dispatch_async(quque, ^{
+//
+//        dispatch_queue_t quque1 = dispatch_queue_create("mySerialQueue1", DISPATCH_QUEUE_SERIAL);
+//        dispatch_sync(quque1, ^{
+//
+//        });
+//
+//        dispatch_async(quque1, ^{
+//
+//        });
+//
+//    });
+    
+}
+
+
+-(void)testMain{
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"dispatch_get_main_queue 2号");
+    });
+    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+        NSLog(@"dispatch_get_global_queue 1号");
+    });
+}
+
+
+
+
 
 
 
@@ -289,13 +391,20 @@
 /// 2、sync 同步操作不会创建新的线程，所以执行任务的时候是在当前线程执行的，也就是说，
 ///    当前如果是主线程，那么他就在主线程执行，当前如果是子线程，那么他就在子线程执行
 ///    对于队列，任务加到哪个队列就在哪个队列执行。典型案例：主线程执行其他队列任务
-
-
+#pragma mark 并发队列 CONCURRENT
 -(void)concurrentQueueTest{
     
     dispatch_queue_t concurrentQueue = dispatch_queue_create("concurrentqueue", DISPATCH_QUEUE_CONCURRENT);
-    NSLog(@"concurrentQueue = %@ == %p",concurrentQueue ,concurrentQueue);
-   
+
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"async concurrentQueue thread 1%@ " ,[NSThread currentThread]);
+    });
+
+    dispatch_async(concurrentQueue, ^{
+        NSLog(@"async concurrentQueue thread 2%@ " ,[NSThread currentThread]);
+    });
+    
+    
     /// 这个打印结果证明： sync 同步操作不会创建新的线程，执行任务的时候是在当前线程执行的，也就是说，
     /// 当前如果是主线程，那么他就在主线程执行，当前如果是子线程，那么他就在子线程执行
 //    dispatch_async(concurrentQueue, ^{
@@ -309,38 +418,22 @@
 //        });
 //
 //    });
-
-
     
-
-    dispatch_async(dispatch_get_main_queue(), ^{
-        NSLog(@"async concurrentQueue thread 2%@ " ,[NSThread currentThread]);
-    });
-
-    dispatch_async(concurrentQueue, ^{
-        NSLog(@"async concurrentQueue thread 3%@ " ,[NSThread currentThread]);
-    });
-
     
-    /// sync 方法将会导致执行的队列和线程都是当前队列和当前线程，和 concurrentQueue 无关
-    /// 只和 -(void)concurrentQueueTest{} 方法的线程、队列有关 。特殊情况，如果 concurrentQueue = 主队列
-    /// 那么 sync 执行任务将回到主线程和主队列
-    /// 即：dispatch_sync(dispatch_get_main_queue(), ^{主线程、主队列}
+    /// sync 不会开启新的线程，所以会在 当前线程（concurrentQueueTest在主线程）
+    /// 队列为 concurrentQueue 。但是有点需要注意，当使用
+    /// [NSOperationQueue currentQueue]时，发现打印的是 主队列，
+    /// 为什么是主队列不清楚，但是从堆栈来看，是在 concurrentQueue 队列中
+    /// 而且我们在使用GCD 的时候，其实是不能使用 NSOperationQueue 来获取当前队列的
+    /// [NSOperationQueue currentQueue] 只适用于 NSOperationQueue 类创建的队列
+    /// 而 GCD 应该使用 dispatch_get_current_queue() 来获取。而 dispatch_get_current_queue()
+    /// 在iOS 6时，已经被废弃，但是依然可以调用，调用的时候最好把他以临时变量的方式来使用
+    /// 否则可能导致崩溃
 
 //    dispatch_sync(concurrentQueue, ^{
 //        NSLog(@"sync concurrentQueue thread 1%@ " ,[NSThread currentThread]);
-//        NSLog(@"%@ " ,[NSOperationQueue currentQueue]);
 //    });
-//
-//    dispatch_sync(concurrentQueue, ^{
-//        NSLog(@"sync concurrentQueue thread 2%@ " ,[NSThread currentThread]);
-//        NSLog(@"%@ " ,[NSOperationQueue currentQueue]);
-//    });
-//
-//    dispatch_sync(concurrentQueue, ^{
-//        NSLog(@"sync concurrentQueue thread 3%@ " ,[NSThread currentThread]);
-//        NSLog(@"%@ " ,[NSOperationQueue currentQueue]);
-//    });
+
 }
 
 
@@ -351,7 +444,8 @@
 /// 4个值对应的是四个不同的队列，但是每个值，只会创建一个队列，也就是说实际上，
 /// 通过dispatch_get_global_queue最多只能创建4个队列，通过队列的地址可以看出
 /// 同一个优先级参数，对应的队列的内存地址是一个
-///
+
+#pragma mark 全局队列 GLOBAL
 -(void)globalQueue{
     
     dispatch_queue_t globalqueue = dispatch_get_global_queue(0, 0);
@@ -410,6 +504,70 @@
         NSLog(@"==sync global thread 6%@ " ,[NSThread currentThread]);
         NSLog(@"HIGH %p",highQueue3);
     });
+}
+
+
+// 栅栏 GCD 的栅栏 ，只适用于自定义 并发队列，
+// 如果是 全局并发队列，效果和 dispatch_async 相同
+
+-(void)gcdBarrier{
+    
+    /// dispatch_barrier_async 的官方说明
+    /// 大概意思是：只能用于 DISPATCH_QUEUE_CONCURRENT queues
+    
+    /*!
+     * @function dispatch_barrier_async
+     *
+     * @abstract
+     * Submits a barrier block for asynchronous execution on a dispatch queue.
+     *
+     * @discussion
+     * Submits a block to a dispatch queue like dispatch_async(), but marks that
+     * block as a barrier (relevant only on DISPATCH_QUEUE_CONCURRENT queues).
+     *
+     * See dispatch_async() for details and "Dispatch Barrier API" for a description
+     * of the barrier semantics.
+     *
+     * @param queue
+     * The target dispatch queue to which the block is submitted.
+     * The system will hold a reference on the target queue until the block
+     * has finished.
+     * The result of passing NULL in this parameter is undefined.
+     *
+     * @param block
+     * The block to submit to the target dispatch queue. This function performs
+     * Block_copy() and Block_release() on behalf of callers.
+     * The result of passing NULL in this parameter is undefined.
+     */
+    
+//    dispatch_queue_t myQueue = dispatch_get_global_queue(0, 0);
+    dispatch_queue_t myQueue = dispatch_queue_create("myQueue", DISPATCH_QUEUE_CONCURRENT);
+
+    
+    dispatch_async(myQueue, ^{
+        
+        NSLog(@"1");
+    });
+    
+    dispatch_async(myQueue, ^{
+        
+        NSLog(@"2");
+    });
+    
+    dispatch_barrier_async(myQueue, ^{
+        NSLog(@"3");
+    });
+    
+    dispatch_async(myQueue, ^{
+        
+        NSLog(@"4");
+    });
+    
+    dispatch_async(myQueue, ^{
+        
+        NSLog(@"5");
+    });
+    
 }
 
 
