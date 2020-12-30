@@ -19,6 +19,7 @@
 		3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097574C2574E84100A3E2CA /* BSOperatorController.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
+		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
@@ -86,6 +87,8 @@
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
 		30AE96822488FEC6009A43FB /* BSRootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRootCell.m; sourceTree = "<group>"; };
+		30B8FF5F259B3A2F0016D995 /* BSMaxHundredNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMaxHundredNumber.h; sourceTree = "<group>"; };
+		30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMaxHundredNumber.m; sourceTree = "<group>"; };
 		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
@@ -376,6 +379,8 @@
 			children = (
 				30DD8B4C25908D7400E49AD9 /* BSHuiwenStr.h */,
 				30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */,
+				30B8FF5F259B3A2F0016D995 /* BSMaxHundredNumber.h */,
+				30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */,
 			);
 			path = Calculation;
 			sourceTree = "<group>";
@@ -726,6 +731,7 @@
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
+				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
@@ -889,7 +895,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = W97PTP9593;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -899,7 +905,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework ADHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Develope";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -911,7 +917,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = W97PTP9593;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -921,7 +927,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework ADHoc";
+				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Develope";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

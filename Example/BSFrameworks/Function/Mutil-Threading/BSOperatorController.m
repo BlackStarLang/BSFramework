@@ -250,7 +250,7 @@
     dispatch_queue_t serialqueue = dispatch_queue_create("serialqueue", DISPATCH_QUEUE_SERIAL);
     
     /// 只创建一条线程
-    for (int i= 0; i<100; i++) {
+    for (int i= 0; i<10; i++) {
         dispatch_async(serialqueue, ^{
             NSLog(@"serialqueue thread i = %d  %@ " ,i,[NSThread currentThread]);
         });
@@ -440,10 +440,10 @@
 
 /// 对于全局并发队列 dispatch_get_global_queue
 /// 全局并发队列的第一个参数为 优先级，第二个参数是扩展参数，目前没有用
-/// 优先级有 4个值，我们在 dispatch_get_global_queue 获取队列的时候，
+/// 优先级有4个值，我们在 dispatch_get_global_queue 获取队列的时候，
 /// 4个值对应的是四个不同的队列，但是每个值，只会创建一个队列，也就是说实际上，
-/// 通过dispatch_get_global_queue最多只能创建4个队列，通过队列的地址可以看出
-/// 同一个优先级参数，对应的队列的内存地址是一个
+/// 通过dispatch_get_global_queue最多只能创建4个队列，通过队列的地址可以
+/// 看出同一个优先级参数，对应的队列的内存地址是一个
 
 #pragma mark 全局队列 GLOBAL
 -(void)globalQueue{

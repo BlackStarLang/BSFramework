@@ -91,12 +91,6 @@
         self.thread = [NSThread currentThread];
         [self threadAction];
     });
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//        dispatch_sync(self.queue, ^{
-//            NSLog(@"hehe");
-//        });
-//    });
 }
 
 
