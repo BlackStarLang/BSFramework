@@ -75,7 +75,8 @@
     // 也就是主线程和主队列是一一对应的关系，测试非主线程串行队列会发现，串行队列最多只有一个线程，
     // 所以综合可以肯定，串行队列只能有一个线程。而在串行队列中，主队列可以使用
     // dispatch_async(dispatch_get_main_queue(),^{})方式可以回到当前线程
-    // 在分析非主线程串行队列，在使用 dispatch_async 的时候，会创建一个
+    // 在分析非主线程串行队列，在使用 dispatch_async(queue) 的时候，也可以回到当前线程，
+    // 但是无法使用runloop，如果使runloop，将回导致 dispatch_async(queue) 不执行
     // 如果是并发队列，async 将创建新的子线程，将不会受 threadAction 方法里的 runloop 影响。
     
     
@@ -84,7 +85,7 @@
     // 的时候发现 此函数任务将会在主线程主队列执行，并且将受 main runloop 影响。
     // 故仿照此情况，模拟一个非主队列的异步串行队列。
     // 结果表明，串行队列下，只有主队列执行的 dispatch_async(dispatch_get_main_queue(),^{})函数可以调用，
-    // 而非主队列的异步操作，如果异步操作在为当前的非主队列里，那么将不会执行
+    // 而非主队列的异步操作，如果异步操作在为当前的非主队列里，那么将不会执行（启动runloop的前提下）
     
     self.queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(self.queue, ^{
