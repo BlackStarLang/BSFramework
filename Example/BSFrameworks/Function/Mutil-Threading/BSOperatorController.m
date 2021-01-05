@@ -28,7 +28,7 @@
     
     [self initView];
         
-//    [self studyOperation];
+    [self studyOperation];
     [self studyGCD];
 }
 

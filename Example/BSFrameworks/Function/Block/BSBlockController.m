@@ -232,7 +232,7 @@
 /// 当堆上的Block都被释放，__block变量结构体实例引用计数为0，调用_Block_object_dispose，堆上的__block被释放。
 ///
 /// __forwarding指针的使命：确保能正确的访问__block变量。
-/// 
+///
 ///
 
 #pragma mark - 变量截获
