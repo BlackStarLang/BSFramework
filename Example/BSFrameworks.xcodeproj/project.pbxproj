@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		301C486C25A30CC800F26CC3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C486B25A30CC800F26CC3 /* libc++.tbd */; };
 		3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */; };
 		3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3034EFF3255B8922001084AC /* BSRefreshController.m */; };
 		30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */; };
@@ -20,6 +21,7 @@
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
+		30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF66259C1EE30016D995 /* BSBlockController.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
@@ -63,6 +65,7 @@
 /* Begin PBXFileReference section */
 		1407A0FF819E0D4257A48958 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		249890230EA4254D28F53759 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		301C486B25A30CC800F26CC3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		3025354A2477CD7B00669C27 /* BSCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCollectionViewCell.h; sourceTree = "<group>"; };
 		3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCollectionViewCell.m; sourceTree = "<group>"; };
 		3034EFF2255B8922001084AC /* BSRefreshController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRefreshController.h; sourceTree = "<group>"; };
@@ -89,6 +92,8 @@
 		30AE96822488FEC6009A43FB /* BSRootCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRootCell.m; sourceTree = "<group>"; };
 		30B8FF5F259B3A2F0016D995 /* BSMaxHundredNumber.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMaxHundredNumber.h; sourceTree = "<group>"; };
 		30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMaxHundredNumber.m; sourceTree = "<group>"; };
+		30B8FF65259C1EE30016D995 /* BSBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBlockController.h; sourceTree = "<group>"; };
+		30B8FF66259C1EE30016D995 /* BSBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBlockController.m; sourceTree = "<group>"; };
 		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
@@ -144,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				301C486C25A30CC800F26CC3 /* libc++.tbd in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
@@ -201,6 +207,7 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				30B8FF64259C1ECE0016D995 /* Block */,
 				30DD8B422590879E00E49AD9 /* SuanFa */,
 				30DD8B35258B2ED100E49AD9 /* AutoreleasePool */,
 				30754B84257F717800398CA3 /* WKWebView */,
@@ -325,6 +332,15 @@
 			path = "Mutil-Threading";
 			sourceTree = "<group>";
 		};
+		30B8FF64259C1ECE0016D995 /* Block */ = {
+			isa = PBXGroup;
+			children = (
+				30B8FF65259C1EE30016D995 /* BSBlockController.h */,
+				30B8FF66259C1EE30016D995 /* BSBlockController.m */,
+			);
+			path = Block;
+			sourceTree = "<group>";
+		};
 		30D2E5C3256F4887001EFB02 /* TransitionAnimate */ = {
 			isa = PBXGroup;
 			children = (
@@ -418,6 +434,7 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				301C486B25A30CC800F26CC3 /* libc++.tbd */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
@@ -714,6 +731,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */,
 				30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */,
 				30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */,
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
