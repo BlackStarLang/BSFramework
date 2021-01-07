@@ -1,13 +1,12 @@
 //
-//  BSViewController.m
-//  BSFrameworks
+//  BSSubFuncListController.m
+//  BSFrameworks_Example
 //
-//  Created by blackstar_lang@163.com on 03/28/2020.
-//  Copyright (c) 2020 blackstar_lang@163.com. All rights reserved.
+//  Created by 叶一枫 on 2021/1/6.
+//  Copyright © 2021 blackstar_lang@163.com. All rights reserved.
 //
 
-#import "BSViewController.h"
-
+#import "BSSubFuncListController.h"
 #import <UIImageView+WebCache.h>
 #import <UIView+BSView.h>
 #import <Masonry/Masonry.h>
@@ -15,7 +14,7 @@
 #import "BSRootCell.h"
 #import "BSFunctionModel.h"
 
-@interface BSViewController ()<UITableViewDelegate,UITableViewDataSource>
+@interface BSSubFuncListController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (nonatomic ,strong) NSArray *dataSource;
 
@@ -23,9 +22,7 @@
 
 @end
 
-
-
-@implementation BSViewController
+@implementation BSSubFuncListController
 
 - (void)viewDidLoad{
     
@@ -42,12 +39,11 @@
     self.title = @"BSFrameWork";
     
     BSFunctionModel *functionM = [[BSFunctionModel alloc]init];
-    [functionM getFunctionArr];
+    [functionM getSubFuncArr];
 
-    self.dataSource = functionM.funcArr;
+    self.dataSource = functionM.subFuncArr;
 
     [self.view addSubview:self.tableView];
-    
 }
 
 
@@ -90,7 +86,7 @@
     BSRootCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
 
     if (!cell) {
-        cell = [[BSRootCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];   
+        cell = [[BSRootCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
     }
 
     BSFunctionItem *item = self.dataSource[indexPath.row];

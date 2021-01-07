@@ -14,8 +14,10 @@
 @interface BSFunctionModel : NSObject
 
 @property (nonatomic ,strong , readonly) NSMutableArray<BSFunctionItem *> * funcArr;
+@property (nonatomic ,strong , readonly) NSMutableArray<BSFunctionItem *> * subFuncArr;
 
 -(void)getFunctionArr;
+-(void)getSubFuncArr;
 
 @end
 

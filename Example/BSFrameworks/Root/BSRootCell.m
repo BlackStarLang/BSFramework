@@ -26,14 +26,22 @@
     self.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     self.selectionStyle = UITableViewCellSelectionStyleNone;
     [self.contentView addSubview:self.titleLabel];
+    [self.contentView addSubview:self.indexLabel];
 }
 
 -(void)masonryLayout{
     
+    [self.indexLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.offset(15);
+        make.top.offset(15);
+        make.bottom.offset(-15);
+        make.width.mas_equalTo(40);
+    }];
+    
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.offset(15);
         make.bottom.offset(-15);
-        make.left.offset(20);
+        make.left.equalTo(self.indexLabel.mas_right).offset(0);
         make.right.offset(-20);
     }];
 }
@@ -51,6 +59,18 @@
     }
     return _titleLabel;
 }
+
+
+-(UILabel *)indexLabel{
+    if (!_indexLabel) {
+        _indexLabel = [[UILabel alloc]init];
+        _indexLabel.textAlignment = 0;
+        _indexLabel.font = [UIFont systemFontOfSize:15];
+        _indexLabel.backgroundColor = [UIColor whiteColor];
+    }
+    return _indexLabel;
+}
+
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
     [super setSelected:selected animated:animated];

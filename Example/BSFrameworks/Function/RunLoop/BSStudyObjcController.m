@@ -21,6 +21,8 @@
 
 @property (nonatomic ,strong) dispatch_queue_t queue;
 
+@property (nonatomic ,assign) CFRunLoopObserverRef observer;
+@property (nonatomic ,assign) BOOL stop;
 
 @end
 
@@ -28,9 +30,17 @@
 
 - (void)dealloc
 {
+
     NSLog(@"BSStudyObjcController dealloc");
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    _stop = YES;
+    [self performSelector:@selector(runInThread) onThread:self.thread withObject:nil waitUntilDone:NO];
+//    CFRunLoopStop(CFRunLoopGetCurrent());
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -67,25 +77,17 @@
 
 
 -(void)testAsyncSerialQueue{
-    // 查看堆栈可发现
-    // 如果不使用 NSThread，而是使用 GCD ，在 runInThread 方法里 调用
-    // dispatch_async(self.queue, ^{})，回调将不会执行
-    // 猜测原因：首先分析主队列，dispatch_async(dispatch_get_main_queue(),^{})
-    // 方法在执行任务的时候，回到了主线程和主队列，可见主队列没有创建子线程的能力。
-    // 也就是主线程和主队列是一一对应的关系，测试非主线程串行队列会发现，串行队列最多只有一个线程，
-    // 所以综合可以肯定，串行队列只能有一个线程。而在串行队列中，主队列可以使用
-    // dispatch_async(dispatch_get_main_queue(),^{})方式可以回到当前线程
-    // 在分析非主线程串行队列，在使用 dispatch_async(queue) 的时候，也可以回到当前线程，
-    // 但是无法使用runloop，如果使runloop，将回导致 dispatch_async(queue) 不执行
-    // 如果是并发队列，async 将创建新的子线程，将不会受 threadAction 方法里的 runloop 影响。
     
+    // 如果不使用 NSThread，而是使用 GCD ，在 runInThread 方法里 调用
+    // dispatch_async(self.queue, ^{})，回调将不会执行，原因未知
     
     // 这个例子是为了验证 dispatch_async(dispatch_get_main_queue(),^{}) 的逻辑，
-    // 首先dispatch_get_main_queue是串行队列 ，在使用 dispatch_async(dispatch_get_main_queue(),^{})
-    // 的时候发现 此函数任务将会在主线程主队列执行，并且将受 main runloop 影响。
+    // 首先dispatch_get_main_queue是串行队列 ，在使用
+    // dispatch_async(dispatch_get_main_queue(),^{})的时候，
+    // 任务将会在主线程主队列下执行，并且将受 main runloop 影响（查看堆栈可以看出）。
     // 故仿照此情况，模拟一个非主队列的异步串行队列。
     // 结果表明，串行队列下，只有主队列执行的 dispatch_async(dispatch_get_main_queue(),^{})函数可以调用，
-    // 而非主队列的异步操作，如果异步操作在为当前的非主队列里，那么将不会执行（启动runloop的前提下）
+    // 而非主队列的异步操作，将不会执行（启动runloop的前提下）
     
     self.queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
     dispatch_async(self.queue, ^{
@@ -95,11 +97,26 @@
 }
 
 
+/// 时隔数日，追加研究，搞清了为什么 模仿的主线程、主队列、主runloop下
+/// dispatch_async 不执行的问题
+///
+/// - (BOOL)runMode:(NSRunLoopMode)mode beforeDate:(NSDate *)limitDate;
+/// 此方法用来处理输入源的时候与 run 方法有很大区别，此方法只会处理一次输入源，或者
+/// 到达 limitDate ，就会退出
+/// 此案例使用while循环解决他一次就退出的问题，使用stop来解决什么时候退出（dealloc）
+/// 这样就解决了内存泄漏的问题
+/// 当 runloop 退出后，在self.queue中执行的异步任务才会执行。
+/// 个人理解：因为runloop卡着线程，然后使用异步任务，会将此任务放于 runloop 后，
+/// 然后 dispatch_async 执行的任务会一直等待runloop结束，所以就出现了开启runloop
+/// 使用 dispatch_async（queue）不会执行任务的问题。
+/// 但是主线程主队列和主runloop为什么可以，这个还不太明白
+///
+
 -(void)threadAction{
 
     NSLog(@"thread start，开始监听 runloop 状态");
     
-    CFRunLoopObserverRef observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
+    self.observer = CFRunLoopObserverCreateWithHandler(CFAllocatorGetDefault(), kCFRunLoopAllActivities, YES, 0, ^(CFRunLoopObserverRef observer, CFRunLoopActivity activity) {
         
 //        NSLog(@"%f",CFRunLoopGetNextTimerFireDate(CFRunLoopGetCurrent(),CFRunLoopCopyCurrentMode(CFRunLoopGetCurrent())));
         NSLog(@"\n");
@@ -128,12 +145,29 @@
         }
     });
     
-    CFRunLoopAddObserver(CFRunLoopGetCurrent(), observer, kCFRunLoopDefaultMode);
-    CFRelease(observer);
     
+    CFRunLoopAddObserver(CFRunLoopGetCurrent(), self.observer, kCFRunLoopDefaultMode);
+    CFRelease(self.observer);
     [[NSRunLoop currentRunLoop]addPort:[NSPort port] forMode:NSDefaultRunLoopMode];
-    [[NSRunLoop currentRunLoop]run];
     
+    /// 此 while 循环，首先 runloop 是会卡线程的（因为串行队列），
+    /// 所以 while 循环需要等到 runloop 退出后才执行下一次，不会出现一直调用
+    /// runMode 的情况。
+    ///
+    /// [[NSRunLoop currentRunLoop]run] 和
+    /// [[NSRunLoop currentRunLoop]runUntilDate:[NSDate distantFuture]]
+    /// 方法，内部相当于（是不是不清楚，只能认为相当于）
+        /**
+             while (true) {
+                [[NSRunLoop currentRunLoop]runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+             }
+         */
+    /// 所以在监听的时候，会发现 runloop 实际退出了，然后又开启了一个，进入等待状态
+    
+    while (!_stop) {
+        [[NSRunLoop currentRunLoop]runMode:NSDefaultRunLoopMode beforeDate:[NSDate distantFuture]];
+    }
+
     NSLog(@" runloop 结束");
 }
 
@@ -147,15 +181,12 @@
 
 - (void)runInThread{
     
-    dispatch_async(self.queue, ^{
-        NSLog(@"haha");
-    });
-    
-//    dispatch_async(dispatch_get_main_queue(), ^{
-//
-//    });
-    
-    NSLog(@"RunInThread in thread %@",[NSThread currentThread]);
+    if (!_stop) {
+        dispatch_async(self.queue, ^{
+            NSLog(@"haha");
+        });
+        NSLog(@"RunInThread in thread %@",[NSThread currentThread]);
+    }
 }
 
 

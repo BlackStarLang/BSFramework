@@ -13,6 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 @interface BSRootCell : UITableViewCell
 
 @property (nonatomic ,strong) UILabel *titleLabel;
+@property (nonatomic ,strong) UILabel *indexLabel;
 
 @end
 

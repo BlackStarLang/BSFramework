@@ -12,6 +12,7 @@
 		3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3034EFF3255B8922001084AC /* BSRefreshController.m */; };
 		30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */; };
 		30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A372485E7FD002DBC8D /* BSFunctionModel.m */; };
+		305303B125A5B53400748F50 /* BSSubFuncListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305303B025A5B53400748F50 /* BSSubFuncListController.m */; };
 		30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702836249C62F7000C5384 /* BSStudyObjcController.m */; };
 		3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702839249C695C000C5384 /* BSObjcPerson.m */; };
 		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
@@ -74,6 +75,8 @@
 		30494A2F2485E55A002DBC8D /* BSLooperViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSLooperViewVC.m; sourceTree = "<group>"; };
 		30494A362485E7FD002DBC8D /* BSFunctionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFunctionModel.h; sourceTree = "<group>"; };
 		30494A372485E7FD002DBC8D /* BSFunctionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFunctionModel.m; sourceTree = "<group>"; };
+		305303AF25A5B53400748F50 /* BSSubFuncListController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSubFuncListController.h; sourceTree = "<group>"; };
+		305303B025A5B53400748F50 /* BSSubFuncListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSubFuncListController.m; sourceTree = "<group>"; };
 		30702835249C62F7000C5384 /* BSStudyObjcController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSStudyObjcController.h; sourceTree = "<group>"; };
 		30702836249C62F7000C5384 /* BSStudyObjcController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSStudyObjcController.m; sourceTree = "<group>"; };
 		30702838249C695C000C5384 /* BSObjcPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSObjcPerson.h; sourceTree = "<group>"; };
@@ -194,6 +197,8 @@
 			children = (
 				6003F5A5195388D20070C39A /* BSViewController.h */,
 				6003F5A6195388D20070C39A /* BSViewController.m */,
+				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
+				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
 				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
 				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
 				30AE96812488FEC6009A43FB /* BSRootCell.h */,
@@ -739,6 +744,7 @@
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
 				30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */,
+				305303B125A5B53400748F50 /* BSSubFuncListController.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
