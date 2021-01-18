@@ -10,7 +10,18 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
+@protocol BSWebViewControllerDelegate <NSObject>
+
+@optional
+-(void)delegateTest;
+
+
+@end
+
+
 @interface BSWebViewController : UIViewController
+
+@property (nonatomic ,strong) id<BSWebViewControllerDelegate> delegate;
 
 @end
 

@@ -42,7 +42,7 @@
 
 -(void)presentAlertNomal{
     
-    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"" message:@"这是一个 alert 测试，如何自定义一个alert？" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alertVC = [UIAlertController alertControllerWithTitle:@"杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量杰拉德非进口量" message:@"这是一个 alert 测试，如何自定义一个alert？这是一个 alert 测试，如何自定义一个alert？这是一个 alert 测试，如何自定义一个alert？这是一个 alert 测试，如何自定义一个alert？" preferredStyle:UIAlertControllerStyleAlert];
 
     
     UIAlertAction *cancel = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
@@ -57,7 +57,7 @@
         textField.placeholder = @"请输入";
     }];
     
-    [alertVC addAction:cancel];
+//    [alertVC addAction:cancel];
     [alertVC addAction:sure];
     
     NSLog(@"%ld",(long)alertVC.modalPresentationStyle);

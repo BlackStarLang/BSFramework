@@ -77,7 +77,7 @@
                              @"自定义KVO，用于更好地理解kvo原理 ":@"BSKVOTestController",
                              @"算法集锦":@"BSCalculationRoot",
                              @"Block 研究":@"BSBlockController",
-                             
+                             @"Timer":@"BSTimerViewController",
     };
     
     return subDic;

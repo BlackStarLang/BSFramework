@@ -8,15 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface BSATransitionController : UIViewController
 
 -(instancetype)init NS_UNAVAILABLE;
 
--(instancetype)initWithAlertTitle:(NSString *)title message:(NSString *)message delegate:(UIViewController *)delegate;
+-(instancetype)initWithAlertTitle:(NSString *)title message:(NSString *)message delegate:(__strong UIViewController *)delegate;
 
 
 @end
 
-NS_ASSUME_NONNULL_END
+

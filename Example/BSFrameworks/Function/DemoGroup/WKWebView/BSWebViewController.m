@@ -36,7 +36,11 @@
 }
 
 
-#pragma mark autoreleasepool 测试
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [self.delegate delegateTest];
+}
 
 
 

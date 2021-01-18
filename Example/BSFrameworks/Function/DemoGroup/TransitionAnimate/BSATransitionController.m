@@ -25,27 +25,23 @@
     
     self = [super init];
     if (self) {
-        
-        BSProtocalController *protocalVC = [[BSProtocalController alloc] initWithPresentedViewController:self presentingViewController:delegate];
-        self.transitioningDelegate = protocalVC;
-        self.preferredContentSize = CGSizeMake(10, 300);
+        self.protocalVC = [[BSProtocalController alloc] initWithPresentedViewController:self presentingViewController:delegate title:title descreption:message];
+        self.protocalVC.isAlert = YES;
+        self.transitioningDelegate = self.protocalVC;
     }
     return self;
+}
+
+
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    self.protocalVC = nil;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
-    // Do any additional setup after loading the view.
-    
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 80, 40)];
-    button.center = CGPointMake(self.view.center.x, self.view.center.y - 50);
-    [button setTitle:@"点我退出" forState:UIControlStateNormal];
-    button.backgroundColor = [UIColor redColor];
-    [button addTarget:self action:@selector(pop) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:button];
-
 }
 
 

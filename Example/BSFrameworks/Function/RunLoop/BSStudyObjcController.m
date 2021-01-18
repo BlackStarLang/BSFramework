@@ -15,10 +15,6 @@
 @interface BSStudyObjcController ()
 
 @property (nonatomic ,strong) NSThread *thread;
-
-@property (nonatomic ,strong) NSTimer *timer;
-@property (nonatomic ,assign) NSInteger timerCount;
-
 @property (nonatomic ,strong) dispatch_queue_t queue;
 
 @property (nonatomic ,assign) CFRunLoopObserverRef observer;

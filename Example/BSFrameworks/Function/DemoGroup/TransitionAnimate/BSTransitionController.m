@@ -92,18 +92,9 @@
 
 
 -(void)pushTransition:(UIButton *)sender{
-    
-    UIAlertController *alertController = [UIAlertController alertControllerWithTitle:@"alert" message:@"message" preferredStyle:UIAlertControllerStyleAlert];
-    
-    [self presentViewController:alertController animated:YES completion:nil];
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(2 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        [alertController dismissViewControllerAnimated:YES completion:nil];
-    });
-    
-//    BSATransitionController *aVC = [[BSATransitionController alloc]initWithAlertTitle:@"title" message:@"message" delegate:self];
-//
-//    [self presentViewController:aVC animated:YES completion:nil];
+
+    BSATransitionController *aVC = [[BSATransitionController alloc]initWithAlertTitle:@"title" message:@"大家好，我是一个alert descreption ,根据alertcontroller开发了一个开放度高的alertcontroller" delegate:self];
+    [self presentViewController:aVC animated:YES completion:nil];
 }
 
 
