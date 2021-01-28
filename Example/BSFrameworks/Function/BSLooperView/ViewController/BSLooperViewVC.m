@@ -73,11 +73,11 @@
 
 -(BSLooperView *)looperView{
     if (!_looperView) {
-        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 200)];
+        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(60, 300, self.view.width - 120, 200)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 120,200);
-        _looperView.minimumLineSpacing = 20;
+        _looperView.itemSize = CGSizeMake(self.view.width - 150 ,200);
+        _looperView.minimumLineSpacing = 10;
         _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         _looperView.scale = 0.8;
         _looperView.isInfinite = YES;
@@ -85,6 +85,7 @@
         _looperView.centerOffset = 0;
         _looperView.duration = 1;
         _looperView.looperPosition = BSLooperPositionLeft;
+        _looperView.loopStyle = BSLOOP_STYLE_CARD;
     }
     return _looperView;
 }

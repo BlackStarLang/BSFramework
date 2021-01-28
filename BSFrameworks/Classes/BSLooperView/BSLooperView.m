@@ -55,9 +55,7 @@
 
 #pragma mark - 生命周期
 -(void)dealloc{
-    
-    NSLog(@"BSLooperView 释放");
-    
+
     if (self.timer) {
         [self.timer invalidate];
         self.timer = nil;
@@ -87,7 +85,6 @@
     self.scale = 1;
     self.centerOffset = 0;
     self.scrollDirection = UICollectionViewScrollDirectionHorizontal;
-    
 }
 
 
@@ -143,8 +140,12 @@
         
         self.currentPageIndex = dataArr.count;
         
-        /// 默认滚动到 第二个数据源的第一个数组
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        if (self.loopStyle == BSLOOP_STYLE_CARD) {
+            [self.collectionView setContentOffset:CGPointMake(self.currentPageIndex*self.collectionView.width, 0) animated:NO];
+        }else{
+            /// 默认滚动到 第二个数据源的第一个数组
+            [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        }
     }
     
     if (self.autoLoop) {
@@ -156,9 +157,9 @@
 -(void)resetCollectionView{
     
     self.flowLayout = [[BSLooper3DFlowLayout alloc]init];
+    self.flowLayout.loopStyle = self.loopStyle;
     self.flowLayout.itemSize = self.itemSize;
     self.flowLayout.minimumLineSpacing = self.minimumLineSpacing;
-//    self.flowLayout.minimumInteritemSpacing = self.minimumInteritemSpacing;
     self.flowLayout.scrollDirection = self.scrollDirection;
     self.flowLayout.sectionInset = self.sectionInset;
     self.flowLayout.scale = self.scale;
@@ -218,7 +219,12 @@
 -(void)looperTime{
     
     self.isDrag = NO;
-    [self resetCurrentPageIndex];
+    if (self.loopStyle == BSLOOP_STYLE_CARD) {
+        [self resetCurrentPageIndexForCardStyle];
+    }else{
+        [self resetCurrentPageIndex];
+    }
+    
 }
 
 
@@ -338,6 +344,89 @@
 
 
 
+/// 当是卡片样式的时候，满足条件需修改偏移量，达到无限轮播的样式
+-(void)resetCurrentPageIndexForCardStyle{
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        //如果 自动轮播 或者 无限循环
+        if (self.isInfinite || self.autoLoop) {
+
+            if (self.autoLoop && !self.isDrag) {
+
+                //如果是 timer,设置偏移，带动画
+                if (self.looperPosition == BSLooperPositionRight || self.looperPosition == BSLooperPositionDown) {
+                    self.currentPageIndex --;
+                }else{
+                    self.currentPageIndex ++;
+                }
+
+                // 计算实际偏移量 (理论偏移量 - 页面上可见的多于部分)
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    [self.collectionView setContentOffset:CGPointMake(0, self.currentPageIndex * self.collectionView.width) animated:YES];
+                }else{
+                    [self.collectionView setContentOffset:CGPointMake(self.currentPageIndex * self.collectionView.width, 0) animated:YES];
+                }
+
+            }else{
+
+
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+
+                    CGFloat offset = self.collectionView.contentOffset.y;
+                    self.currentPageIndex = roundf(offset/self.collectionView.height);
+
+                }else{
+
+                    CGFloat offset = self.collectionView.contentOffset.x;
+                    self.currentPageIndex = roundf(offset/self.collectionView.width);
+                }
+            }
+
+
+            /**
+             * 当前 pageIndex < self.dataArr.count ，将当前 pageIndex
+             * 重置为 self.dataArr.count + self.currentPageIndex
+             *
+             * 当前 pageIndex >= self.dataArr.count*2 ，将当前 pageIndex
+             * 重置为 self.currentPageIndex - self.dataArr.count
+             */
+
+            NSInteger newPageIndex = self.currentPageIndex;
+
+            if (self.currentPageIndex < self.dataArr.count) {
+
+                newPageIndex = self.dataArr.count + self.currentPageIndex;
+
+            }else if (self.currentPageIndex >= self.dataArr.count*2){
+
+                newPageIndex = self.currentPageIndex - self.dataArr.count;
+            }
+
+
+            // 由于 自动滚动是有动画的
+            // 所以重置 collectionView 展示的cell需要延迟 0.5s
+            // 否则动画未结束，就重置了offset，画面就会闪一下
+
+            NSTimeInterval refreshTime = self.isDrag?0:0.5;
+
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(refreshTime * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+
+                // 通过 newPageIndex 算出 实际偏移量
+                if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+                    [self.collectionView setContentOffset:CGPointMake(0, newPageIndex * self.collectionView.width) animated:NO];
+                }else{
+                    [self.collectionView setContentOffset:CGPointMake(newPageIndex * self.collectionView.width, 0) animated:NO];
+                }
+
+                if (self.autoLoop) {
+                    self.currentPageIndex = newPageIndex;
+                }
+            });
+        }
+    });
+    
+}
 
 
 #pragma mark - collectionView Delegete
@@ -381,8 +470,12 @@
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     
     //滚动到指定位置
-    [self resetCurrentPageIndex];
-    
+    if (self.loopStyle == BSLOOP_STYLE_NORMAL) {
+        [self resetCurrentPageIndex];
+    }else if (self.loopStyle == BSLOOP_STYLE_CARD){
+        [self resetCurrentPageIndexForCardStyle];
+    }
+
     //如果自动轮播，开启timer
     if (self.autoLoop) {
         [self creatTimer];
@@ -392,14 +485,20 @@
 
 /// 拖拽动作 ，timer 暂停
 -(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
-    
+
     self.isDrag = YES;
-    
+
     //如果自动轮播，拖拽时，停止timer
     if (self.autoLoop) {
         [self.timer invalidate];
         self.timer = nil;
     }
+}
+                   
+                   
+- (void)scrollViewDidEndScrollingAnimation:(UIScrollView *)scrollView{
+ 
+    
 }
 
 

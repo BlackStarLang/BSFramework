@@ -6,7 +6,7 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "BSLooper3DFlowLayout.h"
 
 @class BSLooperView;
 
@@ -69,6 +69,16 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 #pragma mark - property 自定义属性
 
 @property (nonatomic ,weak) id <BSLooperViewDelegate> delegate;
+
+
+///=================================
+///样式：
+///default is normal ：常见的3D轮播图 。
+///Card ：卡片重叠样式
+///=================================
+@property (nonatomic ,assign) BSLOOP_STYLE loopStyle;
+
+
 
 
 /// ====================================
@@ -140,6 +150,7 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 
 
 /// ====================================
+/// 仅 适用于 3D 样式，不适用于卡片样式
 /// 设置 minimumLineSpacing
 /// 最小行间距：default 0
 /// ====================================

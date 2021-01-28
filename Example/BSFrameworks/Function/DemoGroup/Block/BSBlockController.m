@@ -106,9 +106,10 @@
     
     // BlockTest ,以参数形式存在的block,相当于临时变量
     BlockTest *test = [[BlockTest alloc]init];
-    
+    int i = 5;
     [test testBlock:^(NSString * _Nonnull testStr) {
-
+//        i = 6;
+        NSLog(@"%d",i);
     }];
     
     NSLog(@"============global end=============\n-");

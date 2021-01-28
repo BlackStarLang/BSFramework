@@ -7,8 +7,9 @@
 //
 
 #import "BSTimerViewController.h"
+#import "BSWebViewController.h"
 
-@interface BSTimerViewController ()
+@interface BSTimerViewController ()<BSWebViewControllerDelegate>
 
 
 @property (nonatomic ,strong) NSTimer *timer;
@@ -16,6 +17,8 @@
 
 @property (nonatomic ,strong) TimeTarget *timerTarget;
 
+
+@property (nonatomic ,assign) int i;
 @end
 
 @implementation BSTimerViewController
@@ -33,7 +36,47 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    [self initTimer];
+//    [self initTimer];
+    
+    
+//    BSWebViewController *webViewController = [[BSWebViewController alloc]init];
+//    webViewController.delegate = self;
+//    [self.navigationController pushViewController:webViewController animated:YES];
+    
+    self.i = 0;
+//    __block int block_int = 0;
+//    static int st = 0;
+//    int k = 0;//0xalllldja
+//    NSMutableString *str = [[NSMutableString alloc]initWithString:@"123"];
+//    NSString *strstr = @"123";
+    dispatch_group_t group = dispatch_group_create();
+    
+    for ( int j = 0; j<100; j++) {
+        dispatch_group_enter(group);
+     
+        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+            self.i ++;
+//            k = 9;
+//            block_int ++;
+//            st ++;
+            dispatch_group_leave(group);
+            
+        });
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@"%d",self.i);
+//        NSLog(@"\ni = %d\nst = %d\nblock_int = %d",self.i,st,block_int);
+//        st = 0;
+    });
+
+}
+
+
+
+-(void)delegateTest{
+    
+    NSLog(@"delegateTest : %@",self);
 }
 
 
@@ -53,10 +96,18 @@
 
 /// 不会导致循环引用
 -(void)unRepeatTimer{
-    
+    /// 如果是target方式，无论使用weakSelf还是self都会出现循环引用问题
+    /// 也不需要 调用 timer invalidate 和 timer = nil
     /// 如果是block的方式，只要将 self 弱化（weakSelf）即可解决循环引用问题
+    
+    
+    
+    
+    
+    
+    
 //    __weak typeof(self)weakSelf = self;
-//    self.timer = [NSTimer timerWithTimeInterval:3 repeats:YES block:^(NSTimer * _Nonnull timer) {
+//    self.timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //        NSLog(@"%@ == %@",timer,self);
 //        NSLog(@"timer unrepeat");
 //    }];
@@ -66,12 +117,10 @@
     
     
     
-    /// 如果是target方式，无论使用weakSelf还是self都会出现循环引用问题
-    /// 也不需要 调用 timer invalidate 和 timer = nil
-//    __weak typeof(self)weakSelf = self;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:NO];
-}
 
+//    __weak typeof(self)weakSelf = self;
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+}
 
 
 

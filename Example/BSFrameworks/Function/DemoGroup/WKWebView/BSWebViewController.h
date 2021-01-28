@@ -21,7 +21,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface BSWebViewController : UIViewController
 
-@property (nonatomic ,strong) id<BSWebViewControllerDelegate> delegate;
+@property (nonatomic ,weak) id<BSWebViewControllerDelegate> delegate;
 
 @end
 
