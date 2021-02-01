@@ -83,6 +83,10 @@
 
 #pragma mark - Set Method
 
+-(void)setHiddenLeftBtn:(BOOL)hiddenLeftBtn{
+    self.leftBtn.hidden = hiddenLeftBtn;
+}
+
 -(void)setHiddenRightBtn:(BOOL)hiddenRightBtn{
     self.rightBtn.hidden = hiddenRightBtn;
 }
@@ -107,7 +111,7 @@
     
     if (backgroundColor) {
         if ([self isLighterColor:backgroundColor]) {
-            self.backImageView.tintColor = [UIColor blueColor];
+            self.backImageView.tintColor = [UIColor blackColor];
             self.titleLabel.textColor = [UIColor blackColor];
         }else{
             self.backImageView.tintColor = [UIColor whiteColor];

@@ -604,17 +604,41 @@
     }
 }
 
-
+/// 不支持图片方向重定位（如果是前置摄像头，没有做成像翻转。iOS11支持，走didFinishProcessingPhoto方法）
 -(void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error API_AVAILABLE(ios(10.0)){
 
     if (photoSampleBuffer) {
         [self.session stopRunning];
         NSData *data = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
         UIImage *image = [UIImage imageWithData:data];
+
         self.photoImageView.image = image;
         self.photoImageView.hidden = NO;
     }
 }
+
+
+///不同于上边的方法，此方法拿到的是CGImageRef ，通过- (instancetype)initWithCGImage:(CGImageRef)cgImage scale:(CGFloat)scale orientation:(UIImageOrientation)orientation API_AVAILABLE(ios(4.0));方法，重新对图片进行方向调整
+
+-(void)captureOutput:(AVCapturePhotoOutput *)output didFinishProcessingPhoto:(AVCapturePhoto *)photo error:(NSError *)error API_AVAILABLE(ios(11.0)){
+
+    if (photo) {
+        [self.session stopRunning];
+        CGImageRef imageRef = [photo CGImageRepresentation];
+       
+        UIImage * image = nil;
+        /// 调整图片方向
+        if (self.device.position == AVCaptureDevicePositionFront) {
+            image = [[UIImage alloc]initWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationLeftMirrored];
+        }else{
+            image = [[UIImage alloc]initWithCGImage:imageRef scale:[UIScreen mainScreen].scale orientation:UIImageOrientationRight];
+        }
+       
+        self.photoImageView.image = image;
+        self.photoImageView.hidden = NO;
+    }
+}
+
 
 
 #pragma mark - 视频存储相关

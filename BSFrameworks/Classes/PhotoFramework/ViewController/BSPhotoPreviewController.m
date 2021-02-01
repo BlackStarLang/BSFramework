@@ -98,7 +98,7 @@
     self.automaticallyAdjustsScrollViewInsets = NO;
     
     self.selectOriginBtn.selected = self.isOrigin;
-    self.countLabel.text = [NSString stringWithFormat:@"%ld",self.selectDataArr.count];
+    self.countLabel.text = [NSString stringWithFormat:@"%lu",(long)self.selectDataArr.count];
     
     [self initNaviView];
 }
@@ -114,7 +114,8 @@
     }
     
     CGFloat naviHeight = self.navigationController.navigationBar.frame.size.height + (iphoneX?44:20);
-    
+    self.naviView.hiddenLeftBtn = !self.selectPreview;
+
     /// 隐藏 系统 NavigationBar， 使用View 替换
     [self.navigationController setNavigationBarHidden:YES animated:YES];
     self.naviView.frame = CGRectMake(0, 0, self.view.frame.size.width, naviHeight);
@@ -157,7 +158,7 @@
                 [weakSelf.naviView setRightBtnImage:@"img_select"];
                 model.isSelect = YES;
             }
-            weakSelf.countLabel.text = [NSString stringWithFormat:@"%ld",weakSelf.selectDataArr.count];
+            weakSelf.countLabel.text = [NSString stringWithFormat:@"%ld",(long)weakSelf.selectDataArr.count];
         }
     };
 }
