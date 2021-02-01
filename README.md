@@ -60,22 +60,38 @@ pod 'BSFrameworks/BSLooperView'
 ```ruby
 -(BSLooperView *)looperView{
     if (!_looperView) {
-        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 300)];
+        
+        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(20, 300, self.view.width - 40, 180)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 120, 100);
-        _looperView.minimumLineSpacing = 10;
-        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
-        _looperView.scale = 0.5;
+        _looperView.itemSize = CGSizeMake(self.view.width - 70 ,180);
+        _looperView.scale = 0.6;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
-        _looperView.centerOffset = -70;
         _looperView.duration = 1;
+        
+        _looperView.loopStyle = BSLOOP_STYLE_CARD;
+
+        //卡片样式只支持横向，不支持纵向
+        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        
+        //卡片样式只支持左右，不支持上下
         _looperView.looperPosition = BSLooperPositionLeft;
+       
+        // visibleCount 卡片样式独有属性
+        _looperView.visibleCount = 4;
+
+        // 卡片样式，minimumLineSpacing 无效
+        _looperView.minimumLineSpacing = 10;
+        
+        // 卡片样式，centerOffset 无效
+        _looperView.centerOffset = -45;
+
     }
     return _looperView;
 }
 
+/// dataArr 需要最后设置，否则_looperView的样式属性将不生效
 self.looperView.dataArr = self.dataArr;
 ```
 

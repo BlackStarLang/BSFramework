@@ -74,11 +74,11 @@
 -(BSLooperView *)looperView{
     if (!_looperView) {
         
-        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 200)];
+        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(20, 300, self.view.width - 40, 180)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width-30 ,200);
-        _looperView.scale = 0.8;
+        _looperView.itemSize = CGSizeMake(self.view.width - 70 ,180);
+        _looperView.scale = 0.6;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
         _looperView.duration = 1;
@@ -98,7 +98,7 @@
         _looperView.minimumLineSpacing = 10;
         
         // 卡片样式，centerOffset 无效
-        _looperView.centerOffset = 20;
+        _looperView.centerOffset = -45;
 
     }
     return _looperView;
