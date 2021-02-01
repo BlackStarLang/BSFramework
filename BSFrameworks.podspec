@@ -8,8 +8,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'BSFrameworks'
-  s.version          = '0.1.9'
-  s.summary          = '轮播图新增 卡片样式'
+  s.version          = '0.1.10'
+  s.summary          = '轮播图新增 卡片样式(修复图片预览返回按钮UI问题，新增iOS11高版本对应的拍照回调API)'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
