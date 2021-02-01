@@ -73,19 +73,33 @@
 
 -(BSLooperView *)looperView{
     if (!_looperView) {
-        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(60, 300, self.view.width - 120, 200)];
+        
+        _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(0, 300, self.view.width, 200)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 150 ,200);
-        _looperView.minimumLineSpacing = 10;
-        _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+        _looperView.itemSize = CGSizeMake(self.view.width-30 ,200);
         _looperView.scale = 0.8;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
-        _looperView.centerOffset = 0;
         _looperView.duration = 1;
-        _looperView.looperPosition = BSLooperPositionLeft;
+        
         _looperView.loopStyle = BSLOOP_STYLE_CARD;
+
+        //卡片样式只支持横向，不支持纵向
+        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        
+        //卡片样式只支持左右，不支持上下
+        _looperView.looperPosition = BSLooperPositionLeft;
+       
+        // visibleCount 卡片样式独有属性
+        _looperView.visibleCount = 4;
+
+        // 卡片样式，minimumLineSpacing 无效
+        _looperView.minimumLineSpacing = 10;
+        
+        // 卡片样式，centerOffset 无效
+        _looperView.centerOffset = 20;
+
     }
     return _looperView;
 }

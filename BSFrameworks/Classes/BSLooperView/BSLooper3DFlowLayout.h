@@ -10,8 +10,8 @@
 NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
-    BSLOOP_STYLE_NORMAL = 0,// 默认
-    BSLOOP_STYLE_CARD,
+    BSLOOP_STYLE_NORMAL = 0,// 默认 3D轮播
+    BSLOOP_STYLE_CARD, // 卡片样式
 } BSLOOP_STYLE;
 
 
@@ -69,6 +69,16 @@ typedef enum : NSUInteger {
 //@property (nonatomic ,assign) CGFloat maxScale;
 
 
+/////=================================
+///// 暂未完成
+///// 仅支持 BSLOOP_STYLE_NORMAL 模式
+///// 仅缩放一次 即：除了当前item的相邻item，其他不进行二次缩放
+///// 大概样式如下
+/////       |--|
+///// |——|——|  |——|——|
+///// |  |  |  |  |  |
+/////=================================
+//@property (nonatomic ,assign) BOOL onceScale;
 
 
 

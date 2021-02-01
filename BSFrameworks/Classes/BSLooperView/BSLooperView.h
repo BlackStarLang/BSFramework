@@ -80,6 +80,16 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 
 
 
+///=================================
+/// 设置可见个数(不支持 minimumLineSpacing)
+/// 会根据可见个数和itemSize、collectionViewSize
+/// 自动排版（均分）
+/// 如：item宽度260 ，collectionView 宽度 300
+/// 可见cell个数为 4个，那么cell间间距就是 (300-260)/4 = 10
+///=================================
+@property (nonatomic ,assign) NSInteger visibleCount;
+
+
 
 /// ====================================
 /// 是否无限轮播
@@ -150,7 +160,7 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 
 
 /// ====================================
-/// 仅 适用于 3D 样式，不适用于卡片样式
+/// 仅支持 loopStype == NORMAL
 /// 设置 minimumLineSpacing
 /// 最小行间距：default 0
 /// ====================================
@@ -166,6 +176,7 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 
 
 ///=================================
+///仅支持 loopStype == NORMAL
 ///两边item的中心点偏移量
 ///如果横向，则是中心点上下偏移，否则左右偏移
 ///默认 centerOffset = 0

@@ -164,6 +164,8 @@
     self.flowLayout.sectionInset = self.sectionInset;
     self.flowLayout.scale = self.scale;
     self.flowLayout.centerOffset = self.centerOffset;
+    self.flowLayout.visibleCount = self.visibleCount;
+//    self.flowLayout.onceScale = YES;
     self.collectionView.collectionViewLayout = self.flowLayout;
     
     /// 设置 collectionView的frame
@@ -363,7 +365,9 @@
 
                 // 计算实际偏移量 (理论偏移量 - 页面上可见的多于部分)
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    [self.collectionView setContentOffset:CGPointMake(0, self.currentPageIndex * self.collectionView.width) animated:YES];
+                    [self.collectionView setContentOffset:CGPointMake(self.currentPageIndex * self.collectionView.width, 0) animated:YES];
+                    /// 卡片样式取消纵向
+//                    [self.collectionView setContentOffset:CGPointMake(0, self.currentPageIndex * self.collectionView.width) animated:YES];
                 }else{
                     [self.collectionView setContentOffset:CGPointMake(self.currentPageIndex * self.collectionView.width, 0) animated:YES];
                 }
@@ -373,8 +377,11 @@
 
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
 
-                    CGFloat offset = self.collectionView.contentOffset.y;
-                    self.currentPageIndex = roundf(offset/self.collectionView.height);
+                    CGFloat offset = self.collectionView.contentOffset.x;
+                    self.currentPageIndex = roundf(offset/self.collectionView.width);
+                    /// 卡片样式取消纵向
+//                    CGFloat offset = self.collectionView.contentOffset.y;
+//                    self.currentPageIndex = roundf(offset/self.collectionView.height);
 
                 }else{
 
@@ -414,7 +421,9 @@
 
                 // 通过 newPageIndex 算出 实际偏移量
                 if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-                    [self.collectionView setContentOffset:CGPointMake(0, newPageIndex * self.collectionView.width) animated:NO];
+                    [self.collectionView setContentOffset:CGPointMake(newPageIndex * self.collectionView.width, 0) animated:NO];
+                    /// 卡片样式取消纵向
+//                    [self.collectionView setContentOffset:CGPointMake(0, newPageIndex * self.collectionView.width) animated:NO];
                 }else{
                     [self.collectionView setContentOffset:CGPointMake(newPageIndex * self.collectionView.width, 0) animated:NO];
                 }

@@ -14,6 +14,7 @@
 @property (nonatomic ,assign) BOOL isHorizontal;
 @property (nonatomic ,assign) CGFloat space;
 
+@property (nonatomic ,assign) BOOL onceScale;
 @end
 
 
@@ -118,10 +119,6 @@
 /// 布局
 -(NSArray<__kindof UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
-    NSInteger itemCount = [self.collectionView numberOfItemsInSection:0];
-    if (itemCount<=0) {
-        return nil;
-    }
     
     if (self.loopStyle == BSLOOP_STYLE_NORMAL) {
         
@@ -149,6 +146,8 @@
         
     }else if(self.loopStyle == BSLOOP_STYLE_CARD){
         
+        NSInteger itemCount = [self.collectionView numberOfItemsInSection:0];
+
         NSMutableArray *array = [NSMutableArray array];
         if (self.isHorizontal) {
 
@@ -169,6 +168,45 @@
                 
                 [array addObject:attri];
             }
+            
+        }else{
+            
+            CGFloat offsetX = self.collectionView.contentOffset.x;  /// collectionview偏移量
+            int curPage = MAX(floor(offsetX/self.collectionView.width), 0) ; /// 当前是第几屏
+
+            /// 偏移量百分比
+            CGFloat curOffset = (int)offsetX % (int)self.collectionView.width * 1.0;
+            CGFloat offsetPercent = curOffset/self.collectionView.width;
+
+            
+            /// 只处理当前可以看到的 item 的 Attributes
+            NSInteger maxVisibleIndex = MIN(itemCount, self.visibleCount+curPage);
+            for (int i = curPage; i<= maxVisibleIndex; i++) {
+                
+                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+                UICollectionViewLayoutAttributes *attri = [self getCardAttributesWithIndexPath:indexPath currentPage:curPage offsetPercent:offsetPercent itemCount:itemCount];
+                
+                [array addObject:attri];
+            }
+            
+            /// 想了想，这种样式应该不需要纵向的，所以取消了纵向的设计
+//            CGFloat offsetY = self.collectionView.contentOffset.y;  /// collectionview偏移量
+//            int curPage = MAX(floor(offsetY/self.collectionView.height), 0) ; /// 当前是第几屏
+//
+//            /// 偏移量百分比
+//            CGFloat curOffset = (int)offsetY % (int)self.collectionView.height * 1.0;
+//            CGFloat offsetPercent = curOffset/self.collectionView.height;
+//
+//
+//            /// 只处理当前可以看到的 item 的 Attributes
+//            NSInteger maxVisibleIndex = MIN(itemCount, self.visibleCount+curPage);
+//            for (int i = curPage; i<= maxVisibleIndex; i++) {
+//
+//                NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
+//                UICollectionViewLayoutAttributes *attri = [self getCardAttributesWithIndexPath:indexPath currentPage:curPage offsetPercent:offsetPercent itemCount:itemCount];
+//
+//                [array addObject:attri];
+//            }
         }
         
         return  array;
@@ -195,34 +233,81 @@
      * 这就使 两个item 实际的 行间距或纵间距 发生了改变
      */
     //*********************************************//
-    
-    /// 计算需要改变的偏移量
-    CGFloat offsetX = (self.itemSize.width - self.itemSize.width* self.scale)/2;
-    
-    /// 如果 在左侧 偏移量需要改成 负方向
-    if (centerX>attri.center.x) {
-        offsetX = offsetX * - 1;
+        
+    if (self.onceScale) {
+        
+        /// 计算需要改变的偏移量
+        CGFloat offsetX = (self.itemSize.width - self.itemSize.width* self.scale)/2;
+
+        /// 如果 在左侧 偏移量需要改成 负方向
+        if (centerX>attri.center.x) {
+            offsetX = offsetX * - 1;
+        }
+
+
+        /// 实际collectionView偏移量
+        CGFloat offsetX_col = centerX - self.itemSize.width/2;
+        
+        /// 当前item偏移量
+        CGFloat cur_offsetX = (int)offsetX_col % (int)(self.itemSize.width + self.minimumLineSpacing);
+       
+        /// 当前item偏移量百分比
+        CGFloat offsetPercent = cur_offsetX/(self.itemSize.width + self.minimumLineSpacing);
+
+        if (centerX < attri.center.x) {
+            offsetPercent = 1 - offsetPercent;
+        }
+
+        NSInteger curPage = floor(offsetX_col/(self.itemSize.width + self.minimumLineSpacing));  /// 当前页码
+        
+        if (ABS(centerX - attri.center.x) < self.itemSize.width + self.minimumLineSpacing) {
+            
+            CGFloat scale = 1-(1-self.scale)*offsetPercent;
+            attri.transform = CGAffineTransformMakeScale(scale, scale);
+            
+            CGFloat attr_offsetX = offsetX * ABS(curPage - attri.indexPath.item ) - offsetX*offsetPercent;
+            attri.center = CGPointMake(attri.center.x - attr_offsetX, attri.center.y);
+            
+            if (attri.indexPath.row == 5) {
+                NSLog(@"%.2f   %.2f   %.2f    %ld",attr_offsetX,offsetX * ABS(curPage - attri.indexPath.item ),offsetX*offsetPercent,(long)curPage);
+            }
+            
+        }else{
+            
+            attri.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+            attri.center = CGPointMake(attri.center.x - offsetX * ABS(curPage - attri.indexPath.item ) + offsetX, attri.center.y);
+        }
+
+    }else{
+        
+        /// 计算需要改变的偏移量
+        CGFloat offsetX = (self.itemSize.width - self.itemSize.width* self.scale)/2;
+        
+        /// 如果 在左侧 偏移量需要改成 负方向
+        if (centerX>attri.center.x) {
+            offsetX = offsetX * - 1;
+        }
+        
+        /// attri的中心X坐标与 当前中心坐标的 X 差值的绝对值
+        CGFloat distance = ABS(attri.center.x - centerX);
+        
+        /// 计算缩放比例
+        CGFloat preScale = distance/(self.itemSize.width+self.minimumLineSpacing);
+        
+        
+        /// 根据偏移量，重新设置 center
+        attri.center = CGPointMake(attri.center.x - offsetX *preScale, attri.center.y + self.centerOffset * preScale);
+        
+        //*********************************************//
+        //************      设置缩放动画     ************//
+        //*********************************************//
+        
+        /// 根据设定的缩放比例，计算出最终需要的缩放比例
+        CGFloat scale = (self.scale + (1-self.scale) * (1-preScale));
+        
+        /// 设置最终动画的缩放比例
+        attri.transform=CGAffineTransformMakeScale(scale, scale);
     }
-    
-    /// attri的中心X坐标与 当前中心坐标的 X 差值的绝对值
-    CGFloat distance = ABS(attri.center.x - centerX);
-    
-    /// 计算缩放比例
-    CGFloat preScale = distance/(self.itemSize.width+self.minimumLineSpacing);
-    
-    
-    /// 根据偏移量，重新设置 center
-    attri.center = CGPointMake(attri.center.x - offsetX *preScale, attri.center.y + self.centerOffset * preScale);
-    
-    //*********************************************//
-    //************      设置缩放动画     ************//
-    //*********************************************//
-    
-    /// 根据设定的缩放比例，计算出最终需要的缩放比例
-    CGFloat scale = (self.scale + (1-self.scale) * (1-preScale));
-    
-    /// 设置最终动画的缩放比例
-    attri.transform=CGAffineTransformMakeScale(scale, scale);
     
 }
 
@@ -330,14 +415,19 @@
 
 -(CGSize)collectionViewContentSize{
     
+    NSInteger itemCount = [self.collectionView numberOfItemsInSection:0];
+
     if (self.loopStyle == BSLOOP_STYLE_CARD) {
         /// 卡片样式需要自己计算
         /// 不重新设置他的 ContentSize 将会导致
         /// 他的 ContentSize 不准确，最后几个cell 无法滑出去
-        NSInteger itemCount = [self.collectionView numberOfItemsInSection:0];
         return CGSizeMake(self.collectionView.width * itemCount, self.collectionView.height);
     }
-    return self.collectionView.contentSize;
+    if (self.isHorizontal) {
+        return CGSizeMake(itemCount * (self.itemSize.width+self.minimumLineSpacing), self.itemSize.height);
+    }else{
+        return CGSizeMake(self.itemSize.width, itemCount * (self.itemSize.height+self.minimumLineSpacing));
+    }
 }
 
 @end
