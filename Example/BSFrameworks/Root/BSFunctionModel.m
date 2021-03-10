@@ -78,6 +78,7 @@
                              @"算法集锦":@"BSCalculationRoot",
                              @"Block 研究":@"BSBlockController",
                              @"Timer":@"BSTimerViewController",
+                             @"Category研究：方法加载、重写":@"BSCategoryVC",
     };
     
     return subDic;

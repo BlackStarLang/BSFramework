@@ -27,9 +27,12 @@
     // Do any additional setup after loading the view.
     
     [self initView];
-        
-    [self studyOperation];
-    [self studyGCD];
+
+//    [self studyOperation];
+//    [self studyGCD];
+    
+//    [self simulateMainQueue];//使用自定义队列模拟主队列
+
 }
 
 
@@ -45,6 +48,34 @@
 }
 
 
+-(void)simulateMainQueue{
+    //    // dispatch_async 通过 dispatch_get_main_queue 回到主线程
+    //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    //        //开辟子线程, 在子线程中 -> 准备回主线程
+    //        dispatch_async(dispatch_get_main_queue(), ^{
+    //           //回主线程
+    //        });
+    //    });
+    //
+    //
+    //    //模拟 dispatch_async 通过 dispatch_get_main_queue 回到主线程的过程：使用自定义串行队列
+    //    dispatch_queue_t queue = dispatch_queue_create("queue", DISPATCH_QUEUE_SERIAL);
+    //    dispatch_async(queue, ^{
+    //        //开辟 queue 的唯一子线程 ：子主线程、子主队列就绪
+    //
+    //        /// 这里代码需要使用 performselector onthread 方法调用，重写touches方法将线程挂起，然后touchbegan
+    //        /// 调用 performselector onthread 在子线程中执行任务，调用下方代码，就模拟了整个过程
+    //        /// 详细查看DemoGroup中的runloop
+    ////        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+    ////            //开辟子线程, 在子线程中 -> 准备回主线程
+    ////            dispatch_async(queue, ^{
+    ////
+    ////            });
+    ////        });
+    //
+    //        [[NSRunLoop currentRunLoop]run];//子主runloop
+    //    });
+}
 
 
 #pragma mark - Operation 测试
@@ -69,7 +100,8 @@
  *
  * 个人理解：因为是并发队列，在执行任务的时候，cpu会来回切换线程去执行，
  * 而切换的时机是随机的，所以对于currentQueue和thread打印应该是随机的，虽然出现了上边的结果，
- * 但是因为测试次数少，所以不能肯定打印结果的正确性，也可能是因为切换的算法，可能会导致这种情况出现的概率高
+ * 但是因为测试次数少，所以不能肯定打印顺序的必然性，也可能是因为切换的算法，导致了
+ * 这种情况出现的概率高
  */
 
 -(void)operatorBlock{
@@ -194,22 +226,21 @@
 /// 并发是指有能力处理多个任务，不一定同时
 /// 并行是指有能力同时处理多个任务，强调的是同时
 ///
-/// 4、主队列 Main Queue ,无论是 同步操作还是异步操作，执行任务都是在主线程 、主队列。
+/// 4、主队列 Main Queue ,无论是 同步操作还是异步操作，执行任务都是在主线程。
 ///    说明了 主队列 是不能开辟子线程的。也就是说，子线程的队列永远也不可能是主队列
 ///
 ///    延伸1：同样情况的非主线程的串行队列，最多只能创建一个子线程，类似于主队列对应的主线程
-///    即：串行队列，无论是不是主队列，只能有一个线程绑定（执行任务是可以在两个线程的）
+///    即：串行队列，无论是不是主队列，只能有一个线程绑定（执行任务是可以在两个线程的：除了当前子线程还可以使用同步任务在主线程下执行任务）
 ///    因为主队列系统已经帮我们创建了主线程，所以只有非主串行队列，才会去创建一个新的线程
 ///
 ///    延伸2：在串行队列中，主队列可以使用
 ///    dispatch_async(dispatch_get_main_queue(),^{})方式回到当前线程（主线程）
 ///    那么非主串行队列queue，在使用 dispatch_async(queue,^{}) 的时候，是否也会回到当前线程？
-///    答案是：如果有runloop，那么代码不执行。如果没有runloop，和主线程一样，会回到队列所对应的线程。
-///    原因未知，只能猜测，这种情况下，系统对主队列是有不同的处理方式的。
-///
-///    新的发现：dispatch_async(queue,^{})不执行的原因是，串行队列，runloop执行后，检测到任务，此
+///    答案是：如果有runloop，那么任务不执行，但是当runloop停止后，会接着执行任务，也就是说runloop的循环把异步任务拦截了。如果没有runloop，和主线程一样，会回到队列所对应的线程。
+///    为什么runloop会拦截异步任务，原因暂不可知。
+///   （dispatch_async(queue,^{})不执行的原因是，串行队列，runloop执行后，检测到任务，此
 ///    任务被放到了runloop后执行，所以需要runloop退出后才会执行dispatch_async(queue,^{})
-///    但是主线程不清楚是怎么个情况
+///    但是主线程不清楚是怎么个情况）
 ///
 /// 5、主队列不会出现在其他线程中，而非主队列可以在主线程中执行（同步操作），也可以在子线程中执行
 ///
@@ -227,7 +258,6 @@
 //    [self concurrentQueueTest];
 //    [self globalQueue];
 //    [self gcdBarrier];
-
 }
 
 
@@ -243,9 +273,7 @@
 ///    还可以通过sync在当前线程中执行，但是我们可以认为是非绑定关系，而是依赖关系。
 ///    因此才有了主队列执行的任务会回到主线程。而一条线程，是可以在多个队列执行的。
 ///    而主线程是有对应的runloop的回到主线程后，依然受runloop 影响，但是如果子线程我们自己
-///    创建runloop，将当前子线程挂起，通过当前队列回到对应的子线程，发现代码不执行。
-///   （需要异步执行任务，如果任务同步的，会导致没有先创建runloop，这时，
-///    任务还是可以执行的，因为runloop没执行，就已经完成了任务）（具体原因未知）
+///    创建runloop，将当前子线程挂起，通过当前队列回到对应的子线程，发现只有当runloop退出后，代码才会执行。
 
 #pragma mark 串行队列 SERIAL
 -(void)serialQueue{
@@ -295,6 +323,8 @@
 
 
 /// =====================================
+/// 自定义串行队列和主队列的不同点
+///
 /// 通过自定义串行队列，返回到对应线程
 ///
 /// 测试结论：通过当前队列，我们可以回到队列第一次创建的线程中。

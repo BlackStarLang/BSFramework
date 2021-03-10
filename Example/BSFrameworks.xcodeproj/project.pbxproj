@@ -19,6 +19,11 @@
 		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
 		3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070284124A474F9000C5384 /* BSDynamicBehavior.m */; };
 		30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30754B8F257F71AE00398CA3 /* BSWebViewController.m */; };
+		308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961525F225C80051A225 /* BSFibonacciSequence.m */; };
+		308F961F25F234EB0051A225 /* BSSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961E25F234EB0051A225 /* BSSort.m */; };
+		308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F962625F5F7600051A225 /* BSCategoryOrigin.m */; };
+		308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */; };
+		308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F963225F5FAA90051A225 /* BSCategoryVC.m */; };
 		3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097574C2574E84100A3E2CA /* BSOperatorController.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
@@ -90,6 +95,16 @@
 		3070284124A474F9000C5384 /* BSDynamicBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDynamicBehavior.m; sourceTree = "<group>"; };
 		30754B8E257F71AE00398CA3 /* BSWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebViewController.h; sourceTree = "<group>"; };
 		30754B8F257F71AE00398CA3 /* BSWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebViewController.m; sourceTree = "<group>"; };
+		308F961425F225C80051A225 /* BSFibonacciSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFibonacciSequence.h; sourceTree = "<group>"; };
+		308F961525F225C80051A225 /* BSFibonacciSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFibonacciSequence.m; sourceTree = "<group>"; };
+		308F961D25F234EB0051A225 /* BSSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSort.h; sourceTree = "<group>"; };
+		308F961E25F234EB0051A225 /* BSSort.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSort.m; sourceTree = "<group>"; };
+		308F962525F5F7600051A225 /* BSCategoryOrigin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCategoryOrigin.h; sourceTree = "<group>"; };
+		308F962625F5F7600051A225 /* BSCategoryOrigin.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCategoryOrigin.m; sourceTree = "<group>"; };
+		308F962C25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSCategoryOrigin+Mutimethod.h"; sourceTree = "<group>"; };
+		308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "BSCategoryOrigin+Mutimethod.m"; sourceTree = "<group>"; };
+		308F963125F5FAA90051A225 /* BSCategoryVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCategoryVC.h; sourceTree = "<group>"; };
+		308F963225F5FAA90051A225 /* BSCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCategoryVC.m; sourceTree = "<group>"; };
 		3097574B2574E84100A3E2CA /* BSOperatorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSOperatorController.h; sourceTree = "<group>"; };
 		3097574C2574E84100A3E2CA /* BSOperatorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSOperatorController.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
@@ -216,7 +231,6 @@
 			isa = PBXGroup;
 			children = (
 				3053042825AD866800748F50 /* DemoGroup */,
-				30702832249C62AE000C5384 /* RunLoop */,
 				30494A332485E7BA002DBC8D /* BSPhoto */,
 				30494A2D2485E435002DBC8D /* BSLooperView */,
 			);
@@ -278,6 +292,8 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				30702832249C62AE000C5384 /* RunLoop */,
+				308F962425F5F70C0051A225 /* Category */,
 				3053042D25B12BF600748F50 /* Timer */,
 				30B8FF64259C1ECE0016D995 /* Block */,
 				30DD8B422590879E00E49AD9 /* SuanFa */,
@@ -347,6 +363,19 @@
 				30754B8F257F71AE00398CA3 /* BSWebViewController.m */,
 			);
 			path = WKWebView;
+			sourceTree = "<group>";
+		};
+		308F962425F5F70C0051A225 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				308F962525F5F7600051A225 /* BSCategoryOrigin.h */,
+				308F962625F5F7600051A225 /* BSCategoryOrigin.m */,
+				308F962C25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.h */,
+				308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */,
+				308F963125F5FAA90051A225 /* BSCategoryVC.h */,
+				308F963225F5FAA90051A225 /* BSCategoryVC.m */,
+			);
+			path = Category;
 			sourceTree = "<group>";
 		};
 		3097574A2574E81C00A3E2CA /* Mutil-Threading */ = {
@@ -419,10 +448,14 @@
 		30DD8B43259087BB00E49AD9 /* Calculation */ = {
 			isa = PBXGroup;
 			children = (
+				308F961425F225C80051A225 /* BSFibonacciSequence.h */,
+				308F961525F225C80051A225 /* BSFibonacciSequence.m */,
 				30DD8B4C25908D7400E49AD9 /* BSHuiwenStr.h */,
 				30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */,
 				30B8FF5F259B3A2F0016D995 /* BSMaxHundredNumber.h */,
 				30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */,
+				308F961D25F234EB0051A225 /* BSSort.h */,
+				308F961E25F234EB0051A225 /* BSSort.m */,
 			);
 			path = Calculation;
 			sourceTree = "<group>";
@@ -770,10 +803,13 @@
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
 				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
+				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
+				308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */,
+				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
 				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
@@ -784,7 +820,9 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
+				308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */,
 				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,
+				308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
