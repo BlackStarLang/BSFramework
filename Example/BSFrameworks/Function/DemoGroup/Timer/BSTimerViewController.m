@@ -36,39 +36,41 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-//    [self initTimer];
+    [self initTimer];
     
     
+    
+    /// 招人:面试题部分
 //    BSWebViewController *webViewController = [[BSWebViewController alloc]init];
 //    webViewController.delegate = self;
 //    [self.navigationController pushViewController:webViewController animated:YES];
     
-    self.i = 0;
+//    self.i = 0;
 //    __block int block_int = 0;
 //    static int st = 0;
 //    int k = 0;//0xalllldja
 //    NSMutableString *str = [[NSMutableString alloc]initWithString:@"123"];
 //    NSString *strstr = @"123";
-    dispatch_group_t group = dispatch_group_create();
-    
-    for ( int j = 0; j<100; j++) {
-        dispatch_group_enter(group);
-     
-        dispatch_async(dispatch_get_global_queue(0, 0), ^{
-            self.i ++;
-//            k = 9;
-//            block_int ++;
-//            st ++;
-            dispatch_group_leave(group);
-            
-        });
-    }
-    
-    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
-        NSLog(@"%d",self.i);
-//        NSLog(@"\ni = %d\nst = %d\nblock_int = %d",self.i,st,block_int);
-//        st = 0;
-    });
+//    dispatch_group_t group = dispatch_group_create();
+//
+//    for ( int j = 0; j<100; j++) {
+//        dispatch_group_enter(group);
+//
+//        dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//            self.i ++;
+////            k = 9;
+////            block_int ++;
+////            st ++;
+//            dispatch_group_leave(group);
+//
+//        });
+//    }
+//
+//    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+//        NSLog(@"%d",self.i);
+////        NSLog(@"\ni = %d\nst = %d\nblock_int = %d",self.i,st,block_int);
+////        st = 0;
+//    });
 
 }
 
@@ -105,7 +107,6 @@
     
     
     
-    
 //    __weak typeof(self)weakSelf = self;
 //    self.timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
 //        NSLog(@"%@ == %@",timer,self);
@@ -114,12 +115,22 @@
 //    [self.timer fire];
 //    [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSDefaultRunLoopMode];
     
-    
+    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+       
+        self.timer = [NSTimer timerWithTimeInterval:1 repeats:YES block:^(NSTimer * _Nonnull timer) {
+               NSLog(@"%@ == %@",timer,self);
+               NSLog(@"timer unrepeat");
+       }];
+        
+       [[NSRunLoop currentRunLoop]addTimer:self.timer forMode:NSDefaultRunLoopMode];
+        [[NSRunLoop currentRunLoop]run];
+        
+    });
     
     
 
 //    __weak typeof(self)weakSelf = self;
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1 target:self selector:@selector(timerAction) userInfo:nil repeats:YES];
 }
 
 

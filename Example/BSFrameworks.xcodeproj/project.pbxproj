@@ -29,6 +29,7 @@
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
 		30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF66259C1EE30016D995 /* BSBlockController.m */; };
+		30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
@@ -115,6 +116,8 @@
 		30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMaxHundredNumber.m; sourceTree = "<group>"; };
 		30B8FF65259C1EE30016D995 /* BSBlockController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBlockController.h; sourceTree = "<group>"; };
 		30B8FF66259C1EE30016D995 /* BSBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBlockController.m; sourceTree = "<group>"; };
+		30C3D2D425FA2395003CBC13 /* BSMsgSendForMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMsgSendForMethod.h; sourceTree = "<group>"; };
+		30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMsgSendForMethod.m; sourceTree = "<group>"; };
 		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
@@ -292,6 +295,7 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				30C3D2D325FA236E003CBC13 /* MethodMsgSend */,
 				30702832249C62AE000C5384 /* RunLoop */,
 				308F962425F5F70C0051A225 /* Category */,
 				3053042D25B12BF600748F50 /* Timer */,
@@ -394,6 +398,15 @@
 				30B8FF66259C1EE30016D995 /* BSBlockController.m */,
 			);
 			path = Block;
+			sourceTree = "<group>";
+		};
+		30C3D2D325FA236E003CBC13 /* MethodMsgSend */ = {
+			isa = PBXGroup;
+			children = (
+				30C3D2D425FA2395003CBC13 /* BSMsgSendForMethod.h */,
+				30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */,
+			);
+			path = MethodMsgSend;
 			sourceTree = "<group>";
 		};
 		30D2E5C3256F4887001EFB02 /* TransitionAnimate */ = {
@@ -813,6 +826,7 @@
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
 				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
+				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,

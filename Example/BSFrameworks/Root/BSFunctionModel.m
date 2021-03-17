@@ -79,6 +79,7 @@
                              @"Block 研究":@"BSBlockController",
                              @"Timer":@"BSTimerViewController",
                              @"Category研究：方法加载、重写":@"BSCategoryVC",
+                             @"消息转发机制":@"BSMsgSendForMethod",
     };
     
     return subDic;

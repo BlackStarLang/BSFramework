@@ -54,19 +54,34 @@
     
     BSObjcPerson *person1 = [[BSObjcPerson alloc]init];
     self.person = person1;
-    
-    [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(name) callBack:^(id  _Nonnull oldValue, id  _Nonnull newValue) {
-        NSLog(@"\nnoti person1:\noldValue = %@\nnewValue = %@",oldValue,newValue);
-    }];
+//
+//    [BSNotifacation BSNotifacationAddObsever:self object:person1 keyForSel:@selector(name) callBack:^(id  _Nonnull oldValue, id  _Nonnull newValue) {
+//        NSLog(@"\nnoti person1:\noldValue = %@\nnewValue = %@",oldValue,newValue);
+//    }];
+//
+    [person1 addObserver:self forKeyPath:@"reName" options:NSKeyValueObservingOptionNew context:nil];
 }
+
+
+-(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
+    
+    NSLog(@"observeValueForKeyPath");
+    
+    if ([keyPath isEqualToString:@"reName"]) {
+        NSLog(@"reName");
+    }
+    
+}
+
 
 #pragma mark - action 交互事件
 
 -(void)changePersonName{
-    
+    self.person.reName = @"111";
     self.person.name = @"kvo change";
     self.person.age = 20;
 }
+
 
 
 @end
