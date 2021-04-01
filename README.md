@@ -19,8 +19,26 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 BSFrameworks is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+## Demo for study Objective-C
 
-usege
+**The test results are all in the comments
+（测试结果还有总结、注意的点，都在注释当中）**
+
+- RunTime
+- RunLoop
+- GCD + NSOperation (多线程)
+- method forwarding （消息转发机制）
+- NSTimer （定时器强引用问题及解决办法：NSProxy 消息转发）
+- AutoreleasePool (自动释放池)
+- DynamicBehavior (动态行为)
+- Transition Animator （转场动画，模仿 AlertController）
+- KVO （原理探究，自定义KVO）
+- Socket （基于socket 的简单通信，需要配合后台：Python服务端socket [点击下载]()）
+- Some Algorithms (学习的几个算法，面试中被提问的，还有网上看的)
+- Category (分类，研究了下方法执行顺序，但是没写注释，没写测试结果)
+
+
+## usege
 
 所有 功能
 ```ruby
