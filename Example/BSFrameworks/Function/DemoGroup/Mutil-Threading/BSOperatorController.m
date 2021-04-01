@@ -12,6 +12,8 @@
 @interface BSOperatorController ()
 
 @property (nonatomic ,strong) dispatch_queue_t queue;
+//@property (nonatomic ,assign) int count;
+//@property (nonatomic ,strong) NSObject *obj;
 
 @end
 

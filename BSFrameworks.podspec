@@ -72,6 +72,11 @@ Pod::Spec.new do |s|
     ss.dependency     'BSFrameworks/BSCategory'
   end
 
+  
+  s.subspec 'BSSocket' do |socket|
+    socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
+    
+  end
   # 上拉下拉刷新控件
 #  s.subspec 'BSRefresh' do |ss|
 #    ss.source_files = 'BSFrameworks/Classes/BSRefresh/**/*{.h,.m}'

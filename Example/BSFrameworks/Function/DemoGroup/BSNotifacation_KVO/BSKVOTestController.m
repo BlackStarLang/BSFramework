@@ -15,6 +15,8 @@
 @interface BSKVOTestController ()
 @property (nonatomic ,strong) BSObjcPerson *person;
 
+@property (nonatomic ,strong) NSString *kk;
+
 @end
 
 
@@ -59,27 +61,43 @@
 //        NSLog(@"\nnoti person1:\noldValue = %@\nnewValue = %@",oldValue,newValue);
 //    }];
 //
-    [person1 addObserver:self forKeyPath:@"reName" options:NSKeyValueObservingOptionNew context:nil];
+//    [person1 addObserver:self forKeyPath:@"reName" options:NSKeyValueObservingOptionNew context:nil];
+    
+    /// 想触发KVO 需要通过 KVC 设置 _reName 的值，
+    /// 并且 KVC 的 key = _reName ，不能是 reName
+    [person1 addObserver:self forKeyPath:@"_reName" options:NSKeyValueObservingOptionNew context:nil];
+    
+    /// 无法通过 _kk = @"12"; 触发KVO
+    [self addObserver:self forKeyPath:@"_kk" options:NSKeyValueObservingOptionNew context:nil];
+
 }
 
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     
-    NSLog(@"observeValueForKeyPath");
+    NSLog(@"observeValueForKeyPath == %@",keyPath);
     
     if ([keyPath isEqualToString:@"reName"]) {
-        NSLog(@"reName");
+        NSLog(@"reName : %@",self.person.reName);
     }
     
+    if ([keyPath isEqualToString:@"_reName"]) {
+        NSLog(@"_reName : %@",self.person.reName);
+    }
 }
 
 
 #pragma mark - action 交互事件
 
 -(void)changePersonName{
-    self.person.reName = @"111";
     self.person.name = @"kvo change";
     self.person.age = 20;
+    
+//    self.person.reName = @"111";
+//    [self.person setValue:@"222" forKeyPath:@"reName"];
+    [self.person setValue:@"333" forKeyPath:@"_reName"];
+
+    _kk = @"kk";//不同于 KVC 中 设置 _kk 的 value
 }
 
 

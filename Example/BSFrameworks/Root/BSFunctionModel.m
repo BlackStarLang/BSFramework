@@ -55,6 +55,7 @@
     
     NSDictionary *pushInfo = @{@"Pod 组件：3D轮播图":@"BSLooperViewVC",
                                @"Pod 组件：选择图片控件，拍照+视频（自定义相机）":@"BSPhotoVC",
+                               @"Pod 组件：Socket，即时通讯":@"BSSocketViewController",
                                @"Demo合集":@"BSSubFuncListController",
                                
     };
@@ -80,6 +81,7 @@
                              @"Timer":@"BSTimerViewController",
                              @"Category研究：方法加载、重写":@"BSCategoryVC",
                              @"消息转发机制":@"BSMsgSendForMethod",
+                             @"多手势":@"BSMutiScrollViewVC",
     };
     
     return subDic;
