@@ -19,10 +19,17 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 BSFrameworks is available through [CocoaPods](https://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
+## 项目包含两部分 
+
+- 学习知识点Demo
+
+- CocoaPods 组件
+
+## 学习的所有知识点 Demo 
 ## Demo for study Objective-C
 
-**The test results are all in the comments
-（测试结果还有总结、注意的点，都在注释当中）**
+** 测试结果还有总结、注意的点，都在注释当中 **
+** The test results are all in the comments **
 
 - RunTime
 - RunLoop
@@ -38,6 +45,7 @@ it, simply add the following line to your Podfile:
 - Category (分类，研究了下方法执行顺序，但是没写注释，没写测试结果)
 
 
+## CocoaPods 组件
 ## usege
 
 所有 功能
