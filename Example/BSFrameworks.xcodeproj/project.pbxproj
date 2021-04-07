@@ -26,13 +26,17 @@
 		308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */; };
 		308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F963225F5FAA90051A225 /* BSCategoryVC.m */; };
 		3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3097574C2574E84100A3E2CA /* BSOperatorController.m */; };
+		30AD8F1D261C3A77006FA2B8 /* BSScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F1C261C3A77006FA2B8 /* BSScrollView.m */; };
+		30AD8F22261C429A006FA2B8 /* BSContainerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F21261C429A006FA2B8 /* BSContainerVC.m */; };
+		30AD8F2E261C4319006FA2B8 /* BSRecognizerTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F2D261C4319006FA2B8 /* BSRecognizerTableView.m */; };
+		30AD8F33261C4392006FA2B8 /* BSRecoChildTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F32261C4392006FA2B8 /* BSRecoChildTableView.m */; };
+		30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F39261C5975006FA2B8 /* BSClassifyScrollView.m */; };
+		30AD8F3F261C5B5A006FA2B8 /* BSChildScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
 		30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF66259C1EE30016D995 /* BSBlockController.m */; };
 		30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */; };
-		30C3D2E426021289003CBC13 /* BSMutiScrollViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3D2E326021289003CBC13 /* BSMutiScrollViewVC.m */; };
-		30C3D2EB26021609003CBC13 /* BSTapButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3D2EA26021609003CBC13 /* BSTapButton.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
@@ -114,6 +118,19 @@
 		308F963225F5FAA90051A225 /* BSCategoryVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCategoryVC.m; sourceTree = "<group>"; };
 		3097574B2574E84100A3E2CA /* BSOperatorController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSOperatorController.h; sourceTree = "<group>"; };
 		3097574C2574E84100A3E2CA /* BSOperatorController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSOperatorController.m; sourceTree = "<group>"; };
+		30AD8F1B261C3A77006FA2B8 /* BSScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSScrollView.h; sourceTree = "<group>"; };
+		30AD8F1C261C3A77006FA2B8 /* BSScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSScrollView.m; sourceTree = "<group>"; };
+		30AD8F20261C429A006FA2B8 /* BSContainerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSContainerVC.h; sourceTree = "<group>"; };
+		30AD8F21261C429A006FA2B8 /* BSContainerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSContainerVC.m; sourceTree = "<group>"; };
+		30AD8F2C261C4319006FA2B8 /* BSRecognizerTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRecognizerTableView.h; sourceTree = "<group>"; };
+		30AD8F2D261C4319006FA2B8 /* BSRecognizerTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRecognizerTableView.m; sourceTree = "<group>"; };
+		30AD8F31261C4392006FA2B8 /* BSRecoChildTableView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRecoChildTableView.h; sourceTree = "<group>"; };
+		30AD8F32261C4392006FA2B8 /* BSRecoChildTableView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSRecoChildTableView.m; sourceTree = "<group>"; };
+		30AD8F38261C5975006FA2B8 /* BSClassifyScrollView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSClassifyScrollView.h; sourceTree = "<group>"; };
+		30AD8F39261C5975006FA2B8 /* BSClassifyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSClassifyScrollView.m; sourceTree = "<group>"; };
+		30AD8F3D261C5B5A006FA2B8 /* BSChildScrollVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSChildScrollVC.h; sourceTree = "<group>"; };
+		30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSChildScrollVC.m; sourceTree = "<group>"; };
+		30AD8F42261D5916006FA2B8 /* BSCategoryOrigin+BSCCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSCategoryOrigin+BSCCExtension.h"; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
@@ -124,10 +141,6 @@
 		30B8FF66259C1EE30016D995 /* BSBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBlockController.m; sourceTree = "<group>"; };
 		30C3D2D425FA2395003CBC13 /* BSMsgSendForMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMsgSendForMethod.h; sourceTree = "<group>"; };
 		30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMsgSendForMethod.m; sourceTree = "<group>"; };
-		30C3D2E226021289003CBC13 /* BSMutiScrollViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMutiScrollViewVC.h; sourceTree = "<group>"; };
-		30C3D2E326021289003CBC13 /* BSMutiScrollViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMutiScrollViewVC.m; sourceTree = "<group>"; };
-		30C3D2E926021609003CBC13 /* BSTapButton.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTapButton.h; sourceTree = "<group>"; };
-		30C3D2EA26021609003CBC13 /* BSTapButton.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTapButton.m; sourceTree = "<group>"; };
 		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
@@ -394,6 +407,7 @@
 			children = (
 				308F962525F5F7600051A225 /* BSCategoryOrigin.h */,
 				308F962625F5F7600051A225 /* BSCategoryOrigin.m */,
+				30AD8F42261D5916006FA2B8 /* BSCategoryOrigin+BSCCExtension.h */,
 				308F962C25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.h */,
 				308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */,
 				308F963125F5FAA90051A225 /* BSCategoryVC.h */,
@@ -432,10 +446,18 @@
 		30C3D2E126021260003CBC13 /* MutiScrollView */ = {
 			isa = PBXGroup;
 			children = (
-				30C3D2E226021289003CBC13 /* BSMutiScrollViewVC.h */,
-				30C3D2E326021289003CBC13 /* BSMutiScrollViewVC.m */,
-				30C3D2E926021609003CBC13 /* BSTapButton.h */,
-				30C3D2EA26021609003CBC13 /* BSTapButton.m */,
+				30AD8F1B261C3A77006FA2B8 /* BSScrollView.h */,
+				30AD8F1C261C3A77006FA2B8 /* BSScrollView.m */,
+				30AD8F20261C429A006FA2B8 /* BSContainerVC.h */,
+				30AD8F21261C429A006FA2B8 /* BSContainerVC.m */,
+				30AD8F3D261C5B5A006FA2B8 /* BSChildScrollVC.h */,
+				30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */,
+				30AD8F2C261C4319006FA2B8 /* BSRecognizerTableView.h */,
+				30AD8F2D261C4319006FA2B8 /* BSRecognizerTableView.m */,
+				30AD8F31261C4392006FA2B8 /* BSRecoChildTableView.h */,
+				30AD8F32261C4392006FA2B8 /* BSRecoChildTableView.m */,
+				30AD8F38261C5975006FA2B8 /* BSClassifyScrollView.h */,
+				30AD8F39261C5975006FA2B8 /* BSClassifyScrollView.m */,
 			);
 			path = MutiScrollView;
 			sourceTree = "<group>";
@@ -836,7 +858,7 @@
 			files = (
 				30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */,
 				30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */,
-				30C3D2EB26021609003CBC13 /* BSTapButton.m in Sources */,
+				30AD8F3F261C5B5A006FA2B8 /* BSChildScrollVC.m in Sources */,
 				30D2E5DB257108BF001EFB02 /* BSProtocalController.m in Sources */,
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */,
@@ -846,14 +868,17 @@
 				30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */,
 				305303B125A5B53400748F50 /* BSSubFuncListController.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
+				30AD8F1D261C3A77006FA2B8 /* BSScrollView.m in Sources */,
 				6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */,
+				30AD8F33261C4392006FA2B8 /* BSRecoChildTableView.m in Sources */,
+				30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
 				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
 				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
+				30AD8F2E261C4319006FA2B8 /* BSRecognizerTableView.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
-				30C3D2E426021289003CBC13 /* BSMutiScrollViewVC.m in Sources */,
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,
 				308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */,
 				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
@@ -867,6 +892,7 @@
 				3053043025B12C0400748F50 /* BSTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
+				30AD8F22261C429A006FA2B8 /* BSContainerVC.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 				308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */,
 				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,

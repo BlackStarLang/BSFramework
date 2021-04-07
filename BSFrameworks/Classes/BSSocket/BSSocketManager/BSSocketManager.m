@@ -81,6 +81,7 @@ static int CreatClientSocket(){
     
     if (connectToServer(self.clientScoket, serverIp, serverPort) == 0) {
         NSLog(@"Socket连接失败");
+        self.clientScoket = 0;
         return;
     }
     NSLog(@"Socket 连接成功");
@@ -118,9 +119,11 @@ static int connectToServer(int clientSocket ,const char *serverIp ,short serverP
 
 
 -(void)disConnect{
-    [self sendMessage:@"BSSocket.disconnect"];
-//    close(self.clientScoket);
-//    NSLog(@"客户端断开连接");
+    if (self.clientScoket != 0) {
+        [self sendMessage:@"BSSocket.disconnect"];
+        //    close(self.clientScoket);
+        //    NSLog(@"客户端断开连接");
+    }
 }
 
 

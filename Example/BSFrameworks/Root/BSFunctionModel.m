@@ -81,7 +81,7 @@
                              @"Timer":@"BSTimerViewController",
                              @"Category研究：方法加载、重写":@"BSCategoryVC",
                              @"消息转发机制":@"BSMsgSendForMethod",
-                             @"多手势":@"BSMutiScrollViewVC",
+                             @"滚动视图联动":@"BSContainerVC",
     };
     
     return subDic;

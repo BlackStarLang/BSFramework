@@ -43,7 +43,7 @@
         "Photos",
         "AVFoundation"
       ],
-      "resources": "BSFrameworks/Assets/PhotoFramework/*",
+      "resources": "BSFrameworks/Assets/PhotoFramework/*{.png}",
       "dependencies": {
         "BSFrameworks/BSCategory": [
 

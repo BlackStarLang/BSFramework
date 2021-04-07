@@ -1,0 +1,28 @@
+//
+//  BSRecognizerTableView.m
+//  BSFrameworks_Example
+//
+//  Created by 叶一枫 on 2021/4/6.
+//  Copyright © 2021 blackstar_lang@163.com. All rights reserved.
+//
+
+#import "BSRecognizerTableView.h"
+
+@interface BSRecognizerTableView ()<UIGestureRecognizerDelegate>
+
+@end
+
+
+@implementation BSRecognizerTableView
+
+
+
+
+-(BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
+}
+
+
+
+@end
