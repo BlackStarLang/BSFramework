@@ -23,9 +23,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
-
-/// .h 文件中的 category ，自动生成实例变量，set、get 方法
-
+/// 声明
 @interface BSCategoryOrigin (prive)
 
 /// 虽然声明了属性，但是没有成员变量
@@ -33,9 +31,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-
+/// 实现
 @implementation BSCategoryOrigin (prive)
-
 
 
 @end

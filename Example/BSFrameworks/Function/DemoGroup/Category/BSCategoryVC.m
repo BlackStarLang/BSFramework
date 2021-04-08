@@ -24,6 +24,7 @@
 }
 
 
+
 -(void)showMethod{
     [BSCategoryOrigin factory];
     BSCategoryOrigin *origin = [[BSCategoryOrigin alloc]init];

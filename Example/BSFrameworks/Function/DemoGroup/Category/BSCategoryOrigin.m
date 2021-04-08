@@ -41,6 +41,9 @@
 }
 
 
+
+
+
 -(instancetype)init{
     self = [super init];
     if (self) {
@@ -67,7 +70,7 @@
 /// extension 只有.h文件
 /// extension 可以声明属性，并且会生成对应的实例变量，以及对应的set、get方法
 /// extension 的声明不能放在实现后，即 interface 必须要在 implementation 上边
-/// extension 可以在已有文件中扩展添加（.h 和 .m 都可以，.h在外表可以直接引用，.m私有，无法引用）
+/// extension 可以在已有文件中扩展添加（.h 和 .m 都可以，.h在外面可以直接引用，.m私有，无法在其他类中引用）
 
 /// 如果将声明放在 .m 文件中，无论是 extension 还是 category ，都将是私有的，
 /// 那么 extension 已经满足所有需求，对于 category 就没有什么意义了，所以对于 category，声明还是应该放在.h文件中，
@@ -124,6 +127,8 @@
 
 
 
+/// .m 中声明的 category，由于.m 文件私有，
+/// 所以在.m 文件中声明category ，基本没什么意义
 @interface BSCategoryOrigin (prive1)
 
 /// 虽然声明了属性，但是没有成员变量
