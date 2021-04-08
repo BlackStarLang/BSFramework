@@ -33,11 +33,17 @@
     NSLog(@"BSCategoryOrigin load");
 }
 
+
++(void)initialize{
+    NSLog(@"BSCategoryOrigin initialize");
+}
+
+
 /// 对于 工厂化 方法，和实例方法相同，
 /// 而category会后执行，但是都会执行
 
 +(void)factory{
-    NSLog(@"factory Origin load");
+    NSLog(@"factory Origin");
 }
 
 

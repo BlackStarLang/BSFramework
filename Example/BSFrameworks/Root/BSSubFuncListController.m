@@ -36,7 +36,7 @@
 
 -(void)initSubViews{
 
-    self.title = @"BSFrameWork";
+    self.title = @"DemoGroup";
     
     BSFunctionModel *functionM = [[BSFunctionModel alloc]init];
     [functionM getSubFuncArr];

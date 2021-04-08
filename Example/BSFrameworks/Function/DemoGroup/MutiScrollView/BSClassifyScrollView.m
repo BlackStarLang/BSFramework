@@ -50,7 +50,6 @@
 
 
 
-
 #pragma mark - init 属性初始化
 
 - (UIScrollView *)scrollView{

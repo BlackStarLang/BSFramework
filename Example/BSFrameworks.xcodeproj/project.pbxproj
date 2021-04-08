@@ -32,6 +32,13 @@
 		30AD8F33261C4392006FA2B8 /* BSRecoChildTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F32261C4392006FA2B8 /* BSRecoChildTableView.m */; };
 		30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F39261C5975006FA2B8 /* BSClassifyScrollView.m */; };
 		30AD8F3F261C5B5A006FA2B8 /* BSChildScrollVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */; };
+		30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F52261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m */; };
+		30AD8F59261EF34F006FA2B8 /* BSNotificationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F58261EF34F006FA2B8 /* BSNotificationVC.m */; };
+		30AD8F60261EF36E006FA2B8 /* BSNotificationPostVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F5F261EF36E006FA2B8 /* BSNotificationPostVC.m */; };
+		30AD8F65261EF383006FA2B8 /* BSNotificationObj.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F64261EF383006FA2B8 /* BSNotificationObj.m */; };
+		30AD8F6A261EF392006FA2B8 /* BSNotificationView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F69261EF392006FA2B8 /* BSNotificationView.m */; };
+		30AD8F72261F0CF8006FA2B8 /* BSResponseChainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F71261F0CF8006FA2B8 /* BSResponseChainVC.m */; };
+		30AD8F79261F0D26006FA2B8 /* BSChainSuperView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AD8F78261F0D26006FA2B8 /* BSChainSuperView.m */; };
 		30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE963B2488977E009A43FB /* BSPhotoVC.m */; };
 		30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 30AE96822488FEC6009A43FB /* BSRootCell.m */; };
 		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
@@ -131,6 +138,20 @@
 		30AD8F3D261C5B5A006FA2B8 /* BSChildScrollVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSChildScrollVC.h; sourceTree = "<group>"; };
 		30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSChildScrollVC.m; sourceTree = "<group>"; };
 		30AD8F42261D5916006FA2B8 /* BSCategoryOrigin+BSCCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSCategoryOrigin+BSCCExtension.h"; sourceTree = "<group>"; };
+		30AD8F51261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+BSNotiCenter.h"; sourceTree = "<group>"; };
+		30AD8F52261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+BSNotiCenter.m"; sourceTree = "<group>"; };
+		30AD8F57261EF34F006FA2B8 /* BSNotificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotificationVC.h; sourceTree = "<group>"; };
+		30AD8F58261EF34F006FA2B8 /* BSNotificationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotificationVC.m; sourceTree = "<group>"; };
+		30AD8F5E261EF36E006FA2B8 /* BSNotificationPostVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotificationPostVC.h; sourceTree = "<group>"; };
+		30AD8F5F261EF36E006FA2B8 /* BSNotificationPostVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotificationPostVC.m; sourceTree = "<group>"; };
+		30AD8F63261EF383006FA2B8 /* BSNotificationObj.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotificationObj.h; sourceTree = "<group>"; };
+		30AD8F64261EF383006FA2B8 /* BSNotificationObj.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotificationObj.m; sourceTree = "<group>"; };
+		30AD8F68261EF392006FA2B8 /* BSNotificationView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotificationView.h; sourceTree = "<group>"; };
+		30AD8F69261EF392006FA2B8 /* BSNotificationView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotificationView.m; sourceTree = "<group>"; };
+		30AD8F70261F0CF8006FA2B8 /* BSResponseChainVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSResponseChainVC.h; sourceTree = "<group>"; };
+		30AD8F71261F0CF8006FA2B8 /* BSResponseChainVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSResponseChainVC.m; sourceTree = "<group>"; };
+		30AD8F77261F0D26006FA2B8 /* BSChainSuperView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSChainSuperView.h; sourceTree = "<group>"; };
+		30AD8F78261F0D26006FA2B8 /* BSChainSuperView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSChainSuperView.m; sourceTree = "<group>"; };
 		30AE963A2488977E009A43FB /* BSPhotoVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSPhotoVC.h; sourceTree = "<group>"; };
 		30AE963B2488977E009A43FB /* BSPhotoVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSPhotoVC.m; sourceTree = "<group>"; };
 		30AE96812488FEC6009A43FB /* BSRootCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSRootCell.h; sourceTree = "<group>"; };
@@ -327,6 +348,8 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				30AD8F6F261F0C8F006FA2B8 /* HitTest */,
+				30AD8F56261EF332006FA2B8 /* Notification */,
 				30C3D2E126021260003CBC13 /* MutiScrollView */,
 				30C3D2D325FA236E003CBC13 /* MethodMsgSend */,
 				30702832249C62AE000C5384 /* RunLoop */,
@@ -423,6 +446,34 @@
 				3097574C2574E84100A3E2CA /* BSOperatorController.m */,
 			);
 			path = "Mutil-Threading";
+			sourceTree = "<group>";
+		};
+		30AD8F56261EF332006FA2B8 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				30AD8F57261EF34F006FA2B8 /* BSNotificationVC.h */,
+				30AD8F58261EF34F006FA2B8 /* BSNotificationVC.m */,
+				30AD8F51261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.h */,
+				30AD8F52261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m */,
+				30AD8F5E261EF36E006FA2B8 /* BSNotificationPostVC.h */,
+				30AD8F5F261EF36E006FA2B8 /* BSNotificationPostVC.m */,
+				30AD8F63261EF383006FA2B8 /* BSNotificationObj.h */,
+				30AD8F64261EF383006FA2B8 /* BSNotificationObj.m */,
+				30AD8F68261EF392006FA2B8 /* BSNotificationView.h */,
+				30AD8F69261EF392006FA2B8 /* BSNotificationView.m */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		30AD8F6F261F0C8F006FA2B8 /* HitTest */ = {
+			isa = PBXGroup;
+			children = (
+				30AD8F70261F0CF8006FA2B8 /* BSResponseChainVC.h */,
+				30AD8F71261F0CF8006FA2B8 /* BSResponseChainVC.m */,
+				30AD8F77261F0D26006FA2B8 /* BSChainSuperView.h */,
+				30AD8F78261F0D26006FA2B8 /* BSChainSuperView.m */,
+			);
+			path = HitTest;
 			sourceTree = "<group>";
 		};
 		30B8FF64259C1ECE0016D995 /* Block */ = {
@@ -856,6 +907,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				30AD8F65261EF383006FA2B8 /* BSNotificationObj.m in Sources */,
 				30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */,
 				30DD8B38258B2EEB00E49AD9 /* BSAutoreleasePoolController.m in Sources */,
 				30AD8F3F261C5B5A006FA2B8 /* BSChildScrollVC.m in Sources */,
@@ -866,6 +918,7 @@
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
 				30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */,
+				30AD8F72261F0CF8006FA2B8 /* BSResponseChainVC.m in Sources */,
 				305303B125A5B53400748F50 /* BSSubFuncListController.m in Sources */,
 				30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */,
 				30AD8F1D261C3A77006FA2B8 /* BSScrollView.m in Sources */,
@@ -884,10 +937,12 @@
 				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
+				30AD8F60261EF36E006FA2B8 /* BSNotificationPostVC.m in Sources */,
 				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
+				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
 				3053043025B12C0400748F50 /* BSTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
@@ -895,8 +950,11 @@
 				30AD8F22261C429A006FA2B8 /* BSContainerVC.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 				308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */,
+				30AD8F6A261EF392006FA2B8 /* BSNotificationView.m in Sources */,
 				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,
 				308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */,
+				30AD8F59261EF34F006FA2B8 /* BSNotificationVC.m in Sources */,
+				30AD8F79261F0D26006FA2B8 /* BSChainSuperView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

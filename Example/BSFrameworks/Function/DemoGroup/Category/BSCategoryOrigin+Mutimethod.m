@@ -12,11 +12,15 @@
 @implementation BSCategoryOrigin (Mutimethod)
 
 +(void)factory{
-    NSLog(@"factory category load");
+    NSLog(@"factory category");
 }
 
 +(void)load{
     NSLog(@"BSCategoryOrigin category load");
+}
+
++(void)initialize{
+    NSLog(@"BSCategoryOrigin category initialize");
 }
 
 // 与本类同名方法
