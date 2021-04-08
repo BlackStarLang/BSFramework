@@ -25,7 +25,7 @@
 
 
 -(void)showMethod{
-    
+    [BSCategoryOrigin factory];
     BSCategoryOrigin *origin = [[BSCategoryOrigin alloc]init];
     [origin showTotalInfo];
 //    [origin test];

@@ -11,6 +11,14 @@
 
 @implementation BSCategoryOrigin (Mutimethod)
 
++(void)factory{
+    NSLog(@"factory category load");
+}
+
++(void)load{
+    NSLog(@"BSCategoryOrigin category load");
+}
+
 // 与本类同名方法
 -(void)test{
 

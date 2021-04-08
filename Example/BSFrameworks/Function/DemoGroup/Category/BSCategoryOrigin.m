@@ -26,6 +26,21 @@
 }
 
 
+/// 对于 +load 方法，本类会先执行，
+/// 而category会后执行，但是都会执行
+
++(void)load{
+    NSLog(@"BSCategoryOrigin load");
+}
+
+/// 对于 工厂化 方法，和实例方法相同，
+/// 而category会后执行，但是都会执行
+
++(void)factory{
+    NSLog(@"factory Origin load");
+}
+
+
 -(instancetype)init{
     self = [super init];
     if (self) {

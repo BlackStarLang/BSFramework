@@ -14,6 +14,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic ,strong) NSString *originProperty;
 
++(void)factory;
+
 -(void)showTotalInfo;
 
 -(void)test;
