@@ -69,6 +69,7 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		77402D9D263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		A7B9A5A229C66DEC5D85B038 /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90ADD76C90E3CA4C79881513 /* libPods-BSFrameworks_Example.a */; };
 		BF322EBB438A130D475C6DC2 /* libPods-BSFrameworks_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 27B71FCF35A3D8BC9DADE26D /* libPods-BSFrameworks_Tests.a */; };
@@ -203,6 +204,8 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6F31A20A37F7F47B153DD4F3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		77402D9B263A65BD0003A425 /* BSNotiAndUserdefaultStandard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotiAndUserdefaultStandard.h; sourceTree = "<group>"; };
+		77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotiAndUserdefaultStandard.m; sourceTree = "<group>"; };
 		7DAFF48ABAAB9BB1ECEE86FE /* Pods-BSFrameworks_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7EF9CD17C5C025348FBB461A /* Pods-BSFrameworks_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.debug.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
@@ -348,6 +351,7 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				77402D9A263A64E80003A425 /* Notification & Userdefault */,
 				30AD8F6F261F0C8F006FA2B8 /* HitTest */,
 				30AD8F56261EF332006FA2B8 /* Notification */,
 				30C3D2E126021260003CBC13 /* MutiScrollView */,
@@ -678,6 +682,15 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		77402D9A263A64E80003A425 /* Notification & Userdefault */ = {
+			isa = PBXGroup;
+			children = (
+				77402D9B263A65BD0003A425 /* BSNotiAndUserdefaultStandard.h */,
+				77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */,
+			);
+			path = "Notification & Userdefault";
+			sourceTree = "<group>";
+		};
 		C6AB93C6E783B94B37BC5358 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -915,6 +928,7 @@
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */,
 				302E4C5D2612C2F4005A4E2A /* BSSocketViewController.m in Sources */,
+				77402D9D263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
 				30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */,

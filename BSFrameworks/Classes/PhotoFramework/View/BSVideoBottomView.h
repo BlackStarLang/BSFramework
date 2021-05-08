@@ -21,8 +21,9 @@ typedef enum : NSUInteger {
 } FUNCTYPE;
 
 
+#pragma mark 拍摄状态（包括拍照和录制）
 typedef enum : NSUInteger {
-    /// 拍摄状态（包括拍照和录制）
+    
     RECORD_STATUS_UNRECORD = 0, /// 未拍摄
     RECORD_STATUS_RECORDING,    /// 拍摄中
     RECORD_STATUS_RECORDED,     /// 拍摄完成
