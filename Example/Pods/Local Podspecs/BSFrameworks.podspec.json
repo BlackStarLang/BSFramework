@@ -66,6 +66,10 @@
     {
       "name": "BSSocket",
       "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}"
+    },
+    {
+      "name": "BSVideoPreLoader",
+      "source_files": "BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}"
     }
   ]
 }

@@ -11,7 +11,7 @@
 @implementation NSNotificationCenter (BSNotiCenter)
 
 -(void)removeObserver:(id)observer{
-    NSLog(@"removeObserver %@",[observer class]);
+//    NSLog(@"removeObserver %@",[observer class]);
 
 }
 

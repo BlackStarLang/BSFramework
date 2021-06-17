@@ -77,6 +77,11 @@ Pod::Spec.new do |s|
     socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
     
   end
+  
+  s.subspec 'BSVideoPreLoader' do |videoloader|
+    videoloader.source_files = 'BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}'
+    
+  end
   # 上拉下拉刷新控件
 #  s.subspec 'BSRefresh' do |ss|
 #    ss.source_files = 'BSFrameworks/Classes/BSRefresh/**/*{.h,.m}'
