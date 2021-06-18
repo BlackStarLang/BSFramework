@@ -7,10 +7,27 @@
 
 #import <Foundation/Foundation.h>
 
-NS_ASSUME_NONNULL_BEGIN
+
 
 @interface BSVideoPreLoadCache : NSObject
 
+/// 存储视频缓存数据
+-(void)saveVideoCacheWithData:(NSData *)cacheData fileUrl:(NSString *)fileUrl;
+
+/// 获取视频缓存
+-(NSData *)getVideoCacheWithFileUrl:(NSString *)fileUrl;
+
 @end
 
-NS_ASSUME_NONNULL_END
+
+
+
+
+@interface BSVideoPreLoadCacheModel : NSObject
+
+@property (nonatomic , strong) NSData *data;
+
+@property (nonatomic , copy) NSString *fileUrl;
+
+
+@end

@@ -19,7 +19,7 @@
 @property (nonatomic , strong) AVPlayerItem *playerItem;
 @property (nonatomic , strong) AVPlayerLayer *playerLayer;
 @property (nonatomic , strong) UIProgressView *progressView;
-
+@property (nonatomic , strong) BSVideoPreLoadManager *loadManager;
 @property (nonatomic , strong) UIButton *playBtn;
 
 @property (nonatomic , assign) BOOL playing;
@@ -30,6 +30,7 @@
 @implementation BSVideoPlayerVC
 
 -(void)dealloc{
+    NSLog(@"BSVideoPlayerVC dealloc");
 //    [[NSNotificationCenter defaultCenter]removeObserver:self];
 }
 
@@ -44,14 +45,16 @@
 
 -(void)config{
     
-    NSString *url = @"http://img42.ddimg.cn/asset/4111c68190234858895c131a407f4cc0/play_video/8d691adbcbd54c811c97f64735e744e7.mp4";
+    NSString *url = @"http://img42.ddimg.cn/asset/99538e2e128907ea9ac2c6d13f44c616/play_video/d2f54f53f272f27c377bd072e3a42581.mp4";
 
-    BSVideoPreLoadManager *manager = [[BSVideoPreLoadManager alloc]init];
+    self.loadManager = [[BSVideoPreLoadManager alloc]init];
     
-    self.playerItem = [manager getPlayerItemWithUrls:url];
+    self.playerItem = [self.loadManager getPlayerItemWithUrls:url];
     self.player = [[AVPlayer alloc]initWithPlayerItem:self.playerItem];
     self.playerLayer.player = self.player;
     
+    self.playing = YES;
+    [self.player play];
     
 //    [[NSNotificationCenter defaultCenter]addObserver:self.playerItem forKeyPath:@"currentTime" options:NSKeyValueObservingOptionNew context:nil];
 }
@@ -86,11 +89,11 @@
 
 -(void)observeValueForKeyPath:(NSString *)keyPath ofObject:(id)object change:(NSDictionary<NSKeyValueChangeKey,id> *)change context:(void *)context{
     
-    if ([keyPath isEqualToString:@"currentTime"]) {
-        NSValue *curTime = [NSValue valueWithCMTime:self.playerItem.currentTime];
-        NSValue *duration = [NSValue valueWithCMTime:self.playerItem.duration];
-        self.progressView.progress = 0.5;
-    }
+//    if ([keyPath isEqualToString:@"currentTime"]) {
+//        NSValue *curTime = [NSValue valueWithCMTime:self.playerItem.currentTime];
+//        NSValue *duration = [NSValue valueWithCMTime:self.playerItem.duration];
+//        self.progressView.progress = 0.5;
+//    }
 }
 
 

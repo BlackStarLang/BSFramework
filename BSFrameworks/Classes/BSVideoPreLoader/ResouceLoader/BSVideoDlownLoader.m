@@ -6,6 +6,7 @@
 //
 
 #import "BSVideoDlownLoader.h"
+#import "BSVideoPreLoadCache.h"
 
 @interface BSVideoDlownLoader ()<NSURLSessionDelegate,NSURLSessionDataDelegate>
 
@@ -13,6 +14,9 @@
 @property (nonatomic , strong) NSURLSessionTask *task;
 
 @property (nonatomic , strong) NSMutableArray *mutTasks;
+
+@property (nonatomic , strong) BSVideoPreLoadCache *loadCache;
+
 @end
 
 @implementation BSVideoDlownLoader
@@ -32,13 +36,23 @@
 
 -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveResponse:(NSURLResponse *)response completionHandler:(void (^)(NSURLSessionResponseDisposition))completionHandler{
     
-    NSLog(@"didReceiveResponse : %@",response);
+    if ([self.delegate respondsToSelector:@selector(BSVideoDlownLoaderReceiveResponse:dataTaskRequest:)]) {
+        
+        [self.delegate BSVideoDlownLoaderReceiveResponse:response dataTaskRequest:dataTask.currentRequest];
+    }
+
     completionHandler(NSURLSessionResponseAllow);
 }
 
 -(void)URLSession:(NSURLSession *)session dataTask:(NSURLSessionDataTask *)dataTask didReceiveData:(NSData *)data{
     
+//    NSURL *URL = dataTask.currentRequest.URL;
+//    [self.loadCache saveVideoCacheWithData:data fileUrl:URL.absoluteString];
     
+    if ([self.delegate respondsToSelector:@selector(BSVideoDlownLoaderDidReceiveData:request:)]) {
+        
+        [self.delegate BSVideoDlownLoaderDidReceiveData:data request:dataTask.currentRequest];
+    }
 }
 
 
@@ -63,6 +77,13 @@
         _mutTasks = [NSMutableArray array];
     }
     return _mutTasks;
+}
+
+-(BSVideoPreLoadCache *)loadCache{
+    if (!_loadCache) {
+        _loadCache = [[BSVideoPreLoadCache alloc]init];
+    }
+    return _loadCache;
 }
 
 @end
