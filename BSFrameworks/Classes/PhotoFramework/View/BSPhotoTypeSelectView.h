@@ -15,6 +15,11 @@ typedef enum : NSUInteger {
     SELECTTYPE_PIC,         //拍照类型：图片
 } SELECTTYPE;
 
+//typedef NS_ENUM(NSUInteger, SelectType) {
+//    SelectTypeVideo = 0,
+//    SelectTypePic,
+//};
+
 @protocol BSPhotoTypeSelectViewDelegate <NSObject>
 
 @optional

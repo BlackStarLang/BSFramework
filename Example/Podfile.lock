@@ -4,6 +4,7 @@ PODS:
     - BSFrameworks/BSLooperView (= 0.1.10)
     - BSFrameworks/BSPhotoFramework (= 0.1.10)
     - BSFrameworks/BSSocket (= 0.1.10)
+    - BSFrameworks/BSVideoPreLoader (= 0.1.10)
     - Masonry
     - SDWebImage
   - BSFrameworks/BSCategory (0.1.10):
@@ -18,6 +19,9 @@ PODS:
     - Masonry
     - SDWebImage
   - BSFrameworks/BSSocket (0.1.10):
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSVideoPreLoader (0.1.10):
     - Masonry
     - SDWebImage
   - FBRetainCycleDetector (0.1.4)
@@ -50,7 +54,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 5e73cfa6b6ab1c3109d345f3e3ef72b826b8452d
+  BSFrameworks: ac7a176c06b7f4cd6be7ceced8b73635d220da70
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16

@@ -35,6 +35,10 @@
 #import "BSPhotoPreviewController.h"
 #import "BSPhotoPreviewVideoVC.h"
 #import "BSPhotoViewModel.h"
+#import "BSSocket.h"
+#import "BSSocketConfig.h"
+#import "BSSocketManager.h"
+#import "BSSocketProtocal.h"
 
 FOUNDATION_EXPORT double BSFrameworksVersionNumber;
 FOUNDATION_EXPORT const unsigned char BSFrameworksVersionString[];
