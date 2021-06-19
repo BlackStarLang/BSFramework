@@ -75,7 +75,7 @@ Pod::Spec.new do |s|
   
   s.subspec 'BSSocket' do |socket|
     socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
-    
+    socket.public_header_files = 'BSFrameworks/Classes/BSSocket/BSSocket.h'
   end
   # 上拉下拉刷新控件
 #  s.subspec 'BSRefresh' do |ss|

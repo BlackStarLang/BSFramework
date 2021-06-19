@@ -43,7 +43,7 @@
         "Photos",
         "AVFoundation"
       ],
-      "resources": "BSFrameworks/Assets/PhotoFramework/*{.png}",
+      "resources": "BSFrameworks/Assets/PhotoFramework/*",
       "dependencies": {
         "BSFrameworks/BSCategory": [
 
@@ -65,7 +65,8 @@
     },
     {
       "name": "BSSocket",
-      "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}"
+      "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}",
+      "public_header_files": "BSFrameworks/Classes/BSSocket/BSSocket.h"
     }
   ]
 }
