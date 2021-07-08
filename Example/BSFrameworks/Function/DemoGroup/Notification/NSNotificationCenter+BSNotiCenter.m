@@ -12,7 +12,6 @@
 
 -(void)removeObserver:(id)observer{
 //    NSLog(@"removeObserver %@",[observer class]);
-
 }
 
 
