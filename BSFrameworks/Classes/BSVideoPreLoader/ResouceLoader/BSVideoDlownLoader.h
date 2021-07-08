@@ -16,6 +16,8 @@
 
 -(void)BSVideoDlownLoaderDidReceiveData:(NSData *)data request:(NSURLRequest *)request;
 
+-(void)BSVideoDlownLoaderDidFinishRequest:(NSURLRequest *)request withError:(NSError *)error;
+
 @end
 
 

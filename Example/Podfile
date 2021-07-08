@@ -10,7 +10,7 @@ target 'BSFrameworks_Example' do
   pod 'TZImagePickerController'
   pod 'MJRefresh'
   pod 'MLeaksFinder'
-  
+  pod 'SDWebImage','~> 5.0'
   target 'BSFrameworks_Tests' do
     inherit! :search_paths
 

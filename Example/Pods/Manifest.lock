@@ -38,6 +38,7 @@ DEPENDENCIES:
   - BSFrameworks (from `../`)
   - MJRefresh
   - MLeaksFinder
+  - SDWebImage (~> 5.0)
   - TZImagePickerController
 
 SPEC REPOS:
@@ -62,6 +63,6 @@ SPEC CHECKSUMS:
   SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
   TZImagePickerController: 6685e6d81b8fd5453e80ba369dd4ebd6e97276ee
 
-PODFILE CHECKSUM: 8f5e6d369c970af895432d61fb634c9f1eeb9815
+PODFILE CHECKSUM: 98654672dc6d09d5dbdb2a7e9e373576c46713b7
 
 COCOAPODS: 1.10.1

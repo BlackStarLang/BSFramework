@@ -77,6 +77,7 @@
                         @{@"滚动视图联动，所在位置 ：DemoGroup/MutiscrollView":@"BSContainerVC"},
                         @{@"通知 NSNotificationCenter，所在位置 ：DemoGroup/Notification":@"BSNotificationPostVC"},
                         @{@"事件响应链，所在位置 ：DemoGroup/HitTest":@"BSResponseChainVC"},
+                        @{@"IJKPlayer 播放器":@"BSIKJPlayerController"},
     ];
     
     return subArr;
