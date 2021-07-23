@@ -1,40 +1,47 @@
+//
+//  BSBoostPresentationVC.m
+//  BSFrameworks_Example
+//
+//  Created by dangdang on 2021/7/23.
+//  Copyright © 2021 blackstar_lang@163.com. All rights reserved.
+//
 
 #define CORNER_RADIUS   4.f //16.f
 #define ALERT_SCREEN_W [UIScreen mainScreen].bounds.size.width
 #define ALERT_SCREEN_H [UIScreen mainScreen].bounds.size.height
-#define ALERT_FRAME CGRectMake(ALERT_SCREEN_W * 0.15, ALERT_SCREEN_H * 0.3, ALERT_SCREEN_W * 0.7, ALERT_SCREEN_H * 0.4);
+#define SCRREN_FRAME CGRectMake(0, 0, ALERT_SCREEN_W, ALERT_SCREEN_H);
 
-#import "BSProtocalController.h"
-#import <UIView+BSView.h>
+#import "BSBoostPresentationVC.h"
 
-@interface BSProtocalController()<UIViewControllerAnimatedTransitioning>
-@property (nonatomic, strong) UIView *dimmingView;
+@interface BSBoostPresentationVC ()<UIViewControllerAnimatedTransitioning>
+
+@property (nonatomic, strong) UIView *boostView;
 @property (nonatomic, strong) UIView *presentationWrappingView;
 
-@property (nonatomic ,assign) CGRect alertFrame;
-
-@property (nonatomic ,copy) NSString *title;
-@property (nonatomic ,copy) NSString *descreptionStr;
-
+@property (nonatomic ,assign) CGRect boostFrame;
 
 @end
 
-@implementation BSProtocalController
 
+@implementation BSBoostPresentationVC
 
-
--(instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController title:(NSString *)title descreption:(NSString *)descreption{
+-(instancetype)initWithPresentedViewController:(UIViewController *)presentedViewController presentingViewController:(UIViewController *)presentingViewController fromView:(UIView *)fromView{
     
     self = [super initWithPresentedViewController:presentedViewController presentingViewController:presentingViewController];
+    
     if (self) {
+        
+        self.boostView = fromView;
+        
+        UIWindow *keyWindow = [UIApplication sharedApplication].delegate.window;
+        CGRect boostFrame = [self.boostView convertRect:self.boostView.frame toView:keyWindow];
+        self.boostFrame = boostFrame;
+        
         presentedViewController.modalPresentationStyle = UIModalPresentationCustom;
-        self.alertFrame = ALERT_FRAME;
-        self.title = title;
-        self.descreptionStr = descreption;
     }
     return self;
+    
 }
-
 
 
 
@@ -49,7 +56,7 @@
     
     [self addContainerWrapView];
     
-    [self addDimmingView];
+//    [self addDimmingView];
     
     [self addSubViews];
 }
@@ -64,24 +71,33 @@
     presentationWrapperView.layer.shadowOpacity = 0.2f;
     presentationWrapperView.layer.shadowRadius = CORNER_RADIUS;
     presentationWrapperView.layer.shadowOffset = CGSizeMake(0, -3.f);
+    presentationWrapperView.backgroundColor = [UIColor lightGrayColor];
     self.presentationWrappingView = presentationWrapperView;
+    
+    id<UIViewControllerTransitionCoordinator> transitionCoordinator = self.presentingViewController.transitionCoordinator;
+    
+//    self.presentationWrappingView.frame = self.boostFrame;
+    
+    [transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
+        self.presentationWrappingView.frame = SCRREN_FRAME;
+    } completion:NULL];
     
     
     UIView *presentationRoundedCornerView = [[UIView alloc] initWithFrame:UIEdgeInsetsInsetRect(presentationWrapperView.bounds, UIEdgeInsetsMake(0, 0, -CORNER_RADIUS, 0))];
     presentationRoundedCornerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     presentationRoundedCornerView.layer.cornerRadius = CORNER_RADIUS;
     presentationRoundedCornerView.layer.masksToBounds = YES;
-    
-    
-    UIView *presentedControllerWrapperView = [[UIView alloc] initWithFrame:UIEdgeInsetsInsetRect(presentationRoundedCornerView.bounds, UIEdgeInsetsMake(0, 0, self.isAlert?0:CORNER_RADIUS, 0))];
+
+
+    UIView *presentedControllerWrapperView = [[UIView alloc] initWithFrame:UIEdgeInsetsInsetRect(presentationRoundedCornerView.bounds, UIEdgeInsetsMake(0, 0, CORNER_RADIUS,0))];
     presentedControllerWrapperView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    
-    
+
+
     /// 添加各种子view
     // Add presentedViewControllerWrapperView.
     presentedControllerView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
     presentedControllerView.frame = presentedControllerWrapperView.bounds;
-  
+
     [presentedControllerWrapperView addSubview:presentedControllerView];
     [presentationRoundedCornerView addSubview:presentedControllerWrapperView];
     [presentationWrapperView addSubview:presentationRoundedCornerView];
@@ -90,71 +106,15 @@
 
 
 -(void)addDimmingView{
-    /// 做屏幕透明度
-    UIView *dimmingView = [[UIView alloc] initWithFrame:self.containerView.bounds];
-    dimmingView.backgroundColor = [UIColor blackColor];
-    dimmingView.opaque = NO;
-    dimmingView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    [dimmingView addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(dimmingViewTapped:)]];
-    self.dimmingView = dimmingView;
-    [self.containerView addSubview:dimmingView];
-    
+
     id<UIViewControllerTransitionCoordinator> transitionCoordinator = self.presentingViewController.transitionCoordinator;
     
-    self.dimmingView.alpha = 0.f;
+    self.presentationWrappingView.frame = self.boostFrame;
+    
     [transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.dimmingView.alpha = 0.3f;
+//        self.containerView.frame = keyWindow.bounds;
+        self.presentationWrappingView.frame = SCRREN_FRAME;
     } completion:NULL];
-}
-
-
-
--(void)addSubViews{
-    
-    CGRect alertFrame = ALERT_FRAME;
- 
-    UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(15, 15, alertFrame.size.width - 30, 0)];
-    title.text = self.title;
-    title.numberOfLines = 0;
-    title.textAlignment = NSTextAlignmentCenter;
-    title.font = [UIFont boldSystemFontOfSize:16];
-    [title sizeToFit];
-    title.centerX = alertFrame.size.width/2;
-    
-    
-    UILabel *desLabel = [[UILabel alloc]initWithFrame:CGRectMake(title.left, title.bottom + 10, alertFrame.size.width - 30, 0)];
-    desLabel.text = self.descreptionStr;
-    desLabel.font = [UIFont systemFontOfSize:15];
-    desLabel.numberOfLines = 0;
-    desLabel.textAlignment = NSTextAlignmentCenter;
-    [desLabel sizeToFit];
-    desLabel.centerX = alertFrame.size.width/2;
-    
-
-    
-    UIStackView *buttonContainer = [[UIStackView alloc]initWithFrame:CGRectMake(0, desLabel.bottom + 10, self.alertFrame.size.width, 40)];
-   
-    UIButton *sureBtn = [[UIButton alloc]init];
-    [sureBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [sureBtn setTitle:@"确定" forState:UIControlStateNormal];
-    [sureBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    
-    UIButton *cancelBtn = [[UIButton alloc]init];
-    [cancelBtn addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
-    [cancelBtn setTitle:@"取消" forState:UIControlStateNormal];
-    [cancelBtn setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
-    
-    [buttonContainer addArrangedSubview:sureBtn];
-    [buttonContainer addArrangedSubview:cancelBtn];
-    buttonContainer.distribution = UIStackViewDistributionFillEqually;
-    
-    [self.presentationWrappingView addSubview:title];
-    [self.presentationWrappingView addSubview:desLabel];
-    [self.presentationWrappingView addSubview:buttonContainer];
-    
-    CGFloat left = (SCREEN_WIDTH - self.alertFrame.size.width)/2;
-    CGFloat top = (SCREEN_HEIGHT - buttonContainer.bottom)/2;
-    self.alertFrame = CGRectMake(left, top, self.alertFrame.size.width, buttonContainer.bottom);
 }
 
 
@@ -163,8 +123,21 @@
     id<UIViewControllerTransitionCoordinator> transitionCoordinator = self.presentingViewController.transitionCoordinator;
     
     [transitionCoordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext> context) {
-        self.dimmingView.alpha = 0.f;
+        
+        self.presentationWrappingView.frame = self.boostFrame;
+        
     } completion:NULL];
+}
+
+-(void)addSubViews{
+    
+    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 80, 40)];
+    button2.center = CGPointMake(100, 200);
+    [button2 setTitle:@"Boost" forState:UIControlStateNormal];
+    button2.backgroundColor = [UIColor redColor];
+    [button2 addTarget:self action:@selector(buttonClick:) forControlEvents:UIControlEventTouchUpInside];
+    [self.presentationWrappingView addSubview:button2];
+    
 }
 
 
@@ -174,7 +147,7 @@
     if (completed == YES){
         
         self.presentationWrappingView = nil;
-        self.dimmingView = nil;
+        self.boostView = nil;
     }
 }
 
@@ -182,7 +155,8 @@
 #pragma mark - action
 -(void)buttonClick:(UIButton *)sender{
     
-    
+    [self.presentingViewController dismissViewControllerAnimated:YES completion:NULL];
+
 }
 
 
@@ -190,7 +164,7 @@
    
     if (completed == NO){
         self.presentationWrappingView = nil;
-        self.dimmingView = nil;
+        self.boostView = nil;
     }
 }
 
@@ -226,7 +200,8 @@
 - (CGRect)frameOfPresentedViewInContainerView{
     
     NSLog(@"frameOfPresentedViewInContainerView \n");
-    return self.alertFrame;
+
+    return self.boostFrame;
 }
 
 
@@ -236,7 +211,7 @@
 
     [super containerViewWillLayoutSubviews];
     
-    self.dimmingView.frame = self.containerView.bounds;
+    self.boostView.frame = self.containerView.bounds;
     self.presentationWrappingView.frame = self.frameOfPresentedViewInContainerView;
 }
 
@@ -327,6 +302,5 @@
 {
     return self;
 }
-
 
 @end

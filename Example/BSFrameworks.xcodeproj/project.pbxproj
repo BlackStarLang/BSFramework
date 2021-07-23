@@ -83,6 +83,8 @@
 		77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382A2692B6F8006587AF /* libz.1.tbd */; };
 		77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382E2692B704006587AF /* libbz2.1.0.tbd */; };
 		77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
+		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
+		77EE7E7826AAB1EE009DE395 /* BSBoostPresentationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7726AAB1EE009DE395 /* BSBoostPresentationVC.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D7BED1EB328A79367833AB9B /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */; };
@@ -234,6 +236,10 @@
 		77B0382E2692B704006587AF /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
 		77B0384D26932CE6006587AF /* IJKMediaFramework */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = IJKMediaFramework; path = ../../ijkSDK/IJKMediaFramework; sourceTree = "<group>"; };
 		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		77EE7E7126AAAE0A009DE395 /* BSTransitionBoostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostController.h; sourceTree = "<group>"; };
+		77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostController.m; sourceTree = "<group>"; };
+		77EE7E7626AAB1EE009DE395 /* BSBoostPresentationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSBoostPresentationVC.h; sourceTree = "<group>"; };
+		77EE7E7726AAB1EE009DE395 /* BSBoostPresentationVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBoostPresentationVC.m; sourceTree = "<group>"; };
 		77F312322679EC5A0062CCF5 /* BSVideoPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVideoPlayerVC.h; sourceTree = "<group>"; };
 		77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSVideoPlayerVC.m; sourceTree = "<group>"; };
 		7DAFF48ABAAB9BB1ECEE86FE /* Pods-BSFrameworks_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -568,6 +574,10 @@
 				30D2E5CA256F495A001EFB02 /* BSATransitionController.m */,
 				30D2E5D9257108BF001EFB02 /* BSProtocalController.h */,
 				30D2E5DA257108BF001EFB02 /* BSProtocalController.m */,
+				77EE7E7126AAAE0A009DE395 /* BSTransitionBoostController.h */,
+				77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */,
+				77EE7E7626AAB1EE009DE395 /* BSBoostPresentationVC.h */,
+				77EE7E7726AAB1EE009DE395 /* BSBoostPresentationVC.m */,
 			);
 			path = TransitionAnimate;
 			sourceTree = "<group>";
@@ -1047,6 +1057,7 @@
 				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
+				77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */,
 				30AD8F60261EF36E006FA2B8 /* BSNotificationPostVC.m in Sources */,
 				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
@@ -1067,6 +1078,7 @@
 				308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */,
 				30AD8F59261EF34F006FA2B8 /* BSNotificationVC.m in Sources */,
 				30AD8F79261F0D26006FA2B8 /* BSChainSuperView.m in Sources */,
+				77EE7E7826AAB1EE009DE395 /* BSBoostPresentationVC.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

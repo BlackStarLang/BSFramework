@@ -55,7 +55,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: ac7a176c06b7f4cd6be7ceced8b73635d220da70
+  BSFrameworks: 1b775c77a4a3d04ca2da84bb5283ccff794511cf
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
