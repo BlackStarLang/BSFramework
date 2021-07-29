@@ -7,14 +7,11 @@
 //
 
 #import "BSTransitionBoostController.h"
-#import "BSBoostPresentationVC.h"
+#import "BSTransitionBoostAnimator.h"
 
-@interface BSTransitionBoostController ()<BSBoostPresentationVCDelegate>
+@interface BSTransitionBoostController ()<UIViewControllerTransitioningDelegate>
 
-@property (nonatomic , strong) UIView *boostView;
-
-@property (nonatomic ,strong) BSBoostPresentationVC *protocalVC;
-
+@property (nonatomic , strong) UIButton *backBtn;
 @end
 
 @implementation BSTransitionBoostController
@@ -25,11 +22,7 @@
     self = [super init];
     
     if (self) {
-        self.boostView = boostView;
-        
-        self.protocalVC = [[BSBoostPresentationVC alloc] initWithPresentedViewController:self presentingViewController:presentViewController fromView:self.boostView];
-        self.protocalVC.presentDelegate = self;
-        self.transitioningDelegate = self.protocalVC;
+        self.transitioningDelegate = self;
     }
     return self;
 }
@@ -37,35 +30,56 @@
 
 -(void)viewWillDisappear:(BOOL)animated{
     [super viewWillDisappear:animated];
-    self.protocalVC = nil;
 }
 
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 80, 40)];
+    button.center = CGPointMake(self.view.center.x, self.view.center.y - 50);
+    [button setTitle:@"点我返回" forState:UIControlStateNormal];
+    button.backgroundColor = [UIColor redColor];
+    [button addTarget:self action:@selector(backBtnClick) forControlEvents:UIControlEventTouchUpInside];
+    self.backBtn = button;
+    [self.view addSubview:button];
+    
 }
 
+-(void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+}
+
+-(void)backBtnClick{
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
 
 -(void)pop{
     [self.navigationController popViewControllerAnimated:YES];
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
--(void)BSBoostPresentationVCBack{
-    
-    [self pop];
+
+
+
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForPresentedController:(UIViewController *)presented presentingController:(UIViewController *)presenting sourceController:(UIViewController *)source{
+
+    return [BSTransitionBoostAnimator new];
 }
 
 
-/*
-#pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(id<UIViewControllerAnimatedTransitioning>)animationControllerForDismissedController:(UIViewController *)dismissed{
+
+
+    return [BSTransitionBoostAnimator new];
 }
-*/
+
+
+
+
+
 
 @end

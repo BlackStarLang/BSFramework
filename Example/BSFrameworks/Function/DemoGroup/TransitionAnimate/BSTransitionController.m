@@ -109,7 +109,7 @@
 -(void)boostTransition:(UIButton *)sender{
     
     BSTransitionBoostController *boostVC = [[BSTransitionBoostController alloc]initWithBoostView:sender presentViewController:self];
-    
+    boostVC.modalPresentationStyle = 0;
     [self presentViewController:boostVC animated:YES completion:nil];
 }
 

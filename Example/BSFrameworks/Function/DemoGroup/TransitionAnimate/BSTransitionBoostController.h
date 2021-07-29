@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface BSTransitionBoostController : UIViewController
+@interface BSTransitionBoostController : UIViewController 
 
 -(instancetype)initWithBoostView:(UIView *)boostView presentViewController:(UIViewController *)presentViewController;
 
