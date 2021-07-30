@@ -84,6 +84,10 @@
 		77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382E2692B704006587AF /* libbz2.1.0.tbd */; };
 		77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
 		77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */; };
+		77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */; };
+		77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6126B406AB0034EC86 /* 标题装饰.png */; };
+		77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6526B406B40034EC86 /* 签到入口.png */; };
+		77DA8D6A26B406C00034EC86 /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6926B406C00034EC86 /* time@2x.png */; };
 		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
@@ -238,6 +242,11 @@
 		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostAnimator.h; sourceTree = "<group>"; };
 		77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostAnimator.m; sourceTree = "<group>"; };
+		77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSButtonEdgeInsetsVC.h; sourceTree = "<group>"; };
+		77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSButtonEdgeInsetsVC.m; sourceTree = "<group>"; };
+		77DA8D6126B406AB0034EC86 /* 标题装饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标题装饰.png"; sourceTree = "<group>"; };
+		77DA8D6526B406B40034EC86 /* 签到入口.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到入口.png"; sourceTree = "<group>"; };
+		77DA8D6926B406C00034EC86 /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
 		77EE7E7126AAAE0A009DE395 /* BSTransitionBoostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostController.h; sourceTree = "<group>"; };
 		77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostController.m; sourceTree = "<group>"; };
 		77F312322679EC5A0062CCF5 /* BSVideoPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVideoPlayerVC.h; sourceTree = "<group>"; };
@@ -334,6 +343,7 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+				77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */,
 				302E4C5A2612C2DC005A4E2A /* BSSocket */,
 				77F312302679EC200062CCF5 /* BSVideoPreLoader */,
 				3053042825AD866800748F50 /* DemoGroup */,
@@ -703,6 +713,9 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77DA8D6926B406C00034EC86 /* time@2x.png */,
+				77DA8D6526B406B40034EC86 /* 签到入口.png */,
+				77DA8D6126B406AB0034EC86 /* 标题装饰.png */,
 				30D8BA7225480B7C00275C1A /* test1.mp4 */,
 				30D8BA6C2548099000275C1A /* test.mp4 */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -778,6 +791,15 @@
 				77B038122692B41F006587AF /* BSIKJPlayerController.m */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */ = {
+			isa = PBXGroup;
+			children = (
+				77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */,
+				77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */,
+			);
+			path = UIButtonEdgeInsets;
 			sourceTree = "<group>";
 		};
 		77F312302679EC200062CCF5 /* BSVideoPreLoader */ = {
@@ -894,11 +916,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				77DA8D6A26B406C00034EC86 /* time@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				30D8BA6D2548099000275C1A /* test.mp4 in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */,
+				77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1064,6 +1089,7 @@
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
+				77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */,
 				77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */,
 				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
