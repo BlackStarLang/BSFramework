@@ -109,11 +109,13 @@
     CGFloat height = [UIScreen mainScreen].bounds.size.height;
     
     BOOL iphoneX = NO;
-    if (height == 812 || height == 896) {
+    if (height == 812 || height == 896 || height == 844) {
         iphoneX = YES;
     }
     
-    CGFloat naviHeight = self.navigationController.navigationBar.frame.size.height + (iphoneX?44:20);
+    CGFloat statusHeight = [UIApplication sharedApplication].statusBarFrame.size.height;
+
+    CGFloat naviHeight = self.navigationController.navigationBar.frame.size.height + statusHeight;
     self.naviView.hiddenLeftBtn = !self.selectPreview;
 
     /// 隐藏 系统 NavigationBar， 使用View 替换
