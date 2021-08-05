@@ -44,6 +44,8 @@
     NSString *cacheIdentifier = [fileUrl stringByDeletingPathExtension];
     NSString *filePath = [[NSUserDefaults standardUserDefaults]objectForKey:cacheIdentifier];
     
+    if (!filePath) return nil;
+    
     NSError *error = nil;
     NSData *cacheData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedAlways error:&error];
     if (error) {
