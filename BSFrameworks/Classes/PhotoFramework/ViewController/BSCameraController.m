@@ -150,8 +150,8 @@
 -(void)masonryLayout{
 
     [self.photoImageView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.top.offset(30);
-        make.height.mas_equalTo(SCREEN_HEIGHT - 30 - 150);
+        make.top.offset(44);
+        make.height.mas_equalTo(SCREEN_HEIGHT - 44 - 150);
         make.left.offset(0);
         make.right.offset(0);
     }];
@@ -198,7 +198,7 @@
             
             self.previewLayer = [[AVCaptureVideoPreviewLayer alloc]initWithSession:self.session];
             self.previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill;
-            self.previewLayer.frame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 30 - 150);
+            self.previewLayer.frame = CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 44 - 150);
             [self.view.layer insertSublayer:self.previewLayer atIndex:0];
             [self.session startRunning];
         });
@@ -285,6 +285,32 @@
     }
 }
 
+-(void)resetLightStatus{
+    
+    if ([self.device lockForConfiguration:nil]) {
+        
+        if ([self.device hasTorch] && [self.device hasFlash]) {
+            
+            if (self.device.flashMode == AVCaptureTorchModeOff){
+                
+                if ([self.device isTorchModeSupported:AVCaptureTorchModeOff]) {
+                    self.device.flashMode = AVCaptureFlashModeOff;
+                    self.device.torchMode = AVCaptureTorchModeOff;
+                }
+                [self.ligntBtn setImage:[UIImage imageNamed:@"photo_camera_light_off"] forState:UIControlStateNormal];
+                
+            }else{
+                
+                if ([self.device isTorchModeSupported:AVCaptureTorchModeAuto]) {
+                    self.device.flashMode = AVCaptureFlashModeAuto;
+                    self.device.torchMode = AVCaptureTorchModeAuto;
+                }
+                [self.ligntBtn setImage:[UIImage imageNamed:@"photo_camera_light_auto"] forState:UIControlStateNormal];
+            }
+        }
+        [self.device unlockForConfiguration];
+    }
+}
 
 #pragma mark - action 交互事件
 
@@ -305,7 +331,7 @@
    
     }else{
         
-        // 兼容iOS 10以下机型，未测试，不清楚可不可以用
+        // 兼容iOS 10以下机型，未测试，不清楚可不可以用，没有iOS10以下机器
         self.connection = [self.outPut connectionWithMediaType:AVMediaTypeVideo];
         [self.connection setVideoOrientation:AVCaptureVideoOrientationPortrait];
 
@@ -325,6 +351,9 @@
     if ([self.delegate respondsToSelector:@selector(photoCameraTakeBtnClicked)]) {
         [self.delegate photoCameraTakeBtnClicked];
     }
+    
+    /// 拍摄后，闪光灯会关闭，需要重置闪光灯状态
+    [self resetLightStatus];
 }
 
 
@@ -465,7 +494,7 @@
 -(void)BSVideoBottomView:(BSVideoBottomView *)bottomView didSelectType:(SELECTTYPE)selectType{
 
     // 切换拍照类型时，使用毛玻璃效果过渡
-    CGRect blurFrame = CGRectMake(0, 30, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 30);
+    CGRect blurFrame = CGRectMake(0, 44, SCREEN_WIDTH, SCREEN_HEIGHT - 150 - 44);
     
     UIVisualEffectView *blurView = [[UIVisualEffectView alloc] initWithFrame:blurFrame];
     blurView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleLight];

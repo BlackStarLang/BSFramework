@@ -73,10 +73,17 @@ Pod::Spec.new do |s|
   end
 
   
+
 #  s.subspec 'BSSocket' do |socket|
 #    socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
 #    socket.public_header_files = 'BSFrameworks/Classes/BSSocket/BSSocket.h'
 #  end
+
+  s.subspec 'BSSocket' do |socket|
+    socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
+    socket.public_header_files = 'BSFrameworks/Classes/BSSocket/BSSocket.h','BSFrameworks/Classes/BSSocket/**/*{.h}'
+  end
+
   
   s.subspec 'BSVideoPreLoader' do |videoloader|
     videoloader.source_files = 'BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}'

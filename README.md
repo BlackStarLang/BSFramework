@@ -41,7 +41,7 @@ it, simply add the following line to your Podfile:
 - DynamicBehavior (动态行为)
 - Transition Animator （转场动画，模仿 AlertController）
 - KVO （原理探究，自定义KVO）
-- Socket （基于socket 的简单通信，需要配合后台：Python服务端socket [点击下载]()）
+- Socket （基于socket 的简单通信，需要配合后台：Python服务端socket (需要 python 3.0 ，2.7版本的utf-8没处理，会报错)）
 - Some Algorithms (学习的几个算法，面试中被提问的，还有网上看的)
 - Category (分类，研究了下方法执行顺序，但是没写注释，没写测试结果)
 

@@ -32,7 +32,6 @@
         self.title = title;
         self.descreptionStr = descreption;
     }
-    
     return self;
 }
 

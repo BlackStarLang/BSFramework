@@ -88,10 +88,10 @@
 
 -(void)initTimer{
     // repeat = NO 不会造成内存泄漏问题
-    [self unRepeatTimer];
+//    [self unRepeatTimer];
     
     // 使用中间对象，解决强引用问题
-//    [self initTimerWithTimerTarget];
+    [self initTimerWithTimerTarget];
 }
 
 

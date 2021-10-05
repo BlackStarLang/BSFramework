@@ -71,6 +71,24 @@
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		77402D9D263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */; };
+		77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B038122692B41F006587AF /* BSIKJPlayerController.m */; };
+		77B038172692B671006587AF /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038162692B671006587AF /* libc++.1.tbd */; };
+		77B0381B2692B69C006587AF /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0381A2692B69C006587AF /* AudioToolbox.framework */; };
+		77B0381D2692B6A6006587AF /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0381C2692B6A6006587AF /* VideoToolbox.framework */; };
+		77B0381F2692B6B0006587AF /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0381E2692B6B0006587AF /* CoreMedia.framework */; };
+		77B038212692B6BE006587AF /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038202692B6BE006587AF /* CoreVideo.framework */; };
+		77B038232692B6D0006587AF /* CoreAudio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038222692B6D0006587AF /* CoreAudio.framework */; };
+		77B038252692B6DE006587AF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038242692B6DE006587AF /* AVFoundation.framework */; };
+		77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038262692B6EE006587AF /* libiconv.2.tbd */; };
+		77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382A2692B6F8006587AF /* libz.1.tbd */; };
+		77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382E2692B704006587AF /* libbz2.1.0.tbd */; };
+		77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
+		77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */; };
+		77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */; };
+		77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6126B406AB0034EC86 /* 标题装饰.png */; };
+		77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6526B406B40034EC86 /* 签到入口.png */; };
+		77DA8D6A26B406C00034EC86 /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6926B406C00034EC86 /* time@2x.png */; };
+		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
 		D7BED1EB328A79367833AB9B /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */; };
@@ -208,6 +226,29 @@
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		77402D9B263A65BD0003A425 /* BSNotiAndUserdefaultStandard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotiAndUserdefaultStandard.h; sourceTree = "<group>"; };
 		77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotiAndUserdefaultStandard.m; sourceTree = "<group>"; };
+		77B038112692B41F006587AF /* BSIKJPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSIKJPlayerController.h; sourceTree = "<group>"; };
+		77B038122692B41F006587AF /* BSIKJPlayerController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSIKJPlayerController.m; sourceTree = "<group>"; };
+		77B038162692B671006587AF /* libc++.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.1.tbd"; path = "usr/lib/libc++.1.tbd"; sourceTree = SDKROOT; };
+		77B0381A2692B69C006587AF /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		77B0381C2692B6A6006587AF /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		77B0381E2692B6B0006587AF /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		77B038202692B6BE006587AF /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		77B038222692B6D0006587AF /* CoreAudio.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreAudio.framework; path = System/Library/Frameworks/CoreAudio.framework; sourceTree = SDKROOT; };
+		77B038242692B6DE006587AF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		77B038262692B6EE006587AF /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
+		77B0382A2692B6F8006587AF /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
+		77B0382E2692B704006587AF /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
+		77B0384D26932CE6006587AF /* IJKMediaFramework */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = IJKMediaFramework; path = ../../ijkSDK/IJKMediaFramework; sourceTree = "<group>"; };
+		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
+		77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostAnimator.h; sourceTree = "<group>"; };
+		77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostAnimator.m; sourceTree = "<group>"; };
+		77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSButtonEdgeInsetsVC.h; sourceTree = "<group>"; };
+		77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSButtonEdgeInsetsVC.m; sourceTree = "<group>"; };
+		77DA8D6126B406AB0034EC86 /* 标题装饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标题装饰.png"; sourceTree = "<group>"; };
+		77DA8D6526B406B40034EC86 /* 签到入口.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到入口.png"; sourceTree = "<group>"; };
+		77DA8D6926B406C00034EC86 /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
+		77EE7E7126AAAE0A009DE395 /* BSTransitionBoostController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostController.h; sourceTree = "<group>"; };
+		77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostController.m; sourceTree = "<group>"; };
 		77F312322679EC5A0062CCF5 /* BSVideoPlayerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSVideoPlayerVC.h; sourceTree = "<group>"; };
 		77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSVideoPlayerVC.m; sourceTree = "<group>"; };
 		7DAFF48ABAAB9BB1ECEE86FE /* Pods-BSFrameworks_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -222,6 +263,17 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */,
+				77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */,
+				77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */,
+				77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */,
+				77B038252692B6DE006587AF /* AVFoundation.framework in Frameworks */,
+				77B038232692B6D0006587AF /* CoreAudio.framework in Frameworks */,
+				77B038212692B6BE006587AF /* CoreVideo.framework in Frameworks */,
+				77B0381F2692B6B0006587AF /* CoreMedia.framework in Frameworks */,
+				77B0381D2692B6A6006587AF /* VideoToolbox.framework in Frameworks */,
+				77B0381B2692B69C006587AF /* AudioToolbox.framework in Frameworks */,
+				77B038172692B671006587AF /* libc++.1.tbd in Frameworks */,
 				301C486C25A30CC800F26CC3 /* libc++.tbd in Frameworks */,
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
@@ -291,8 +343,12 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
+
 				30494A2D2485E435002DBC8D /* BSLooperView */,
 				30494A332485E7BA002DBC8D /* BSPhoto */,
+
+				77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */,
+
 				302E4C5A2612C2DC005A4E2A /* BSSocket */,
 				77F312302679EC200062CCF5 /* BSVideoPreLoader */,
 				3053042825AD866800748F50 /* DemoGroup */,
@@ -355,6 +411,7 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				77B0380A2692B3AF006587AF /* IJKPlayer */,
 				77402D9A263A64E80003A425 /* Notification & Userdefault */,
 				30AD8F6F261F0C8F006FA2B8 /* HitTest */,
 				30AD8F56261EF332006FA2B8 /* Notification */,
@@ -530,6 +587,10 @@
 				30D2E5CA256F495A001EFB02 /* BSATransitionController.m */,
 				30D2E5D9257108BF001EFB02 /* BSProtocalController.h */,
 				30D2E5DA257108BF001EFB02 /* BSProtocalController.m */,
+				77EE7E7126AAAE0A009DE395 /* BSTransitionBoostController.h */,
+				77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */,
+				77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */,
+				77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */,
 			);
 			path = TransitionAnimate;
 			sourceTree = "<group>";
@@ -618,6 +679,17 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				77B0384D26932CE6006587AF /* IJKMediaFramework */,
+				77B0382E2692B704006587AF /* libbz2.1.0.tbd */,
+				77B0382A2692B6F8006587AF /* libz.1.tbd */,
+				77B038262692B6EE006587AF /* libiconv.2.tbd */,
+				77B038242692B6DE006587AF /* AVFoundation.framework */,
+				77B038222692B6D0006587AF /* CoreAudio.framework */,
+				77B038202692B6BE006587AF /* CoreVideo.framework */,
+				77B0381E2692B6B0006587AF /* CoreMedia.framework */,
+				77B0381C2692B6A6006587AF /* VideoToolbox.framework */,
+				77B0381A2692B69C006587AF /* AudioToolbox.framework */,
+				77B038162692B671006587AF /* libc++.1.tbd */,
 				301C486B25A30CC800F26CC3 /* libc++.tbd */,
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
@@ -644,6 +716,9 @@
 		6003F594195388D20070C39A /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				77DA8D6926B406C00034EC86 /* time@2x.png */,
+				77DA8D6526B406B40034EC86 /* 签到入口.png */,
+				77DA8D6126B406AB0034EC86 /* 标题装饰.png */,
 				30D8BA7225480B7C00275C1A /* test1.mp4 */,
 				30D8BA6C2548099000275C1A /* test.mp4 */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -693,6 +768,41 @@
 				77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */,
 			);
 			path = "Notification & Userdefault";
+			sourceTree = "<group>";
+		};
+		77B0380A2692B3AF006587AF /* IJKPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				77B0380E2692B3E0006587AF /* Controller */,
+				77B0380B2692B3BE006587AF /* framework */,
+			);
+			path = IJKPlayer;
+			sourceTree = "<group>";
+		};
+		77B0380B2692B3BE006587AF /* framework */ = {
+			isa = PBXGroup;
+			children = (
+				77B0385E26932F18006587AF /* IJKMediaFramework.framework */,
+			);
+			path = framework;
+			sourceTree = "<group>";
+		};
+		77B0380E2692B3E0006587AF /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				77B038112692B41F006587AF /* BSIKJPlayerController.h */,
+				77B038122692B41F006587AF /* BSIKJPlayerController.m */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */ = {
+			isa = PBXGroup;
+			children = (
+				77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */,
+				77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */,
+			);
+			path = UIButtonEdgeInsets;
 			sourceTree = "<group>";
 		};
 		77F312302679EC200062CCF5 /* BSVideoPreLoader */ = {
@@ -775,7 +885,7 @@
 				ORGANIZATIONNAME = "blackstar_lang@163.com";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = W97PTP9593;
+						DevelopmentTeam = ZTW9XPA927;
 						ProvisioningStyle = Manual;
 					};
 					6003F5AD195388D20070C39A = {
@@ -809,11 +919,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
+				77DA8D6A26B406C00034EC86 /* time@2x.png in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				30D8BA6D2548099000275C1A /* test.mp4 in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */,
+				77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -962,6 +1075,7 @@
 				30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
 				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
+				77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */,
 				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				30AD8F2E261C4319006FA2B8 /* BSRecognizerTableView.m in Sources */,
@@ -972,11 +1086,14 @@
 				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
+				77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */,
 				30AD8F60261EF36E006FA2B8 /* BSNotificationPostVC.m in Sources */,
 				30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */,
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
+				77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */,
+				77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */,
 				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
 				3053043025B12C0400748F50 /* BSTimerViewController.m in Sources */,
@@ -1149,15 +1266,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = W97PTP9593;
+				DEVELOPMENT_TEAM = ZTW9XPA927;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Develope";
+				PROVISIONING_PROFILE_SPECIFIER = dev_DangdangiPhone;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1171,15 +1297,24 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = W97PTP9593;
+				DEVELOPMENT_TEAM = ZTW9XPA927;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
+				);
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Develope";
+				PROVISIONING_PROFILE_SPECIFIER = dev_DangdangiPhone;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

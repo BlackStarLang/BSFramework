@@ -9,6 +9,7 @@
 #import "BSTransitionController.h"
 #import "BSATransitionController.h"
 #import "BSProtocalController.h"
+#import "BSTransitionBoostController.h"
 
 @interface BSTransitionController ()
 
@@ -49,6 +50,13 @@
     button1.backgroundColor = [UIColor redColor];
     [button1 addTarget:self action:@selector(pushTransition:) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:button1];
+    
+    UIButton *button2 = [[UIButton alloc]initWithFrame:CGRectMake(100, 100, 80, 40)];
+    button2.center = CGPointMake(self.view.center.x, self.view.center.y + 150);
+    [button2 setTitle:@"Boost" forState:UIControlStateNormal];
+    button2.backgroundColor = [UIColor redColor];
+    [button2 addTarget:self action:@selector(boostTransition:) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:button2];
 }
 
 
@@ -96,6 +104,15 @@
     BSATransitionController *aVC = [[BSATransitionController alloc]initWithAlertTitle:@"title" message:@"大家好，我是一个alert descreption ,根据alertcontroller开发了一个开放度高的alertcontroller" delegate:self];
     [self presentViewController:aVC animated:YES completion:nil];
 }
+
+
+-(void)boostTransition:(UIButton *)sender{
+    
+    BSTransitionBoostController *boostVC = [[BSTransitionBoostController alloc]initWithBoostView:sender presentViewController:self];
+    boostVC.modalPresentationStyle = 0;
+    [self presentViewController:boostVC animated:YES completion:nil];
+}
+
 
 
 

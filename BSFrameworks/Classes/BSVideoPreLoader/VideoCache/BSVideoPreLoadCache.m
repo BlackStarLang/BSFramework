@@ -30,8 +30,7 @@
     
     BSVideoPreLoadCacheModel *cacheModel = [[BSVideoPreLoadCacheModel alloc]init];
     cacheModel.data = cacheData;
-    cacheModel.fileUrl = fileUrl;
-    [self.dataCaches addObject:cacheModel];
+    cacheModel.fileUrl = fileUrl;///内部会自动把后缀去掉
     
     @synchronized (self) {
         [self writeDateToFile:cacheModel];
@@ -42,7 +41,10 @@
 #pragma mark 读取缓存
 -(NSData *)getVideoCacheWithFileUrl:(NSString *)fileUrl{
     
-    NSString *filePath = [[NSUserDefaults standardUserDefaults]objectForKey:fileUrl];
+    NSString *cacheIdentifier = [fileUrl stringByDeletingPathExtension];
+    NSString *filePath = [[NSUserDefaults standardUserDefaults]objectForKey:cacheIdentifier];
+    
+    if (!filePath) return nil;
     
     NSError *error = nil;
     NSData *cacheData = [NSData dataWithContentsOfFile:filePath options:NSDataReadingMappedAlways error:&error];
@@ -145,6 +147,15 @@
 #pragma mark - 缓存模型
 @implementation BSVideoPreLoadCacheModel
 
+
+-(void)setFileUrl:(NSString *)fileUrl{
+
+    if ([fileUrl pathExtension].length) {
+        _fileUrl = [fileUrl stringByDeletingPathExtension];
+        return;
+    }
+    _fileUrl = fileUrl;
+}
 
 
 
