@@ -50,33 +50,33 @@ Pod::Spec.new do |s|
 
   
   # 各种分类
-  s.subspec 'BSCategory' do |ss|
-    ss.source_files = 'BSFrameworks/Classes/BSCategory/**/*{.h,.m}'
-    ss.frameworks   = 'AVFoundation','UIKit'
+  s.subspec 'BSCategory' do |category|
+    category.source_files = 'BSFrameworks/Classes/BSCategory/**/*{.h,.m}'
+    category.frameworks   = 'AVFoundation','UIKit'
   end
   
   
   # 图片相关：相机、选图、预览等相关功能
-  s.subspec 'BSPhotoFramework' do |ss|
-    ss.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
-    ss.frameworks   = 'Photos','AVFoundation'
-    ss.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
-    ss.dependency     'BSFrameworks/BSCategory'
+  s.subspec 'BSPhotoFramework' do |photoFramework|
+    photoFramework.source_files = 'BSFrameworks/Classes/PhotoFramework/**/*{.h,.m}'
+    photoFramework.frameworks   = 'Photos','AVFoundation'
+    photoFramework.resources    = 'BSFrameworks/Assets/PhotoFramework/*'
+    photoFramework.dependency     'BSFrameworks/BSCategory'
   end
   
   
   # 基于collectionview实现的 轮播图，支持2D和3D
-  s.subspec 'BSLooperView' do |ss|
-    ss.source_files = 'BSFrameworks/Classes/BSLooperView/**/*{.h,.m}'
-    ss.frameworks   = 'AVFoundation','UIKit'
-    ss.dependency     'BSFrameworks/BSCategory'
+  s.subspec 'BSLooperView' do |loopView|
+    loopView.source_files = 'BSFrameworks/Classes/BSLooperView/**/*{.h,.m}'
+    loopView.frameworks   = 'AVFoundation','UIKit'
+    loopView.dependency     'BSFrameworks/BSCategory'
   end
 
   
-  s.subspec 'BSSocket' do |socket|
-    socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
-    socket.public_header_files = 'BSFrameworks/Classes/BSSocket/BSSocket.h'
-  end
+#  s.subspec 'BSSocket' do |socket|
+#    socket.source_files = 'BSFrameworks/Classes/BSSocket/**/*{.h,.m}'
+#    socket.public_header_files = 'BSFrameworks/Classes/BSSocket/BSSocket.h'
+#  end
   
   s.subspec 'BSVideoPreLoader' do |videoloader|
     videoloader.source_files = 'BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}'

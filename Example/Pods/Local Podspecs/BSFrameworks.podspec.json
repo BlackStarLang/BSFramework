@@ -64,12 +64,6 @@
       }
     },
     {
-      "name": "BSSocket",
-      "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}",
-      "public_header_files": "BSFrameworks/Classes/BSSocket/BSSocket.h"
-      "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}"
-    },
-    {
       "name": "BSVideoPreLoader",
       "source_files": "BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}"
     }

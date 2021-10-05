@@ -291,11 +291,11 @@
 		30494A2C2485E41B002DBC8D /* Function */ = {
 			isa = PBXGroup;
 			children = (
-				77F312302679EC200062CCF5 /* BSVideoPreLoader */,
-				302E4C5A2612C2DC005A4E2A /* BSSocket */,
-				3053042825AD866800748F50 /* DemoGroup */,
-				30494A332485E7BA002DBC8D /* BSPhoto */,
 				30494A2D2485E435002DBC8D /* BSLooperView */,
+				30494A332485E7BA002DBC8D /* BSPhoto */,
+				302E4C5A2612C2DC005A4E2A /* BSSocket */,
+				77F312302679EC200062CCF5 /* BSVideoPreLoader */,
+				3053042825AD866800748F50 /* DemoGroup */,
 			);
 			path = Function;
 			sourceTree = "<group>";
