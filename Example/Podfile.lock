@@ -3,6 +3,7 @@ PODS:
     - BSFrameworks/BSCategory (= 0.1.10)
     - BSFrameworks/BSLooperView (= 0.1.10)
     - BSFrameworks/BSPhotoFramework (= 0.1.10)
+    - BSFrameworks/BSSocket (= 0.1.10)
     - BSFrameworks/BSVideoPreLoader (= 0.1.10)
     - Masonry
     - SDWebImage
@@ -15,6 +16,9 @@ PODS:
     - SDWebImage
   - BSFrameworks/BSPhotoFramework (0.1.10):
     - BSFrameworks/BSCategory
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSSocket (0.1.10):
     - Masonry
     - SDWebImage
   - BSFrameworks/BSVideoPreLoader (0.1.10):
@@ -51,9 +55,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-
   BSFrameworks: 1b775c77a4a3d04ca2da84bb5283ccff794511cf
-
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
@@ -61,7 +63,6 @@ SPEC CHECKSUMS:
   SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
   TZImagePickerController: 6685e6d81b8fd5453e80ba369dd4ebd6e97276ee
 
-
-PODFILE CHECKSUM: 98654672dc6d09d5dbdb2a7e9e373576c46713b7
+PODFILE CHECKSUM: 39aaba1bc40c0fd15351c1ffd25a9d6c7145005c
 
 COCOAPODS: 1.10.1
