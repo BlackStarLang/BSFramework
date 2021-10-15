@@ -269,7 +269,7 @@
             attri.center = CGPointMake(attri.center.x - attr_offsetX, attri.center.y);
             
             if (attri.indexPath.row == 5) {
-                NSLog(@"%.2f   %.2f   %.2f    %ld",attr_offsetX,offsetX * ABS(curPage - attri.indexPath.item ),offsetX*offsetPercent,(long)curPage);
+//                NSLog(@"%.2f   %.2f   %.2f    %ld",attr_offsetX,offsetX * ABS(curPage - attri.indexPath.item ),offsetX*offsetPercent,(long)curPage);
             }
             
         }else{
