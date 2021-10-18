@@ -165,8 +165,9 @@
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 UICollectionViewLayoutAttributes *attri = [self getCardAttributesWithIndexPath:indexPath currentPage:curPage offsetPercent:offsetPercent itemCount:itemCount];
-                
-                [array addObject:attri];
+                if (attri.indexPath.row <= self.maxIndexRow) {
+                    [array addObject:attri];
+                }
             }
             
         }else{
@@ -185,8 +186,9 @@
                 
                 NSIndexPath *indexPath = [NSIndexPath indexPathForRow:i inSection:0];
                 UICollectionViewLayoutAttributes *attri = [self getCardAttributesWithIndexPath:indexPath currentPage:curPage offsetPercent:offsetPercent itemCount:itemCount];
-                
-                [array addObject:attri];
+                if (attri.indexPath.row <= self.maxIndexRow) {
+                    [array addObject:attri];
+                }
             }
             
             /// 想了想，这种样式应该不需要纵向的，所以取消了纵向的设计

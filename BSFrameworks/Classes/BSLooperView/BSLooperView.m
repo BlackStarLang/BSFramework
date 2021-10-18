@@ -135,7 +135,7 @@
         [self.newDataArr addObjectsFromArray:dataArr];
         [self.newDataArr addObjectsFromArray:dataArr];
         [self.newDataArr addObjectsFromArray:dataArr];
-        
+        self.flowLayout.maxIndexRow = self.newDataArr.count - 1;
         [self.collectionView reloadData];
         
         self.currentPageIndex = dataArr.count;
