@@ -305,6 +305,44 @@
 			path = UIButtonEdgeInsets;
 			sourceTree = "<group>";
 		};
+		301C651127C6609100490377 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* BSViewController.h */,
+				6003F5A6195388D20070C39A /* BSViewController.m */,
+				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
+				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		301C651227C6609900490377 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
+				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		301C651327C660A800490377 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30AE96812488FEC6009A43FB /* BSRootCell.h */,
+				30AE96822488FEC6009A43FB /* BSRootCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		301C651427C660B100490377 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */,
+				30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		30253546247786A900669C27 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,16 +373,10 @@
 		30494A2B2485E3EF002DBC8D /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5A5195388D20070C39A /* BSViewController.h */,
-				6003F5A6195388D20070C39A /* BSViewController.m */,
-				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
-				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
-				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
-				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
-				30AE96812488FEC6009A43FB /* BSRootCell.h */,
-				30AE96822488FEC6009A43FB /* BSRootCell.m */,
-				30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */,
-				30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */,
+				301C651127C6609100490377 /* ViewController */,
+				301C651327C660A800490377 /* View */,
+				301C651227C6609900490377 /* Model */,
+				301C651427C660B100490377 /* Category */,
 			);
 			path = Root;
 			sourceTree = "<group>";

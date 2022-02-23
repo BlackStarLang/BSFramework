@@ -6,6 +6,13 @@
 //  Copyright © 2020 blackstar_lang@163.com. All rights reserved.
 //
 
+///====================================
+/// MARK: Class 说明
+/// Desc: 两个跟视图列表的Model
+///
+/// Author : BlackStar
+///====================================
+
 #import <Foundation/Foundation.h>
 
 
