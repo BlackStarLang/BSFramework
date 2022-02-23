@@ -64,7 +64,6 @@
       }
     },
     {
-
       "name": "BSSocket",
       "source_files": "BSFrameworks/Classes/BSSocket/**/*{.h,.m}",
       "public_header_files": [
