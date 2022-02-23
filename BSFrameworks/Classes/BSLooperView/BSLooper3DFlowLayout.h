@@ -52,6 +52,10 @@ typedef enum : NSUInteger {
 @property (nonatomic ,assign) NSInteger visibleCount;
 
 
+///=================================
+/// 防闪退处理，记录collectionView的最大row
+///=================================
+@property (nonatomic ,assign) NSInteger maxIndexRow;
 
 
 /// 暂时不做

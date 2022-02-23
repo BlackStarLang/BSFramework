@@ -93,7 +93,7 @@
     
     UIButton *btn4 = [[UIButton alloc]init];
     btn4.backgroundColor = [UIColor lightGrayColor];
-    [btn4 setTitle:@"带图IMAGE" forState:UIControlStateNormal];
+//    [btn4 setTitle:@"带图IMAGE" forState:UIControlStateNormal];
     [btn4 setImage:[UIImage imageNamed:@"time"] forState:UIControlStateNormal];
     [self.view addSubview:btn4];
     
@@ -136,12 +136,14 @@
     [btn2 setTitleEdgeInsets:UIEdgeInsetsMake(0, 0, offsetY * 2, offsetX * 2)];
     [btn3 setTitleEdgeInsets:UIEdgeInsetsMake(offsetY, offsetX, -offsetY, -offsetX)];
     
-    CGFloat imgW = btn4.imageView.intrinsicContentSize.width;
-    CGFloat textW1 = btn4.titleLabel.intrinsicContentSize.width;
+//    CGFloat imgW = btn4.imageView.intrinsicContentSize.width;
+//    CGFloat textW1 = btn4.titleLabel.intrinsicContentSize.width;
     
     /// 图文：设置文字图片调换位置，且图片文字间隔 10 个点
-    [btn4 setTitleEdgeInsets:UIEdgeInsetsMake(0, -(imgW + 5)*2, 0, 0)];
-    [btn4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0,  -(textW1 + 5)*2)];
+//    [btn4 setTitleEdgeInsets:UIEdgeInsetsMake(0, -(imgW + 5)*2, 0, 0)];
+//    [btn4 setImageEdgeInsets:UIEdgeInsetsMake(0, 0, 0,  -(textW1 + 5)*2)];
+    [btn4 setImageEdgeInsets:UIEdgeInsetsMake(5, 5, 5, 5)];
+
 }
 
 

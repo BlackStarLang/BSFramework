@@ -44,6 +44,7 @@
     [super viewDidLoad];
     
     self.view.backgroundColor = [UIColor whiteColor];
+    [self configData];
     [self initSubViews];
     [self masonryLayout];
     [self authorization];
@@ -93,7 +94,6 @@
         return;
     }else if (status == AVAuthorizationStatusAuthorized){
         
-        [self configData];
         [self getAllGroupList];
     }
 }
@@ -150,7 +150,7 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     
-    return self.dataSource.count!=0?:1;
+    return (self.dataSource.count!=0)?self.dataSource.count:1;
 }
 
 
