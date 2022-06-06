@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		301C486C25A30CC800F26CC3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C486B25A30CC800F26CC3 /* libc++.tbd */; };
+		301C651027C65D3B00490377 /* BSButtonEdgeInsetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C650F27C65D3B00490377 /* BSButtonEdgeInsetsVC.m */; };
 		3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */; };
 		302E4C5D2612C2F4005A4E2A /* BSSocketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 302E4C5C2612C2F4005A4E2A /* BSSocketViewController.m */; };
 		3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3034EFF3255B8922001084AC /* BSRefreshController.m */; };
@@ -86,7 +87,6 @@
 		77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382E2692B704006587AF /* libbz2.1.0.tbd */; };
 		77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
 		77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */; };
-		77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */; };
 		77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6126B406AB0034EC86 /* 标题装饰.png */; };
 		77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6526B406B40034EC86 /* 签到入口.png */; };
 		77DA8D6A26B406C00034EC86 /* time@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6926B406C00034EC86 /* time@2x.png */; };
@@ -112,6 +112,8 @@
 		163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		249890230EA4254D28F53759 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		301C486B25A30CC800F26CC3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
+		301C650E27C65D3B00490377 /* BSButtonEdgeInsetsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSButtonEdgeInsetsVC.h; sourceTree = "<group>"; };
+		301C650F27C65D3B00490377 /* BSButtonEdgeInsetsVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BSButtonEdgeInsetsVC.m; sourceTree = "<group>"; };
 		3025354A2477CD7B00669C27 /* BSCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCollectionViewCell.h; sourceTree = "<group>"; };
 		3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCollectionViewCell.m; sourceTree = "<group>"; };
 		302E4C5B2612C2F4005A4E2A /* BSSocketViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSocketViewController.h; sourceTree = "<group>"; };
@@ -247,8 +249,6 @@
 		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostAnimator.h; sourceTree = "<group>"; };
 		77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostAnimator.m; sourceTree = "<group>"; };
-		77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSButtonEdgeInsetsVC.h; sourceTree = "<group>"; };
-		77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSButtonEdgeInsetsVC.m; sourceTree = "<group>"; };
 		77DA8D6126B406AB0034EC86 /* 标题装饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标题装饰.png"; sourceTree = "<group>"; };
 		77DA8D6526B406B40034EC86 /* 签到入口.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "签到入口.png"; sourceTree = "<group>"; };
 		77DA8D6926B406C00034EC86 /* time@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "time@2x.png"; sourceTree = "<group>"; };
@@ -301,6 +301,53 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		301C650D27C65D3B00490377 /* UIButtonEdgeInsets */ = {
+			isa = PBXGroup;
+			children = (
+				301C650E27C65D3B00490377 /* BSButtonEdgeInsetsVC.h */,
+				301C650F27C65D3B00490377 /* BSButtonEdgeInsetsVC.m */,
+			);
+			path = UIButtonEdgeInsets;
+			sourceTree = "<group>";
+		};
+		301C651127C6609100490377 /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				6003F5A5195388D20070C39A /* BSViewController.h */,
+				6003F5A6195388D20070C39A /* BSViewController.m */,
+				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
+				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
+		301C651227C6609900490377 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
+				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		301C651327C660A800490377 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				30AE96812488FEC6009A43FB /* BSRootCell.h */,
+				30AE96822488FEC6009A43FB /* BSRootCell.m */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		301C651427C660B100490377 /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */,
+				30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
 		30253546247786A900669C27 /* AppDelegate */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,16 +378,10 @@
 		30494A2B2485E3EF002DBC8D /* Root */ = {
 			isa = PBXGroup;
 			children = (
-				6003F5A5195388D20070C39A /* BSViewController.h */,
-				6003F5A6195388D20070C39A /* BSViewController.m */,
-				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
-				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
-				30494A362485E7FD002DBC8D /* BSFunctionModel.h */,
-				30494A372485E7FD002DBC8D /* BSFunctionModel.m */,
-				30AE96812488FEC6009A43FB /* BSRootCell.h */,
-				30AE96822488FEC6009A43FB /* BSRootCell.m */,
-				30DD8B3D258B4A8D00E49AD9 /* UIViewController+WhiteController.h */,
-				30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */,
+				301C651127C6609100490377 /* ViewController */,
+				301C651327C660A800490377 /* View */,
+				301C651227C6609900490377 /* Model */,
+				301C651427C660B100490377 /* Category */,
 			);
 			path = Root;
 			sourceTree = "<group>";
@@ -413,6 +454,7 @@
 			isa = PBXGroup;
 			children = (
 				773236022771BC5C00CBE720 /* JSONTest */,
+				301C650D27C65D3B00490377 /* UIButtonEdgeInsets */,
 				77B0380A2692B3AF006587AF /* IJKPlayer */,
 				77402D9A263A64E80003A425 /* Notification & Userdefault */,
 				30AD8F6F261F0C8F006FA2B8 /* HitTest */,
@@ -431,7 +473,6 @@
 				30D2E5C3256F4887001EFB02 /* TransitionAnimate */,
 				3034EFC2255B7FFC001084AC /* TableViewRefresh */,
 				3070283F24A474D0000C5384 /* DynamicBehavior */,
-				77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */,
 				3070283B249CB31C000C5384 /* BSNotifacation_KVO */,
 			);
 			path = DemoGroup;
@@ -809,15 +850,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		77DA8D5926B3FB1C0034EC86 /* UIButtonEdgeInsets */ = {
-			isa = PBXGroup;
-			children = (
-				77DA8D5A26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.h */,
-				77DA8D5B26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m */,
-			);
-			path = UIButtonEdgeInsets;
-			sourceTree = "<group>";
-		};
 		77F312302679EC200062CCF5 /* BSVideoPreLoader */ = {
 			isa = PBXGroup;
 			children = (
@@ -1106,7 +1138,7 @@
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
-				77DA8D5C26B3FB4D0034EC86 /* BSButtonEdgeInsetsVC.m in Sources */,
+				301C651027C65D3B00490377 /* BSButtonEdgeInsetsVC.m in Sources */,
 				77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */,
 				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
@@ -1310,9 +1342,9 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = "";
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = W97PTP9593;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
@@ -1329,7 +1361,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE_SPECIFIER = "BStar Framework Develope";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
