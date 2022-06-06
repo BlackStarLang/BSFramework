@@ -70,6 +70,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
+		773236072771BC8800CBE720 /* BSJsonTestVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 773236062771BC8800CBE720 /* BSJsonTestVC.m */; };
+		773236092771CF4B00CBE720 /* testjson.json in Resources */ = {isa = PBXBuildFile; fileRef = 773236082771CF4B00CBE720 /* testjson.json */; };
 		77402D9D263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m in Sources */ = {isa = PBXBuildFile; fileRef = 77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */; };
 		77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77B038122692B41F006587AF /* BSIKJPlayerController.m */; };
 		77B038172692B671006587AF /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038162692B671006587AF /* libc++.1.tbd */; };
@@ -224,6 +226,9 @@
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6F31A20A37F7F47B153DD4F3 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		71719F9E1E33DC2100824A3D /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		773236052771BC8800CBE720 /* BSJsonTestVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSJsonTestVC.h; sourceTree = "<group>"; };
+		773236062771BC8800CBE720 /* BSJsonTestVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSJsonTestVC.m; sourceTree = "<group>"; };
+		773236082771CF4B00CBE720 /* testjson.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = testjson.json; sourceTree = "<group>"; };
 		77402D9B263A65BD0003A425 /* BSNotiAndUserdefaultStandard.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotiAndUserdefaultStandard.h; sourceTree = "<group>"; };
 		77402D9C263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSNotiAndUserdefaultStandard.m; sourceTree = "<group>"; };
 		77B038112692B41F006587AF /* BSIKJPlayerController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSIKJPlayerController.h; sourceTree = "<group>"; };
@@ -407,6 +412,7 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				773236022771BC5C00CBE720 /* JSONTest */,
 				77B0380A2692B3AF006587AF /* IJKPlayer */,
 				77402D9A263A64E80003A425 /* Notification & Userdefault */,
 				30AD8F6F261F0C8F006FA2B8 /* HitTest */,
@@ -758,6 +764,16 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		773236022771BC5C00CBE720 /* JSONTest */ = {
+			isa = PBXGroup;
+			children = (
+				773236082771CF4B00CBE720 /* testjson.json */,
+				773236052771BC8800CBE720 /* BSJsonTestVC.h */,
+				773236062771BC8800CBE720 /* BSJsonTestVC.m */,
+			);
+			path = JSONTest;
+			sourceTree = "<group>";
+		};
 		77402D9A263A64E80003A425 /* Notification & Userdefault */ = {
 			isa = PBXGroup;
 			children = (
@@ -923,6 +939,7 @@
 				30D8BA6D2548099000275C1A /* test.mp4 in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
 				30D8BA7325480B7C00275C1A /* test1.mp4 in Resources */,
+				773236092771CF4B00CBE720 /* testjson.json in Resources */,
 				77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1103,6 +1120,7 @@
 				30AD8F6A261EF392006FA2B8 /* BSNotificationView.m in Sources */,
 				3097574D2574E84100A3E2CA /* BSOperatorController.m in Sources */,
 				308F963325F5FAA90051A225 /* BSCategoryVC.m in Sources */,
+				773236072771BC8800CBE720 /* BSJsonTestVC.m in Sources */,
 				30AD8F59261EF34F006FA2B8 /* BSNotificationVC.m in Sources */,
 				30AD8F79261F0D26006FA2B8 /* BSChainSuperView.m in Sources */,
 			);

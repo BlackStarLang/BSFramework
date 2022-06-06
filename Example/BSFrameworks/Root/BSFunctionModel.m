@@ -79,6 +79,7 @@
                         @{@"事件响应链，所在位置 ：DemoGroup/HitTest":@"BSResponseChainVC"},
                         @{@"IJKPlayer 播放器":@"BSIKJPlayerController"},
                         @{@"UIButton 的setTitleEdgeInsets和setTitleEdgeInsets":@"BSButtonEdgeInsetsVC"},
+                        @{@"JSON TEST":@"BSJsonTestVC"},
                         
     ];
     
