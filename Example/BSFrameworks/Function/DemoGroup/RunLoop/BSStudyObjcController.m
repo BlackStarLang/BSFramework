@@ -57,7 +57,7 @@
     label.center = self.view.center;
     label.font = [UIFont systemFontOfSize:15];
     label.textAlignment = 1;
-    label.text = @"点击屏幕任意位置，将触发 runloop 监听";
+    label.text = @"点击屏幕任意位置，将触发 runloop 监听，请查看xcode调试面板输出信息";
     [self.view addSubview:label];
 }
 

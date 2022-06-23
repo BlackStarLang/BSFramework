@@ -77,16 +77,16 @@
         _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(20, 300, self.view.width - 40, 180)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 70 ,180);
-        _looperView.scale = 0.6;
+        _looperView.itemSize = CGSizeMake(self.view.width - 160 ,180);
+        _looperView.scale = 0.8;
         _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
-        _looperView.duration = 1;
+        _looperView.duration = 2;
         
-        _looperView.loopStyle = BSLOOP_STYLE_CARD;
+        _looperView.loopStyle = BSLOOP_STYLE_NORMAL;
 
         //卡片样式只支持横向，不支持纵向
-        _looperView.scrollDirection = UICollectionViewScrollDirectionVertical;
+        _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
         
         //卡片样式只支持左右，不支持上下
         _looperView.looperPosition = BSLooperPositionLeft;
@@ -95,10 +95,10 @@
         _looperView.visibleCount = 4;
 
         // 卡片样式，minimumLineSpacing 无效
-        _looperView.minimumLineSpacing = 10;
+        _looperView.minimumLineSpacing = 15;
         
         // 卡片样式，centerOffset 无效
-        _looperView.centerOffset = -45;
+        _looperView.centerOffset = 0;
 
     }
     return _looperView;

@@ -21,6 +21,9 @@
 
 @property (nonatomic ,strong) UITableView *tableView;
 
+@property (nonatomic ,strong) UIView *headerView;
+@property (nonatomic ,strong) UILabel *tipLabel;
+
 @end
 
 
@@ -47,7 +50,8 @@
     self.dataSource = functionM.funcArr;
 
     [self.view addSubview:self.tableView];
-    
+    [self.headerView addSubview:self.tipLabel];
+    self.tableView.tableHeaderView = self.headerView;
 }
 
 
@@ -132,5 +136,28 @@
     return _tableView;
 }
 
+-(UIView *)headerView{
+    if (!_headerView) {
+        _headerView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 200)];
+        _headerView.backgroundColor = [UIColor whiteColor];
+        UILabel *title = [[UILabel alloc]initWithFrame:CGRectMake(0, 20, SCREEN_WIDTH, 20)];
+        title.textColor = [UIColor redColor];
+        title.font = [UIFont systemFontOfSize:20];
+        title.text = @"使用须知";
+        title.textAlignment = NSTextAlignmentCenter;
+        [_headerView addSubview:title];
+    }
+    return _headerView;
+}
+
+-(UILabel *)tipLabel{
+    if (!_tipLabel) {
+        _tipLabel = [[UILabel alloc]initWithFrame:CGRectMake(20, 50, SCREEN_WIDTH - 40, 150)];
+        _tipLabel.numberOfLines = 0;
+        _tipLabel.textColor = [UIColor redColor];
+        _tipLabel.text = @"** 功能说明及知识要点请看代码注释\n\n** 大部分页面都是空白的，效果都在xcode输出面板上\n\n** 部分功能需要手动调试代码";
+    }
+    return _tipLabel;
+}
 
 @end
