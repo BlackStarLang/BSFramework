@@ -12,7 +12,7 @@
 @interface BSOperatorController ()
 
 @property (nonatomic ,strong) dispatch_queue_t queue;
-//@property (nonatomic ,assign) int count;
+@property (atomic ,assign) int count;
 //@property (nonatomic ,strong) NSObject *obj;
 
 @end
@@ -34,9 +34,32 @@
 //    [self studyGCD];
     
 //    [self simulateMainQueue];//使用自定义队列模拟主队列
+    [self dispatchCount];
+    
+    [self syncOperation];
 
 }
 
+-(void)dispatchCount{
+    //atomic 只是读写安全，并不是线程安全，所以最后值也是不确定的
+    __weak typeof(self)weakSelf = self;
+    dispatch_group_t group = dispatch_group_create();
+    
+    for (int i = 0; i<10000; i++) {
+        dispatch_group_enter(group);
+
+        dispatch_queue_t queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_CONCURRENT);
+        dispatch_async(queue, ^{
+            weakSelf.count ++;
+            dispatch_group_leave(group);
+        });
+    }
+    
+    dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+        NSLog(@" %d ",self.count);
+    });
+
+}
 
 -(void)initView{
     
@@ -606,6 +629,32 @@
     
 }
 
+//如果 queue 是并发队列，执行顺序：C一定在B后边，A不确定 （ABC,BCA,BAC）
+//如果是串行队列，执行顺序 ABC
+-(void)syncOperation{
+    
+    dispatch_queue_t queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_CONCURRENT);
+//    queue = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+    
+//    dispatch_queue_t queue1 = dispatch_queue_create("myqueue", DISPATCH_QUEUE_SERIAL);
+//    dispatch_queue_t queue2 = dispatch_queue_create("myqueue1", DISPATCH_QUEUE_SERIAL);
+
+    dispatch_async(queue, ^{
+//        for (int i = 0; i<900000000; i++) {
+//            int b = i++;
+//            b = i--;
+//        }
+        NSLog(@"A == %@", [NSThread currentThread]);
+    });
+    
+    dispatch_sync(queue, ^{
+        NSLog(@" B == %@", [NSThread currentThread]);
+    });
+    
+    NSLog(@"====== C %@", [NSThread currentThread]);
+    
+
+}
 
 
 @end

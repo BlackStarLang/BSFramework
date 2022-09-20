@@ -96,7 +96,7 @@
 
 
 
-#pragma mark - set method
+#pragma mark - set method or public
 
 -(void)setAutoLoop:(BOOL)autoLoop{
     _autoLoop = autoLoop;

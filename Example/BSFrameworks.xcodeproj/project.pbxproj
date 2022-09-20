@@ -45,6 +45,8 @@
 		30B8FF61259B3A2F0016D995 /* BSMaxHundredNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */; };
 		30B8FF67259C1EE30016D995 /* BSBlockController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30B8FF66259C1EE30016D995 /* BSBlockController.m */; };
 		30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */ = {isa = PBXBuildFile; fileRef = 30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */; };
+		30CF1AC328BDBBF0007E2159 /* NSAnimateView.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CF1AC228BDBBF0007E2159 /* NSAnimateView.m */; };
+		30CF1AC628C891B4007E2159 /* BSCategryOriginSubClass.m in Sources */ = {isa = PBXBuildFile; fileRef = 30CF1AC528C891B4007E2159 /* BSCategryOriginSubClass.m */; };
 		30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */; };
 		30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5CA256F495A001EFB02 /* BSATransitionController.m */; };
 		30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30D2E5D22570DB8A001EFB02 /* BSAlertController.m */; };
@@ -162,7 +164,6 @@
 		30AD8F39261C5975006FA2B8 /* BSClassifyScrollView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSClassifyScrollView.m; sourceTree = "<group>"; };
 		30AD8F3D261C5B5A006FA2B8 /* BSChildScrollVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSChildScrollVC.h; sourceTree = "<group>"; };
 		30AD8F3E261C5B5A006FA2B8 /* BSChildScrollVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSChildScrollVC.m; sourceTree = "<group>"; };
-		30AD8F42261D5916006FA2B8 /* BSCategoryOrigin+BSCCExtension.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BSCategoryOrigin+BSCCExtension.h"; sourceTree = "<group>"; };
 		30AD8F51261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSNotificationCenter+BSNotiCenter.h"; sourceTree = "<group>"; };
 		30AD8F52261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSNotificationCenter+BSNotiCenter.m"; sourceTree = "<group>"; };
 		30AD8F57261EF34F006FA2B8 /* BSNotificationVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSNotificationVC.h; sourceTree = "<group>"; };
@@ -187,6 +188,10 @@
 		30B8FF66259C1EE30016D995 /* BSBlockController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSBlockController.m; sourceTree = "<group>"; };
 		30C3D2D425FA2395003CBC13 /* BSMsgSendForMethod.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSMsgSendForMethod.h; sourceTree = "<group>"; };
 		30C3D2D525FA2395003CBC13 /* BSMsgSendForMethod.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSMsgSendForMethod.m; sourceTree = "<group>"; };
+		30CF1AC128BDBBF0007E2159 /* NSAnimateView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NSAnimateView.h; sourceTree = "<group>"; };
+		30CF1AC228BDBBF0007E2159 /* NSAnimateView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = NSAnimateView.m; sourceTree = "<group>"; };
+		30CF1AC428C891B4007E2159 /* BSCategryOriginSubClass.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSCategryOriginSubClass.h; sourceTree = "<group>"; };
+		30CF1AC528C891B4007E2159 /* BSCategryOriginSubClass.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCategryOriginSubClass.m; sourceTree = "<group>"; };
 		30D2E5C4256F48E7001EFB02 /* BSTransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionController.h; sourceTree = "<group>"; };
 		30D2E5C5256F48E7001EFB02 /* BSTransitionController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionController.m; sourceTree = "<group>"; };
 		30D2E5C9256F495A001EFB02 /* BSATransitionController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSATransitionController.h; sourceTree = "<group>"; };
@@ -521,6 +526,8 @@
 			children = (
 				3070284024A474F9000C5384 /* BSDynamicBehavior.h */,
 				3070284124A474F9000C5384 /* BSDynamicBehavior.m */,
+				30CF1AC128BDBBF0007E2159 /* NSAnimateView.h */,
+				30CF1AC228BDBBF0007E2159 /* NSAnimateView.m */,
 			);
 			path = DynamicBehavior;
 			sourceTree = "<group>";
@@ -539,7 +546,8 @@
 			children = (
 				308F962525F5F7600051A225 /* BSCategoryOrigin.h */,
 				308F962625F5F7600051A225 /* BSCategoryOrigin.m */,
-				30AD8F42261D5916006FA2B8 /* BSCategoryOrigin+BSCCExtension.h */,
+				30CF1AC428C891B4007E2159 /* BSCategryOriginSubClass.h */,
+				30CF1AC528C891B4007E2159 /* BSCategryOriginSubClass.m */,
 				308F962C25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.h */,
 				308F962D25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m */,
 				308F963125F5FAA90051A225 /* BSCategoryVC.h */,
@@ -1108,6 +1116,7 @@
 				30AE96832488FEC6009A43FB /* BSRootCell.m in Sources */,
 				30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */,
 				302E4C5D2612C2F4005A4E2A /* BSSocketViewController.m in Sources */,
+				30CF1AC628C891B4007E2159 /* BSCategryOriginSubClass.m in Sources */,
 				77402D9D263A65BD0003A425 /* BSNotiAndUserdefaultStandard.m in Sources */,
 				30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */,
 				30D2E5C6256F48E7001EFB02 /* BSTransitionController.m in Sources */,
@@ -1125,6 +1134,7 @@
 				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
 				3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */,
 				30AD8F2E261C4319006FA2B8 /* BSRecognizerTableView.m in Sources */,
+				30CF1AC328BDBBF0007E2159 /* NSAnimateView.m in Sources */,
 				6003F5A7195388D20070C39A /* BSViewController.m in Sources */,
 				3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */,
 				30AE963C2488977E009A43FB /* BSPhotoVC.m in Sources */,

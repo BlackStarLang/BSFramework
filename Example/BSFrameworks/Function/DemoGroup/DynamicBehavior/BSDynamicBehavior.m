@@ -8,6 +8,7 @@
 
 #import "BSDynamicBehavior.h"
 #import <UIView+BSView.h>
+#import "NSAnimateView.h"
 
 @interface BSDynamicBehavior ()
 
@@ -20,6 +21,7 @@
 @property (nonatomic ,strong) UIView *dynbItem;
 @property (nonatomic ,strong) UIView *pointView;
 
+@property (nonatomic ,strong) NSAnimateView *touchView;
 
 @end
 
@@ -30,9 +32,11 @@
     [self initView];
     
 //    [self attachment];
-    [self gravityBehavior];
-    [self collistionBehavior];
+//    [self gravityBehavior];
+//    [self collistionBehavior];
 //    [self pushBehaviorAction];
+    
+    [self touchesViewMoved];
 }
 
 
@@ -40,18 +44,22 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
 
-    self.pointView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
-    self.pointView.backgroundColor = [UIColor greenColor];
-    self.pointView.center = self.view.center;
-    [self.view addSubview:self.pointView];
+//    self.pointView.frame = CGRectMake(0.0f, 0.0f, 80.0f, 80.0f);
+//    self.pointView.backgroundColor = [UIColor greenColor];
+//    self.pointView.center = self.view.center;
+//    [self.view addSubview:self.pointView];
+//
+//    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 100, SCREEN_WIDTH - 40, 300)];
+//    label.numberOfLines = 0;
+//    label.font = [UIFont systemFontOfSize:15];
+//    label.userInteractionEnabled = NO;
+//    [self.view addSubview:label];
+//
+//    label.text = @"碰撞行为测试需要同时打开 gravityBehavior 和 collistionBehavior 方法进行测试\n\npushBehaviorAction 推动行为也含有碰撞行为的联合使用。\n\n在测试推动行为时，需要拖动绿色方块并松手才会生效\n\n碰撞行为可以使用贝塞尔曲线规划路径";
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(20, 100, SCREEN_WIDTH - 40, 300)];
-    label.numberOfLines = 0;
-    label.font = [UIFont systemFontOfSize:15];
-    label.userInteractionEnabled = NO;
-    [self.view addSubview:label];
-
-    label.text = @"碰撞行为测试需要同时打开 gravityBehavior 和 collistionBehavior 方法进行测试\n\npushBehaviorAction 推动行为也含有碰撞行为的联合使用。\n\n在测试推动行为时，需要拖动绿色方块并松手才会生效\n\n碰撞行为可以使用贝塞尔曲线规划路径";
+    
+    self.touchView.frame = CGRectMake(SCREEN_WIDTH/2 - 20, 100, 40, 40);
+    [self.view addSubview:self.touchView];
 }
 
 
@@ -171,6 +179,22 @@
 
 
 
+-(void)touchesViewMoved{
+
+    [UIView animateWithDuration:10 delay:0 options:UIViewAnimationOptionAllowUserInteraction animations:^{
+//        [self.touchView setTransform:CGAffineTransformTranslate(self.touchView.transform, 0, SCREEN_HEIGHT)];
+
+        self.touchView.bottom = SCREEN_HEIGHT - 100;
+        
+    } completion:nil];
+}
+
+-(void)tapClick{
+    NSLog(@"===== tapClick ======");
+}
+
+
+
 #pragma mark - init 属性初始化
 
 
@@ -207,6 +231,16 @@
         _pointView.backgroundColor = [UIColor grayColor];
     }
     return _pointView;
+}
+
+-(NSAnimateView *)touchView{
+    if (!_touchView) {
+        _touchView = [[NSAnimateView alloc]init];
+        _touchView.backgroundColor = [UIColor purpleColor];
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(tapClick)];
+        [_touchView addGestureRecognizer:tap];
+    }
+    return _touchView;
 }
 
 @end

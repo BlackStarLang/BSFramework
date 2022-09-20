@@ -10,8 +10,10 @@
 #import <UIView+BSView.h>
 #import <Masonry/Masonry.h>
 
+@class Test;
 @interface BSButtonEdgeInsetsVC ()
 
+@property (nonatomic ,strong) Test *test;
 
 @end
 
@@ -22,6 +24,15 @@
     // Do any additional setup after loading the view.
     [self setUpSubViews];
     [self setUpLayout];
+    
+//    self.test = [[Test alloc]init];
+    
+    self.test.testBlock = ^{
+        NSLog(@"%@",@"haha");
+    };
+    
+    self.test.testBlock();
+
 }
 
 #pragma mark - 布局
@@ -162,5 +173,14 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+@end
+
+
+
+
+@implementation Test
+
+
 
 @end

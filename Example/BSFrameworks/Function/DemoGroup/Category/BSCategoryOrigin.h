@@ -6,11 +6,26 @@
 //  Copyright © 2021 blackstar_lang@163.com. All rights reserved.
 //
 
+///====================================
+/// MARK: Class 说明 分类测试
+/// Desc: 如果需要测试其中规则，需要将所有代码注释打开
+/// 目前看着比较乱，所以把分类全部注释掉了。
+/// 测试需要注意"BSCategoryOrigin+Mutimethod.h"这个分类，单独创建的类
+
+///
+/// Author : BlackStar
+///====================================
+
 #import <Foundation/Foundation.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface BSCategoryOrigin : NSObject
+
+{
+    @private
+    NSString *prive_x;
+}
 
 @property (nonatomic ,strong) NSString *originProperty;
 
@@ -23,6 +38,7 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 
+#pragma mark - [CategoryOrigin prive 声明和实现]
 /// 声明
 @interface BSCategoryOrigin (prive)
 
@@ -32,18 +48,37 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 /// 实现
-@implementation BSCategoryOrigin (prive)
+//@implementation BSCategoryOrigin (prive)
+////
+////-(void)setCategoryPropertyH:(NSString *)categoryPropertyH{
+////
+////}
+////
+////-(NSString *)categoryPropertyH{
+////    return @"categoryPropertyH";
+////}
+//
+//@end
 
 
-@end
+//#pragma mark - [CategoryOrigin prive2 声明]
+//@interface BSCategoryOrigin (prive2)
+//
+//@property (nonatomic ,strong) NSString *categoryPropertyX;
+//
+//+(void)factory;
+//
+//@end
 
 
-/// .h 文件中的 extension ，自动生成实例变量，set、get 方法
-@interface BSCategoryOrigin ()
 
-@property (nonatomic ,strong) NSString *extensionPropertyH;
-
-@end
+//#pragma mark - [CategoryOrigin - extension]
+///// .h 文件中的 extension ，自动生成实例变量，set、get 方法
+//@interface BSCategoryOrigin ()
+//
+//@property (nonatomic ,strong) NSString *extensionPropertyH;
+//
+//@end
 
 
 

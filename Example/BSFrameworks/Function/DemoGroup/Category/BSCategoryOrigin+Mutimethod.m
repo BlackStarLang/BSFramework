@@ -9,19 +9,30 @@
 #import "BSCategoryOrigin+Mutimethod.h"
 #import <objc/runtime.h>
 
+@interface BSCategoryOrigin (Mutimethod)
+
+@property (nonatomic ,strong) NSString *kvoTest;
++(void)priveFactory;
+@end
+
+
 @implementation BSCategoryOrigin (Mutimethod)
 
-+(void)factory{
-    NSLog(@"factory category");
+//+(void)factory{
+//    NSLog(@"factory category");
+//}
+
++(void)priveFactory{
+    NSLog(@"priveFactory category");
 }
 
-+(void)load{
-    NSLog(@"BSCategoryOrigin category load");
-}
-
-+(void)initialize{
-    NSLog(@"BSCategoryOrigin category initialize");
-}
+//+(void)load{
+//    NSLog(@"BSCategoryOrigin category load");
+//}
+//
+//+(void)initialize{
+//    NSLog(@"BSCategoryOrigin category initialize");
+//}
 
 // 与本类同名方法
 -(void)test{
@@ -52,5 +63,15 @@
 //
 //    return @"1";
 //}
+
+-(void)setKvoTest:(NSString *)kvoTest{
+    objc_setAssociatedObject(self, @"kvoTest", kvoTest, OBJC_ASSOCIATION_COPY);
+}
+
+
+-(NSString *)kvoTest{
+    return objc_getAssociatedObject(self, @"kvoTest");
+}
+
 
 @end

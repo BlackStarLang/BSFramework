@@ -8,8 +8,6 @@
 
 #import "BSCategoryOrigin.h"
 #import <objc/runtime.h>
-//#import "BSCategoryOrigin+BSCCExtension.h"
-
 
 
 @interface BSCategoryOrigin ()
@@ -39,9 +37,9 @@
 }
 
 
-/// 对于 工厂化 方法，和实例方法相同，
-/// 而category会后执行，但是都会执行
-
+/// 对于 工厂化 方法，和实例方法相同
+/// 只执行 category，由于缓存机制的问题，category执行完，
+/// 会加入到缓存中，在执行此方法是，直接拿缓存中的
 +(void)factory{
     NSLog(@"factory Origin");
 }
@@ -60,7 +58,8 @@
 
 
 -(void)initSubProperty{
-
+    
+    NSLog(@"====== initSubProperty ========");
 }
 
 
@@ -68,10 +67,11 @@
 /// category && extension 异同点
 ///
 /// category 可以声明属性，但是不会自动生成实例变量，不会自动生成set、get方法
-/// category 创建后，会有对应的 .h & .m 文件
+/// category 创建后(新建文件)，会有对应的 .h & .m 文件
 /// category 可以在已有文件中扩展添加（在已有的 .h & 已有的 .m 中都可以）
-/// category 的实现（@implementation）写在 .h 文件中，会使 property 有多个，都写在.m中，无问题
-/// category 的 .m 文件无法使用{}声明成员变量
+/// category 的实现（@implementation）写在 .h 中，需要实现setter 和getter方法，否则会报警告，如果放在.m中则只需要实现 setter就解决警告问题（这里只是解决警告问题）
+/// category 的实现（@implementation）如果写在.h 中，通过runtime 遍历成员变量，会发现property声明的属性变成了多个，如果我们自己实现对应的setter和getter，发现setter 和getter方法也变成了多个（打印方法：本文中的 showTotalInfo）
+/// category 无法使用{}声明成员变量
 ///
 /// extension 只有.h文件
 /// extension 可以声明属性，并且会生成对应的实例变量，以及对应的set、get方法
@@ -112,7 +112,13 @@
     
     /// 方法列表
     unsigned mcount ;
-    Method * methodList = class_copyMethodList([self class], &mcount);
+    // 如果 targetClass = object_getClass([self class]) ,则会打印类方法（factory）
+    Class targetClass = object_getClass([self class]);//[self class];
+    NSLog(@"=================");
+    NSLog(@"%@ %@ 元类",targetClass,class_isMetaClass(targetClass)?@"是":@"不是");
+    NSLog(@"=================");
+    ///通过元类的判断，可以发现，类方法存放在元类中
+    Method * methodList = class_copyMethodList(targetClass, &mcount);
     
     for (int i = 0; i<mcount; i++) {
         Method method = methodList[i];
@@ -132,19 +138,32 @@
 @end
 
 
+//#pragma mark - [CategoryOrigin prive1 声明和实现]
+///// .m 中声明的 category，由于.m 文件私有，
+///// 所以在.m 文件中声明category ，基本没什么意义
+//@interface BSCategoryOrigin (prive1)
+//
+///// 虽然声明了属性，但是没有成员变量
+//@property (nonatomic ,strong) NSString *categoryPropertyM;
+//
+//@end
+//
+//
+//@implementation BSCategoryOrigin (prive1)
+//
+//-(void)setCategoryPropertyM:(NSString *)categoryPropertyM{
+//
+//}
+//
+//@end
 
-/// .m 中声明的 category，由于.m 文件私有，
-/// 所以在.m 文件中声明category ，基本没什么意义
-@interface BSCategoryOrigin (prive1)
 
-/// 虽然声明了属性，但是没有成员变量
-@property (nonatomic ,strong) NSString *categoryPropertyM;
+//#pragma mark - [CategoryOrigin prive2 实现]
+//@implementation BSCategoryOrigin (prive2)
+//
+//-(void)setCategoryPropertyX:(NSString *)categoryPropertyX{
+//
+//}
 
-@end
+//@end
 
-
-@implementation BSCategoryOrigin (prive1)
-
-
-
-@end
