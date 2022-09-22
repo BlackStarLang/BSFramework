@@ -8,7 +8,7 @@
 
 #import "TZAssetCell.h"
 #import "TZAssetModel.h"
-#import "UIView+Layout.h"
+#import "UIView+TZLayout.h"
 #import "TZImageManager.h"
 #import "TZImagePickerController.h"
 #import "TZProgressView.h"
@@ -236,7 +236,8 @@
         self.index = [tzImagePickerVc.selectedAssetIds indexOfObject:self.model.asset.localIdentifier] + 1;
     }
     self.indexLabel.hidden = !self.selectPhotoButton.isSelected;
-    if (tzImagePickerVc.selectedModels.count >= tzImagePickerVc.maxImagesCount && tzImagePickerVc.showPhotoCannotSelectLayer && !self.model.isSelected) {
+    BOOL notSelectable = [TZCommonTools isAssetNotSelectable:self.model tzImagePickerVc:tzImagePickerVc];
+    if (notSelectable && tzImagePickerVc.showPhotoCannotSelectLayer && !self.model.isSelected) {
         self.cannotSelectLayerButton.backgroundColor = tzImagePickerVc.cannotSelectLayerColor;
         self.cannotSelectLayerButton.hidden = NO;
     } else {
@@ -515,6 +516,33 @@
 - (void)layoutSubviews {
     [super layoutSubviews];
     _imageView.frame = self.bounds;
+}
+
+@end
+
+
+@implementation TZAssetAddMoreCell
+
+- (instancetype)initWithFrame:(CGRect)frame {
+    self = [super initWithFrame:frame];
+    if (self) {
+        _tipLabel = [[UILabel alloc] init];
+        _tipLabel.numberOfLines = 2;
+        _tipLabel.textAlignment = NSTextAlignmentCenter;
+        _tipLabel.font = [UIFont systemFontOfSize:12];
+        _tipLabel.lineBreakMode = NSLineBreakByTruncatingMiddle;
+        CGFloat rgb = 156 / 255.0;
+        _tipLabel.textColor = [UIColor colorWithRed:rgb green:rgb blue:rgb alpha:1.0];
+        [self.contentView addSubview:_tipLabel];
+
+        self.clipsToBounds = YES;
+    }
+    return self;
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    _tipLabel.frame = CGRectMake(5, self.tz_height / 2, self.tz_width - 10, self.tz_height / 2 - 5);
 }
 
 @end

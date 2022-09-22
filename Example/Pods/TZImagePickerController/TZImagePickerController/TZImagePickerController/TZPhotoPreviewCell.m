@@ -8,7 +8,7 @@
 
 #import "TZPhotoPreviewCell.h"
 #import "TZAssetModel.h"
-#import "UIView+Layout.h"
+#import "UIView+TZLayout.h"
 #import "TZImageManager.h"
 #import "TZProgressView.h"
 #import "TZImageCropManager.h"
@@ -107,7 +107,7 @@
     if (self) {
         _scrollView = [[UIScrollView alloc] init];
         _scrollView.bouncesZoom = YES;
-        _scrollView.maximumZoomScale = 2.5;
+        _scrollView.maximumZoomScale = 4;
         _scrollView.minimumZoomScale = 1.0;
         _scrollView.multipleTouchEnabled = YES;
         _scrollView.delegate = self;
@@ -282,7 +282,13 @@
     
     UIImage *image = _imageView.image;
     if (image.size.height / image.size.width > self.tz_height / self.scrollView.tz_width) {
-        _imageContainerView.tz_height = floor(image.size.height / (image.size.width / self.scrollView.tz_width));
+        CGFloat width = image.size.width / image.size.height * self.scrollView.tz_height;
+        if (width < 1 || isnan(width)) width = self.tz_width;
+        width = floor(width);
+        
+        _imageContainerView.tz_width = width;
+        _imageContainerView.tz_height = self.tz_height;
+        _imageContainerView.tz_centerX = self.scrollView.tz_width  / 2;
     } else {
         CGFloat height = image.size.height / image.size.width * self.scrollView.tz_width;
         if (height < 1 || isnan(height)) height = self.tz_height;
@@ -303,7 +309,7 @@
 }
 
 - (void)configMaximumZoomScale {
-    _scrollView.maximumZoomScale = _allowCrop ? 4.0 : 2.5;
+    _scrollView.maximumZoomScale = _allowCrop ? 6.0 : 4.0;
     
     if ([self.asset isKindOfClass:[PHAsset class]]) {
         PHAsset *phAsset = (PHAsset *)self.asset;
@@ -319,15 +325,15 @@
     if (_allowCrop) {
         // 1.7.2 如果允许裁剪,需要让图片的任意部分都能在裁剪框内，于是对_scrollView做了如下处理：
         // 1.让contentSize增大(裁剪框右下角的图片部分)
-        CGFloat contentWidthAdd = self.scrollView.tz_width - CGRectGetMaxX(_cropRect);
-        CGFloat contentHeightAdd = (MIN(_imageContainerView.tz_height, self.tz_height) - self.cropRect.size.height) / 2;
-        CGFloat newSizeW = self.scrollView.contentSize.width + contentWidthAdd;
-        CGFloat newSizeH = MAX(self.scrollView.contentSize.height, self.tz_height) + contentHeightAdd;
+        CGFloat contentWidthAdd = (MIN(_imageContainerView.tz_width, self.scrollView.tz_width) - _cropRect.size.width) / 2;
+        CGFloat contentHeightAdd = (MIN(_imageContainerView.tz_height, self.scrollView.tz_height) - _cropRect.size.height) / 2;
+        CGFloat newSizeW = MAX(self.scrollView.contentSize.width, self.scrollView.tz_width) + contentWidthAdd;
+        CGFloat newSizeH = MAX(self.scrollView.contentSize.height, self.scrollView.tz_height) + contentHeightAdd;
         _scrollView.contentSize = CGSizeMake(newSizeW, newSizeH);
         _scrollView.alwaysBounceVertical = YES;
         // 2.让scrollView新增滑动区域（裁剪框左上角的图片部分）
         if (contentHeightAdd > 0 || contentWidthAdd > 0) {
-            _scrollView.contentInset = UIEdgeInsetsMake(contentHeightAdd, _cropRect.origin.x, 0, 0);
+            _scrollView.contentInset = UIEdgeInsetsMake(MAX(contentHeightAdd, 0), MAX(contentWidthAdd, 0), 0, 0);
         } else {
             _scrollView.contentInset = UIEdgeInsetsZero;
         }
@@ -354,7 +360,7 @@
         [_scrollView setZoomScale:_scrollView.minimumZoomScale animated:YES];
     } else {
         CGPoint touchPoint = [tap locationInView:self.imageView];
-        CGFloat newZoomScale = _scrollView.maximumZoomScale;
+        CGFloat newZoomScale = MIN(_scrollView.maximumZoomScale, 2.5);
         CGFloat xsize = self.frame.size.width / newZoomScale;
         CGFloat ysize = self.frame.size.height / newZoomScale;
         [_scrollView zoomToRect:CGRectMake(touchPoint.x - xsize/2, touchPoint.y - ysize/2, xsize, ysize) animated:YES];
@@ -418,6 +424,7 @@
     [_playButton setImage:[UIImage tz_imageNamedFromMyBundle:@"MMVideoPreviewPlay"] forState:UIControlStateNormal];
     [_playButton setImage:[UIImage tz_imageNamedFromMyBundle:@"MMVideoPreviewPlayHL"] forState:UIControlStateHighlighted];
     [_playButton addTarget:self action:@selector(playButtonClick) forControlEvents:UIControlEventTouchUpInside];
+    _playButton.frame = CGRectMake(0, 64, self.tz_width, self.tz_height - 64 - 44);
     [self.contentView addSubview:_playButton];
     [self.contentView addSubview:_iCloudErrorIcon];
     [self.contentView addSubview:_iCloudErrorLabel];
@@ -475,7 +482,7 @@
     self.playerLayer = [AVPlayerLayer playerLayerWithPlayer:self.player];
     self.playerLayer.backgroundColor = [UIColor blackColor].CGColor;
     self.playerLayer.frame = self.bounds;
-    [self.layer addSublayer:self.playerLayer];
+    [self.contentView.layer addSublayer:self.playerLayer];
     [self configPlayButton];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(pausePlayerAndShowNaviBar) name:AVPlayerItemDidPlayToEndTimeNotification object:self.player.currentItem];
 }
@@ -508,6 +515,7 @@
     CMTime currentTime = _player.currentItem.currentTime;
     CMTime durationTime = _player.currentItem.duration;
     if (_player.rate == 0.0f) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"TZ_VIDEO_PLAY_NOTIFICATION" object:_player];
         if (currentTime.value == durationTime.value) [_player.currentItem seekToTime:CMTimeMake(0, 1)];
         [_player play];
         [_playButton setImage:nil forState:UIControlStateNormal];

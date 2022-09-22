@@ -149,7 +149,40 @@
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
         [BSPhotoConfig shareConfig].barStyle = UIStatusBarStyleLightContent;
     }
-    [self setNeedsStatusBarAppearanceUpdate];
+    
+    [self configUIBarAppearance];
+}
+
+///使用xcode14运行后发现导航栏颜色在边缘时变成透明，
+///所以改用苹果新API来配置导航和toolbar样式
+- (void)configUIBarAppearance {
+    if (@available(iOS 13.0, *)) {
+        ///NaviBar
+        UINavigationBarAppearance *naviBarAppearance = [[UINavigationBarAppearance alloc] init];
+        if (self.navigationBar.isTranslucent) {
+            UIColor *barTintColor = self.navigationBar.barTintColor;
+            naviBarAppearance.backgroundColor = [barTintColor colorWithAlphaComponent:0.85];
+        } else {
+            naviBarAppearance.backgroundColor = self.navigationBar.barTintColor;
+        }
+        naviBarAppearance.titleTextAttributes = self.navigationBar.titleTextAttributes;
+        self.navigationBar.standardAppearance = naviBarAppearance;
+        self.navigationBar.scrollEdgeAppearance = naviBarAppearance;
+        
+        
+        ///ToolBar
+        UIToolbarAppearance *toolBarAppearance = [[UIToolbarAppearance alloc] init];
+        if (self.toolbar.isTranslucent) {
+            UIColor *barTintColor = self.toolbar.barTintColor;
+            toolBarAppearance.backgroundColor = [barTintColor colorWithAlphaComponent:0.85];
+        } else {
+            toolBarAppearance.backgroundColor = self.navigationBar.barTintColor;
+        }
+        self.toolbar.standardAppearance = toolBarAppearance;
+        if (@available(iOS 15.0, *)) {
+            self.toolbar.scrollEdgeAppearance = toolBarAppearance;
+        }
+    }
 }
 
 -(void)setPreBarAlpha:(CGFloat)preBarAlpha{

@@ -32,7 +32,11 @@ PODS:
   - SDWebImage (5.9.3):
     - SDWebImage/Core (= 5.9.3)
   - SDWebImage/Core (5.9.3)
-  - TZImagePickerController (3.4.8)
+  - TZImagePickerController (3.8.3):
+    - TZImagePickerController/Basic (= 3.8.3)
+    - TZImagePickerController/Location (= 3.8.3)
+  - TZImagePickerController/Basic (3.8.3)
+  - TZImagePickerController/Location (3.8.3)
 
 DEPENDENCIES:
   - BSFrameworks (from `../`)
@@ -61,7 +65,7 @@ SPEC CHECKSUMS:
   MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
   SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
-  TZImagePickerController: 6685e6d81b8fd5453e80ba369dd4ebd6e97276ee
+  TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
 
 PODFILE CHECKSUM: 39aaba1bc40c0fd15351c1ffd25a9d6c7145005c
 
