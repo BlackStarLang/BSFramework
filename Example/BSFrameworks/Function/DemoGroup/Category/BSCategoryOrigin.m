@@ -113,7 +113,9 @@
     /// 方法列表
     unsigned mcount ;
     // 如果 targetClass = object_getClass([self class]) ,则会打印类方法（factory）
-    Class targetClass = object_getClass([self class]);//[self class];
+    Class targetClass = object_getClass([self class]);
+    targetClass = [self class];
+    
     NSLog(@"=================");
     NSLog(@"%@ %@ 元类",targetClass,class_isMetaClass(targetClass)?@"是":@"不是");
     NSLog(@"=================");

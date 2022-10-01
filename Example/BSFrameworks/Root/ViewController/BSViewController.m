@@ -36,9 +36,18 @@
     
     [self initSubViews];
     [self masonryLayout];
+    [self configNavi];
 }
 
-
+-(void)configNavi{
+    
+    if (@available(iOS 13.0, *)) {
+        UINavigationBarAppearance *appearance = [[UINavigationBarAppearance alloc]init];
+        [appearance configureWithDefaultBackground];
+        self.navigationController.navigationBar.standardAppearance = appearance;
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+    }
+}
 
 -(void)initSubViews{
 
