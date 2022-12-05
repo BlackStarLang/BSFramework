@@ -11,6 +11,7 @@
 #import "BSMaxHundredNumber.h"
 #import "BSFibonacciSequence.h"
 #import "BSSort.h"
+#import "BSSharesProfit.h"
 
 @interface BSCalculationRoot ()
 
@@ -34,7 +35,10 @@
 //    [self fibonacciSeqence];
     
     //排序
-    [self sort];
+//    [self sort];
+    
+    // 买卖股票的最佳时机
+    [self sharesProfit];
 }
 
 
@@ -75,6 +79,18 @@
     NSArray *arr = [BSSort maopaoSortWithArray:sortArr];
     
     NSLog(@"%@",[arr componentsJoinedByString:@","]);
+}
+
+-(void)sharesProfit{
+    
+    NSArray *prices = @[@1,@5,@8,@3,@5,@4,@12,@9,@5,@7,@8,@9];//21
+//    prices = @[@7,@1,@5,@3,@6,@4];   //7
+//    prices = @[@1,@2,@3,@4,@5];      //4
+//    prices = @[@7,@6,@4,@3,@1];      //0
+//    prices = @[@7,@6];               //0
+//    prices = @[@2,@5];               //3
+    NSNumber *totalPrices = [BSSharesProfit getSharesProfitWithPrices:prices];
+    NSLog(@"%@",totalPrices);
 }
 
 @end

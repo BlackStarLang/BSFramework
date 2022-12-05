@@ -16,11 +16,14 @@
 		30494A382485E7FD002DBC8D /* BSFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 30494A372485E7FD002DBC8D /* BSFunctionModel.m */; };
 		305303B125A5B53400748F50 /* BSSubFuncListController.m in Sources */ = {isa = PBXBuildFile; fileRef = 305303B025A5B53400748F50 /* BSSubFuncListController.m */; };
 		3053043025B12C0400748F50 /* BSTimerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3053042F25B12C0400748F50 /* BSTimerViewController.m */; };
+		305D4A0A28E9487700845838 /* BSSharesProfit.m in Sources */ = {isa = PBXBuildFile; fileRef = 305D4A0928E9487700845838 /* BSSharesProfit.m */; };
 		30702837249C62F7000C5384 /* BSStudyObjcController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702836249C62F7000C5384 /* BSStudyObjcController.m */; };
 		3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */ = {isa = PBXBuildFile; fileRef = 30702839249C695C000C5384 /* BSObjcPerson.m */; };
 		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
 		3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070284124A474F9000C5384 /* BSDynamicBehavior.m */; };
 		30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30754B8F257F71AE00398CA3 /* BSWebViewController.m */; };
+		30855976290952F300E26200 /* BSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 30855975290952F300E26200 /* BSTest.m */; };
+		308559792909530200E26200 /* BST.m in Sources */ = {isa = PBXBuildFile; fileRef = 308559782909530200E26200 /* BST.m */; };
 		308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961525F225C80051A225 /* BSFibonacciSequence.m */; };
 		308F961F25F234EB0051A225 /* BSSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961E25F234EB0051A225 /* BSSort.m */; };
 		308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F962625F5F7600051A225 /* BSCategoryOrigin.m */; };
@@ -130,6 +133,8 @@
 		305303B025A5B53400748F50 /* BSSubFuncListController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSubFuncListController.m; sourceTree = "<group>"; };
 		3053042E25B12C0400748F50 /* BSTimerViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTimerViewController.h; sourceTree = "<group>"; };
 		3053042F25B12C0400748F50 /* BSTimerViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTimerViewController.m; sourceTree = "<group>"; };
+		305D4A0828E9487700845838 /* BSSharesProfit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSharesProfit.h; sourceTree = "<group>"; };
+		305D4A0928E9487700845838 /* BSSharesProfit.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSharesProfit.m; sourceTree = "<group>"; };
 		30702835249C62F7000C5384 /* BSStudyObjcController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSStudyObjcController.h; sourceTree = "<group>"; };
 		30702836249C62F7000C5384 /* BSStudyObjcController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSStudyObjcController.m; sourceTree = "<group>"; };
 		30702838249C695C000C5384 /* BSObjcPerson.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSObjcPerson.h; sourceTree = "<group>"; };
@@ -140,6 +145,10 @@
 		3070284124A474F9000C5384 /* BSDynamicBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDynamicBehavior.m; sourceTree = "<group>"; };
 		30754B8E257F71AE00398CA3 /* BSWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebViewController.h; sourceTree = "<group>"; };
 		30754B8F257F71AE00398CA3 /* BSWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebViewController.m; sourceTree = "<group>"; };
+		30855974290952F300E26200 /* BSTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTest.h; sourceTree = "<group>"; };
+		30855975290952F300E26200 /* BSTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTest.m; sourceTree = "<group>"; };
+		308559772909530200E26200 /* BST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
+		308559782909530200E26200 /* BST.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BST.m; sourceTree = "<group>"; };
 		308F961425F225C80051A225 /* BSFibonacciSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFibonacciSequence.h; sourceTree = "<group>"; };
 		308F961525F225C80051A225 /* BSFibonacciSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFibonacciSequence.m; sourceTree = "<group>"; };
 		308F961D25F234EB0051A225 /* BSSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSort.h; sourceTree = "<group>"; };
@@ -320,6 +329,10 @@
 			children = (
 				6003F5A5195388D20070C39A /* BSViewController.h */,
 				6003F5A6195388D20070C39A /* BSViewController.m */,
+				30855974290952F300E26200 /* BSTest.h */,
+				30855975290952F300E26200 /* BSTest.m */,
+				308559772909530200E26200 /* BST.h */,
+				308559782909530200E26200 /* BST.m */,
 				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
 				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
 			);
@@ -694,6 +707,8 @@
 				30B8FF60259B3A2F0016D995 /* BSMaxHundredNumber.m */,
 				308F961D25F234EB0051A225 /* BSSort.h */,
 				308F961E25F234EB0051A225 /* BSSort.m */,
+				305D4A0828E9487700845838 /* BSSharesProfit.h */,
+				305D4A0928E9487700845838 /* BSSharesProfit.m */,
 			);
 			path = Calculation;
 			sourceTree = "<group>";
@@ -1130,6 +1145,7 @@
 				30AD8F33261C4392006FA2B8 /* BSRecoChildTableView.m in Sources */,
 				30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
+				308559792909530200E26200 /* BST.m in Sources */,
 				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
 				77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */,
 				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
@@ -1149,6 +1165,7 @@
 				30C3D2D625FA2395003CBC13 /* BSMsgSendForMethod.m in Sources */,
 				30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */,
 				3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */,
+				305D4A0A28E9487700845838 /* BSSharesProfit.m in Sources */,
 				301C651027C65D3B00490377 /* BSButtonEdgeInsetsVC.m in Sources */,
 				77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */,
 				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
@@ -1157,6 +1174,7 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
 				30AD8F22261C429A006FA2B8 /* BSContainerVC.m in Sources */,
+				30855976290952F300E26200 /* BSTest.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 				308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */,
 				77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */,
@@ -1325,6 +1343,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HM87X6XBD5;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
@@ -1356,6 +1375,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = HM87X6XBD5;
+				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
