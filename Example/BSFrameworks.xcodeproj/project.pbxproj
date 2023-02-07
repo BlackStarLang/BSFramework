@@ -22,8 +22,6 @@
 		3070283E249CB35E000C5384 /* BSNotifacation.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070283D249CB35E000C5384 /* BSNotifacation.m */; };
 		3070284224A474F9000C5384 /* BSDynamicBehavior.m in Sources */ = {isa = PBXBuildFile; fileRef = 3070284124A474F9000C5384 /* BSDynamicBehavior.m */; };
 		30754B90257F71AE00398CA3 /* BSWebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30754B8F257F71AE00398CA3 /* BSWebViewController.m */; };
-		30855976290952F300E26200 /* BSTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 30855975290952F300E26200 /* BSTest.m */; };
-		308559792909530200E26200 /* BST.m in Sources */ = {isa = PBXBuildFile; fileRef = 308559782909530200E26200 /* BST.m */; };
 		308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961525F225C80051A225 /* BSFibonacciSequence.m */; };
 		308F961F25F234EB0051A225 /* BSSort.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F961E25F234EB0051A225 /* BSSort.m */; };
 		308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */ = {isa = PBXBuildFile; fileRef = 308F962625F5F7600051A225 /* BSCategoryOrigin.m */; };
@@ -61,7 +59,6 @@
 		30DD8B3F258B4A8D00E49AD9 /* UIViewController+WhiteController.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B3E258B4A8D00E49AD9 /* UIViewController+WhiteController.m */; };
 		30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B462590881500E49AD9 /* BSCalculationRoot.m */; };
 		30DD8B4E25908D7400E49AD9 /* BSHuiwenStr.m in Sources */ = {isa = PBXBuildFile; fileRef = 30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */; };
-		49935667710D9763544CBF9D /* libPods-BSFrameworks_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 13245105E9CF7FECBEB9D304 /* libPods-BSFrameworks_Tests.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -70,7 +67,6 @@
 		6003F59E195388D20070C39A /* BSAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F59D195388D20070C39A /* BSAppDelegate.m */; };
 		6003F5A7195388D20070C39A /* BSViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5A6195388D20070C39A /* BSViewController.m */; };
 		6003F5A9195388D20070C39A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5A8195388D20070C39A /* Images.xcassets */; };
-		6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F5AF195388D20070C39A /* XCTest.framework */; };
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
@@ -90,7 +86,6 @@
 		77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B038262692B6EE006587AF /* libiconv.2.tbd */; };
 		77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382A2692B6F8006587AF /* libz.1.tbd */; };
 		77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0382E2692B704006587AF /* libbz2.1.0.tbd */; };
-		77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
 		77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */ = {isa = PBXBuildFile; fileRef = 77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */; };
 		77DA8D6226B406AB0034EC86 /* 标题装饰.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6126B406AB0034EC86 /* 标题装饰.png */; };
 		77DA8D6626B406B40034EC86 /* 签到入口.png in Resources */ = {isa = PBXBuildFile; fileRef = 77DA8D6526B406B40034EC86 /* 签到入口.png */; };
@@ -98,7 +93,7 @@
 		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		D7BED1EB328A79367833AB9B /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */; };
+		E4BF1989296D08CF002425A3 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -112,9 +107,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		13245105E9CF7FECBEB9D304 /* libPods-BSFrameworks_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1407A0FF819E0D4257A48958 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		249890230EA4254D28F53759 /* Pods-BSFrameworks_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		301C486B25A30CC800F26CC3 /* libc++.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = "libc++.tbd"; path = "usr/lib/libc++.tbd"; sourceTree = SDKROOT; };
 		301C650E27C65D3B00490377 /* BSButtonEdgeInsetsVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BSButtonEdgeInsetsVC.h; sourceTree = "<group>"; };
@@ -145,10 +138,6 @@
 		3070284124A474F9000C5384 /* BSDynamicBehavior.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSDynamicBehavior.m; sourceTree = "<group>"; };
 		30754B8E257F71AE00398CA3 /* BSWebViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSWebViewController.h; sourceTree = "<group>"; };
 		30754B8F257F71AE00398CA3 /* BSWebViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSWebViewController.m; sourceTree = "<group>"; };
-		30855974290952F300E26200 /* BSTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTest.h; sourceTree = "<group>"; };
-		30855975290952F300E26200 /* BSTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTest.m; sourceTree = "<group>"; };
-		308559772909530200E26200 /* BST.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BST.h; sourceTree = "<group>"; };
-		308559782909530200E26200 /* BST.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BST.m; sourceTree = "<group>"; };
 		308F961425F225C80051A225 /* BSFibonacciSequence.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSFibonacciSequence.h; sourceTree = "<group>"; };
 		308F961525F225C80051A225 /* BSFibonacciSequence.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSFibonacciSequence.m; sourceTree = "<group>"; };
 		308F961D25F234EB0051A225 /* BSSort.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSort.h; sourceTree = "<group>"; };
@@ -235,7 +224,6 @@
 		6003F5A6195388D20070C39A /* BSViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSViewController.m; sourceTree = "<group>"; };
 		6003F5A8195388D20070C39A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		6003F5AE195388D20070C39A /* BSFrameworks_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BSFrameworks_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		6003F5AF195388D20070C39A /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		6003F5B7195388D20070C39A /* Tests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "Tests-Info.plist"; sourceTree = "<group>"; };
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
@@ -259,7 +247,6 @@
 		77B038262692B6EE006587AF /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		77B0382A2692B6F8006587AF /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		77B0382E2692B704006587AF /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
-		77B0384D26932CE6006587AF /* IJKMediaFramework */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = IJKMediaFramework; path = ../../ijkSDK/IJKMediaFramework; sourceTree = "<group>"; };
 		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostAnimator.h; sourceTree = "<group>"; };
 		77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostAnimator.m; sourceTree = "<group>"; };
@@ -282,10 +269,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E4BF1989296D08CF002425A3 /* IJKMediaFramework.framework in Frameworks */,
 				77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */,
 				77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */,
 				77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */,
-				77B0385F26932F18006587AF /* IJKMediaFramework.framework in Frameworks */,
 				77B038252692B6DE006587AF /* AVFoundation.framework in Frameworks */,
 				77B038232692B6D0006587AF /* CoreAudio.framework in Frameworks */,
 				77B038212692B6BE006587AF /* CoreVideo.framework in Frameworks */,
@@ -297,7 +284,6 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				D7BED1EB328A79367833AB9B /* libPods-BSFrameworks_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -305,10 +291,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				49935667710D9763544CBF9D /* libPods-BSFrameworks_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -329,10 +313,6 @@
 			children = (
 				6003F5A5195388D20070C39A /* BSViewController.h */,
 				6003F5A6195388D20070C39A /* BSViewController.m */,
-				30855974290952F300E26200 /* BSTest.h */,
-				30855975290952F300E26200 /* BSTest.m */,
-				308559772909530200E26200 /* BST.h */,
-				308559782909530200E26200 /* BST.m */,
 				305303AF25A5B53400748F50 /* BSSubFuncListController.h */,
 				305303B025A5B53400748F50 /* BSSubFuncListController.m */,
 			);
@@ -446,7 +426,6 @@
 		30494A332485E7BA002DBC8D /* BSPhoto */ = {
 			isa = PBXGroup;
 			children = (
-				30494A352485E7DA002DBC8D /* View */,
 				30494A342485E7CC002DBC8D /* ViewController */,
 			);
 			path = BSPhoto;
@@ -459,13 +438,6 @@
 				30AE963B2488977E009A43FB /* BSPhotoVC.m */,
 			);
 			path = ViewController;
-			sourceTree = "<group>";
-		};
-		30494A352485E7DA002DBC8D /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		3053042825AD866800748F50 /* DemoGroup */ = {
@@ -746,7 +718,6 @@
 		6003F58C195388D20070C39A /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				77B0384D26932CE6006587AF /* IJKMediaFramework */,
 				77B0382E2692B704006587AF /* libbz2.1.0.tbd */,
 				77B0382A2692B6F8006587AF /* libz.1.tbd */,
 				77B038262692B6EE006587AF /* libiconv.2.tbd */,
@@ -761,9 +732,6 @@
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
-				6003F5AF195388D20070C39A /* XCTest.framework */,
-				163E5F65AC60CBF980171505 /* libPods-BSFrameworks_Example.a */,
-				13245105E9CF7FECBEB9D304 /* libPods-BSFrameworks_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1145,7 +1113,6 @@
 				30AD8F33261C4392006FA2B8 /* BSRecoChildTableView.m in Sources */,
 				30AD8F3A261C5975006FA2B8 /* BSClassifyScrollView.m in Sources */,
 				30D2E5D32570DB8A001EFB02 /* BSAlertController.m in Sources */,
-				308559792909530200E26200 /* BST.m in Sources */,
 				30DD8B2B258B2B6600E49AD9 /* BSKVOTestController.m in Sources */,
 				77DA8D5526B2615B0034EC86 /* BSTransitionBoostAnimator.m in Sources */,
 				308F961625F225C80051A225 /* BSFibonacciSequence.m in Sources */,
@@ -1174,7 +1141,6 @@
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
 				30AD8F22261C429A006FA2B8 /* BSContainerVC.m in Sources */,
-				30855976290952F300E26200 /* BSTest.m in Sources */,
 				3070283A249C695C000C5384 /* BSObjcPerson.m in Sources */,
 				308F962E25F5F78D0051A225 /* BSCategoryOrigin+Mutimethod.m in Sources */,
 				77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */,
@@ -1346,13 +1312,13 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
@@ -1378,13 +1344,13 @@
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(PROJECT_DIR)/BSFrameworks/Function/IJKPlayer/framework",
+					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 11;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",

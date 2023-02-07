@@ -101,10 +101,7 @@ static void rcd_perform_rebinding_with_section(struct rcd_rebindings_entry *rebi
               indirect_symbol_bindings[i] != cur->rebindings[j].replacement) {
             *(cur->rebindings[j].replaced) = indirect_symbol_bindings[i];
           }
-            if(i < (sizeof(indirect_symbol_bindings) /sizeof(indirect_symbol_bindings[0]))) {
-                indirect_symbol_bindings[i] = cur->rebindings[j].replacement;
-
-            }
+          indirect_symbol_bindings[i] = cur->rebindings[j].replacement;
           goto symbol_loop;
         }
       }

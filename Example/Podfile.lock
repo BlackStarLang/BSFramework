@@ -26,12 +26,12 @@ PODS:
     - SDWebImage
   - FBRetainCycleDetector (0.1.4)
   - Masonry (1.1.0)
-  - MJRefresh (3.5.0)
+  - MJRefresh (3.7.5)
   - MLeaksFinder (1.0.0):
     - FBRetainCycleDetector
-  - SDWebImage (5.9.3):
-    - SDWebImage/Core (= 5.9.3)
-  - SDWebImage/Core (5.9.3)
+  - SDWebImage (5.14.2):
+    - SDWebImage/Core (= 5.14.2)
+  - SDWebImage/Core (5.14.2)
   - TZImagePickerController (3.8.3):
     - TZImagePickerController/Basic (= 3.8.3)
     - TZImagePickerController/Location (= 3.8.3)
@@ -62,11 +62,11 @@ SPEC CHECKSUMS:
   BSFrameworks: 1b775c77a4a3d04ca2da84bb5283ccff794511cf
   FBRetainCycleDetector: 46f8179bbb1c587deee3ea838a1a3ee02acf5015
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
-  MJRefresh: 6afc955813966afb08305477dd7a0d9ad5e79a16
+  MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   MLeaksFinder: 8c435bd2f6d070af18cff082b503b21adc130fc0
-  SDWebImage: a31ee8e90a97303529e03fb0c333eae0eacb88e9
+  SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
   TZImagePickerController: e9909edbadf7381140efc5b5c9f5bdbfd630f7d4
 
 PODFILE CHECKSUM: 39aaba1bc40c0fd15351c1ffd25a9d6c7145005c
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3
