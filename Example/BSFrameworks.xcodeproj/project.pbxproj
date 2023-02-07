@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B37FCB0010D0D30D2A25133 /* libPods-BSFrameworks_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 86E1A6FCE0EBB94E5DE654AA /* libPods-BSFrameworks_Example.a */; };
+		17D71E508E5CCFAAC95435D0 /* libPods-BSFrameworks_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 500ABBCEB65B426736B93CF8 /* libPods-BSFrameworks_Tests.a */; };
 		301C486C25A30CC800F26CC3 /* libc++.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 301C486B25A30CC800F26CC3 /* libc++.tbd */; };
 		301C651027C65D3B00490377 /* BSButtonEdgeInsetsVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 301C650F27C65D3B00490377 /* BSButtonEdgeInsetsVC.m */; };
 		3025354C2477CD7B00669C27 /* BSCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 3025354B2477CD7B00669C27 /* BSCollectionViewCell.m */; };
@@ -210,6 +212,7 @@
 		30DD8B462590881500E49AD9 /* BSCalculationRoot.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSCalculationRoot.m; sourceTree = "<group>"; };
 		30DD8B4C25908D7400E49AD9 /* BSHuiwenStr.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSHuiwenStr.h; sourceTree = "<group>"; };
 		30DD8B4D25908D7400E49AD9 /* BSHuiwenStr.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSHuiwenStr.m; sourceTree = "<group>"; };
+		500ABBCEB65B426736B93CF8 /* libPods-BSFrameworks_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58A195388D20070C39A /* BSFrameworks_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BSFrameworks_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -259,6 +262,7 @@
 		77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSVideoPlayerVC.m; sourceTree = "<group>"; };
 		7DAFF48ABAAB9BB1ECEE86FE /* Pods-BSFrameworks_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.release.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.release.xcconfig"; sourceTree = "<group>"; };
 		7EF9CD17C5C025348FBB461A /* Pods-BSFrameworks_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Example.debug.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Example/Pods-BSFrameworks_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		86E1A6FCE0EBB94E5DE654AA /* libPods-BSFrameworks_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-BSFrameworks_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DB5826B6261A683A85E3741 /* BSFrameworks.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BSFrameworks.podspec; path = ../BSFrameworks.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C57EA256A2BABE18FAABFA8 /* Pods-BSFrameworks_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -284,6 +288,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
+				0B37FCB0010D0D30D2A25133 /* libPods-BSFrameworks_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +298,7 @@
 			files = (
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
+				17D71E508E5CCFAAC95435D0 /* libPods-BSFrameworks_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -732,6 +738,8 @@
 				6003F58D195388D20070C39A /* Foundation.framework */,
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
+				86E1A6FCE0EBB94E5DE654AA /* libPods-BSFrameworks_Example.a */,
+				500ABBCEB65B426736B93CF8 /* libPods-BSFrameworks_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
