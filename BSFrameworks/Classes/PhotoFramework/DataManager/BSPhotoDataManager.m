@@ -29,19 +29,22 @@
 
 
 
-#pragma mark - 获取相机胶卷的 相册对象
+#pragma mark - 相册资源获取
+
+///MARK: 获取相机胶卷相册的 所有照片对象
 -(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel{
 
-
+    ///获取 智能相册-sub普通相册 的所有照片
     PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
 
     for (PHAssetCollection *collection in result) {
         
-        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary //|| collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumRecentlyAdded
-            ) {
+        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
             
             BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            ///相册名称
             model.title = [model getTitleNameWithCollectionLocalizedTitle:collection.localizedTitle];
+            ///相册资源合计
             model.assetCollection = collection;
             groupModel(model);
             break;
@@ -49,13 +52,12 @@
     }
 }
 
-
+///获取所有相册对象
 -(void)getAllAlbumsWithType:(LibraryType)libraryType albums:(void(^)(NSArray *albums))albums{
 
-    PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    
-    NSMutableArray *mutArr = [NSMutableArray array];
-    
+    PHFetchResult *smartResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    PHFetchResult *userResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+        
     PHFetchOptions *options = [[PHFetchOptions alloc]init];
     if (libraryType == 0) {
         options.predicate =  [NSPredicate predicateWithFormat:@"mediaType == %d",PHAssetMediaTypeImage];
@@ -65,7 +67,38 @@
         
     }
     
-    for (PHAssetCollection *assetCollection in result) {
+    
+    NSMutableArray *mutArr = [NSMutableArray array];
+    
+    ///智能相册
+    for (PHAssetCollection *assetCollection in smartResult) {
+
+        PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+        NSInteger count = 0;
+        if (libraryType == 0) {
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+        }else if (libraryType == 1){
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+        }else{
+            NSInteger imgCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+            NSInteger videoCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+            count = imgCount + videoCount;
+        }
+        
+        if (count && ![assetCollection.localizedTitle isEqualToString:@"Recently Deleted"]) {
+            BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            [mutArr addObject:model];
+            
+            model.fetchResult = assetResult;
+            model.assetCollection = assetCollection;
+            model.count = count;
+            model.title = [model getTitleNameWithCollectionLocalizedTitle:assetCollection.localizedTitle];
+        }
+    }
+    
+    
+    ///用户相册
+    for (PHAssetCollection *assetCollection in userResult) {
 
         PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
         NSInteger count = 0;

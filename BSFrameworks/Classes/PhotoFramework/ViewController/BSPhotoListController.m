@@ -215,16 +215,17 @@
         }
     }
 
-    
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    ///延迟0.1，否则可能会出现 collectionView 没有滚动到最下边
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.firstScroll = YES;
-        
+
         NSInteger row = self.dataSource.count - 1;
         if ([BSPhotoConfig shareConfig].supCamera) {
             row = self.dataSource.count;
         }
-        
+
         self.collectionView.hidden = NO;
+        
         [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         self.centerY = self.collectionView.contentOffset.y + self.collectionView.height*3/4;
         self.firstScroll = NO;
