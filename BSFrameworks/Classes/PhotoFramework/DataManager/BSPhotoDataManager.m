@@ -205,6 +205,11 @@
             
         }else{
          
+            ///优化图片输出尺寸
+            if (CGSizeEqualToSize(targetSize, CGSizeZero)) {
+                targetSize = [self getFitSizeWithAsset:asset];
+            }
+            
             [self.cacheManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:self.options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                
                 if ([imageType isEqualToString:@"UIImage"]) {
@@ -220,6 +225,43 @@
     resultArr(mutArr);
 }
 
+///后去适应当前屏幕尺寸的图片
+- (CGSize)getFitSizeWithAsset:(PHAsset *)asset {
+    
+    CGSize targetSize = CGSizeZero;
+    
+    CGFloat width = asset.pixelWidth;
+    CGFloat height = asset.pixelHeight;
+    CGFloat imgScale = width/height;
+    
+    CGFloat swidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat sheight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenScale = swidth/sheight;
+    
+    CGFloat newWidth = 0.0;
+    CGFloat newHeight = 0.0;
+    
+    if (imgScale > screenScale) {
+        ///宽作为最大值（固定屏高）
+        newWidth = [UIScreen mainScreen].bounds.size.width * [UIScreen mainScreen].scale;
+        newHeight = newWidth * height / width ;
+        if (width > newWidth){
+            targetSize = CGSizeMake(newWidth, newHeight);
+        }else{
+            targetSize = CGSizeMake(width, height);
+        }
+    }else{
+        ///高作为最大值（固定屏宽）
+        newHeight = [UIScreen mainScreen].bounds.size.height * [UIScreen mainScreen].scale;
+        newWidth = newHeight * width / height ;
+        if (height > newHeight){
+            targetSize = CGSizeMake(newWidth, newHeight);
+        }else{
+            targetSize = CGSizeMake(width, height);
+        }
+    }
+    return targetSize;
+}
 
 
 

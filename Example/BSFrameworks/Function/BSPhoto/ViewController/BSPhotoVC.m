@@ -188,11 +188,8 @@
     NSLog(@"相机 == 获取到视频地址：%@",avAsset);
     
     UIView *pre = [[UIView alloc]initWithFrame:CGRectMake(0, 100, self.view.bounds.size.width, 400)];
-    
     [self.view addSubview:pre];
-    
-//    AVAsset *asset = [AVAsset assetWithURL:[NSURL fileURLWithPath:@"/Users/blackstar/Downloads/MyWorks/BSFrameworks/Example/BSFrameworks/test1.mp4"]];
-    
+        
     AVPlayerItem *item = [AVPlayerItem playerItemWithAsset:avAsset];
     self.player = [AVPlayer playerWithPlayerItem:item];
     

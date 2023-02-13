@@ -226,7 +226,11 @@
 
         self.collectionView.hidden = NO;
         
-        [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:row inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
+        ///通过 contentOffset 方式比较准确，测试数据7000张图片，无问题
+        CGFloat offsetY = self.collectionView.contentSize.height - self.collectionView.height + self.navigationController.navigationBar.height + self.navigationController.toolbar.height;
+        ///-10 是因为设置了上下边距各5
+        [self.collectionView setContentOffset:CGPointMake(0, offsetY - 10)];
+
         self.centerY = self.collectionView.contentOffset.y + self.collectionView.height*3/4;
         self.firstScroll = NO;
     });
