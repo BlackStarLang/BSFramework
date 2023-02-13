@@ -95,7 +95,6 @@
 		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
-		E4BF1989296D08CF002425A3 /* IJKMediaFramework.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 77B0385E26932F18006587AF /* IJKMediaFramework.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -250,7 +249,6 @@
 		77B038262692B6EE006587AF /* libiconv.2.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.2.tbd; path = usr/lib/libiconv.2.tbd; sourceTree = SDKROOT; };
 		77B0382A2692B6F8006587AF /* libz.1.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.tbd; path = usr/lib/libz.1.tbd; sourceTree = SDKROOT; };
 		77B0382E2692B704006587AF /* libbz2.1.0.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.1.0.tbd; path = usr/lib/libbz2.1.0.tbd; sourceTree = SDKROOT; };
-		77B0385E26932F18006587AF /* IJKMediaFramework.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = IJKMediaFramework.framework; sourceTree = "<group>"; };
 		77DA8D5326B2615B0034EC86 /* BSTransitionBoostAnimator.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSTransitionBoostAnimator.h; sourceTree = "<group>"; };
 		77DA8D5426B2615B0034EC86 /* BSTransitionBoostAnimator.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSTransitionBoostAnimator.m; sourceTree = "<group>"; };
 		77DA8D6126B406AB0034EC86 /* 标题装饰.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "标题装饰.png"; sourceTree = "<group>"; };
@@ -273,7 +271,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E4BF1989296D08CF002425A3 /* IJKMediaFramework.framework in Frameworks */,
 				77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */,
 				77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */,
 				77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */,
@@ -835,7 +832,6 @@
 		77B0380B2692B3BE006587AF /* framework */ = {
 			isa = PBXGroup;
 			children = (
-				77B0385E26932F18006587AF /* IJKMediaFramework.framework */,
 			);
 			path = framework;
 			sourceTree = "<group>";
