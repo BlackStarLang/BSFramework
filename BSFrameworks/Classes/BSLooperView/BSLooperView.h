@@ -56,11 +56,11 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
     
     //只针对scrollDirection = ScrollDirectionHorizontal的
     BSLooperPositionLeft    =   0,      /// 向左
-    BSLooperPositionRight   =   1<<0,   /// 向右
+    BSLooperPositionRight   =   1,      /// 向右
     
     //只针对scrollDirection = ScrollDirectionVertical的
-    BSLooperPositionUp      =   2<<1,   /// 向上
-    BSLooperPositionDown    =   3<<2    /// 向下
+    BSLooperPositionUp      =   2,      /// 向上
+    BSLooperPositionDown    =   3       /// 向下
 };
 
 
@@ -99,7 +99,9 @@ typedef NS_OPTIONS(NSInteger, BSLooperPosition){
 
 
 /// ====================================
-///  是否自动轮播(只有无限轮播，才可自动轮播)
+///  if isInfinite = NO , autoLoop unavailable
+///  如果没有开启无线轮播，此属性将无效
+///  是否自动轮播
 /// ====================================
 @property (nonatomic ,assign) BOOL autoLoop;
 

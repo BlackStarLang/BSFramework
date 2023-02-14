@@ -98,14 +98,6 @@
 
 #pragma mark - set method or public
 
--(void)setAutoLoop:(BOOL)autoLoop{
-    _autoLoop = autoLoop;
-    
-    if (autoLoop) {
-        self.isInfinite = YES;
-    }
-}
-
 -(void)setCellName:(NSString *)cellName{
     _cellName = cellName;
     /// 注册cell
@@ -138,7 +130,11 @@
         self.flowLayout.maxIndexRow = self.newDataArr.count - 1;
         [self.collectionView reloadData];
         
-        self.currentPageIndex = dataArr.count;
+        if (self.isInfinite) {
+            self.currentPageIndex = dataArr.count;
+        }else{
+            self.currentPageIndex = 0;
+        }
         
         if (self.loopStyle == BSLOOP_STYLE_CARD) {
             [self.collectionView setContentOffset:CGPointMake(self.currentPageIndex*self.collectionView.width, 0) animated:NO];
@@ -146,10 +142,10 @@
             /// 默认滚动到 第二个数据源的第一个数组
             [self.collectionView scrollToItemAtIndexPath:[NSIndexPath indexPathForRow:self.currentPageIndex inSection:0] atScrollPosition:UICollectionViewScrollPositionNone animated:NO];
         }
-    }
-    
-    if (self.autoLoop) {
-        [self creatTimer];
+        
+        if (self.autoLoop) {
+            [self creatTimer];
+        }
     }
 }
 
@@ -474,6 +470,9 @@
 
 
 #pragma mark - scrollView delegate
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    
+}
 
 /// 减速时，重置 UICollectionView 位置（手动滚动）
 -(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
@@ -514,6 +513,12 @@
 
 
 #pragma mark - init 属性初始化
+- (BOOL)autoLoop {
+    if (self.isInfinite){
+        return _autoLoop;
+    }
+    return NO;
+}
 
 -(UICollectionView *)collectionView{
     if (!_collectionView) {
