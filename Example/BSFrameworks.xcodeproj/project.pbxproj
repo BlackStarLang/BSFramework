@@ -95,6 +95,7 @@
 		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		E4CAA14429AE1DC600FC922B /* BSSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CAA14329AE1DC600FC922B /* BSSegmentVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -264,6 +265,8 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DB5826B6261A683A85E3741 /* BSFrameworks.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BSFrameworks.podspec; path = ../BSFrameworks.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C57EA256A2BABE18FAABFA8 /* Pods-BSFrameworks_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E4CAA14229AE1DC600FC922B /* BSSegmentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSegmentVC.h; sourceTree = "<group>"; };
+		E4CAA14329AE1DC600FC922B /* BSSegmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSegmentVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -446,6 +449,7 @@
 		3053042825AD866800748F50 /* DemoGroup */ = {
 			isa = PBXGroup;
 			children = (
+				E4CAA13E29AE1DA800FC922B /* ZHSegmentBar */,
 				773236022771BC5C00CBE720 /* JSONTest */,
 				301C650D27C65D3B00490377 /* UIButtonEdgeInsets */,
 				77B0380A2692B3AF006587AF /* IJKPlayer */,
@@ -873,6 +877,15 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E4CAA13E29AE1DA800FC922B /* ZHSegmentBar */ = {
+			isa = PBXGroup;
+			children = (
+				E4CAA14229AE1DC600FC922B /* BSSegmentVC.h */,
+				E4CAA14329AE1DC600FC922B /* BSSegmentVC.m */,
+			);
+			path = ZHSegmentBar;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -925,8 +938,8 @@
 				ORGANIZATIONNAME = "blackstar_lang@163.com";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = HM87X6XBD5;
-						ProvisioningStyle = Automatic;
+						DevelopmentTeam = JTNG93AQ4G;
+						ProvisioningStyle = Manual;
 					};
 					6003F5AD195388D20070C39A = {
 						DevelopmentTeam = HM87X6XBD5;
@@ -1129,6 +1142,7 @@
 				308F962725F5F7600051A225 /* BSCategoryOrigin.m in Sources */,
 				308F961F25F234EB0051A225 /* BSSort.m in Sources */,
 				30D2E5CB256F495A001EFB02 /* BSATransitionController.m in Sources */,
+				E4CAA14429AE1DC600FC922B /* BSSegmentVC.m in Sources */,
 				3034EFF4255B8922001084AC /* BSRefreshController.m in Sources */,
 				77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */,
 				30AD8F60261EF36E006FA2B8 /* BSNotificationPostVC.m in Sources */,
@@ -1311,8 +1325,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HM87X6XBD5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JTNG93AQ4G;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1328,9 +1344,10 @@
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongheng.ZongHeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ZongHeng_Profile_Dev;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1343,8 +1360,10 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = HM87X6XBD5;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = "";
+				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JTNG93AQ4G;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1360,9 +1379,10 @@
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.zongheng.ZongHeng;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ZongHeng_Profile_Dev;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

@@ -2,7 +2,7 @@
   "name": "BSFrameworks",
   "version": "0.1.10",
   "summary": "轮播图新增 卡片样式(修复图片预览返回按钮UI问题，新增iOS11高版本对应的拍照回调API)",
-  "description": "自己封装的所有的常用工具类\n\n1、图片选择器，支持选择图片、图片预览、原图选择、相机拍照（完成）\n   fature:增加选择媒体类型（未开始）\n   \n2、图片预览控件，支持URL，PATH，IMAGE，支持混合预览（需要使用预览对象）（完成）\n   fature:增加视频预览、视频录制（完成），增加图片缩放、移动、旋转手势（未开始）\n   \n3、水印相机：使用AVFoundation框架自定义相机，拍照后图片添加水印（完成）\n   fature: 调用相机即添加水印（未开始）\n  \n4、轮播图：'2D/3D'（完成）",
+  "description": "自己封装的所有的常用工具类\n\n1、图片选择器，支持选择图片、图片预览、原图选择、相机拍照（完成）\n   fature:增加选择媒体类型（未开始）\n   \n2、图片预览控件，支持URL，PATH，IMAGE，支持混合预览（需要使用预览对象）（完成）\n   fature:增加视频预览、视频录制（完成），增加图片缩放、移动、旋转手势（未开始）\n   \n3、水印相机：使用AVFoundation框架自定义相机，拍照后图片添加水印（完成）\n   fature: 调用相机即添加水印（未开始）\n  \n4、轮播图：'2D/3D'（完成）\n\n5、分段控件：segment",
   "homepage": "https://github.com/BlackStarLang/BSFramework.git",
   "license": {
     "type": "MIT",
@@ -74,6 +74,10 @@
     {
       "name": "BSVideoPreLoader",
       "source_files": "BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}"
+    },
+    {
+      "name": "BSSegmentView",
+      "source_files": "BSFrameworks/Classes/BSSegment/**/*{.h,.m}"
     }
   ]
 }

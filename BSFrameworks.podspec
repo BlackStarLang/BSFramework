@@ -34,6 +34,8 @@ Pod::Spec.new do |s|
     
   4、轮播图：'2D/3D'（完成）
   
+  5、分段控件：segment
+  
   
   DESC
   
@@ -89,6 +91,11 @@ Pod::Spec.new do |s|
     videoloader.source_files = 'BSFrameworks/Classes/BSVideoPreLoader/**/*{.h,.m}'
     
   end
+  
+  s.subspec 'BSSegmentView' do |segmentView|
+    segmentView.source_files = 'BSFrameworks/Classes/BSSegment/**/*{.h,.m}'
+  end
+  
   # 上拉下拉刷新控件
 #  s.subspec 'BSRefresh' do |ss|
 #    ss.source_files = 'BSFrameworks/Classes/BSRefresh/**/*{.h,.m}'

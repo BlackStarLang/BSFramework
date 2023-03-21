@@ -3,6 +3,7 @@ PODS:
     - BSFrameworks/BSCategory (= 0.1.10)
     - BSFrameworks/BSLooperView (= 0.1.10)
     - BSFrameworks/BSPhotoFramework (= 0.1.10)
+    - BSFrameworks/BSSegmentView (= 0.1.10)
     - BSFrameworks/BSSocket (= 0.1.10)
     - BSFrameworks/BSVideoPreLoader (= 0.1.10)
     - Masonry
@@ -16,6 +17,9 @@ PODS:
     - SDWebImage
   - BSFrameworks/BSPhotoFramework (0.1.10):
     - BSFrameworks/BSCategory
+    - Masonry
+    - SDWebImage
+  - BSFrameworks/BSSegmentView (0.1.10):
     - Masonry
     - SDWebImage
   - BSFrameworks/BSSocket (0.1.10):
@@ -53,7 +57,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  BSFrameworks: 1b775c77a4a3d04ca2da84bb5283ccff794511cf
+  BSFrameworks: 87ff28595eb224858206d1cdb43e9d44c2e5e772
   Masonry: 678fab65091a9290e40e2832a55e7ab731aad201
   MJRefresh: fdf5e979eb406a0341468932d1dfc8b7f9fce961
   SDWebImage: b9a731e1d6307f44ca703b3976d18c24ca561e84
