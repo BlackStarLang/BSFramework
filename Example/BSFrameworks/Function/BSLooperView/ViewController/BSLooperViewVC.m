@@ -79,7 +79,7 @@
         _looperView.delegate = self;
         _looperView.itemSize = CGSizeMake(self.view.width - 120 ,180);
         _looperView.scale = 0.8;
-        _looperView.isInfinite = NO;
+        _looperView.isInfinite = YES;
         _looperView.autoLoop = YES;
         _looperView.duration = 2;
         

@@ -49,7 +49,8 @@
     NSArray *pushInfo = @[@{@"Pod 组件：3D轮播图":@"BSLooperViewVC"},
                           @{@"Pod 组件：选择图片控件，拍照+视频（自定义相机）":@"BSPhotoVC"},
                           @{@"Pod 组件：Socket，即时通讯":@"BSSocketViewController"},
-                          @{@"Pod 组件：网络视频预加载":@"BSVideoPlayerVC"},
+                          @{@"Pod 组件：网络视频预加载(未完成)":@"BSVideoPlayerVC"},
+                          @{@"Pod 组件：自定义Segment":@"BSSegmentVC"},
                           @{@"Demo合集":@"BSSubFuncListController"},
     ];
     
@@ -80,7 +81,6 @@
                         @{@"IJKPlayer 播放器":@"BSIKJPlayerController"},
                         @{@"UIButton 的setTitleEdgeInsets和setTitleEdgeInsets":@"BSButtonEdgeInsetsVC"},
                         @{@"JSON TEST":@"BSJsonTestVC"},
-                        @{@"自定义Segment":@"BSSegmentVC"},
                         
     ];
     
