@@ -29,19 +29,22 @@
 
 
 
-#pragma mark - 获取相机胶卷的 相册对象
+#pragma mark - 相册资源获取
+
+///MARK: 获取相机胶卷相册的 所有照片对象
 -(void)getPhotoLibraryGroupModel:(void(^)(BSPhotoGroupModel *groupModel))groupModel{
 
-
+    ///获取 智能相册-sub普通相册 的所有照片
     PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
 
     for (PHAssetCollection *collection in result) {
         
-        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary //|| collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumRecentlyAdded
-            ) {
+        if (collection.assetCollectionSubtype == PHAssetCollectionSubtypeSmartAlbumUserLibrary) {
             
             BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            ///相册名称
             model.title = [model getTitleNameWithCollectionLocalizedTitle:collection.localizedTitle];
+            ///相册资源合计
             model.assetCollection = collection;
             groupModel(model);
             break;
@@ -49,13 +52,12 @@
     }
 }
 
-
+///获取所有相册对象
 -(void)getAllAlbumsWithType:(LibraryType)libraryType albums:(void(^)(NSArray *albums))albums{
 
-    PHFetchResult *result = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
-    
-    NSMutableArray *mutArr = [NSMutableArray array];
-    
+    PHFetchResult *smartResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeSmartAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+    PHFetchResult *userResult = [PHAssetCollection fetchAssetCollectionsWithType:PHAssetCollectionTypeAlbum subtype:PHAssetCollectionSubtypeAlbumRegular options:nil];
+        
     PHFetchOptions *options = [[PHFetchOptions alloc]init];
     if (libraryType == 0) {
         options.predicate =  [NSPredicate predicateWithFormat:@"mediaType == %d",PHAssetMediaTypeImage];
@@ -65,7 +67,38 @@
         
     }
     
-    for (PHAssetCollection *assetCollection in result) {
+    
+    NSMutableArray *mutArr = [NSMutableArray array];
+    
+    ///智能相册
+    for (PHAssetCollection *assetCollection in smartResult) {
+
+        PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
+        NSInteger count = 0;
+        if (libraryType == 0) {
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+        }else if (libraryType == 1){
+            count = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+        }else{
+            NSInteger imgCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeImage];
+            NSInteger videoCount = [assetResult countOfAssetsWithMediaType:PHAssetMediaTypeVideo];
+            count = imgCount + videoCount;
+        }
+        
+        if (count && ![assetCollection.localizedTitle isEqualToString:@"Recently Deleted"]) {
+            BSPhotoGroupModel *model = [[BSPhotoGroupModel alloc]init];
+            [mutArr addObject:model];
+            
+            model.fetchResult = assetResult;
+            model.assetCollection = assetCollection;
+            model.count = count;
+            model.title = [model getTitleNameWithCollectionLocalizedTitle:assetCollection.localizedTitle];
+        }
+    }
+    
+    
+    ///用户相册
+    for (PHAssetCollection *assetCollection in userResult) {
 
         PHFetchResult *assetResult = [PHAsset fetchAssetsInAssetCollection:assetCollection options:options];
         NSInteger count = 0;
@@ -172,6 +205,11 @@
             
         }else{
          
+            ///优化图片输出尺寸
+            if (CGSizeEqualToSize(targetSize, CGSizeZero)) {
+                targetSize = [self getFitSizeWithAsset:asset];
+            }
+            
             [self.cacheManager requestImageForAsset:asset targetSize:targetSize contentMode:PHImageContentModeAspectFit options:self.options resultHandler:^(UIImage * _Nullable result, NSDictionary * _Nullable info) {
                
                 if ([imageType isEqualToString:@"UIImage"]) {
@@ -187,6 +225,43 @@
     resultArr(mutArr);
 }
 
+///后去适应当前屏幕尺寸的图片
+- (CGSize)getFitSizeWithAsset:(PHAsset *)asset {
+    
+    CGSize targetSize = CGSizeZero;
+    
+    CGFloat width = asset.pixelWidth;
+    CGFloat height = asset.pixelHeight;
+    CGFloat imgScale = width/height;
+    
+    CGFloat swidth = [UIScreen mainScreen].bounds.size.width;
+    CGFloat sheight = [UIScreen mainScreen].bounds.size.height;
+    CGFloat screenScale = swidth/sheight;
+    
+    CGFloat newWidth = 0.0;
+    CGFloat newHeight = 0.0;
+    
+    if (imgScale > screenScale) {
+        ///宽作为最大值（固定屏高）
+        newWidth = [UIScreen mainScreen].bounds.size.width * [UIScreen mainScreen].scale;
+        newHeight = newWidth * height / width ;
+        if (width > newWidth){
+            targetSize = CGSizeMake(newWidth, newHeight);
+        }else{
+            targetSize = CGSizeMake(width, height);
+        }
+    }else{
+        ///高作为最大值（固定屏宽）
+        newHeight = [UIScreen mainScreen].bounds.size.height * [UIScreen mainScreen].scale;
+        newWidth = newHeight * width / height ;
+        if (height > newHeight){
+            targetSize = CGSizeMake(newWidth, newHeight);
+        }else{
+            targetSize = CGSizeMake(width, height);
+        }
+    }
+    return targetSize;
+}
 
 
 

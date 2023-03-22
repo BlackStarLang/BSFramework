@@ -192,7 +192,9 @@
     dispatch_async(dispatch_get_global_queue(0, 0), ^{
         //如果不放在子线程里，跳转到相机的时候，会卡
         [self addPicIO];
-        [self addVideoIO];
+        if (self.mediaType == 1) {
+            [self addVideoIO];
+        }
         
         dispatch_async(dispatch_get_main_queue(), ^{
             

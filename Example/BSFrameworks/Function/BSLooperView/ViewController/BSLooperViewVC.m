@@ -77,29 +77,44 @@
         _looperView = [[BSLooperView alloc]initWithFrame:CGRectMake(20, 300, self.view.width - 40, 180)];
         _looperView.cellName = @"BSCollectionViewCell";
         _looperView.delegate = self;
-        _looperView.itemSize = CGSizeMake(self.view.width - 160 ,180);
+        _looperView.itemSize = CGSizeMake(self.view.width - 120 ,180);
         _looperView.scale = 0.8;
-        _looperView.isInfinite = YES;
+        _looperView.isInfinite = NO;
         _looperView.autoLoop = YES;
         _looperView.duration = 2;
         
-        _looperView.loopStyle = BSLOOP_STYLE_NORMAL;
-
-        //卡片样式只支持横向，不支持纵向
+//        _looperView.loopStyle = BSLOOP_STYLE_NORMAL;
+        _looperView.loopStyle = BSLOOP_STYLE_CARD;
+        
+        
+        ///========================
+        /// 3D 轮播样式属性
+        ///========================
+        // 卡片样式，minimumLineSpacing 无效
+        _looperView.minimumLineSpacing = 15;
+        
+        // 卡片样式，centerOffset 无效
+        _looperView.centerOffset = 0;
+        
+        // 卡片样式无效
         _looperView.scrollDirection = UICollectionViewScrollDirectionHorizontal;
+
+        
+        
+        ///========================
+        /// 卡片样式属性
+        ///========================
+        
+        /// 卡片样式：最终展示效果计算方法：
+        /// 如过 _looperView 宽度 self.view.width - 40，且卡片宽度 CGSizeMake(self.view.width - 80
+        /// 那么卡片距离边界的边距为40，如果设置显示4张卡片，那么最终展示的叠加效果就是多出10个单位长度的卡片，其他被上边卡片覆盖。
         
         //卡片样式只支持左右，不支持上下
         _looperView.looperPosition = BSLooperPositionLeft;
        
         // visibleCount 卡片样式独有属性
         _looperView.visibleCount = 4;
-
-        // 卡片样式，minimumLineSpacing 无效
-        _looperView.minimumLineSpacing = 15;
         
-        // 卡片样式，centerOffset 无效
-        _looperView.centerOffset = 0;
-
     }
     return _looperView;
 }

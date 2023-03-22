@@ -11,6 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 #define SCREEN_WIDTH [UIScreen mainScreen].bounds.size.width
 #define SCREEN_HEIGHT [UIScreen mainScreen].bounds.size.height
+#define SCALE_W(x) (SCREEN_WIDTH/375.0 * x)
 
 //是否全面屏包括X XS XSMax XR
 #define iPhoneX (SCREEN_HEIGHT==812||SCREEN_HEIGHT==896)

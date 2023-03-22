@@ -11,7 +11,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 typedef enum : NSUInteger {
     BSLOOP_STYLE_NORMAL = 0,// 默认 3D轮播
-    BSLOOP_STYLE_CARD, // 卡片样式
+    BSLOOP_STYLE_CARD, // 卡片样式(类似于卡包样式的叠加覆盖效果)
 } BSLOOP_STYLE;
 
 
