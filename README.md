@@ -1,6 +1,5 @@
-# 2023.2.13开始对所有pod库进行功能完善、修复，并且发布pod稳定版，预计3月底完成。
-# BSFrameworks (修复的问题没有来得及发pod，如果项目中使用,请暂时直接使用源码)
-## version  0.1.10
+## version  0.2.0
+### 2023.3.22 增加 分段控件 BSSegmentView 
 
 ##### BSFrameworks 是个人用于学习iOS各个知识点的产物，内部含有个人学习所用的部分demo。在此期间，根据所学封装了一些常用控件，已经封装为pod组件，并用于实际产品中。由于产品需求原因，有些组件功能比较单一，不符合通用性，但大部分功能都经过了扩展，开放性较强。封装组件没有经过专业性测试，可能含有bug，如遇问题，请通过邮箱联系我，我会以最快速度修复 ：blackstar_lang@163.com 。此项目将持续到本人退出IT界，否则将一直更新维护，速度可能偏慢，但不会放弃。预计退休时间：黄金被劝退时间35岁，2025年。
 
@@ -62,6 +61,8 @@ pod 'BSFrameworks'
 3、水印相机：使用AVFoundation框架自定义相机，（仅支持拍照后图片添加自定义水印视图），支持视频拍摄
 
 4、轮播图：'2D/3D'
+
+5、分段控件 BSSegmentView , 支持字体大小过度动画、底部横线indicator过度动画、选中自动居中等功能
 
 ```
 
@@ -204,6 +205,38 @@ pod 'BSFrameworks/BSPhotoFramework'
     [self presentViewController:camera animated:YES completion:nil];
 
 ```
+
+分段控件
+```ruby
+pod 'BSFrameworks/BSSegmentView'
+```
+
+``` ruby
+功能简介：类似于 头条、掌阅书城等顶部的分段控件Segment
+1、支持自提大小的动画转换
+2、支持底部横线的动画转换
+3、设置 linkScrollView 自动处理scrollView与segment的滑动联动
+4、点击 item 自动居中功能
+``` 
+
+``` ruby
+- (BSSegmentView *)segmentView {
+    if (!_segmentView) {
+        _segmentView = [[BSSegmentView alloc]init];
+        _segmentView.lineSpace = 20;
+        _segmentView.normalFont = [UIFont systemFontOfSize:16];
+        _segmentView.selectFont = [UIFont systemFontOfSize:21];
+        _segmentView.normalColor = [UIColor blackColor];
+        _segmentView.selectColor = [UIColor redColor];
+        _segmentView.aligmentType = barTitleAligmentType_Bottom;
+        _segmentView.verticalOffsetY = -8;
+        _segmentView.headIndent = 15;
+        [_segmentView setIndicatorLineColor:[UIColor cyanColor] orImage:nil];
+    }
+    return _segmentView;
+}
+``` 
+
 
 ## Author
 
