@@ -1,6 +1,6 @@
 ## version  0.2.0
 ### 2023.3.22 增加 分段控件 BSSegmentView 
-
+---
 ##### BSFrameworks 是个人用于学习iOS各个知识点的产物，内部含有个人学习所用的部分demo。在此期间，根据所学封装了一些常用控件，已经封装为pod组件，并用于实际产品中。由于产品需求原因，有些组件功能比较单一，不符合通用性，但大部分功能都经过了扩展，开放性较强。封装组件没有经过专业性测试，可能含有bug，如遇问题，请通过邮箱联系我，我会以最快速度修复 ：blackstar_lang@163.com 。此项目将持续到本人退出IT界，否则将一直更新维护，速度可能偏慢，但不会放弃。预计退休时间：黄金被劝退时间35岁，2025年。
 
 [![CI Status](https://img.shields.io/travis/blackstar_lang@163.com/BSFrameworks.svg?style=flat)](https://travis-ci.org/blackstar_lang@163.com/BSFrameworks)
