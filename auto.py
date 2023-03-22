@@ -116,7 +116,7 @@ def get_spec_filepath():
     # 获取 podspec文件路径和文件名
     work_path = os.getcwd()
     list_file = os.path.split(work_path)
-    spec_name = list_file[-1]+'.podspec'
+    spec_name = list_file[-1]+'s.podspec'
     spec_full_path = work_path + '/' + spec_name
 
     return (spec_full_path)
