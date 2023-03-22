@@ -283,6 +283,13 @@
     [self.linkScrollView setContentOffset:CGPointMake(SCREEN_WIDTH * self.willSelectIndex, 0) animated:animate];
 }
 
+- (void)setIndicatorLineColor:(UIColor *)lineColor orImage:(UIImage *)image{
+    if (image){
+        self.lineIndicator.image = image;
+    }else{
+        self.lineIndicator.backgroundColor = lineColor;
+    }
+}
 
 #pragma mark - prive
 
@@ -360,7 +367,7 @@
         _lineIndicator = [[UIImageView alloc]init];
         _lineIndicator.layer.cornerRadius = 3.5;
         _lineIndicator.layer.masksToBounds = YES;
-        _lineIndicator.image = [UIImage imageNamed:@"segment_indicator"];
+//        _lineIndicator.image = [UIImage imageNamed:@"segment_indicator"];
     }
     return _lineIndicator;
 }

@@ -66,6 +66,9 @@ typedef NS_ENUM(NSUInteger, barTitleScrollAligment) {
 ///设置选中的标签,只能在 setDataArr 方法之后
 - (void)setSelectIndex:(NSInteger)selectIndex animate:(BOOL)animate;
 
+///设置底部横线的颜色或图片，如果都设置，以图片优先
+- (void)setIndicatorLineColor:(UIColor *)lineColor orImage:(UIImage *)image;
+
 @end
 
 

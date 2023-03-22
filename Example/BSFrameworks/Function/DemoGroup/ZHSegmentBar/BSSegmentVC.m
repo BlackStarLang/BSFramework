@@ -22,6 +22,7 @@
 @implementation BSSegmentVC
 
 - (void)viewDidLoad {
+    
     [super viewDidLoad];
     self.dataArr = @[@"全部",@"悬疑",@"言情",@"奇幻",@"古代言情",@"现代商战",@"冒险",@"无限流",@"猎奇",@"脑洞"];
     
@@ -30,8 +31,14 @@
     
     self.segmentView.frame = CGRectMake(0, 100, [UIScreen mainScreen].bounds.size.width, 44);
     self.scrollView.frame = CGRectMake(0, 144, [UIScreen mainScreen].bounds.size.width, [UIScreen mainScreen].bounds.size.height - 144);
+    
+    for (int i = 0 ; i<self.dataArr.count ; i++) {
+        UIView *view = [[UIView alloc]initWithFrame:self.view.bounds];
+        view.left = SCREEN_WIDTH * i;
+        view.backgroundColor = [UIColor colorWithRed:(arc4random()%(255))/255.0 green:(arc4random()%(255))/255.0 blue:(arc4random()%(255))/255.0 alpha:1];
+        [self.scrollView addSubview:view];
+    }
     self.scrollView.contentSize = CGSizeMake(self.dataArr.count * self.view.width, [UIScreen mainScreen].bounds.size.height - 144);
-
     self.segmentView.linkScrollView = self.scrollView;
     
     [self.segmentView setDataArr:self.dataArr];
@@ -58,6 +65,7 @@
         _segmentView.aligmentType = barTitleAligmentType_Bottom;
         _segmentView.verticalOffsetY = -8;
         _segmentView.headIndent = 15;
+        [_segmentView setIndicatorLineColor:[UIColor cyanColor] orImage:nil];
     }
     return _segmentView;
 }
