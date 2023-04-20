@@ -47,6 +47,17 @@
                ReferencedContainer = "container:BSFrameworks.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO"
+            parallelizable = "YES">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E459279629D6854F009F0584"
+               BuildableName = "InjectTests.xctest"
+               BlueprintName = "InjectTests"
+               ReferencedContainer = "container:BSFrameworks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction

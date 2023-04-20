@@ -95,6 +95,16 @@
 		77EE7E7326AAAE0A009DE395 /* BSTransitionBoostController.m in Sources */ = {isa = PBXBuildFile; fileRef = 77EE7E7226AAAE0A009DE395 /* BSTransitionBoostController.m */; };
 		77F312342679EC5A0062CCF5 /* BSVideoPlayerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 77F312332679EC5A0062CCF5 /* BSVideoPlayerVC.m */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		E45927B329D687A9009F0584 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = E45927B129D687A9009F0584 /* fishhook.c */; };
+		E45927BC29D68A66009F0584 /* BSInject.h in Headers */ = {isa = PBXBuildFile; fileRef = E45927BB29D68A66009F0584 /* BSInject.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E45927BF29D68A66009F0584 /* BSInject.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E45927B929D68A65009F0584 /* BSInject.framework */; };
+		E45927C029D68A66009F0584 /* BSInject.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = E45927B929D68A65009F0584 /* BSInject.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		E45927C629D68D10009F0584 /* BSProtectInject.h in Headers */ = {isa = PBXBuildFile; fileRef = E45927C429D68D10009F0584 /* BSProtectInject.h */; };
+		E45927C729D68D10009F0584 /* BSProtectInject.m in Sources */ = {isa = PBXBuildFile; fileRef = E45927C529D68D10009F0584 /* BSProtectInject.m */; };
+		E45927C829D6918E009F0584 /* BSInject.framework in Sources */ = {isa = PBXBuildFile; fileRef = E45927B929D68A65009F0584 /* BSInject.framework */; };
+		E45927CB29D6DE83009F0584 /* BSHookTest.h in Headers */ = {isa = PBXBuildFile; fileRef = E45927C929D6DE83009F0584 /* BSHookTest.h */; };
+		E45927CC29D6DE83009F0584 /* BSHookTest.m in Sources */ = {isa = PBXBuildFile; fileRef = E45927CA29D6DE83009F0584 /* BSHookTest.m */; };
+		E45927CD29D6ED83009F0584 /* fishhook.c in Sources */ = {isa = PBXBuildFile; fileRef = E45927B129D687A9009F0584 /* fishhook.c */; };
 		E4CAA14429AE1DC600FC922B /* BSSegmentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = E4CAA14329AE1DC600FC922B /* BSSegmentVC.m */; };
 /* End PBXBuildFile section */
 
@@ -106,7 +116,28 @@
 			remoteGlobalIDString = 6003F589195388D20070C39A;
 			remoteInfo = BSFrameworks;
 		};
+		E45927BD29D68A66009F0584 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 6003F582195388D10070C39A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = E45927B829D68A65009F0584;
+			remoteInfo = BSInject;
+		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		E45927A829D68550009F0584 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				E45927C029D68A66009F0584 /* BSInject.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1407A0FF819E0D4257A48958 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
@@ -265,6 +296,14 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		8DB5826B6261A683A85E3741 /* BSFrameworks.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = BSFrameworks.podspec; path = ../BSFrameworks.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9C57EA256A2BABE18FAABFA8 /* Pods-BSFrameworks_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BSFrameworks_Tests.debug.xcconfig"; path = "Target Support Files/Pods-BSFrameworks_Tests/Pods-BSFrameworks_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		E45927B129D687A9009F0584 /* fishhook.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = fishhook.c; sourceTree = "<group>"; };
+		E45927B229D687A9009F0584 /* fishhook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = fishhook.h; sourceTree = "<group>"; };
+		E45927B929D68A65009F0584 /* BSInject.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = BSInject.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E45927BB29D68A66009F0584 /* BSInject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSInject.h; sourceTree = "<group>"; };
+		E45927C429D68D10009F0584 /* BSProtectInject.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSProtectInject.h; sourceTree = "<group>"; };
+		E45927C529D68D10009F0584 /* BSProtectInject.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSProtectInject.m; sourceTree = "<group>"; };
+		E45927C929D6DE83009F0584 /* BSHookTest.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSHookTest.h; sourceTree = "<group>"; };
+		E45927CA29D6DE83009F0584 /* BSHookTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSHookTest.m; sourceTree = "<group>"; };
 		E4CAA14229AE1DC600FC922B /* BSSegmentVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BSSegmentVC.h; sourceTree = "<group>"; };
 		E4CAA14329AE1DC600FC922B /* BSSegmentVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BSSegmentVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -274,6 +313,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E45927BF29D68A66009F0584 /* BSInject.framework in Frameworks */,
 				77B0382F2692B704006587AF /* libbz2.1.0.tbd in Frameworks */,
 				77B0382B2692B6F8006587AF /* libz.1.tbd in Frameworks */,
 				77B038272692B6EE006587AF /* libiconv.2.tbd in Frameworks */,
@@ -299,6 +339,13 @@
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
 				17D71E508E5CCFAAC95435D0 /* libPods-BSFrameworks_Tests.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E45927B629D68A65009F0584 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -707,6 +754,7 @@
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* Example for BSFrameworks */,
 				6003F5B5195388D20070C39A /* Tests */,
+				E45927BA29D68A66009F0584 /* BSInject */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
 				C6AB93C6E783B94B37BC5358 /* Pods */,
@@ -718,6 +766,7 @@
 			children = (
 				6003F58A195388D20070C39A /* BSFrameworks_Example.app */,
 				6003F5AE195388D20070C39A /* BSFrameworks_Tests.xctest */,
+				E45927B929D68A65009F0584 /* BSInject.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -748,6 +797,7 @@
 		6003F593195388D20070C39A /* Example for BSFrameworks */ = {
 			isa = PBXGroup;
 			children = (
+				E45927B029D6876E009F0584 /* FishHook */,
 				30253546247786A900669C27 /* AppDelegate */,
 				30494A2B2485E3EF002DBC8D /* Root */,
 				30494A2C2485E41B002DBC8D /* Function */,
@@ -877,6 +927,27 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		E45927B029D6876E009F0584 /* FishHook */ = {
+			isa = PBXGroup;
+			children = (
+				E45927B229D687A9009F0584 /* fishhook.h */,
+				E45927B129D687A9009F0584 /* fishhook.c */,
+				E45927C929D6DE83009F0584 /* BSHookTest.h */,
+				E45927CA29D6DE83009F0584 /* BSHookTest.m */,
+			);
+			path = FishHook;
+			sourceTree = "<group>";
+		};
+		E45927BA29D68A66009F0584 /* BSInject */ = {
+			isa = PBXGroup;
+			children = (
+				E45927BB29D68A66009F0584 /* BSInject.h */,
+				E45927C429D68D10009F0584 /* BSProtectInject.h */,
+				E45927C529D68D10009F0584 /* BSProtectInject.m */,
+			);
+			path = BSInject;
+			sourceTree = "<group>";
+		};
 		E4CAA13E29AE1DA800FC922B /* BSSegmentView */ = {
 			isa = PBXGroup;
 			children = (
@@ -888,6 +959,19 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXHeadersBuildPhase section */
+		E45927B429D68A65009F0584 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E45927C629D68D10009F0584 /* BSProtectInject.h in Headers */,
+				E45927CB29D6DE83009F0584 /* BSHookTest.h in Headers */,
+				E45927BC29D68A66009F0584 /* BSInject.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
 /* Begin PBXNativeTarget section */
 		6003F589195388D20070C39A /* BSFrameworks_Example */ = {
 			isa = PBXNativeTarget;
@@ -898,10 +982,12 @@
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
 				A25080AD2DF269579721E5D4 /* [CP] Copy Pods Resources */,
+				E45927A829D68550009F0584 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E45927BE29D68A66009F0584 /* PBXTargetDependency */,
 			);
 			name = BSFrameworks_Example;
 			productName = BSFrameworks;
@@ -927,6 +1013,24 @@
 			productReference = 6003F5AE195388D20070C39A /* BSFrameworks_Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		E45927B829D68A65009F0584 /* BSInject */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E45927C129D68A67009F0584 /* Build configuration list for PBXNativeTarget "BSInject" */;
+			buildPhases = (
+				E45927B429D68A65009F0584 /* Headers */,
+				E45927B529D68A65009F0584 /* Sources */,
+				E45927B629D68A65009F0584 /* Frameworks */,
+				E45927B729D68A65009F0584 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = BSInject;
+			productName = BSInject;
+			productReference = E45927B929D68A65009F0584 /* BSInject.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -938,12 +1042,16 @@
 				ORGANIZATIONNAME = "blackstar_lang@163.com";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = JTNG93AQ4G;
-						ProvisioningStyle = Manual;
+						DevelopmentTeam = HM87X6XBD5;
+						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
 						DevelopmentTeam = HM87X6XBD5;
 						TestTargetID = 6003F589195388D20070C39A;
+					};
+					E45927B829D68A65009F0584 = {
+						CreatedOnToolsVersion = 14.2;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -963,6 +1071,7 @@
 			targets = (
 				6003F589195388D20070C39A /* BSFrameworks_Example */,
 				6003F5AD195388D20070C39A /* BSFrameworks_Tests */,
+				E45927B829D68A65009F0584 /* BSInject */,
 			);
 		};
 /* End PBXProject section */
@@ -990,6 +1099,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E45927B729D68A65009F0584 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1155,6 +1271,7 @@
 				77B038132692B41F006587AF /* BSIKJPlayerController.m in Sources */,
 				30AD8F53261EEBD1006FA2B8 /* NSNotificationCenter+BSNotiCenter.m in Sources */,
 				30DD8B472590881500E49AD9 /* BSCalculationRoot.m in Sources */,
+				E45927B329D687A9009F0584 /* fishhook.c in Sources */,
 				3053043025B12C0400748F50 /* BSTimerViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 				30494A302485E55A002DBC8D /* BSLooperViewVC.m in Sources */,
@@ -1179,6 +1296,17 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		E45927B529D68A65009F0584 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E45927CD29D6ED83009F0584 /* fishhook.c in Sources */,
+				E45927C829D6918E009F0584 /* BSInject.framework in Sources */,
+				E45927C729D68D10009F0584 /* BSProtectInject.m in Sources */,
+				E45927CC29D6DE83009F0584 /* BSHookTest.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1186,6 +1314,11 @@
 			isa = PBXTargetDependency;
 			target = 6003F589195388D20070C39A /* BSFrameworks_Example */;
 			targetProxy = 6003F5B3195388D20070C39A /* PBXContainerItemProxy */;
+		};
+		E45927BE29D68A66009F0584 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = E45927B829D68A65009F0584 /* BSInject */;
+			targetProxy = E45927BD29D68A66009F0584 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1325,10 +1458,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JTNG93AQ4G;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HM87X6XBD5;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1339,15 +1470,15 @@
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zongheng.ZongHeng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ZongHeng_Profile_Dev;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1360,10 +1491,8 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "Apple Development";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				DEVELOPMENT_TEAM = "";
-				"DEVELOPMENT_TEAM[sdk=iphoneos*]" = JTNG93AQ4G;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = HM87X6XBD5;
 				ENABLE_STRICT_OBJC_MSGSEND = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1374,15 +1503,15 @@
 				GCC_PREFIX_HEADER = "BSFrameworks/BSFrameworks-Prefix.pch";
 				INFOPLIST_FILE = "BSFrameworks/BSFrameworks-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 11;
+				LD_RUNPATH_SEARCH_PATHS = "$(LD_RUNPATH_SEARCH_PATHS_$(IS_MACCATALYST)) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/BSFrameworks/Function/DemoGroup/IJKPlayer/framework",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = com.zongheng.ZongHeng;
+				PRODUCT_BUNDLE_IDENTIFIER = com.framework.BStar1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				"PROVISIONING_PROFILE_SPECIFIER[sdk=iphoneos*]" = ZongHeng_Profile_Dev;
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -1436,6 +1565,91 @@
 			};
 			name = Release;
 		};
+		E45927C229D68A67009F0584 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 blackstar_lang@163.com. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bstar.BSInject;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		E45927C329D68A67009F0584 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = "";
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				EXCLUDED_ARCHS = "";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2023 blackstar_lang@163.com. All rights reserved.";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 16.2;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bstar.BSInject;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = NO;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1462,6 +1676,15 @@
 			buildConfigurations = (
 				6003F5C3195388D20070C39A /* Debug */,
 				6003F5C4195388D20070C39A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E45927C129D68A67009F0584 /* Build configuration list for PBXNativeTarget "BSInject" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E45927C229D68A67009F0584 /* Debug */,
+				E45927C329D68A67009F0584 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

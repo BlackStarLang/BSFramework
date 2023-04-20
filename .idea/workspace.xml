@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="a27e4c47-bfb6-48fa-99b1-ccb9b5c19a45" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/Example/BSFrameworks/FishHook/BSHookTest.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSFrameworks/FishHook/BSHookTest.m" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSFrameworks/FishHook/fishhook.c" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSFrameworks/FishHook/fishhook.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSInject/BSInject.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSInject/BSProtectInject.h" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Example/BSInject/BSProtectInject.m" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Example/BSFrameworks.xcodeproj/project.pbxproj" beforeDir="false" afterPath="$PROJECT_DIR$/Example/BSFrameworks.xcodeproj/project.pbxproj" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Example/BSFrameworks.xcodeproj/xcshareddata/xcschemes/BSFrameworks-Example.xcscheme" beforeDir="false" afterPath="$PROJECT_DIR$/Example/BSFrameworks.xcodeproj/xcshareddata/xcschemes/BSFrameworks-Example.xcscheme" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Example/BSFrameworks/main.m" beforeDir="false" afterPath="$PROJECT_DIR$/Example/BSFrameworks/main.m" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2OdIyuUFDcC3ZQM88IQCHCFKYuE" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "ruby.rails.projectView.checked": "true",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="Unnamed" type="RubyRunConfigurationType" factoryName="Ruby" nameIsGenerated="true">
+      <module name="BSFramework" />
+      <RUBY_RUN_CONFIG NAME="RUBY_ARGS" VALUE="" />
+      <RUBY_RUN_CONFIG NAME="WORK DIR" VALUE="$MODULE_DIR$/fastlane" />
+      <RUBY_RUN_CONFIG NAME="SHOULD_USE_SDK" VALUE="true" />
+      <RUBY_RUN_CONFIG NAME="ALTERN_SDK_NAME" VALUE="ruby-2.6.10-p210" />
+      <RUBY_RUN_CONFIG NAME="myPassParentEnvs" VALUE="true" />
+      <EXTENSION ID="BundlerRunConfigurationExtension" BUNDLE_MODE="AUTO" bundleExecEnabled="true" />
+      <EXTENSION ID="RubyCoverageRunConfigurationExtension" track_test_folders="true" runner="rcov" ENABLE_BRANCH_COVERAGE="true" ENABLE_FORKED_COVERAGE="true">
+        <COVERAGE_PATTERN ENABLED="true">
+          <PATTERN REGEXPS="/.rvm/" INCLUDED="false" />
+        </COVERAGE_PATTERN>
+      </EXTENSION>
+      <EXTENSION ID="org.jetbrains.plugins.ruby.rails.run.RailsRunConfigurationExtension" SCRATCH_USE_RAILS_RUNNER="false" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_PATH" VALUE="/opt/homebrew/bin/fastlane" />
+      <RUBY_RUN_CONFIG NAME="SCRIPT_ARGS" VALUE="custom_lane" />
+      <method v="2" />
+    </configuration>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpringUtil" SPRING_PRE_LOADER_OPTION="true" RAKE_SPRING_PRE_LOADER_OPTION="true" RAILS_SPRING_PRE_LOADER_OPTION="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a27e4c47-bfb6-48fa-99b1-ccb9b5c19a45" name="Changes" comment="" />
+      <created>1681884289527</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1681884289527</updated>
+      <workItem from="1681884290930" duration="1964000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/BSFramework@Unnamed.rcov" NAME="Unnamed Coverage Results" MODIFIED="1681885095042" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="rcov" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/fastlane" MODULE_NAME="BSFramework" />
+  </component>
+</project>

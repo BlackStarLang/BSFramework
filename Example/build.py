@@ -4,6 +4,7 @@
 import os,sys,time
 import requests
 import argparse
+import linecache
 
 ################### 打包配置 ##################
 
@@ -11,10 +12,10 @@ import argparse
 bundleid = 'com.framework.BStar'
 
 # 打包配置文件名称
-profile_name = 'BStar Framework ADHoc'
+profile_name = 'TestProfile'
 
 # 打包证书的 teamID
-teamid = 'W97PTP9593'
+teamid = '74WTP9NTZF'
 
 
 
@@ -51,18 +52,24 @@ def init_parameter():
     # 获取 scheme 和 target
     schemes_name = ''
     target_name = ''
+    params_temp_arr = []
 
-    for i,line in enumerate(build_list):
+    for line in build_list:
+        if line == '\n' or line == ' ':
+            continue
+        else:
+            temp = line.strip(' ')
+            temp = temp.strip('\n')
+            params_temp_arr.append(temp)
+
+    for i, line in enumerate(params_temp_arr):
 
         if line.find('Schemes:') != -1:
-
-            temp = build_list.readline().strip(' ')
-            schemes_name = temp.strip('\n')
+            schemes_name = params_temp_arr[i+1]
 
         elif line.find('Targets:') != -1:
+            target_name = params_temp_arr[i+1]
 
-            temp = build_list.readline().strip(' ')
-            target_name = temp.strip('\n')
 
     # 增加 scheme 和 target 参数
     parser.add_argument('-scheme', default = schemes_name,
@@ -83,9 +90,8 @@ def init_parameter():
 
     # 获取当前目录下的所有文件名称
     list_file_name = os.listdir(os.getcwd())
-
     for file_name in list_file_name:
-
+        
         if file_name.endswith('.xcodeproj'):
 
             name_split = file_name.split('.')
@@ -192,7 +198,7 @@ def creat_config_plist(plist_path):
             <key>destination</key>
             <string>export</string>
             <key>method</key>
-            <string>ad-hoc</string>
+            <string>develop</string>
             <key>provisioningProfiles</key>
             <dict>
                 <key>%s</key>
@@ -236,7 +242,7 @@ def upload_to_pyger():
     # 为保证 能够找到ipa文件，做一步容错，
     # 如果没有根据路径找到，就遍历文件夹，找到.ipa文件
     if os.path.exists(file_path) == False:
-        ipa_list = os.listdir(os.path)
+        ipa_list = os.listdir(ipa_path)
         for file_name in ipa_list:
             if file_name.find('.ipa') != -1:
                 file_path = '%s/%s' % (ipa_path, file_name)
@@ -276,4 +282,4 @@ if __name__ == '__main__':
     xcode_clean()
     xcode_archive()
     xcode_export_ipa()
-    upload_to_pyger()
+#    upload_to_pyger()
