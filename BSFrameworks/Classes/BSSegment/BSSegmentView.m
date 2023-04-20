@@ -126,9 +126,13 @@
     self.isTaped = YES;
     self.userInteractionEnabled = NO;
     
+    if (self.didClickTabBlock){
+        self.didClickTabBlock(gesture.view.tag);
+    }
     [self setSelectIndex:gesture.view.tag animate:YES];
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.25 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+    // 这里认为点击标签后，动画0.35s内一定会结束
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
         self.userInteractionEnabled = YES;
         self.isTaped = NO;
     });
@@ -167,10 +171,13 @@
             currentLabel.textColor = [self colorTransformFrom:self.selectColor to:self.normalColor progress:(progress)];
             
             CGFloat totalWidth = currentLabel.left - willSelectLabel.left;
-            self.lineIndicator.left = currentLabel.left - totalWidth * progress;
-            self.lineIndicator.width = currentLabel.width + (willSelectLabel.width - currentLabel.width) * progress;
+            ///调整布局任务放在队列最后
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                self.lineIndicator.left = currentLabel.left - totalWidth * progress;
+                self.lineIndicator.width = currentLabel.width + (willSelectLabel.width - currentLabel.width) * progress;
+            });
             
-            [self autoSetContentOffset:contentOffsetX progress:progress];
+            [self autoSetContentOffset:contentOffsetX isTaped:YES];
 
         }else{
             
@@ -203,7 +210,7 @@
                 self.lineIndicator.centerX = secondLabel.centerX - (1-progress) * (firstLabel.width + self.lineSpace);
             }
             
-            [self autoSetContentOffset:contentOffsetX progress:progress];
+            [self autoSetContentOffset:contentOffsetX isTaped:NO];
         }
     }
 }
@@ -240,6 +247,7 @@
         titleLabel.textColor = (i == selectIndex)?self.selectColor:self.normalColor;
         titleLabel.text = dataArr[i];
         titleLabel.userInteractionEnabled = YES;
+        titleLabel.textAlignment = NSTextAlignmentCenter;
         
         if (i != selectIndex) {
             CGFloat scale = self.normalFont.lineHeight/self.selectFont.lineHeight;
@@ -262,7 +270,7 @@
     self.lineIndicator.frame = CGRectMake(selectLabel.left - self.indicatorGreatLabelWidth/2, selectLabel.bottom - SCALE_W(3), selectLabel.width + self.indicatorGreatLabelWidth, SCALE_W(6));
     
     ///自动滚动
-    [self autoSetContentOffset:selectIndex * SCREEN_WIDTH progress:0];
+    [self autoSetContentOffset:selectIndex * SCREEN_WIDTH isTaped:NO];
     [self.linkScrollView setContentOffset:CGPointMake(selectIndex * SCREEN_WIDTH, 0) animated:NO];
 }
 
@@ -333,20 +341,28 @@
 }
 
 
-- (void)autoSetContentOffset:(CGFloat)contentOffsetX progress:(CGFloat)progress {
-
-    if (self.autoScrollType == barTitleScrollAligment_CenterX && progress == 0) {
+- (void)autoSetContentOffset:(CGFloat)contentOffsetX isTaped:(BOOL)isTaped {
+    
+    if (self.autoScrollType == barTitleScrollAligment_CenterX){
+        CGFloat minOffsetX = MAX(self.lineIndicator.centerX - self.scrollView.width/2 + self.horizontalAutoOffsetX, 0);
+        CGFloat minOffsetX1 = MAX(self.scrollView.contentSize.width - self.scrollView.width, 0);
+        CGFloat newOffsetX = MIN(minOffsetX, minOffsetX1);
         
-        NSInteger currentPageIndex = round(contentOffsetX/SCREEN_WIDTH);
-        UILabel *currentLabel = self.mutLabels[currentPageIndex];
-        CGFloat centerX = [currentLabel.superview convertPoint:currentLabel.center toView:self.scrollView].x;
-        CGFloat targetOffset = centerX - self.scrollView.width/2 + self.horizontalAutoOffsetX;
-        if (targetOffset <=0){
-            targetOffset = 0;
+        ///点击的时候需要考虑跨度问题，所以需要判断是向左还是向右，这样可以优化滚动效果
+        if(isTaped){
+            if (self.currentIndex <= self.willSelectIndex ){
+                if(newOffsetX >= self.scrollView.contentOffset.x){
+                    [self.scrollView setContentOffset:CGPointMake(newOffsetX , 0)];
+                }
+            }else{
+                if(newOffsetX < self.scrollView.contentOffset.x){
+                    [self.scrollView setContentOffset:CGPointMake(newOffsetX , 0)];
+                }
+            }
         }else{
-            targetOffset = MIN(self.scrollView.contentSize.width - self.scrollView.width, targetOffset);
+            ///滚动的时候不需要考虑跨度问题，两个标签一定是挨着的，所以直接滚动就行
+            [self.scrollView setContentOffset:CGPointMake(newOffsetX , 0)];
         }
-        [self.scrollView setContentOffset:CGPointMake(targetOffset, 0) animated:YES];
     }
 }
 

@@ -60,6 +60,9 @@ typedef NS_ENUM(NSUInteger, barTitleScrollAligment) {
 ///默认选中index
 @property (nonatomic, assign) NSUInteger defaultSelectIndex;
 
+///新增点击顶部tab的block回调，这里只是点击，滚动是不会触发的
+@property (nonatomic, copy) void(^didClickTabBlock)(NSInteger currentIndex);
+
 ///设置标题数据
 - (void)setDataArr:(NSArray<NSString *> *)dataArr;
 
