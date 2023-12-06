@@ -21,8 +21,8 @@
 int main(int argc, char * argv[])
 {
     @autoreleasepool {
-        extern int ptrace(int request, pid_t pid, caddr_t addr, int data);
-        ptrace(STAR_END_DEBUG + STAR_END_DEBUG_ADD, 0, 0, 0);
+//        extern int ptrace(int request, pid_t pid, caddr_t addr, int data);
+//        ptrace(STAR_END_DEBUG + STAR_END_DEBUG_ADD, 0, 0, 0);
         return UIApplicationMain(argc, argv, nil, NSStringFromClass([BSAppDelegate class]));
     }
 }
