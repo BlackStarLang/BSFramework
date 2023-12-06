@@ -240,7 +240,7 @@ pod 'BSFrameworks/BSSegmentView'
 
 ## Author
 
-blackstar_lang@163.com, langzq@sqbj.com
+blackstar_lang@163.com
 
 ## License
 
