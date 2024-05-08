@@ -8,12 +8,15 @@
 
 #import "BSOperatorController.h"
 #import <UIView+BSView.h>
+#import "NSMutableArray+ZHSafe.h"
 
 @interface BSOperatorController ()
 
 @property (nonatomic ,strong) dispatch_queue_t queue;
 @property (atomic ,assign) int count;
 //@property (nonatomic ,strong) NSObject *obj;
+
+@property (nonatomic, strong) NSMutableArray *testMut;
 
 @end
 
@@ -38,6 +41,11 @@
     
     [self syncOperation];
 
+    UIButton *testButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 80, 40)];
+    testButton.center = self.view.center;
+    testButton.backgroundColor = [UIColor greenColor];
+    [testButton addTarget:self action:@selector(testClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:testButton];
 }
 
 -(void)dispatchCount{
@@ -656,5 +664,54 @@
 
 }
 
+
+- (NSMutableArray *)testMut {
+    if (!_testMut) {
+        _testMut = [NSMutableArray array];
+    }
+    return _testMut;
+}
+
+- (void)testClick {
+    
+    NSObject *obj = [[NSObject alloc]init];
+//    [self.testMut addObject:obj];
+    NSMutableArray *testMut = [NSMutableArray arrayWithObject:obj];
+    dispatch_queue_t queue = dispatch_queue_create("myq", DISPATCH_QUEUE_CONCURRENT);
+    
+    dispatch_async(queue, ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            if (testMut.count>0) {
+//                @synchronized (self) {
+//                    NSLog(@"%@",[testMut firstObject]);
+//                }
+                @try {
+                    NSObject *obj = [testMut firstObject];
+                    NSLog(@"%@",obj);
+                } @catch (NSException *exception) {
+                    NSLog(@"闪退了");
+                } @finally {
+                    
+                }
+            }
+            [self testClick];
+        });
+        
+        @synchronized (self) {
+            [testMut removeObjectAtIndex:0];
+        }
+       
+    });
+    
+    
+//    dispatch_queue_t queue1 = dispatch_queue_create("myq1", DISPATCH_QUEUE_CONCURRENT);
+//
+//    dispatch_async(queue1, ^{
+//        @synchronized (self) {
+//            [testMut removeObjectAtIndex:0];
+//        }
+//    });
+}
 
 @end

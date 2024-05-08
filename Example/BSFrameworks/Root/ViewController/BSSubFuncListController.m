@@ -30,6 +30,10 @@
     
     [self initSubViews];
     [self masonryLayout];
+    
+    int a = 10;
+    int *p = &a;
+    NSLog(@"%d -- %ld",*p,p);
 }
 
 

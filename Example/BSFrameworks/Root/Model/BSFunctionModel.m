@@ -81,6 +81,7 @@
                         @{@"IJKPlayer 播放器":@"BSIKJPlayerController"},
                         @{@"UIButton 的setTitleEdgeInsets和setTitleEdgeInsets":@"BSButtonEdgeInsetsVC"},
                         @{@"JSON TEST":@"BSJsonTestVC"},
+                        @{@"Font List":@"BSFontListController"}
                         
     ];
     
